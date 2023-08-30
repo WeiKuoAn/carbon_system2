@@ -18,5 +18,4 @@ Auth::routes();
 
 Route::get('/', [App\Http\Controllers\HomeController::class, 'root']);
 // Route::get('{any}', [App\Http\Controllers\HomeController::class, 'index'])->name('index');
-Route::get('/customers', [App\Http\Controllers\CustomerController::class, 'index'])->name('customers');
-Route::get('/customer/create', [App\Http\Controllers\CustomerController::class, 'create'])->name('customer.create');
+Route::resource('customer', App\Http\Controllers\CustomerController::class);

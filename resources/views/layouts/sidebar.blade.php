@@ -47,7 +47,7 @@
                 </li>
 
                 <li class="menu-title" data-key="t-applications">Applications</li>
-
+                
                 <li>
                     <a href="javascript: void(0);" class="has-arrow">
                         <i class="bx bx-envelope icon nav-icon"></i>
