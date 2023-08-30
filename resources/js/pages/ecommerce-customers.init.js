@@ -23,7 +23,7 @@ new gridjs.Grid({
       {
         name: 'Username',
         formatter: (function (cell) {
-          return gridjs.html('<img src="build/images/users/'+ cell[0]+'" alt="" class="avatar-sm rounded-circle me-2" /><a href="#" class="text-body">' + cell[1] + "</a>");
+          return gridjs.html('<img src="../build/images/users/'+ cell[0]+'" alt="" class="avatar-sm rounded-circle me-2" /><a href="#" class="text-body">' + cell[1] + "</a>");
         })
       },
       {

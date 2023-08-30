@@ -1,6 +1,6 @@
 @extends('layouts.master')
 @section('title')
-    廠商列表
+    行業類別設定
 @endsection
 @section('css')
     <!-- datepicker css -->
@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="{{ URL::asset('build/libs/gridjs/theme/mermaid.min.css') }}">
 @endsection
 @section('page-title')
-    廠商列表
+    行業類別設定
 @endsection
 @section('body')
 
@@ -30,11 +30,11 @@
                             <div class="col-md-6">
                                 <div class="d-flex flex-wrap align-items-center justify-content-end gap-2 mb-3">
                                     <div>
-                                        <a  href="{{ route('customer.create') }}">
+                                        <a  href="{{ route('industry-category.create') }}">
                                             <button type="button"
                                                 class="btn btn-success btn-rounded waves-effect waves-light mb-2 me-2">
                                                 <i class="mdi mdi-plus me-1"></i>
-                                                新增廠商</button>
+                                                新增行業類別</button>
                                         </a>
                                     </div>
                                 </div>
@@ -44,10 +44,12 @@
                             <table class="table table-nowrap align-middle">
                                 <thead class="table-light">
                                     <tr>
-                                        <th scope="col">廠商名稱</th>
-                                        <th scope="col">Position</th>
-                                        <th scope="col">Email</th>
-                                        <th scope="col">Projects</th>
+                                        <th scope="col">類別名稱</th>
+                                        <th scope="col">行業描述</th>
+                                        <th scope="col">年均碳排放量</th>
+                                        <th scope="col">碳排放主要來源</th>
+                                        <th scope="col">碳排放測量標準</th>
+                                        <th scope="col">最後更新日期</th>
                                         <th scope="col" style="width: 200px;">Action</th>
                                     </tr>
                                 </thead>
@@ -55,27 +57,23 @@
                                 <tbody>
                                     @foreach($datas as $data)
                                     <tr>
-                                        <td>
-                                            <img src="{{ URL::asset('build/images/users/avatar-2.jpg') }}" alt=""
-                                                class="avatar rounded-circle img-thumbnail me-2">
-                                            <a href="#" class="text-body">{{ $data->name }}</a>
-                                        </td>
+                                        <td>{{ $data->name }}</td>
                                         <td><span class="badge badge-soft-success mb-0">Full Stack Developer</span></td>
                                         <td>SimonRyles@minible.com</td>
                                         <td>125</td>
+                                        <td>{{ $data->name }}</td>
+                                        <td>{{ $data->name }}</td>
                                         <td>
                                             <ul class="list-inline mb-0">
-                                                <li class="list-inline-item dropdown">
-                                                    <a class="table-action-btn dropdown-toggle arrow-none btn btn-outline-dark waves-effect" href="#"
-                                                        role="button" data-bs-toggle="dropdown" aria-haspopup="true">動作
-                                                        <i class="bx bxs-down-arrow"></i>
-                                                    </a>
-
-                                                    <div class="dropdown-menu dropdown-menu-end">
-                                                        <a class="dropdown-item" href="#">Action</a>
-                                                        <a class="dropdown-item" href="#">Another action</a>
-                                                        <a class="dropdown-item" href="#">Something else here</a>
-                                                    </div>
+                                                <li class="list-inline-item">
+                                                    <a href="javascript:void(0);" data-bs-toggle="tooltip"
+                                                        data-bs-placement="top" title="Edit" class="px-2 text-primary"><i
+                                                            class="bx bx-pencil font-size-18"></i></a>
+                                                </li>
+                                                <li class="list-inline-item">
+                                                    <a href="javascript:void(0);" data-bs-toggle="tooltip"
+                                                        data-bs-placement="top" title="Delete" class="px-2 text-danger"><i
+                                                            class="bx bx-trash-alt font-size-18"></i></a>
                                                 </li>
                                             </ul>
                                         </td>
@@ -89,15 +87,37 @@
             </div>
         </div>
         <!-- end row -->
+
+        <!--  successfully modal  -->
+        <div id="success-btn" class="modal fade" tabindex="-1" aria-labelledby="success-btnLabel" aria-hidden="true"
+            data-bs-scroll="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <div class="text-center">
+                            <i class="bx bx-check-circle display-1 text-success"></i>
+                            <h4 class="mt-3">新增成功！</h4>
+                        </div>
+                    </div>
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->
+
     @endsection
     @section('scripts')
+        <script>
+            $(document).ready(function(){
+                console.log('1');
+                @if(session('success'))
+                    $('#success-btn').modal('show');
+                @endif
+            });
+        </script>
         <!-- datepicker js -->
         <script src="{{ URL::asset('build/libs/flatpickr/flatpickr.min.js') }}"></script>
 
         <!-- gridjs js -->
         <script src="{{ URL::asset('build/libs/gridjs/gridjs.umd.js') }}"></script>
-
-        <script src="{{ URL::asset('build/js/pages/ecommerce-customers.init.js') }}"></script>
         <!-- App js -->
         <script src="{{ URL::asset('build/js/app.js') }}"></script>
     @endsection
