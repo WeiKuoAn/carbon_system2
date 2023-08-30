@@ -19,3 +19,4 @@ Auth::routes();
 Route::get('/', [App\Http\Controllers\HomeController::class, 'root']);
 // Route::get('{any}', [App\Http\Controllers\HomeController::class, 'index'])->name('index');
 Route::resource('customer', App\Http\Controllers\CustomerController::class);
+Route::resource('user', App\Http\Controllers\UserController::class);

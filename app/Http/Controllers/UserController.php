@@ -3,17 +3,15 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Customer;
 
-class CustomerController extends Controller
+class UserController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $datas = Customer::paginate(50);
-        return view('customer.index')->with('datas', $datas);
+        return view('user.index');
     }
 
     /**
@@ -21,7 +19,7 @@ class CustomerController extends Controller
      */
     public function create()
     {
-        return view('customer.create');
+        //
     }
 
     /**

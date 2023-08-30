@@ -1,6 +1,6 @@
 @extends('layouts.master')
 @section('title')
-    客戶列表
+    範本
 @endsection
 @section('css')
     <!-- datepicker css -->
@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="{{ URL::asset('build/libs/gridjs/theme/mermaid.min.css') }}">
 @endsection
 @section('page-title')
-    客戶列表
+    範本
 @endsection
 @section('body')
 

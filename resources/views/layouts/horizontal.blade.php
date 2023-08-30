@@ -260,7 +260,7 @@
                                 <div class="arrow-down"></div>
                             </a>
                             <div class="dropdown-menu" aria-labelledby="topnav-dashboard">
-                                <a href="#" class="dropdown-item">用戶列表</a>
+                                <a href="{{ route('user.index') }}" class="dropdown-item">用戶列表</a>
                                 <a href="#" class="dropdown-item">部門設定</a>
                                 <a href="#" class="dropdown-item">職稱設定</a>
                                 <a href="#" class="dropdown-item">權限設定</a>
@@ -275,7 +275,7 @@
                                 <div class="arrow-down"></div>
                             </a>
                             <div class="dropdown-menu" aria-labelledby="topnav-dashboard">
-                                <a href="#" class="dropdown-item">廠商列表</a>
+                                <a href="{{ route('customer.index') }}" class="dropdown-item">廠商列表</a>
                                 <a href="#" class="dropdown-item">行業類別設定</a>
                             </div>
                         </li>

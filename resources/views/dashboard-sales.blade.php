@@ -7,7 +7,7 @@
 @endsection
 @section('body')
 
-    <body>
+    <body data-layout="horizontal">
     @endsection
     @section('content')
         <div class="row">
