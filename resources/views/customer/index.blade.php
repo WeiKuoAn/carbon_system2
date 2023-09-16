@@ -48,6 +48,7 @@
                                         <th scope="col">Position</th>
                                         <th scope="col">Email</th>
                                         <th scope="col">Projects</th>
+                                        <th scope="col">分廠</th>
                                         <th scope="col" style="width: 200px;">Action</th>
                                     </tr>
                                 </thead>
@@ -63,6 +64,7 @@
                                         <td><span class="badge badge-soft-success mb-0">Full Stack Developer</span></td>
                                         <td>SimonRyles@minible.com</td>
                                         <td>125</td>
+                                        <td>有</td>
                                         <td>
                                             <ul class="list-inline mb-0">
                                                 <li class="list-inline-item dropdown">
@@ -72,9 +74,9 @@
                                                     </a>
 
                                                     <div class="dropdown-menu dropdown-menu-end">
-                                                        <a class="dropdown-item" href="#">Action</a>
-                                                        <a class="dropdown-item" href="#">Another action</a>
-                                                        <a class="dropdown-item" href="#">Something else here</a>
+                                                        <a class="dropdown-item" href="#">廠商資料</a>
+                                                        <a class="dropdown-item" href="#">ESG問卷查看</a>
+                                                        <a class="dropdown-item" href="#">盤查紀錄</a>
                                                     </div>
                                                 </li>
                                             </ul>

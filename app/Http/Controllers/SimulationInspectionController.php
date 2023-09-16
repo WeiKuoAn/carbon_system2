@@ -3,17 +3,15 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\User;
 
-class UserController extends Controller
+class SimulationInspectionController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $datas = User::get();
-        return view('user.index')->with('datas', $datas);
+        //
     }
 
     /**
@@ -21,7 +19,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        //
+        return view('simulation-inspection.create');
     }
 
     /**

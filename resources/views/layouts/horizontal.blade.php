@@ -255,15 +255,13 @@
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle arrow-none" href="#" id="topnav-dashboard"
                                 role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <i class="bx bx-user icon nav-icon"></i>
-                                <span data-key="t-dashboards">用戶管理</span>
+                                <i class="bx bx-clipboard  icon nav-icon"></i>
+                                <span data-key="t-dashboards">探盤模擬流程</span>
                                 <div class="arrow-down"></div>
                             </a>
                             <div class="dropdown-menu" aria-labelledby="topnav-dashboard">
-                                <a href="{{ route('user.index') }}" class="dropdown-item">用戶列表</a>
-                                <a href="#" class="dropdown-item">部門設定</a>
-                                <a href="#" class="dropdown-item">職稱設定</a>
-                                <a href="#" class="dropdown-item">權限設定</a>
+                                <a href="{{ route('simulation-inspection.create') }}" class="dropdown-item">新增盤查</a>     
+                                <a href="#" class="dropdown-item">盤查列表</a> 
                             </div>
                         </li>
 
@@ -285,7 +283,7 @@
                             <a class="nav-link dropdown-toggle arrow-none" href="#" id="topnav-dashboard"
                                 role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <i class="bx bx-book-content icon nav-icon"></i>
-                                <span data-key="t-dashboards">問卷管理</span>
+                                <span data-key="t-dashboards">企業健檢問卷管理</span>
                                 <div class="arrow-down"></div>
                             </a>
                             <div class="dropdown-menu" aria-labelledby="topnav-dashboard">
@@ -298,14 +296,12 @@
                             <a class="nav-link dropdown-toggle arrow-none" href="#" id="topnav-dashboard"
                                 role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <i class="bx bx-data  icon nav-icon"></i>
-                                <span data-key="t-dashboards">排放源數據設定</span>
+                                <span data-key="t-dashboards">探盤流程設定</span>
                                 <div class="arrow-down"></div>
                             </a>
                             <div class="dropdown-menu" aria-labelledby="topnav-dashboard">
-                                <a href="#" class="dropdown-item">範疇設定</a>     
-                                <a href="#" class="dropdown-item">ISO14064排放源類別</a>
-                                <a href="#" class="dropdown-item">GHG Protocol排放源類別</a>
-                                <a href="#" class="dropdown-item">排放源基本資料與排放系数與GWP值</a>
+                                <a href="#" class="dropdown-item">探盤類別</a>     
+                                <a href="#" class="dropdown-item">探盤列別細項設定</a>
                             </div>
                         </li>
 
@@ -313,26 +309,30 @@
                             <a class="nav-link dropdown-toggle arrow-none" href="#" id="topnav-dashboard"
                                 role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <i class="bx bx-coffee  icon nav-icon"></i>
-                                <span data-key="t-dashboards">盤查管理</span>
+                                <span data-key="t-dashboards">企業盤查建檢管理</span>
                                 <div class="arrow-down"></div>
                             </a>
                             <div class="dropdown-menu" aria-labelledby="topnav-dashboard">
-                                <a href="#" class="dropdown-item">盤查列表</a>     
-                                <a href="#" class="dropdown-item">待檢核盤查列表</a>
+                                <a href="{{ route('inspection.index') }}" class="dropdown-item">盤查建檢管理1</a>     
+                                <a href="{{ route('inspection.create') }}" class="dropdown-item">盤查建檢管理2</a>
                             </div>
                         </li>
 
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle arrow-none" href="#" id="topnav-dashboard"
                                 role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <i class="bx bx-clipboard  icon nav-icon"></i>
-                                <span data-key="t-dashboards">報表管理</span>
+                                <i class="bx bx-user icon nav-icon"></i>
+                                <span data-key="t-dashboards">用戶管理</span>
                                 <div class="arrow-down"></div>
                             </a>
                             <div class="dropdown-menu" aria-labelledby="topnav-dashboard">
-                                <a href="#" class="dropdown-item">每日盤查案件統計</a>     
+                                <a href="{{ route('user.index') }}" class="dropdown-item">用戶列表</a>
+                                <a href="#" class="dropdown-item">部門設定</a>
+                                <a href="#" class="dropdown-item">職稱設定</a>
+                                <a href="#" class="dropdown-item">權限設定</a>
                             </div>
                         </li>
+
                     </ul>
                 </div>
             </nav>

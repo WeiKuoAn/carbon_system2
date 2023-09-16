@@ -21,3 +21,7 @@ Route::get('/', [App\Http\Controllers\HomeController::class, 'root']);
 Route::resource('customer', App\Http\Controllers\CustomerController::class);
 Route::resource('industry-category', App\Http\Controllers\IndustryCategoryController::class);
 Route::resource('user', App\Http\Controllers\UserController::class);
+Route::resource('branches', App\Http\Controllers\BranchController::class);
+Route::resource('inspection', App\Http\Controllers\InspectionhController::class);
+Route::resource('simulation-inspection', App\Http\Controllers\SimulationInspectionController::class);
+// Route::get('/inspection', [App\Http\Controllers\InspectionhController::class, 'root']);

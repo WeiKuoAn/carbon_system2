@@ -52,15 +52,9 @@
                             <table class="table table-nowrap align-middle">
                                 <thead class="table-light">
                                     <tr>
-                                        <th scope="col" class="ps-4" style="width: 50px;">
-                                            <div class="form-check font-size-16">
-                                                <input type="checkbox" class="form-check-input" id="contacusercheck">
-                                                <label class="form-check-label" for="contacusercheck"></label>
-                                            </div>
-                                        </th>
-                                        <th scope="col">客戶名稱</th>
-                                        <th scope="col">Position</th>
-                                        <th scope="col">Email</th>
+                                        <th scope="col">姓名</th>
+                                        <th scope="col">職稱</th>
+                                        <th scope="col">帳號</th>
                                         <th scope="col">Projects</th>
                                         <th scope="col" style="width: 200px;">Action</th>
                                     </tr>
@@ -68,12 +62,6 @@
 
                                 <tbody>
                                     <tr>
-                                        <th scope="row" class="ps-4">
-                                            <div class="form-check font-size-16">
-                                                <input type="checkbox" class="form-check-input" id="contacusercheck1">
-                                                <label class="form-check-label" for="contacusercheck1"></label>
-                                            </div>
-                                        </th>
                                         <td>
                                             <img src="{{ URL::asset('build/images/users/avatar-2.jpg') }}" alt=""
                                                 class="avatar rounded-circle img-thumbnail me-2">

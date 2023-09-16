@@ -1,6 +1,6 @@
 @extends('layouts.master')
 @section('title')
-    行業類別設定
+    部門設定
 @endsection
 @section('css')
     <!-- datepicker css -->
@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="{{ URL::asset('build/libs/gridjs/theme/mermaid.min.css') }}">
 @endsection
 @section('page-title')
-    行業類別設定
+    部門設定
 @endsection
 @section('body')
 
@@ -30,11 +30,11 @@
                             <div class="col-md-6">
                                 <div class="d-flex flex-wrap align-items-center justify-content-end gap-2 mb-3">
                                     <div>
-                                        <a  href="{{ route('industry-category.create') }}">
+                                        <a  href="{{ route('branches.create') }}">
                                             <button type="button"
                                                 class="btn btn-success btn-rounded waves-effect waves-light mb-2 me-2">
                                                 <i class="mdi mdi-plus me-1"></i>
-                                                新增行業類別</button>
+                                                新增部門</button>
                                         </a>
                                     </div>
                                 </div>
@@ -44,12 +44,12 @@
                             <table class="table table-nowrap align-middle">
                                 <thead class="table-light">
                                     <tr>
-                                        <th scope="col">類別名稱</th>
-                                        <th scope="col">行業描述</th>
-                                        <th scope="col">年均碳排放量</th>
-                                        <th scope="col">碳排放主要來源</th>
-                                        <th scope="col">碳排放測量標準</th>
-                                        <th scope="col">最後更新日期</th>
+                                        <th scope="col">部門名稱</th>
+                                        <th scope="col">分行聯絡人</th>
+                                        <th scope="col">分行聯絡人電話</th>
+                                        <th scope="col">分行聯絡人電子郵件</th>
+                                        <th scope="col">分行地址</th>
+                                        <th scope="col">備註</th>
                                         <th scope="col" style="width: 200px;">Action</th>
                                     </tr>
                                 </thead>
