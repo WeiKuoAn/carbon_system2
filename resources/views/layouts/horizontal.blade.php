@@ -240,6 +240,11 @@
                 <div class="collapse navbar-collapse" id="topnav-menu-content">
                     <ul class="navbar-nav">
                         <li class="nav-item dropdown">
+                           <a href="{{route('carbon_system_demo.index')}}" class="nav-link dropdown-toggle arrow-none"><i class="bx bx-lock"></i>行銷用系統</a>
+                        </li>
+
+
+                        <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle arrow-none" href="#" id="topnav-dashboard"
                                 role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <i class="bx bx-home-alt icon nav-icon"></i>

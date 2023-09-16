@@ -24,4 +24,5 @@ Route::resource('user', App\Http\Controllers\UserController::class);
 Route::resource('branches', App\Http\Controllers\BranchController::class);
 Route::resource('inspection', App\Http\Controllers\InspectionhController::class);
 Route::resource('simulation-inspection', App\Http\Controllers\SimulationInspectionController::class);
+Route::resource('carbon_system_demo', App\Http\Controllers\carbon_system_demoController::class);
 // Route::get('/inspection', [App\Http\Controllers\InspectionhController::class, 'root']);
