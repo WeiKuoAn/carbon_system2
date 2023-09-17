@@ -23,7 +23,7 @@ class FileUploadController extends Controller
             return response()->json(['error' => 'File is not valid'], 400);
         }
     
-        $allowedFileExtensions = ['pdf'];
+        $allowedFileExtensions = ['pdf','jpg','png'];
         $extension = $file->getClientOriginalExtension();
     
         if(!in_array($extension, $allowedFileExtensions)) {
@@ -31,7 +31,7 @@ class FileUploadController extends Controller
         }
     
         $destinationPath = public_path('storage/uploads');
-        $fileName = $file->getClientOriginalName();
+        $fileName = '123'.$file->getClientOriginalName();
         $file->move($destinationPath, $fileName);
     
         $path = 'storage/uploads/' . $fileName;

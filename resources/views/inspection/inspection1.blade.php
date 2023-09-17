@@ -237,6 +237,7 @@
                                                 <input type="file" class="form-control" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01" aria-label="Upload">
                                                 <button class="btn btn-primary" type="button" id="inputGroupFileAddon01">上傳</button>
                                             </div>
+                                            <div id="preview-link-container"></div>
                                         </div>
                                     </div>
                                     <div class="mb-3 row">
@@ -586,6 +587,14 @@
                         contentType: false,
                         success: function(response) {
                             alert('File uploaded successfully');
+                            // 獲得返回的檔案URL
+                            var fileUrl = response.url;
+
+                            // 創建一個連結元素
+                            var link = $('<a></a>').attr('href', fileUrl).text('預覽檔案').attr('target', '_blank');
+
+                            // 將連結元素添加到HTML中的一個特定區域
+                            $('#preview-link-container').append(link);
                         },
                         error: function(error) {
                             alert('File upload failed');
