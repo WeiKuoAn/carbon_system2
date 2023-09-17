@@ -6,8 +6,14 @@
     <!-- choices css -->
     <link href="{{ URL::asset('build/libs/choices.js/public/assets/styles/choices.min.css') }}" rel="stylesheet" type="text/css" />
 
+    <!-- color picker css -->
+    <link rel="stylesheet" href="{{ URL::asset('build/libs/@simonwep/pickr/themes/classic.min.css') }}" /> <!-- 'classic' theme -->
+    <link rel="stylesheet" href="{{ URL::asset('build/libs/@simonwep/pickr/themes/monolith.min.css') }}" /> <!-- 'monolith' theme -->
+    <link rel="stylesheet" href="{{ URL::asset('build/libs/@simonwep/pickr/themes/nano.min.css') }}" /> <!-- 'nano' theme -->
+
     <!-- dropzone css -->
     <link href="{{ URL::asset('build/libs/dropzone/min/dropzone.min.css') }}" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="{{ URL::asset('build/libs/flatpickr/flatpickr.min.css') }}">
 @endsection
 @section('page-title')
     盤查建檢管理1
@@ -17,6 +23,10 @@
     <body data-layout="horizontal">
     @endsection
     @section('content')
+
+    <form id="file-upload-form" action="{{ route('upload') }}" method="POST" enctype="multipart/form-data">
+        @csrf
+
         <div class="row">
             <div class="col-xxl-3">
                 <div class="card">
@@ -188,7 +198,7 @@
                     </div>
                 </div>
             </div>
-
+            
             <div class="col-lg-9">
                 <div id="addproduct-accordion" class="custom-accordion">
                     <div class="card">
@@ -220,27 +230,18 @@
                         <div id="addproduct-productinfo-collapse" class="collapse show"
                             data-bs-parent="#addproduct-accordion">
                             <div class="p-4 border-top">
-                                <form>
-                                    <div class="mb-3 row" >
+                                    <div class="mb-3 row">
                                         <label for="example-search-input" class="col-md-2 col-form-label">起始會議</label>
                                         <div class="col-md-10">
                                             <div class="input-group">
-                                                <input type="file" class="form-control" id="inputGroupFile04"
-                                                    aria-describedby="inputGroupFileAddon04" aria-label="Upload">
-                                                <button class="btn btn-primary" type="button"
-                                                    id="inputGroupFileAddon04">上傳</button>
+                                                <input type="file" class="form-control" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01" aria-label="Upload">
+                                                <button class="btn btn-primary" type="button" id="inputGroupFileAddon01">上傳</button>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="mb-3 row">
-                                        <label for="example-email-input" class="col-md-2 col-form-label">經營者/高階主管共同承諾與承諾日期</label>
+                                        <label for="example-email-input" class="col-md-2 col-form-label">經營者/高階主管共同承諾日期</label>
                                         <div class="col-md-10">
-                                            <div class="input-group">
-                                                <input type="file" class="form-control" id="inputGroupFile04"
-                                                    aria-describedby="inputGroupFileAddon04" aria-label="Upload">
-                                                <button class="btn btn-primary" type="button"
-                                                    id="inputGroupFileAddon04">上傳</button>
-                                            </div>
                                             <input class="form-control mt-3" type="date" value="bootstrap@example.com"
                                                 id="example-email-input">
                                         </div>
@@ -256,17 +257,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="row mt-4 mb-2">
-                                        <div class="col text-end">
-                                            <a href="#" class="btn btn-danger"> <i class="bx bx-x me-1"></i> 取消 </a>
-                                            <a href="#" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#success-btn"> <i
-                                                    class=" bx bx-file me-1"></i> 保存 </a>
-                                        </div> <!-- end col -->
-                                    </div> <!-- end row-->
-
-                                </form>
                             </div>
-                        </div>
                     </div>
 
                     <div class="card">
@@ -298,15 +289,20 @@
 
                         <div id="addproduct-img-collapse" class="collapse" data-bs-parent="#addproduct-accordion">
                                 <div class="p-4 border-top">
-                                    <form action="#">
+                                        <div class="mb-3 row">
+                                            <label class="col-md-2 col-form-label">盤查使用標準</label>
+                                            <div class="col-md-10">
+                                                <select class="form-select">
+                                                    <option selected>請選擇</option>
+                                                    <option value="0">使用ISO14064-1標準</option>
+                                                    <option value="1">使用環保署標準</option>
+                                                </select>
+                                            </div>
+                                        </div>
                                         <div class="mb-3 row">
                                             <label class="col-md-2 col-form-label">盤查邊界設定</label>
                                             <div class="col-md-10">
-                                                <select class="form-select">
-                                                    <option>請選擇</option>
-                                                    <option>高雄廠</option>
-                                                    <option>台南廠</option>
-                                                </select>
+                                                <input class="form-control" type="text" id="example-email-input" placeholder="請輸入區域">
                                             </div>
                                         </div>
                                         <div class="mb-3 row">
@@ -319,17 +315,8 @@
                                             <label for="example-email-input" class="col-md-2 col-form-label">擬定基準年</label>
                                             <div class="col-md-10">
                                                 <input class="form-control" type="date" value="5" id="example-email-input">
-                                                <input class="form-control mt-3" type="date" value="5" id="example-email-input">
                                             </div>
                                         </div>
-                                        <div class="row mt-4 mb-2">
-                                            <div class="col text-end">
-                                                <a href="#" class="btn btn-danger"> <i class="bx bx-x me-1"></i> 取消 </a>
-                                                <a href="#" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#success-btn"> <i
-                                                        class=" bx bx-file me-1"></i> 保存 </a>
-                                            </div> <!-- end col -->
-                                        </div> <!-- end row-->
-                                    </form>
                                 </div>
                         </div>
                     </div>
@@ -371,13 +358,16 @@
                                     </div>
                                     <div class="mb-3 row">
                                         <label class="col-md-2 col-form-label">活動數據</label>
+
                                         <div class="col-md-10">
-                                            <select class="form-select">
-                                                <option>請選擇</option>
-                                                <option>直接溫室氣體排放-範疇一</option>
-                                                <option>間接溫室氣體排放(能源)-範疇二</option>
-                                                <option>間接溫室氣體排放(其他)範疇三</option>
-                                            </select>
+                                            <div class="mb-3">
+                                                <select class="form-control" data-trigger name="choices-multiple-default"
+                                                    id="choices-multiple-default" placeholder="This is a placeholder" multiple>
+                                                    <option value="scope1">直接溫室氣體排放-範疇一</option>
+                                                    <option value="scope2">間接溫室氣體排放(能源)-範疇二</option>
+                                                    <option value="scope3">間接溫室氣體排放(其他)-範疇三</option>
+                                                </select>
+                                            </div>
                                         </div>
                                     </div>
                                     <div class="mb-3 row">
@@ -397,14 +387,6 @@
                                             </form>
                                         </div>
                                     </div>
-                                    
-                                    <div class="row mt-4 mb-2">
-                                        <div class="col text-end">
-                                            <a href="#" class="btn btn-danger"> <i class="bx bx-x me-1"></i> 取消 </a>
-                                            <a href="#" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#success-btn"> <i
-                                                    class=" bx bx-file me-1"></i> 保存 </a>
-                                        </div> <!-- end col -->
-                                    </div> <!-- end row-->
                             </div>
                         </div>
                     </div>
@@ -438,7 +420,6 @@
                         <div id="addproduct-productinfo-collapse1" class="collapse"
                             data-bs-parent="#addproduct-accordion1">
                             <div class="p-4 border-top">
-                                <form>
                                     <div class="mb-3 row">
                                         <label class="col-md-2 col-form-label">建立排放量清冊</label>
                                         <div class="col-md-10">
@@ -457,23 +438,6 @@
                                             <input class="form-control mt-3" type="date" value="5" id="example-email-input">
                                         </div>
                                     </div>
-                                    <div class="mb-3 row">
-                                        <label class="col-md-2 col-form-label">數據化文件管理</label>
-                                        <div class="col-md-10">
-                                            <div class="form-check form-switch form-switch-lg mb-3" dir="ltr">
-                                                <input type="checkbox" class="form-check-input" id="customSwitchsizelg" checked>
-                                                <label class="form-check-label" for="customSwitchsizelg" checked></label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="row mt-4 mb-2">
-                                        <div class="col text-end">
-                                            <a href="#" class="btn btn-danger"> <i class="bx bx-x me-1"></i> 取消 </a>
-                                            <a href="#" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#success-btn"> <i
-                                                    class=" bx bx-file me-1"></i> 保存 </a>
-                                        </div> <!-- end col -->
-                                    </div> <!-- end row-->
-                                </form>
                             </div>
                         </div>
                     </div>
@@ -562,21 +526,23 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="row mt-4 mb-2">
-                                        <div class="col text-end">
-                                            <a href="#" class="btn btn-danger"> <i class="bx bx-x me-1"></i> 取消 </a>
-                                            <a href="#" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#success-btn"> <i
-                                                    class=" bx bx-file me-1"></i> 保存 </a>
-                                        </div> <!-- end col -->
-                                    </div> <!-- end row-->
-                                </form>
+                                
                             </div>
                         </div>
                     </div>
+                    <div class="row mt-4 mb-2">
+                        <div class="col text-end">
+                            <a href="#" class="btn btn-danger"> <i class="bx bx-x me-1"></i> 取消 </a>
+                            <a href="#" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#success-btn"> <i
+                                    class=" bx bx-file me-1"></i> 保存 </a>
+                        </div> <!-- end col -->
+                    </div> <!-- end row-->
                 </div>
             </div>
         </div>
         <!-- end row -->
+    </form>
+
 
         
     @endsection
@@ -586,9 +552,46 @@
 
         <!-- dropzone plugin -->
         <script src="{{ URL::asset('build/libs/dropzone/min/dropzone.min.js') }}"></script>
-
+        <!-- init js -->
+        <script src="{{ URL::asset('build/js/pages/form-advanced.init.js') }}"></script>
         <!-- init js -->
         <script src="{{ URL::asset('build/js/pages/ecommerce-choices.init.js') }}"></script>
+        
         <!-- App js -->
         <script src="{{ URL::asset('build/js/app.js') }}"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script>
+            $(document).ready(function(){
+                setupAjaxFileUpload('#inputGroupFile01', '#inputGroupFileAddon01');
+                setupAjaxFileUpload('#inputGroupFile04', '#inputGroupFileAddon04');
+            });
+
+            function setupAjaxFileUpload(inputSelector, buttonSelector){
+                $(buttonSelector).on('click', function() {
+                    var formData = new FormData();
+                    var fileInput = $(inputSelector)[0];
+                    if(fileInput.files.length === 0) {
+                        alert('No file selected');
+                        return;
+                    }
+                    formData.append('file', fileInput.files[0]);
+                    formData.append('_token', '{{ csrf_token() }}');
+
+                    $.ajax({
+                        url: '{{ route("upload") }}',
+                        type: 'POST',
+                        data: formData,
+                        processData: false,
+                        contentType: false,
+                        success: function(response) {
+                            alert('File uploaded successfully');
+                        },
+                        error: function(error) {
+                            alert('File upload failed');
+                        }
+                    });
+                });
+            }
+        </script>
     @endsection
