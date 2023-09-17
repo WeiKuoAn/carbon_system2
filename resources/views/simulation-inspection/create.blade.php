@@ -5,6 +5,12 @@
 @section('page-title')
     碳盤模擬流程
 @endsection
+@section('css')
+    <!-- quill css -->
+    <link href="{{ URL::asset('build/libs/quill/quill.core.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ URL::asset('build/libs/quill/quill.bubble.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ URL::asset('build/libs/quill/quill.snow.css') }}" rel="stylesheet" type="text/css" />
+@endsection
 @section('body')
 <style>
 
@@ -13,6 +19,11 @@
        border: 0.5pt solid gray;
         border-radius: 15px;
     }
+
+
+   .font-control{
+    text-align: center;
+   }
 </style>
     <body data-layout="horizontal">
     @endsection
@@ -127,82 +138,198 @@
                                             </div> <!-- end col -->
                                         </div> <!-- end row-->
                                     </div>
+
+
+
+
+
                                     <div class="tab-pane fade" id="v-pills-messages" role="tabpanel"
                                         aria-labelledby="v-pills-messages-tab">
                                         <div class="row p-3">
-                                            <div class="col-md-6">
-                                                <div class="mb-3">
-                                                    <label class="form-label" for="AddNew-Username">Username</label>
-                                                    <input type="text" class="form-control" placeholder="Enter Username"
-                                                        id="AddNew-Username">
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <div class="mb-3">
-                                                    <label class="form-label">Position</label>
-                                                    <select class="form-select">
-                                                        <option selected>Select Position</option>
-                                                        <option>Full Stack Developer</option>
-                                                        <option>Frontend Developer</option>
-                                                        <option>UI/UX Designer</option>
-                                                        <option>Backend Developer</option>
-                                                    </select>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <div class="mb-3">
-                                                    <label class="form-label" for="AddNew-Email">Email</label>
-                                                    <input type="text" class="form-control" placeholder="Enter Email"
-                                                        id="AddNew-Email">
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <div class="mb-3">
-                                                    <label class="form-label" for="AddNew-Phone">Phone</label>
-                                                    <input type="text" class="form-control" placeholder="Enter Phone"
-                                                        id="AddNew-Phone">
-                                                </div>
-                                            </div>
+                                            <label class="form-label" for="#" style="font-size: 20pt;font-weight:1000;">活動數據設定 - 範疇一</label>
                                         </div>
+
+                                        <table class="table">
+                                            <thead>
+                                                <td>排放源</td>
+                                                <td>燃料類型</td>
+                                                <td>年度使用量(單位)</td>
+                                                <td>排放因子(碳排放每單位燃料)</td>
+                                                <td>排放量(CO2e)</td>
+                                            </thead>
+                                            <tbody>
+                                                <td>
+                                                    <input type="text" name="" id="" class="form-control">
+                                                </td>
+                                                <td><input type="text" name="" id="" class="form-control"></td>
+                                                <td><input type="text" name="" id="" class="form-control"></td>
+                                                <td><input type="text" name="" id="" class="form-control"></td>
+                                                <td><input type="text" name="" id="" class="form-control"></td>
+                                                
+                                            </tbody>
+                                            <tbody>
+                                                <td>
+                                                    <input type="text" name="" id="" class="form-control">
+                                                </td>
+                                                <td><input type="text" name="" id="" class="form-control"></td>
+                                                <td><input type="text" name="" id="" class="form-control"></td>
+                                                <td><input type="text" name="" id="" class="form-control"></td>
+                                                <td><input type="text" name="" id="" class="form-control"></td>
+                                                
+                                            </tbody>
+                                            <tbody>
+                                                <td>
+                                                    <input type="text" name="" id="" class="form-control">
+                                                </td>
+                                                <td><input type="text" name="" id="" class="form-control"></td>
+                                                <td><input type="text" name="" id="" class="form-control"></td>
+                                                <td><input type="text" name="" id="" class="form-control"></td>
+                                                <td><input type="text" name="" id="" class="form-control"></td>
+                                                
+                                            </tbody>
+                                        </table>
+                                        <div class="row mt-4 mb-2">
+                                            <div class="col text-end">
+                                                <a href="#" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#success-btn"> <i
+                                                    class=" bx bx-file me-1"></i> 保存</a>
+                                                <a href="#" class="btn btn-danger"> <i class="bx bx-x me-1"></i> 取消 </a>
+                                                
+                                            </div> <!-- end col -->
+                                        </div> <!-- end row-->
                                     </div>
+
+
+
+
+
+
                                     <div class="tab-pane fade" id="v-pills-settings" role="tabpanel"
-                                        aria-labelledby="v-pills-settings-tab">
+                                        aria-labelledby="v-pills-settings">
                                         <div class="row p-3">
-                                            <div class="col-md-6">
-                                                <div class="mb-3">
-                                                    <label class="form-label" for="AddNew-Username">Username</label>
-                                                    <input type="text" class="form-control" placeholder="Enter Username"
-                                                        id="AddNew-Username">
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <div class="mb-3">
-                                                    <label class="form-label">Position</label>
-                                                    <select class="form-select">
-                                                        <option selected>Select Position</option>
-                                                        <option>Full Stack Developer</option>
-                                                        <option>Frontend Developer</option>
-                                                        <option>UI/UX Designer</option>
-                                                        <option>Backend Developer</option>
-                                                    </select>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <div class="mb-3">
-                                                    <label class="form-label" for="AddNew-Email">Email</label>
-                                                    <input type="text" class="form-control" placeholder="Enter Email"
-                                                        id="AddNew-Email">
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6">
-                                                <div class="mb-3">
-                                                    <label class="form-label" for="AddNew-Phone">Phone</label>
-                                                    <input type="text" class="form-control" placeholder="Enter Phone"
-                                                        id="AddNew-Phone">
-                                                </div>
-                                            </div>
+                                            <label class="form-label" for="#" style="font-size: 20pt;font-weight:1000;">活動數據設定 - 範疇二</label>
                                         </div>
+
+                                        <table class="table">
+                                            <thead>
+                                                <td>排放源</td>
+                                                <td>燃料類型</td>
+                                                <td>年度使用量(單位)</td>
+                                                <td>排放因子(碳排放每單位燃料)</td>
+                                                <td>排放量(CO2e)</td>
+                                            </thead>
+                                            <tbody>
+                                                <td>
+                                                    <input type="text" name="" id="" class="form-control">
+                                                </td>
+                                                <td><input type="text" name="" id="" class="form-control"></td>
+                                                <td><input type="text" name="" id="" class="form-control"></td>
+                                                <td><input type="text" name="" id="" class="form-control"></td>
+                                                <td><input type="text" name="" id="" class="form-control"></td>
+                                                
+                                            </tbody>
+                                            <tbody>
+                                                <td>
+                                                    <input type="text" name="" id="" class="form-control">
+                                                </td>
+                                                <td><input type="text" name="" id="" class="form-control"></td>
+                                                <td><input type="text" name="" id="" class="form-control"></td>
+                                                <td><input type="text" name="" id="" class="form-control"></td>
+                                                <td><input type="text" name="" id="" class="form-control"></td>
+                                                
+                                            </tbody>
+                                            <tbody>
+                                                <td>
+                                                    <input type="text" name="" id="" class="form-control">
+                                                </td>
+                                                <td><input type="text" name="" id="" class="form-control"></td>
+                                                <td><input type="text" name="" id="" class="form-control"></td>
+                                                <td><input type="text" name="" id="" class="form-control"></td>
+                                                <td><input type="text" name="" id="" class="form-control"></td>
+                                                
+                                            </tbody>
+                                        </table>
+                                        <div class="row mt-4 mb-2">
+                                            <div class="col text-end">
+                                                <a href="#" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#success-btn"> <i
+                                                    class=" bx bx-file me-1"></i> 保存</a>
+                                                <a href="#" class="btn btn-danger"> <i class="bx bx-x me-1"></i> 取消 </a>
+                                                
+                                            </div> <!-- end col -->
+                                        </div> <!-- end row-->
                                     </div>
+
+
+
+                                    <div class="tab-pane fade" id="v-pills-scope3" role="tabpanel"
+                                    aria-labelledby="v-pills-scope3">
+                                    <div class="row p-3">
+                                        <label class="form-label" for="#" style="font-size: 20pt;font-weight:1000;">活動數據設定 - 範疇三</label>
+                                    </div>
+
+                                    <table class="table">
+                                        <thead>
+                                            <td>排放源</td>
+                                            <td>燃料類型</td>
+                                            <td>年度使用量(單位)</td>
+                                            <td>排放因子(碳排放每單位燃料)</td>
+                                            <td>排放量(CO2e)</td>
+                                        </thead>
+                                        <tbody>
+                                            <td>
+                                                <input type="text" name="" id="" class="form-control">
+                                            </td>
+                                            <td><input type="text" name="" id="" class="form-control"></td>
+                                            <td><input type="text" name="" id="" class="form-control"></td>
+                                            <td><input type="text" name="" id="" class="form-control"></td>
+                                            <td><input type="text" name="" id="" class="form-control"></td>
+                                            
+                                        </tbody>
+                                        <tbody>
+                                            <td>
+                                                <input type="text" name="" id="" class="form-control">
+                                            </td>
+                                            <td><input type="text" name="" id="" class="form-control"></td>
+                                            <td><input type="text" name="" id="" class="form-control"></td>
+                                            <td><input type="text" name="" id="" class="form-control"></td>
+                                            <td><input type="text" name="" id="" class="form-control"></td>
+                                            
+                                        </tbody>
+                                        <tbody>
+                                            <td>
+                                                <input type="text" name="" id="" class="form-control">
+                                            </td>
+                                            <td><input type="text" name="" id="" class="form-control"></td>
+                                            <td><input type="text" name="" id="" class="form-control"></td>
+                                            <td><input type="text" name="" id="" class="form-control"></td>
+                                            <td><input type="text" name="" id="" class="form-control"></td>
+                                            
+                                        </tbody>
+                                    </table>
+                                    <div class="row mt-4 mb-2">
+                                        <div class="col text-end">
+                                            <a href="#" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#success-btn"> <i
+                                                class=" bx bx-file me-1"></i> 保存</a>
+                                            <a href="#" class="btn btn-danger"> <i class="bx bx-x me-1"></i> 取消 </a>
+                                            
+                                        </div> <!-- end col -->
+                                    </div> <!-- end row-->
+                                </div>
+
+
+                                <div class="tab-pane fade" id="v-pills-carbonbooks" role="tabpanel"
+                                aria-labelledby="v-pills-carbonbooks">
+                                <div class="row p-3">
+                                    <label class="form-label" for="#" style="font-size: 20pt;font-weight:1000;">盤查清冊</label>
+                                </div>
+
+                                </div>
+                                
+
+
+
+
+
+                                    
                                 </div>
                             </div><!--  end col -->
 
@@ -218,10 +345,16 @@
                                         aria-selected="false">基準年設定</a>
                                     <a class="nav-link mb-2" id="v-pills-messages-tab" data-bs-toggle="pill"
                                         href="#v-pills-messages" role="tab" aria-controls="v-pills-messages"
-                                        aria-selected="false">用電量</a>
+                                        aria-selected="false">活動數據輸入 - 範疇一</a>
                                     <a class="nav-link" id="v-pills-settings-tab" data-bs-toggle="pill"
                                         href="#v-pills-settings" role="tab" aria-controls="v-pills-settings"
-                                        aria-selected="false">車輛類別</a>
+                                        aria-selected="false">活動數據輸入 - 範疇二</a>
+                                    <a class="nav-link" id="v-pills-scope3-tab" data-bs-toggle="pill"
+                                        href="#v-pills-scope3" role="tab" aria-controls="v-pills-scope3"
+                                        aria-selected="false">活動數據輸入 - 範疇三</a>
+                                    <a class="nav-link" id="v-pills-carbonbooks-tab" data-bs-toggle="pill"
+                                        href="#v-pills-carbonbooks" role="tab" aria-controls="v-pills-carbonbooks"
+                                        aria-selected="false">盤查清冊產生</a>
                                 </div>
                             </div><!-- end col -->
                             
@@ -238,4 +371,6 @@
         <script src="{{ URL::asset('build/js/pages/profile.init.js') }}"></script>
         <!-- App js -->
         <script src="{{ URL::asset('build/js/app.js') }}"></script>
+        <!-- init js -->
+        <script src="{{ URL::asset('build/js/pages/form-editor.init.js') }}"></script>
     @endsection

@@ -191,7 +191,7 @@
                                     <div class="mb-3">
                                         <label for="choices-single-no-sorting"
                                             class="form-label font-size-13 text-muted">Options added
-                                            via config with no search</label>
+                                            via config with no search</label> 
                                         <select class="form-control" name="choices-single-no-sorting"
                                             id="choices-single-no-sorting">
                                             <option value="Madrid">Madrid</option>
