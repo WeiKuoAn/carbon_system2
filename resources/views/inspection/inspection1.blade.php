@@ -24,7 +24,7 @@
     @endsection
     @section('content')
 
-    <form id="file-upload-form" action="{{ route('upload') }}" method="POST" enctype="multipart/form-data">
+    <form id="file-upload-form" action="{{ route('upload') }}" class="dropzone" method="POST" enctype="multipart/form-data">
         @csrf
 
         <div class="row">
@@ -233,32 +233,34 @@
                                     <div class="mb-3 row">
                                         <label for="example-search-input" class="col-md-2 col-form-label">起始會議</label>
                                         <div class="col-md-10">
+                                            <div id="Step1_inputGroupFile01-preview"></div>
                                             <div class="input-group">
-                                                <input type="file" class="form-control" id="inputGroupFile01" aria-describedby="inputGroupFileAddon01" aria-label="Upload">
-                                                <button class="btn btn-primary" type="button" id="inputGroupFileAddon01">上傳</button>
+                                                <input type="file" class="form-control" id="Step1_inputGroupFile01" aria-describedby="inputGroupFileAddon01" aria-label="Upload">
+                                                <button class="btn btn-primary" type="button" id="Step1_inputGroupFileAddon01">上傳</button>
                                             </div>
-                                            <div id="preview-link-container"></div>
                                         </div>
                                     </div>
                                     <div class="mb-3 row">
                                         <label for="example-email-input" class="col-md-2 col-form-label">經營者/高階主管共同承諾日期</label>
                                         <div class="col-md-10">
-                                            <input class="form-control mt-3" type="date" value="bootstrap@example.com"
+                                            <input class="form-control mt-3" type="commitment_date" value="bootstrap@example.com"
                                                 id="example-email-input">
                                         </div>
                                     </div>
                                     <div class="mb-3 row">
                                         <label for="example-url-input" class="col-md-2 col-form-label">推動成立組織</label>
                                         <div class="col-md-10">
+                                            <div id="Step1_inputGroupFile02-preview"></div>
                                             <div class="input-group">
-                                                <input type="file" class="form-control" id="inputGroupFile04"
-                                                    aria-describedby="inputGroupFileAddon04" aria-label="Upload">
+                                                <input type="file" class="form-control" id="Step1_inputGroupFile02"
+                                                    aria-describedby="Step1_inputGroupFileAddon02" aria-label="Upload">
                                                 <button class="btn btn-primary" type="button"
-                                                    id="inputGroupFileAddon04">上傳</button>
+                                                    id="Step1_inputGroupFileAddon02">上傳</button>
                                             </div>
                                         </div>
                                     </div>
                             </div>
+                        </div>
                     </div>
 
                     <div class="card">
@@ -373,7 +375,7 @@
                                     </div>
                                     <div class="mb-3 row">
                                         <label class="col-md-2 col-form-label">拍照收集</label>
-                                        <div class="col-md-10">
+                                        <div class="col-md-10 dropzone">
                                             <form action="#" class="dropzone">
                                                 <div class="fallback">
                                                     <input name="file" type="file" multiple="multiple">
@@ -424,11 +426,12 @@
                                     <div class="mb-3 row">
                                         <label class="col-md-2 col-form-label">建立排放量清冊</label>
                                         <div class="col-md-10">
+                                            <div id="Step4_inputGroupFile01-preview"></div>
                                             <div class="input-group">
-                                                <input type="file" class="form-control" id="inputGroupFile04"
-                                                    aria-describedby="inputGroupFileAddon04" aria-label="Upload">
+                                                <input type="file" class="form-control" id="Step4_inputGroupFile01"
+                                                    aria-describedby="Step4_inputGroupFileAddon01" aria-label="Upload">
                                                 <button class="btn btn-primary" type="button"
-                                                    id="inputGroupFileAddon04">上傳</button>
+                                                    id="Step4_inputGroupFileAddon01">上傳</button>
                                             </div>
                                         </div>
                                     </div>
@@ -486,44 +489,48 @@
                                     <div class="mb-3 row">
                                         <label class="col-md-2 col-form-label">亞瑞仕國際驗證ISO14064-1證書</label>
                                         <div class="col-md-10">
+                                            <div id="Step5_inputGroupFile01-preview"></div>
                                             <div class="input-group">
-                                                <input type="file" class="form-control" id="inputGroupFile04"
-                                                    aria-describedby="inputGroupFileAddon04" aria-label="Upload">
+                                                <input type="file" class="form-control" id="Step5_inputGroupFile01"
+                                                    aria-describedby="Step5_inputGroupFileAddon01" aria-label="Upload">
                                                 <button class="btn btn-primary" type="button"
-                                                    id="inputGroupFileAddon04">上傳</button>
+                                                    id="Step5_inputGroupFileAddon01">上傳</button>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="mb-3 row">
                                         <label class="col-md-2 col-form-label">亞瑞仕國際驗證零碳證書</label>
                                         <div class="col-md-10">
+                                            <div id="Step5_inputGroupFile02-preview"></div>
                                             <div class="input-group">
-                                                <input type="file" class="form-control" id="inputGroupFile04"
-                                                    aria-describedby="inputGroupFileAddon04" aria-label="Upload">
+                                                <input type="file" class="form-control" id="Step5_inputGroupFile02"
+                                                    aria-describedby="Step5_inputGroupFileAddon02" aria-label="Upload">
                                                 <button class="btn btn-primary" type="button"
-                                                    id="inputGroupFileAddon04">上傳</button>
+                                                    id="Step5_inputGroupFileAddon02">上傳</button>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="mb-3 row">
                                         <label class="col-md-2 col-form-label">聯合國碳權證書</label>
                                         <div class="col-md-10">
+                                            <div id="Step5_inputGroupFile03-preview"></div>
                                             <div class="input-group">
-                                                <input type="file" class="form-control" id="inputGroupFile04"
-                                                    aria-describedby="inputGroupFileAddon04" aria-label="Upload">
+                                                <input type="file" class="form-control" id="Step5_inputGroupFile03"
+                                                    aria-describedby="Step5_inputGroupFileAddon03" aria-label="Upload">
                                                 <button class="btn btn-primary" type="button"
-                                                    id="inputGroupFileAddon04">上傳</button>
+                                                    id="Step5_inputGroupFileAddon03">上傳</button>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="mb-3 row">
                                         <label class="col-md-2 col-form-label">盤查清冊</label>
                                         <div class="col-md-10">
+                                            <div id="Step5_inputGroupFile04-preview"></div>
                                             <div class="input-group">
-                                                <input type="file" class="form-control" id="inputGroupFile04"
-                                                    aria-describedby="inputGroupFileAddon04" aria-label="Upload">
+                                                <input type="file" class="form-control" id="Step5_inputGroupFile04"
+                                                    aria-describedby="Step5_inputGroupFileAddon04" aria-label="Upload">
                                                 <button class="btn btn-primary" type="button"
-                                                    id="inputGroupFileAddon04">上傳</button>
+                                                    id="Step5_inputGroupFileAddon04">上傳</button>
                                             </div>
                                         </div>
                                     </div>
@@ -561,11 +568,15 @@
         <!-- App js -->
         <script src="{{ URL::asset('build/js/app.js') }}"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <script>
             $(document).ready(function(){
-                setupAjaxFileUpload('#inputGroupFile01', '#inputGroupFileAddon01');
-                setupAjaxFileUpload('#inputGroupFile04', '#inputGroupFileAddon04');
+                setupAjaxFileUpload('#Step1_inputGroupFile01', '#Step1_inputGroupFileAddon01');
+                setupAjaxFileUpload('#Step1_inputGroupFile02', '#Step1_inputGroupFileAddon02');
+                setupAjaxFileUpload('#Step4_inputGroupFile01', '#Step4_inputGroupFileAddon01');
+                setupAjaxFileUpload('#Step5_inputGroupFile01', '#Step5_inputGroupFileAddon01');
+                setupAjaxFileUpload('#Step5_inputGroupFile02', '#Step5_inputGroupFileAddon02');
+                setupAjaxFileUpload('#Step5_inputGroupFile03', '#Step5_inputGroupFileAddon03');
+                setupAjaxFileUpload('#Step5_inputGroupFile04', '#Step5_inputGroupFileAddon04');
             });
 
             function setupAjaxFileUpload(inputSelector, buttonSelector){
@@ -594,7 +605,9 @@
                             var link = $('<a></a>').attr('href', fileUrl).text('預覽檔案').attr('target', '_blank');
 
                             // 將連結元素添加到HTML中的一個特定區域
-                            $('#preview-link-container').append(link);
+                            var inputId = inputSelector.substring(1);
+                            console.log(inputId);
+                            $('#'+inputId+'-preview').append(link);
                         },
                         error: function(error) {
                             alert('File upload failed');

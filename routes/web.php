@@ -24,7 +24,11 @@ Route::resource('industry-category', App\Http\Controllers\IndustryCategoryContro
 Route::resource('user', App\Http\Controllers\UserController::class);
 Route::resource('branches', App\Http\Controllers\BranchController::class);
 Route::resource('inspection', App\Http\Controllers\InspectionhController::class);
+
+Route::get('simulation-inspection/step1', [App\Http\Controllers\SimulationInspectionController::class,'step1'])->name('simulation-inspection.step1');
+Route::get('simulation-inspection/step2', [App\Http\Controllers\SimulationInspectionController::class,'step2'])->name('simulation-inspection.step2');
 Route::resource('simulation-inspection', App\Http\Controllers\SimulationInspectionController::class);
+
 Route::resource('carbon_system_demo', App\Http\Controllers\carbon_system_demoController::class);
 // Route::get('/inspection', [App\Http\Controllers\InspectionhController::class, 'root']);
 

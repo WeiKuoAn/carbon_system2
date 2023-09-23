@@ -261,6 +261,24 @@
                             <a class="nav-link dropdown-toggle arrow-none" href="#" id="topnav-dashboard"
                                 role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <i class="bx bx-clipboard  icon nav-icon"></i>
+                                <span data-key="t-dashboards">其他設定</span>
+                                <div class="arrow-down"></div>
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="topnav-dashboard">
+                                <a href="#" class="dropdown-item">IPCC評估報告</a>  
+                                <a href="#" class="dropdown-item">範疇</a>     
+                                <a href="#" class="dropdown-item">ISO14064排放源類別</a>     
+                                <a href="#" class="dropdown-item">GHG Protocol排放源類別</a>       
+                                <a href="#" class="dropdown-item">排放源形式</a> 
+                                <a href="#" class="dropdown-item">製程類別</a>     
+                                <a href="#" class="dropdown-item">活動設備</a>     
+                            </div>
+                        </li>
+
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle arrow-none" href="#" id="topnav-dashboard"
+                                role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="bx bx-clipboard  icon nav-icon"></i>
                                 <span data-key="t-dashboards">探盤模擬流程</span>
                                 <div class="arrow-down"></div>
                             </a>

@@ -6,6 +6,15 @@ use Illuminate\Http\Request;
 
 class SimulationInspectionController extends Controller
 {
+    public function step1()
+    {
+        return view('simulation-inspection.step1');
+    }
+
+    public function step2()
+    {
+        return view('simulation-inspection.step2');
+    }
     /**
      * Display a listing of the resource.
      */

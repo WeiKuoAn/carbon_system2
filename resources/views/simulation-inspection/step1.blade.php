@@ -22,18 +22,18 @@
                              <div class="col-md-2">
                                 <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist"
                                     aria-orientation="vertical" style="background: white;">
-                                    <a class="nav-link mb-2 active" id="v-pills-home-tab" data-bs-toggle="pill"
-                                        href="#v-pills-step1" role="tab" aria-controls="v-pills-home"
+                                    <a class="nav-link mb-2 active" id="v-pills-home-tab" 
+                                        href="{{ route('simulation-inspection.step1') }}"
                                         aria-selected="true">盤查基本設定</a>
-                                    <a class="nav-link mb-2" id="v-pills-home-tab" data-bs-toggle="pill"
-                                        href="#v-pills-home" role="tab" aria-controls="v-pills-home"
+                                    <a class="nav-link mb-2" id="v-pills-home-tab"
+                                        href="{{ route('simulation-inspection.step2') }}"
                                         aria-selected="true">盤查邊界設定</a>
                                     <a class="nav-link mb-2" id="v-pills-profile-tab" data-bs-toggle="pill"
                                         href="#v-pills-profile" role="tab" aria-controls="v-pills-profile"
-                                        aria-selected="false">排放源鑑別與計算</a>
-                                    {{-- <a class="nav-link mb-2" id="v-pills-messages-tab" data-bs-toggle="pill"
+                                        aria-selected="false">排放源鑑別</a>
+                                    <a class="nav-link mb-2" id="v-pills-messages-tab" data-bs-toggle="pill"
                                         href="#v-pills-messages" role="tab" aria-controls="v-pills-messages"
-                                        aria-selected="false">排放數據計算</a> --}}
+                                        aria-selected="false">排放數據計算</a>
                                     <a class="nav-link" id="v-pills-settings-tab" data-bs-toggle="pill"
                                         href="#v-pills-settings" role="tab" aria-controls="v-pills-settings"
                                         aria-selected="false">統計報表</a>
@@ -43,9 +43,6 @@
                                     <a class="nav-link" id="v-pills-carbonbooks-tab" data-bs-toggle="pill"
                                         href="#v-pills-carbonbooks" role="tab" aria-controls="v-pills-carbonbooks"
                                         aria-selected="false">盤查清冊產生</a>
-                                    <a class="nav-link" id="v-pills-carbonbooks-tab" data-bs-toggle="pill"
-                                        href="#v-pills-carbonbooks" role="tab" aria-controls="v-pills-carbonbooks"
-                                        aria-selected="false">減徘報告</a>
                                 </div>
                             </div><!-- end col -->
                             <div class="col-md-10" style="background: white;" id="card">
@@ -55,8 +52,7 @@
                                         aria-labelledby="v-pills-step1-tab">
                                             <div class="row p-3">
                                                     <label class="form-label mb-3" for="#" style="font-size: 20pt;font-weight:1000;">盤查基本設定</label>
-                                                    <hr>
-                                                    <div class="col-md-12 mt-3">
+                                                    <div class="col-md-12">
                                                     <div class="mb-3">
                                                         <label class="form-label" for="AddNew-Username">盤查年度</label>
                                                             <input type="date" class="form-control">
@@ -101,7 +97,6 @@
                                         aria-labelledby="v-pills-home-tab">
                                         <div class="row p-3">
                                             <label class="form-label" for="#" style="font-size: 20pt;font-weight:1000;">盤查邊界設定</label>
-                                            <hr>
                                                 <div class="col-md-6 mt-3">
                                                    
                                                 <div class="mb-3">
@@ -183,281 +178,19 @@
                                     <div class="tab-pane fade" id="v-pills-profile" role="tabpanel"
                                         aria-labelledby="v-pills-profile-tab">
                                         <div class="row p-3">
-                                            <label class="form-label" for="#" style="font-size: 20pt;font-weight:1000;">排放源鑑別與計算</label>
-                                            <hr>
-                                            <div class="col-md-12">
-                                                <div class="d-flex flex-wrap align-items-center justify-content-end gap-2 mb-3">
-                                                    <div>
-                                                        <a href="#" data-bs-toggle="modal" data-bs-target=".add-new" class="btn btn-success"><i
-                                                                class="bx bx-plus me-1"></i>新增排放源</a>
-                                                    </div>
-                                                    {{-- <div class="dropdown">
-                                                        <a class="btn btn-link text-muted py-1 font-size-16 shadow-none dropdown-toggle" href="#"
-                                                            role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                                            <i class="bx bx-dots-horizontal-rounded"></i>
-                                                        </a>
-                                                        <ul class="dropdown-menu dropdown-menu-end">
-                                                            <li><a class="dropdown-item" href="#">Action</a></li>
-                                                            <li><a class="dropdown-item" href="#">Another action</a></li>
-                                                            <li><a class="dropdown-item" href="#">Something else here</a></li>
-                                                        </ul>
-                                                    </div> --}}
+                                            <label class="form-label" for="#" style="font-size: 20pt;font-weight:1000;">基準年設定</label>
+                                                <div class="col-md-6">
+                                                   
+                                                <div class="mb-3">
+                                                    <label class="form-label" for="AddNew-Username">請輸入基準年</label>
+                                                    <input type="text" class="form-control" placeholder="請輸入基準年"
+                                                        id="AddNew-Username">
                                                 </div>
-                                            </div>
-                                            <div class="table-responsive mt-3 mb-3">
-                                                <table class="table align-middle mb-0 table-nowrap mb-0">
-                                                    <thead class="table-light">
-                                                        <tr>
-                                                            <th colspan="8"><h5>類別一：直接溫室氣體排放與移除</h5></th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tr align="center">
-                                                        <th>編號</th>
-                                                        <th>活動/設備</th>
-                                                        <th>排放源型式</th>
-                                                        <th>ISO14064排放源類別</th>
-                                                        <th>GHG Protocol排放源類別</th>
-                                                        <th>排放量單位</th>
-                                                        <th>列入計算</th>
-                                                        <th>操作</th>
-                                                    </tr>
-                                                    <tbody>
-                                                        <tr align="center">
-                                                            <th>1</th>
-                                                            <td>備用發電機</td>
-                                                            <td>能源（E）</td>
-                                                            <td>category1</td>
-                                                            <td>scope 1 a</td>
-                                                            <td>kg</td>
-                                                            <td>是</td>
-                                                            <td>
-                                                                <ul class="list-inline mb-0">
-                                                                    <li class="list-inline-item">
-                                                                        <a href="javascript:void(0);" data-bs-toggle="tooltip"
-                                                                            data-bs-placement="top" title="Edit"
-                                                                            class="px-2 text-primary"><i
-                                                                                class="bx bx-pencil font-size-18"></i></a>
-                                                                    </li>
-                                                                    <li class="list-inline-item">
-                                                                        <a href="javascript:void(0);" data-bs-toggle="tooltip"
-                                                                            data-bs-placement="top" title="Delete"
-                                                                            class="px-2 text-danger"><i
-                                                                                class="bx bx-trash-alt font-size-18"></i></a>
-                                                                    </li>
-                                                                </ul>
-                                                            </td>
-                                                        </tr>
-                                                        <tr align="center">
-                                                            <th>2</th>
-                                                            <td>備用發電機</td>
-                                                            <td>能源（E）</td>
-                                                            <td>category1</td>
-                                                            <td>scope 1 a</td>
-                                                            <td>kg</td>
-                                                            <td>是</td>
-                                                            <td>
-                                                                <ul class="list-inline mb-0">
-                                                                    <li class="list-inline-item">
-                                                                        <a href="javascript:void(0);" data-bs-toggle="tooltip"
-                                                                            data-bs-placement="top" title="Edit"
-                                                                            class="px-2 text-primary"><i
-                                                                                class="bx bx-pencil font-size-18"></i></a>
-                                                                    </li>
-                                                                    <li class="list-inline-item">
-                                                                        <a href="javascript:void(0);" data-bs-toggle="tooltip"
-                                                                            data-bs-placement="top" title="Delete"
-                                                                            class="px-2 text-danger"><i
-                                                                                class="bx bx-trash-alt font-size-18"></i></a>
-                                                                    </li>
-                                                                    {{-- <li class="list-inline-item dropdown">
-                                                                        <a class="text-muted dropdown-toggle font-size-18 px-2" href="#"
-                                                                            role="button" data-bs-toggle="dropdown" aria-haspopup="true">
-                                                                            <i class="bx bx-dots-vertical-rounded"></i>
-                                                                        </a>
-                    
-                                                                        <div class="dropdown-menu dropdown-menu-end">
-                                                                            <a class="dropdown-item" href="#">Action</a>
-                                                                            <a class="dropdown-item" href="#">Another action</a>
-                                                                            <a class="dropdown-item" href="#">Something else here</a>
-                                                                        </div> --}}
-                                                                    </li>
-                                                                </ul>
-                                                            </td>
-                                                        </tr>
-                    
-                                                    </tbody>
-                                                </table>
+                                                
+                                                
+                            
                                             </div>
                                            
-                                            <div class="table-responsive mt-5 mb-3">
-                                                <table class="table align-middle mb-0 table-nowrap mb-0">
-                                                    <thead class="table-light">
-                                                        <tr>
-                                                            <th colspan="8"><h5>類別二：輸入能源之間間接溫室氣體排放</h5></th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tr align="center">
-                                                        <th>編號</th>
-                                                        <th>活動/設備</th>
-                                                        <th>排放源型式</th>
-                                                        <th>ISO14064排放源類別</th>
-                                                        <th>GHG Protocol排放源類別</th>
-                                                        <th>排放量單位</th>
-                                                        <th>列入計算</th>
-                                                        <th>操作</th>
-                                                    </tr>
-                                                    <tbody>
-                                                        <tr align="center">
-                                                            <th>1</th>
-                                                            <td>備用發電機</td>
-                                                            <td>能源（E）</td>
-                                                            <td>category1</td>
-                                                            <td>scope 1 a</td>
-                                                            <td>kg</td>
-                                                            <td>是</td>
-                                                            <td>
-                                                                <ul class="list-inline mb-0">
-                                                                    <li class="list-inline-item">
-                                                                        <a href="javascript:void(0);" data-bs-toggle="tooltip"
-                                                                            data-bs-placement="top" title="Edit"
-                                                                            class="px-2 text-primary"><i
-                                                                                class="bx bx-pencil font-size-18"></i></a>
-                                                                    </li>
-                                                                    <li class="list-inline-item">
-                                                                        <a href="javascript:void(0);" data-bs-toggle="tooltip"
-                                                                            data-bs-placement="top" title="Delete"
-                                                                            class="px-2 text-danger"><i
-                                                                                class="bx bx-trash-alt font-size-18"></i></a>
-                                                                    </li>
-                                                                </ul>
-                                                            </td>
-                                                        </tr>
-                                                        <tr align="center">
-                                                            <th>2</th>
-                                                            <td>備用發電機</td>
-                                                            <td>能源（E）</td>
-                                                            <td>category1</td>
-                                                            <td>scope 1 a</td>
-                                                            <td>kg</td>
-                                                            <td>是</td>
-                                                            <td>
-                                                                <ul class="list-inline mb-0">
-                                                                    <li class="list-inline-item">
-                                                                        <a href="javascript:void(0);" data-bs-toggle="tooltip"
-                                                                            data-bs-placement="top" title="Edit"
-                                                                            class="px-2 text-primary"><i
-                                                                                class="bx bx-pencil font-size-18"></i></a>
-                                                                    </li>
-                                                                    <li class="list-inline-item">
-                                                                        <a href="javascript:void(0);" data-bs-toggle="tooltip"
-                                                                            data-bs-placement="top" title="Delete"
-                                                                            class="px-2 text-danger"><i
-                                                                                class="bx bx-trash-alt font-size-18"></i></a>
-                                                                    </li>
-                                                                    {{-- <li class="list-inline-item dropdown">
-                                                                        <a class="text-muted dropdown-toggle font-size-18 px-2" href="#"
-                                                                            role="button" data-bs-toggle="dropdown" aria-haspopup="true">
-                                                                            <i class="bx bx-dots-vertical-rounded"></i>
-                                                                        </a>
-                    
-                                                                        <div class="dropdown-menu dropdown-menu-end">
-                                                                            <a class="dropdown-item" href="#">Action</a>
-                                                                            <a class="dropdown-item" href="#">Another action</a>
-                                                                            <a class="dropdown-item" href="#">Something else here</a>
-                                                                        </div> --}}
-                                                                    </li>
-                                                                </ul>
-                                                            </td>
-                                                        </tr>
-                    
-                                                    </tbody>
-                                                </table>
-                                            </div>
-
-                                            <div class="table-responsive mt-5">
-                                                <table class="table align-middle mb-0 table-nowrap mb-0">
-                                                    <thead class="table-light">
-                                                        <tr>
-                                                            <th colspan="8"><h5>類別三：運輸之間間接溫室氣體排放</h5></th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tr align="center">
-                                                        <th>編號</th>
-                                                        <th>活動/設備</th>
-                                                        <th>排放源型式</th>
-                                                        <th>ISO14064排放源類別</th>
-                                                        <th>GHG Protocol排放源類別</th>
-                                                        <th>排放量單位</th>
-                                                        <th>列入計算</th>
-                                                        <th>操作</th>
-                                                    </tr>
-                                                    <tbody>
-                                                        <tr align="center">
-                                                            <th>1</th>
-                                                            <td>備用發電機</td>
-                                                            <td>能源（E）</td>
-                                                            <td>category1</td>
-                                                            <td>scope 1 a</td>
-                                                            <td>kg</td>
-                                                            <td>是</td>
-                                                            <td>
-                                                                <ul class="list-inline mb-0">
-                                                                    <li class="list-inline-item">
-                                                                        <a href="javascript:void(0);" data-bs-toggle="tooltip"
-                                                                            data-bs-placement="top" title="Edit"
-                                                                            class="px-2 text-primary"><i
-                                                                                class="bx bx-pencil font-size-18"></i></a>
-                                                                    </li>
-                                                                    <li class="list-inline-item">
-                                                                        <a href="javascript:void(0);" data-bs-toggle="tooltip"
-                                                                            data-bs-placement="top" title="Delete"
-                                                                            class="px-2 text-danger"><i
-                                                                                class="bx bx-trash-alt font-size-18"></i></a>
-                                                                    </li>
-                                                                </ul>
-                                                            </td>
-                                                        </tr>
-                                                        <tr align="center">
-                                                            <th>2</th>
-                                                            <td>備用發電機</td>
-                                                            <td>能源（E）</td>
-                                                            <td>category1</td>
-                                                            <td>scope 1 a</td>
-                                                            <td>kg</td>
-                                                            <td>是</td>
-                                                            <td>
-                                                                <ul class="list-inline mb-0">
-                                                                    <li class="list-inline-item">
-                                                                        <a href="javascript:void(0);" data-bs-toggle="tooltip"
-                                                                            data-bs-placement="top" title="Edit"
-                                                                            class="px-2 text-primary"><i
-                                                                                class="bx bx-pencil font-size-18"></i></a>
-                                                                    </li>
-                                                                    <li class="list-inline-item">
-                                                                        <a href="javascript:void(0);" data-bs-toggle="tooltip"
-                                                                            data-bs-placement="top" title="Delete"
-                                                                            class="px-2 text-danger"><i
-                                                                                class="bx bx-trash-alt font-size-18"></i></a>
-                                                                    </li>
-                                                                    {{-- <li class="list-inline-item dropdown">
-                                                                        <a class="text-muted dropdown-toggle font-size-18 px-2" href="#"
-                                                                            role="button" data-bs-toggle="dropdown" aria-haspopup="true">
-                                                                            <i class="bx bx-dots-vertical-rounded"></i>
-                                                                        </a>
-                    
-                                                                        <div class="dropdown-menu dropdown-menu-end">
-                                                                            <a class="dropdown-item" href="#">Action</a>
-                                                                            <a class="dropdown-item" href="#">Another action</a>
-                                                                            <a class="dropdown-item" href="#">Something else here</a>
-                                                                        </div> --}}
-                                                                    </li>
-                                                                </ul>
-                                                            </td>
-                                                        </tr>
-                    
-                                                    </tbody>
-                                                </table>
-                                            </div>
                                         </div>
                                         <div class="row mt-4 mb-2">
                                             <div class="col text-end">
