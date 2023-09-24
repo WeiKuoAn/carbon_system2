@@ -30,6 +30,19 @@ Route::get('simulation-inspection/step2', [App\Http\Controllers\SimulationInspec
 Route::resource('simulation-inspection', App\Http\Controllers\SimulationInspectionController::class);
 
 Route::resource('carbon_system_demo', App\Http\Controllers\carbon_system_demoController::class);
+Route::resource('ipcc_report', App\Http\Controllers\ipcc_reportController::class);
+Route::resource('source', App\Http\Controllers\sourceController::class);
+Route::resource('process', App\Http\Controllers\processController::class);
+Route::post('/source/{id}', [App\Http\Controllers\sourceController::class, 'update'])->name('source.update');
+Route::post('/source/{id}', [App\Http\Controllers\sourceController::class, 'destroy'])->name('source.destroy');
+Route::post('/process/{id}', [App\Http\Controllers\processController::class, 'update'])->name('process.update');
+Route::post('/process/{id}', [App\Http\Controllers\sourceController::class, 'destroy'])->name('process.destroy');
+
+
+
+// Route::get('/source/{id}', [App\Http\Controllers\sourceController::class, 'edit'])->name('source.edit');
+
+
 // Route::get('/inspection', [App\Http\Controllers\InspectionhController::class, 'root']);
 
 //上傳檔案
