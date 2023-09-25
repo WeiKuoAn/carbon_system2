@@ -17,4 +17,9 @@ class Customer extends Model
         'established_date', 'operational_status', 'company_scale', 'stock_status',
         'sales_orientation', 'sales_region', 'permission_status', 'note', 'county', 'district'
     ];
+
+    public function cust_data()
+    {
+        return $this->hasOne('App\Models\Customer', 'id', 'customer_id');
+    }
 }

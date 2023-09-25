@@ -15,6 +15,8 @@
     <body data-layout="horizontal">
     @endsection
     @section('content')
+    <form action="{{ route('simulation-inspection.step1.store') }}" method="POST">
+        @csrf
         <div class="row">
             <div class="card-body mt-5">
                         <div class="row">
@@ -23,13 +25,14 @@
                                 <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist"
                                     aria-orientation="vertical" style="background: white;">
                                     <a class="nav-link mb-2 active" id="v-pills-home-tab" 
-                                        href="{{ route('simulation-inspection.step1') }}"
-                                        aria-selected="true">盤查基本設定</a>
-                                    <a class="nav-link mb-2" id="v-pills-home-tab"
+                                    href="{{ route('simulation-inspection.step1') }}">盤查企業設定</a>
+                                    <a class="nav-link mb-2 " id="v-pills-home-tab" 
+                                    href="{{ route('simulation-inspection.step2') }}">盤查基本設定</a>
+                                    {{-- <a class="nav-link mb-2" id="v-pills-home-tab"
                                         href="{{ route('simulation-inspection.step2') }}"
-                                        aria-selected="true">盤查邊界設定</a>
-                                    <a class="nav-link mb-2" id="v-pills-profile-tab" data-bs-toggle="pill"
-                                        href="#v-pills-profile" role="tab" aria-controls="v-pills-profile"
+                                        aria-selected="true">盤查邊界設定</a> --}}
+                                    <a class="nav-link mb-2" id="v-pills-profile-tab" 
+                                        href="{{ route('simulation-inspection.step3') }}"
                                         aria-selected="false">排放源鑑別</a>
                                     <a class="nav-link mb-2" id="v-pills-messages-tab" data-bs-toggle="pill"
                                         href="#v-pills-messages" role="tab" aria-controls="v-pills-messages"
@@ -48,344 +51,70 @@
                             <div class="col-md-10" style="background: white;" id="card">
                                 <div class="tab-content text-muted mt-4 mt-md-0" id="v-pills-tabContent">
                                     <!-- Step1 start -->
-                                    <div class="tab-pane fade show active" id="v-pills-step1" role="tabpanel"
-                                        aria-labelledby="v-pills-step1-tab">
-                                            <div class="row p-3">
-                                                    <label class="form-label mb-3" for="#" style="font-size: 20pt;font-weight:1000;">盤查基本設定</label>
-                                                    <div class="col-md-12">
-                                                    <div class="mb-3">
-                                                        <label class="form-label" for="AddNew-Username">盤查年度</label>
-                                                            <input type="date" class="form-control">
-                                                    </div>
-                                                    <div class="mb-3">
-                                                        <label class="form-label" for="AddNew-Username">盤查原因</label>
-                                                        <select class="form-select">
-                                                                <option selected>自主盤查</option>
-                                                                <option>依法申報</option>
-                                                                <option>其他</option>
-                                                            </select>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-12">
-                                                    <div class="mb-3">
-                                                        <label class="form-label" for="AddNew-Username">規範使用</label>
-                                                        <select class="form-select">
-                                                                <option selected>請選擇</option>
-                                                                <option>使用ISO14064-1標準</option>
-                                                                <option>使用環保署標準</option>
-                                                            </select>
-                                                    </div>
-                                                    <div class="mb-3">
-                                                        <label class="form-label" for="AddNew-Username">GWP版本</label>
-                                                        <select class="form-select">
-                                                                <option selected>請選擇</option>
-                                                                <option>IPCC AR6（2021）</option>
-                                                            </select>
-                                                    </div>
-                                                </div>
-                                                <div class="row mt-4 mb-2">
-                                                    <div class="col text-end">
-                                                        <a href="#" class="btn btn-danger"> <i class="bx bx-x me-1"></i> 取消 </a>
-                                                        <a href="#" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#success-btn"> <i
-                                                                class=" bx bx-file me-1"></i> 保存 </a>
-                                                    </div> <!-- end col -->
-                                                </div> <!-- end row-->
-                                            </div>
-                                    </div>
-                                    <!-- Step1 end -->
-                                    <div class="tab-pane fade " id="v-pills-home" role="tabpanel"
+                                    <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel"
                                         aria-labelledby="v-pills-home-tab">
                                         <div class="row p-3">
-                                            <label class="form-label" for="#" style="font-size: 20pt;font-weight:1000;">盤查邊界設定</label>
+                                            <label class="form-label" for="#" style="font-size: 20pt;font-weight:1000;">盤查企業設定</label>
                                                 <div class="col-md-6 mt-3">
                                                    
                                                 <div class="mb-3">
                                                     <label class="form-label" for="AddNew-Username">廠商名稱</label>
-                                                    <input type="text" class="form-control" placeholder="請輸入廠商名稱"
-                                                        id="AddNew-Username">
+                                                    <select class="form-select"  id="customer_id" name="customer_id" required >
+                                                        <option selected>請選擇...</option>
+                                                        @foreach($customers as $customer)
+                                                            <option value="{{ $customer->id }}">{{ $customer->name }}</option>
+                                                        @endforeach
+                                                    </select>
                                                 </div>
                                                 <div class="mb-3">
                                                     <label class="form-label" for="AddNew-Username">分行名稱</label>
-                                                    <input type="text" class="form-control" placeholder="請輸入分行名稱"
-                                                        id="AddNew-Username">
+                                                    <select class="form-select" id="branch_id" name="branch_id" required >
+                                                        <option selected>請選擇...</option>
+                                                    </select>
                                                 </div>
-                                                
                             
                                             </div>
-                                           <div class="col-md-6">
+                                           <div class="col-md-6 mt-3">
                                             <div class="mb-3">
                                                 <label class="form-label" for="AddNew-Email">廠商地址</label>
-                                                <input type="text" class="form-control" placeholder="請輸入廠商地址"
-                                                    id="AddNew-Email">
+                                                <input type="text" class="form-control" placeholder="請輸入廠商地址" id="customer_address" value="">
                                             </div>
                                             <div class="mb-3">
                                                 <label class="form-label" for="AddNew-Email">分行地址</label>
-                                                <input type="text" class="form-control" placeholder="請輸入分行地址"
-                                                    id="AddNew-Email">
+                                                <input type="text" class="form-control" placeholder="請輸入分行地址" id="branch_address" value="">
                                             </div>
                                             
                                            </div>
                                            <div class="col-md-12">
-                                            <label class="form-label">公司所屬行業別</label>
-                                            <div class="mb-3">
-                                                <select class="form-select">
-                                                    <option selected>-選擇-</option>
-                                                    <option>Full Stack Developer</option>
-                                                    <option>Frontend Developer</option>
-                                                    <option>UI/UX Designer</option>
-                                                    <option>Backend Developer</option>
-                                                </select>
-                                            </div>
 
                                             <div class="mb-3">
                                                 <label class="form-label" for="AddNew-Email">專案聯絡人</label>
-                                                <input type="text" class="form-control" placeholder="請輸入專案聯絡人"
-                                                    id="AddNew-Email">
+                                                <input type="text" class="form-control" placeholder="請輸入專案聯絡人" id="contact_name" value="">
                                             </div>
-                                           </div>
-                                           
-                                            
                                             <div class="mb-3">
-                                                <label class="form-label" for="AddNew-Email">職稱</label>
-                                                <input type="text" class="form-control" placeholder="請輸入職稱"
-                                                    id="AddNew-Email">
+                                                <label class="form-label" for="AddNew-Email">聯絡電話</label>
+                                                <input type="text" class="form-control" placeholder="請輸入E-Mail" id="contact_phone"  value="">
                                             </div>
 
                                             <div class="mb-3">
                                                 <label class="form-label" for="AddNew-Email">聯絡E-Mail</label>
-                                                <input type="text" class="form-control" placeholder="請輸入E-Mail"
-                                                    id="AddNew-Email">
+                                                <input type="text" class="form-control" placeholder="請輸入E-Mail" id="contact_email"  value="">
                                             </div>
+                                            
+                                           </div>
+
+                                           
                                         
                                         
                                         </div>
                                         <div class="row mt-4 mb-2">
                                             <div class="col text-end">
-                                                <a href="#" class="btn btn-danger"> <i class="bx bx-x me-1"></i> 取消 </a>
-                                                <a href="#" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#success-btn"> <i
-                                                        class=" bx bx-file me-1"></i> 保存 </a>
-                                            </div> <!-- end col -->
-                                        </div> <!-- end row-->
+                                                <button class="btn btn-danger" onclick="history.go(-1)"><i class="bx bx-x me-1"></i> 取消 </button>
+                                                <button class="btn btn-success" type="submit"><i class=" bx bx-file me-1"></i> 保存 </button>
+                                            </div>
+                                        </div> 
                                        
                                     </div>
-
-
-
-
-
-
-                                    
-                                    <div class="tab-pane fade" id="v-pills-profile" role="tabpanel"
-                                        aria-labelledby="v-pills-profile-tab">
-                                        <div class="row p-3">
-                                            <label class="form-label" for="#" style="font-size: 20pt;font-weight:1000;">基準年設定</label>
-                                                <div class="col-md-6">
-                                                   
-                                                <div class="mb-3">
-                                                    <label class="form-label" for="AddNew-Username">請輸入基準年</label>
-                                                    <input type="text" class="form-control" placeholder="請輸入基準年"
-                                                        id="AddNew-Username">
-                                                </div>
-                                                
-                                                
-                            
-                                            </div>
-                                           
-                                        </div>
-                                        <div class="row mt-4 mb-2">
-                                            <div class="col text-end">
-                                                <a href="#" class="btn btn-danger"> <i class="bx bx-x me-1"></i> 取消 </a>
-                                                <a href="#" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#success-btn"> <i
-                                                        class=" bx bx-file me-1"></i> 保存 </a>
-                                            </div> <!-- end col -->
-                                        </div> <!-- end row-->
-                                    </div>
-
-
-
-
-
-                                    <div class="tab-pane fade" id="v-pills-messages" role="tabpanel"
-                                        aria-labelledby="v-pills-messages-tab">
-                                        <div class="row p-3">
-                                            <label class="form-label" for="#" style="font-size: 20pt;font-weight:1000;">活動數據設定 - 範疇一</label>
-                                        </div>
-
-                                        <table class="table">
-                                            <thead>
-                                                <td>排放源</td>
-                                                <td>燃料類型</td>
-                                                <td>年度使用量(單位)</td>
-                                                <td>排放因子(碳排放每單位燃料)</td>
-                                                <td>排放量(CO2e)</td>
-                                            </thead>
-                                            <tbody>
-                                                <td>
-                                                    <input type="text" name="" id="" class="form-control">
-                                                </td>
-                                                <td><input type="text" name="" id="" class="form-control"></td>
-                                                <td><input type="text" name="" id="" class="form-control"></td>
-                                                <td><input type="text" name="" id="" class="form-control"></td>
-                                                <td><input type="text" name="" id="" class="form-control"></td>
-                                                
-                                            </tbody>
-                                            <tbody>
-                                                <td>
-                                                    <input type="text" name="" id="" class="form-control">
-                                                </td>
-                                                <td><input type="text" name="" id="" class="form-control"></td>
-                                                <td><input type="text" name="" id="" class="form-control"></td>
-                                                <td><input type="text" name="" id="" class="form-control"></td>
-                                                <td><input type="text" name="" id="" class="form-control"></td>
-                                                
-                                            </tbody>
-                                            <tbody>
-                                                <td>
-                                                    <input type="text" name="" id="" class="form-control">
-                                                </td>
-                                                <td><input type="text" name="" id="" class="form-control"></td>
-                                                <td><input type="text" name="" id="" class="form-control"></td>
-                                                <td><input type="text" name="" id="" class="form-control"></td>
-                                                <td><input type="text" name="" id="" class="form-control"></td>
-                                                
-                                            </tbody>
-                                        </table>
-                                        <div class="row mt-4 mb-2">
-                                            <div class="col text-end">
-                                                <a href="#" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#success-btn"> <i
-                                                    class=" bx bx-file me-1"></i> 保存</a>
-                                                <a href="#" class="btn btn-danger"> <i class="bx bx-x me-1"></i> 取消 </a>
-                                                
-                                            </div> <!-- end col -->
-                                        </div> <!-- end row-->
-                                    </div>
-
-
-
-
-
-
-                                    <div class="tab-pane fade" id="v-pills-settings" role="tabpanel"
-                                        aria-labelledby="v-pills-settings">
-                                        <div class="row p-3">
-                                            <label class="form-label" for="#" style="font-size: 20pt;font-weight:1000;">活動數據設定 - 範疇二</label>
-                                        </div>
-
-                                        <table class="table">
-                                            <thead>
-                                                <td>排放源</td>
-                                                <td>燃料類型</td>
-                                                <td>年度使用量(單位)</td>
-                                                <td>排放因子(碳排放每單位燃料)</td>
-                                                <td>排放量(CO2e)</td>
-                                            </thead>
-                                            <tbody>
-                                                <td>
-                                                    <input type="text" name="" id="" class="form-control">
-                                                </td>
-                                                <td><input type="text" name="" id="" class="form-control"></td>
-                                                <td><input type="text" name="" id="" class="form-control"></td>
-                                                <td><input type="text" name="" id="" class="form-control"></td>
-                                                <td><input type="text" name="" id="" class="form-control"></td>
-                                                
-                                            </tbody>
-                                            <tbody>
-                                                <td>
-                                                    <input type="text" name="" id="" class="form-control">
-                                                </td>
-                                                <td><input type="text" name="" id="" class="form-control"></td>
-                                                <td><input type="text" name="" id="" class="form-control"></td>
-                                                <td><input type="text" name="" id="" class="form-control"></td>
-                                                <td><input type="text" name="" id="" class="form-control"></td>
-                                                
-                                            </tbody>
-                                            <tbody>
-                                                <td>
-                                                    <input type="text" name="" id="" class="form-control">
-                                                </td>
-                                                <td><input type="text" name="" id="" class="form-control"></td>
-                                                <td><input type="text" name="" id="" class="form-control"></td>
-                                                <td><input type="text" name="" id="" class="form-control"></td>
-                                                <td><input type="text" name="" id="" class="form-control"></td>
-                                                
-                                            </tbody>
-                                        </table>
-                                        <div class="row mt-4 mb-2">
-                                            <div class="col text-end">
-                                                <a href="#" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#success-btn"> <i
-                                                    class=" bx bx-file me-1"></i> 保存</a>
-                                                <a href="#" class="btn btn-danger"> <i class="bx bx-x me-1"></i> 取消 </a>
-                                                
-                                            </div> <!-- end col -->
-                                        </div> <!-- end row-->
-                                    </div>
-
-
-
-                                    <div class="tab-pane fade" id="v-pills-scope3" role="tabpanel"
-                                    aria-labelledby="v-pills-scope3">
-                                    <div class="row p-3">
-                                        <label class="form-label" for="#" style="font-size: 20pt;font-weight:1000;">活動數據設定 - 範疇三</label>
-                                    </div>
-
-                                    <table class="table">
-                                        <thead>
-                                            <td>排放源</td>
-                                            <td>燃料類型</td>
-                                            <td>年度使用量(單位)</td>
-                                            <td>排放因子(碳排放每單位燃料)</td>
-                                            <td>排放量(CO2e)</td>
-                                        </thead>
-                                        <tbody>
-                                            <td>
-                                                <input type="text" name="" id="" class="form-control">
-                                            </td>
-                                            <td><input type="text" name="" id="" class="form-control"></td>
-                                            <td><input type="text" name="" id="" class="form-control"></td>
-                                            <td><input type="text" name="" id="" class="form-control"></td>
-                                            <td><input type="text" name="" id="" class="form-control"></td>
-                                            
-                                        </tbody>
-                                        <tbody>
-                                            <td>
-                                                <input type="text" name="" id="" class="form-control">
-                                            </td>
-                                            <td><input type="text" name="" id="" class="form-control"></td>
-                                            <td><input type="text" name="" id="" class="form-control"></td>
-                                            <td><input type="text" name="" id="" class="form-control"></td>
-                                            <td><input type="text" name="" id="" class="form-control"></td>
-                                            
-                                        </tbody>
-                                        <tbody>
-                                            <td>
-                                                <input type="text" name="" id="" class="form-control">
-                                            </td>
-                                            <td><input type="text" name="" id="" class="form-control"></td>
-                                            <td><input type="text" name="" id="" class="form-control"></td>
-                                            <td><input type="text" name="" id="" class="form-control"></td>
-                                            <td><input type="text" name="" id="" class="form-control"></td>
-                                            
-                                        </tbody>
-                                    </table>
-                                    <div class="row mt-4 mb-2">
-                                        <div class="col text-end">
-                                            <a href="#" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#success-btn"> <i
-                                                class=" bx bx-file me-1"></i> 保存</a>
-                                            <a href="#" class="btn btn-danger"> <i class="bx bx-x me-1"></i> 取消 </a>
-                                            
-                                        </div> <!-- end col -->
-                                    </div> <!-- end row-->
-                                </div>
-
-
-                                <div class="tab-pane fade" id="v-pills-carbonbooks" role="tabpanel"
-                                aria-labelledby="v-pills-carbonbooks">
-                                <div class="row p-3">
-                                    <label class="form-label" for="#" style="font-size: 20pt;font-weight:1000;">盤查清冊</label>
-                                </div>
-
-                                </div>
-                            
                                 </div>
                             </div><!--  end col -->
                         </div><!-- end row -->
@@ -393,6 +122,7 @@
                 </div><!-- end card -->
             </div><!-- end col -->
         </div>
+    </form>
 
         <style>
             .nav{
@@ -424,6 +154,64 @@
         </style>
     @endsection
     @section('scripts')
+        <script>
+            $(document).ready(function () {
+                $('#customer_id').select2();
+                $('#branch_id').select2();
+                $("#customer_id").change(function() {
+                    var value = $(this).val();
+                    $.ajax({
+                        type : 'get',
+                        url : '{{ route('customer.data') }}',
+                        data: {'cust_id': value},
+                        success: function(data){
+                            $('#customer_address').val(data['county']+data['district']+data['address']);
+                            $.ajax({
+                                type : 'get',
+                                url : '{{ route('branch.datas') }}',
+                                data: {'cust_id': value},
+                                success: function(data){
+                                    $('#branch_id').html(data);
+                                    var branch_id = $("#branch_id").val();
+                                    $.ajax({
+                                        type : 'get',
+                                        url : '{{ route('branch.data') }}',
+                                        data: {'branch_id': branch_id},
+                                        success: function(data){
+                                        console.log(data);
+                                            $('#branch_address').val(data['address']);
+                                            $('#contact_name').val(data['contact_name']);
+                                            $('#contact_phone').val(data['contact_phone']);
+                                            $('#contact_email').val(data['contact_email']);
+                                        }
+                                    });
+                                }
+                            });
+                        }
+                    });
+                });
+
+                $("#branch_id").change(function() {
+                    var branch_id = $("#branch_id").val();
+                    $.ajax({
+                        type : 'get',
+                        url : '{{ route('branch.data') }}',
+                        data: {'branch_id': branch_id},
+                        success: function(data){
+                        console.log(data);
+                            $('#branch_address').val(data['address']);
+                            $('#contact_name').val(data['contact_name']);
+                            $('#contact_phone').val(data['contact_phone']);
+                            $('#contact_email').val(data['contact_email']);
+                        }
+                    });
+                });
+                $.ajaxSetup({ headers: { 'csrftoken' : '{{ csrf_token() }}' } });
+            });
+            
+        </script>
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" rel="stylesheet" />
+        <script src="{{ URL::asset('build/libs/select2/select2.min.js') }}"></script>
         <!-- apexcharts -->
         <script src="{{ URL::asset('build/libs/apexcharts/apexcharts.min.js') }}"></script>
 

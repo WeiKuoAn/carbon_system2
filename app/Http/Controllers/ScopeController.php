@@ -3,42 +3,17 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Branch;
+use App\Models\Scope;
 
-class BranchController extends Controller
+class ScopeController extends Controller
 {
-    public function branch_datas(Request $request)
-    {
-        if ($request->ajax()) {
-            $output = "";
-            $branches = Branch::where('customer_id', $request->cust_id)->get();
-
-            if($branches){
-                foreach ($branches as $key => $branch) {
-                    $output.= '<option value="'.$branch->id.'">'.$branch->name."</option>'";
-                  }
-            }
-            return Response($output);
-        }
-    }
-
-    public function branch_data(Request $request)
-    {
-        if ($request->ajax()) {
-            $output = "";
-            $branch = Branch::where('id',$request->branch_id)->first();
-
-            if($branch){
-                return Response($branch);
-            }
-        }
-    }
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        //
+        $datas = Scope::get();
+        return view('scope.index')->with('datas', $datas);
     }
 
     /**
@@ -46,7 +21,7 @@ class BranchController extends Controller
      */
     public function create()
     {
-        //
+        return view('scope.create');
     }
 
     /**
@@ -54,7 +29,15 @@ class BranchController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required|string',
+        ]);
+
+        $scope = new Scope;
+        $scope->name = $request->name;
+        $scope->save();
+
+        return redirect()->route('scope.index');
     }
 
     /**
@@ -62,7 +45,6 @@ class BranchController extends Controller
      */
     public function show(string $id)
     {
-        //
     }
 
     /**
@@ -70,7 +52,8 @@ class BranchController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $data = Scope::where('id', $id)->first();
+        return view('scope.edit')->with('data',$data);
     }
 
     /**
@@ -78,7 +61,12 @@ class BranchController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $request->validate([
+            'name' => 'string',
+        ]);
+        $data = Scope::where('id', $id)->first();
+        $data->update($request->only('name'));
+        return redirect()->route('scope.index');
     }
 
     /**

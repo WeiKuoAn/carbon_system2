@@ -5,9 +5,22 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Customer;
 use App\Models\IndustryCategory;
+use App\Models\Branch;
 
 class CustomerController extends Controller
 {
+    public function customer_data(Request $request)
+    {
+        if ($request->ajax()) {
+            $output = "";
+            $cust = Customer::where('id',  $request->cust_id)->first();
+
+            if($cust){
+                return Response($cust);
+            }
+        }
+    }
+
     /**
      * Display a listing of the resource.
      */
@@ -56,6 +69,21 @@ class CustomerController extends Controller
 
         // 儲存資料
         $customer = Customer::create($validated);
+
+        $customer_data = Customer::orderby('id', 'desc')->first();
+        
+        $branch = Branch::where('customer_id',$customer_data->id)->first();
+        if(!isset($branch))
+        {
+            $branch_data = new Branch();
+            $branch_data->customer_id = $customer_data->id;
+            $branch_data->name = '總公司';
+            $branch_data->contact_name = $request->primary_contact_name;
+            $branch_data->contact_phone = $request->primary_contact_phone;
+            $branch_data->contact_email = $request->primary_contact_email;
+            $branch_data->address = $request->county.$request->district.$request->address;
+            $branch_data->save();
+        }
 
         // 重定向到客戶列表頁面或其他適當位置
         return redirect()->route('customer.create')->with('success', '客戶已成功新增');
