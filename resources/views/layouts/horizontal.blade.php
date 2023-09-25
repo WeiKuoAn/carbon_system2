@@ -265,13 +265,13 @@
                                 <div class="arrow-down"></div>
                             </a>
                             <div class="dropdown-menu" aria-labelledby="topnav-dashboard">
-                                <a href="#" class="dropdown-item">IPCC評估報告</a>  
-                                <a href="{{ route('scope.index') }}" class="dropdown-item">範疇</a>     
-                                <a href="{{ route('iso14064.index') }}" class="dropdown-item">ISO14064排放源類別</a>     
-                                <a href="{{ route('ghg_protocol.index') }}" class="dropdown-item">GHG Protocol排放源類別</a>       
-                                <a href="#" class="dropdown-item">排放源形式</a> 
-                                <a href="#" class="dropdown-item">製程類別</a>     
-                                <a href="{{ route('device.index') }}" class="dropdown-item">活動設備</a>     
+                                <a href="{{route('ipcc_report.index')}}" class="dropdown-item">IPCC評估報告</a>
+                                <a href="{{ route('scope.index') }}" class="dropdown-item">範疇</a>
+                                <a href="{{ route('iso14064.index') }}" class="dropdown-item">ISO14064排放源類別</a>
+                                <a href="{{ route('ghg_protocol.index') }}" class="dropdown-item">GHG Protocol排放源類別</a>
+                                <a href="{{route('source.create')}}" class="dropdown-item">排放源形式</a>
+                                <a href="{{route('process.create')}}" class="dropdown-item">製程類別</a>
+                                <a href="{{ route('device.index') }}" class="dropdown-item">活動設備</a>
                             </div>
                         </li>
 
@@ -284,8 +284,8 @@
                             </a>
                             <div class="dropdown-menu" aria-labelledby="topnav-dashboard">
                                 <a href="{{ route('simulation-inspection.create') }}" class="dropdown-item">新增盤查</a>
-                                <a href="{{ route('simulation-inspection.step1') }}" class="dropdown-item">新增盤查-正式</a>          
-                                <a href="{{ route('simulation-inspection.index') }}" class="dropdown-item">盤查列表</a> 
+                                <a href="{{ route('simulation-inspection.step1') }}" class="dropdown-item">新增盤查-正式</a>
+                                <a href="{{ route('simulation-inspection.index') }}" class="dropdown-item">盤查列表</a>
                             </div>
                         </li>
 
@@ -312,7 +312,7 @@
                             </a>
                             <div class="dropdown-menu" aria-labelledby="topnav-dashboard">
                                 <a href="#" class="dropdown-item">新增問卷</a>
-                                <a href="#" class="dropdown-item">問卷列表</a>    
+                                <a href="#" class="dropdown-item">問卷列表</a>
                             </div>
                         </li>
 
@@ -324,7 +324,7 @@
                                 <div class="arrow-down"></div>
                             </a>
                             <div class="dropdown-menu" aria-labelledby="topnav-dashboard">
-                                <a href="#" class="dropdown-item">探盤類別</a>     
+                                <a href="#" class="dropdown-item">探盤類別</a>
                                 <a href="#" class="dropdown-item">探盤列別細項設定</a>
                             </div>
                         </li>
@@ -337,7 +337,7 @@
                                 <div class="arrow-down"></div>
                             </a>
                             <div class="dropdown-menu" aria-labelledby="topnav-dashboard">
-                                <a href="{{ route('inspection.index') }}" class="dropdown-item">盤查建檢管理1</a>     
+                                <a href="{{ route('inspection.index') }}" class="dropdown-item">盤查建檢管理1</a>
                                 <a href="{{ route('inspection.create') }}" class="dropdown-item">盤查建檢管理2</a>
                             </div>
                         </li>

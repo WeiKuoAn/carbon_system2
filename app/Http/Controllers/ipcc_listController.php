@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\carbon_system_demo;
+use App\Models\ipcc_list;
 use Illuminate\Http\Request;
-use Illuminate\Contracts\View\View;
 
-class carbon_system_demo extends Controller
+class ipcc_listController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -35,7 +34,7 @@ class carbon_system_demo extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(carbon_system_demo $carbon_system_demo)
+    public function show(ipcc_list $ipcc_list)
     {
         //
     }
@@ -43,7 +42,7 @@ class carbon_system_demo extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(carbon_system_demo $carbon_system_demo)
+    public function edit(ipcc_list $ipcc_list)
     {
         //
     }
@@ -51,7 +50,7 @@ class carbon_system_demo extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, carbon_system_demo $carbon_system_demo)
+    public function update(Request $request, ipcc_list $ipcc_list)
     {
         //
     }
@@ -59,7 +58,7 @@ class carbon_system_demo extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(carbon_system_demo $carbon_system_demo)
+    public function destroy(ipcc_list $ipcc_list)
     {
         //
     }

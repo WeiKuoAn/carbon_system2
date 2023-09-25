@@ -11,8 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('carbon_system_demo', function (Blueprint $table) {
+        Schema::create('process', function (Blueprint $table) {
             $table->id();
+            $table->string('code');
+            $table->string('description');
             $table->timestamps();
         });
     }
@@ -22,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('carbon_system_demo');
+        Schema::dropIfExists('process');
     }
 };
