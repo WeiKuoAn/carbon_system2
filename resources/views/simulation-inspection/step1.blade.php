@@ -28,26 +28,21 @@
                                     href="{{ route('simulation-inspection.step1') }}">盤查企業設定</a>
                                     <a class="nav-link mb-2 " id="v-pills-home-tab" 
                                     href="{{ route('simulation-inspection.step2') }}">盤查基本設定</a>
-                                    {{-- <a class="nav-link mb-2" id="v-pills-home-tab"
-                                        href="{{ route('simulation-inspection.step2') }}"
-                                        aria-selected="true">盤查邊界設定</a> --}}
-                                    <a class="nav-link mb-2" id="v-pills-profile-tab" 
+                                    <a class="nav-link mb-2 " id="v-pills-profile-tab" 
                                         href="{{ route('simulation-inspection.step3') }}"
                                         aria-selected="false">排放源鑑別</a>
-                                    <a class="nav-link mb-2" id="v-pills-messages-tab" data-bs-toggle="pill"
-                                        href="#v-pills-messages" role="tab" aria-controls="v-pills-messages"
-                                        aria-selected="false">排放數據計算</a>
-                                    <a class="nav-link" id="v-pills-settings-tab" data-bs-toggle="pill"
-                                        href="#v-pills-settings" role="tab" aria-controls="v-pills-settings"
+                                    <a class="nav-link" id="v-pills-settings-tab"
+                                        href="{{ route('simulation-inspection.step4') }}"
                                         aria-selected="false">統計報表</a>
-                                    <a class="nav-link" id="v-pills-scope3-tab" data-bs-toggle="pill"
-                                        href="#v-pills-scope3" role="tab" aria-controls="v-pills-scope3"
-                                        aria-selected="false">內外部查證</a>
-                                    <a class="nav-link" id="v-pills-carbonbooks-tab" data-bs-toggle="pill"
-                                        href="#v-pills-carbonbooks" role="tab" aria-controls="v-pills-carbonbooks"
+                                    <a class="nav-link" id="v-pills-carbonbooks-tab"
+                                        href="{{ route('simulation-inspection.step5') }}"
                                         aria-selected="false">盤查清冊產生</a>
+                                    <a class="nav-link" id="v-pills-carbonbooks-tab"
+                                        href="{{ route('simulation-inspection.step6') }}"
+                                        aria-selected="false">減徘報告</a>
                                 </div>
                             </div><!-- end col -->
+
                             <div class="col-md-10" style="background: white;" id="card">
                                 <div class="tab-content text-muted mt-4 mt-md-0" id="v-pills-tabContent">
                                     <!-- Step1 start -->

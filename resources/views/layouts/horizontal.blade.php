@@ -265,7 +265,7 @@
                                 <div class="arrow-down"></div>
                             </a>
                             <div class="dropdown-menu" aria-labelledby="topnav-dashboard">
-                                <a href="{{route('ipcc_report.index')}}" class="dropdown-item">IPCC評估報告</a>
+                                {{-- <a href="{{route('ipcc_report.index')}}" class="dropdown-item">IPCC評估報告</a> --}}
                                 <a href="{{ route('scope.index') }}" class="dropdown-item">範疇</a>
                                 <a href="{{ route('iso14064.index') }}" class="dropdown-item">ISO14064排放源類別</a>
                                 <a href="{{ route('ghg_protocol.index') }}" class="dropdown-item">GHG Protocol排放源類別</a>

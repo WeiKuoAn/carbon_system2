@@ -19,25 +19,31 @@
         <div class="row">
             <div class="card-body mt-5">
                         <div class="row">
-                            <!----大標題------>
-                            <div class="col-md-2">
+                             <!----大標題------>
+                             <div class="col-md-2">
                                 <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist"
                                     aria-orientation="vertical" style="background: white;">
                                     <a class="nav-link mb-2 " id="v-pills-home-tab" 
                                     href="{{ route('simulation-inspection.step1') }}">盤查企業設定</a>
                                     <a class="nav-link mb-2 " id="v-pills-home-tab" 
                                     href="{{ route('simulation-inspection.step2') }}">盤查基本設定</a>
+                                    {{-- <a class="nav-link mb-2" id="v-pills-home-tab"
+                                        href="{{ route('simulation-inspection.step2') }}"
+                                        aria-selected="true">盤查邊界設定</a> --}}
                                     <a class="nav-link mb-2 active" id="v-pills-profile-tab" 
                                         href="{{ route('simulation-inspection.step3') }}"
                                         aria-selected="false">排放源鑑別</a>
-                                    <a class="nav-link" id="v-pills-settings-tab"
-                                        href="{{ route('simulation-inspection.step4') }}"
+                                    <a class="nav-link" id="v-pills-settings-tab" data-bs-toggle="pill"
+                                        href="#v-pills-settings" role="tab" aria-controls="v-pills-settings"
                                         aria-selected="false">統計報表</a>
-                                    <a class="nav-link" id="v-pills-carbonbooks-tab"
-                                        href="{{ route('simulation-inspection.step5') }}"
+                                    <a class="nav-link" id="v-pills-scope3-tab" data-bs-toggle="pill"
+                                        href="#v-pills-scope3" role="tab" aria-controls="v-pills-scope3"
+                                        aria-selected="false">內外部查證</a>
+                                    <a class="nav-link" id="v-pills-carbonbooks-tab" data-bs-toggle="pill"
+                                        href="#v-pills-carbonbooks" role="tab" aria-controls="v-pills-carbonbooks"
                                         aria-selected="false">盤查清冊產生</a>
-                                    <a class="nav-link" id="v-pills-carbonbooks-tab"
-                                        href="{{ route('simulation-inspection.step6') }}"
+                                    <a class="nav-link" id="v-pills-carbonbooks-tab" data-bs-toggle="pill"
+                                        href="#v-pills-carbonbooks" role="tab" aria-controls="v-pills-carbonbooks"
                                         aria-selected="false">減徘報告</a>
                                 </div>
                             </div><!-- end col -->
@@ -452,41 +458,40 @@
                                         <div class="card">
                                             <div class="card-header bg-transparent border-bottom py-3 px-4">
                                                 <h5 class="font-size-16 mb-0">排放源鑑別</h5>
-                                            </div>                                            
+                                            </div>
                                             <div class="card-body p-4 pt-2">
                                                 <div class="table-responsive">
-                                                    <input class="form-control" type="hidden" id="emission_id" name="emission_id" value="1">
                                                     <table class="table mb-0 font-size-16">
                                                         <tbody>
                                                             <tr align="left">
                                                                 <td><b>活動/設備：</b></td>
-                                                                <td id="data_device_id"></td>
+                                                                <td>中、大型冷凍、冷藏裝備</td>
                                                                 <td><b>製程名稱：</b></td>
-                                                                <td id="data_process_id"></td>
+                                                                <td>非製造程序產出類別</td>
                                                             </tr>
                                                             <tr align="left">
                                                                 <td><b>排放源/燃料物：</b></td>
-                                                                <td id="data_fuel"></td>
+                                                                <td>二氧化碳</td>
                                                                 <td><b>排放源形式：</b></td>
-                                                                <td id="data_source_id"></td>
+                                                                <td>固定燃燒源</td>
                                                             </tr>
                                                             <tr align="left">
                                                                 <td><b>電力類型：</b></td>
-                                                                <td id="data_electricity_type"></td>
+                                                                <td>火力發電</td>
                                                                 <td><b>電力來源：</b></td>
                                                                 <td>台灣電力公司</td>
                                                             </tr>
                                                             <tr align="left">
                                                                 <td><b>範疇：</b></td>
-                                                                <td id="data_scope_id"></td>
+                                                                <td>（Scope1-1）直接溫室氣體排放</td>
                                                                 <td><b>ISO14064排放源類別：</b></td>
-                                                                <td id="data_iso16064_id"></td>
+                                                                <td>類別1-溫室氣體直接排放和吸收</td>
                                                             </tr>
                                                             <tr align="left">
                                                                 <td><b>GHG Protocol排放源類別：</b></td>
-                                                                <td id="data_ghg_id"></td>
+                                                                <td>範疇1a：來自固定燃燒源的直接排放</td>
                                                                 <td><b>備註：</b></td>
-                                                                <td id="data_text"></td>
+                                                                <td></td>
                                                             </tr>
                                                         </tbody>
                                                     </table>
@@ -505,7 +510,6 @@
                                                         <tr>
                                                             <th>期間</th>
                                                             <th>排放源</th>
-                                                            <th>活動數據種類</th>
                                                             <th>活動數據</th>
                                                             <th>單位</th>
                                                             <th>排放當量</th>
@@ -516,30 +520,18 @@
                                                             <td>1年</td>
                                                             <td>
                                                                 <div>
-                                                                    <h5 class="text-truncate font-size-16" id="data_device_item"></h5>
+                                                                    <h5 class="text-truncate font-size-16">中、大型冷凍、冷藏裝備</h5>
                     
-                                                                    <p class="mb-0 mt-1">排放源/燃料物 : <span class="fw-medium" id="data_fuel_item"></span></p>
+                                                                    <p class="mb-0 mt-1">排放源/燃料物 : <span class="fw-medium">二氧化碳</span></p>
                                                                 </div>
                                                             </td>
                                                             <td>
-                                                                <select class="form-select"  id="value_type" name="value_type" required >
-                                                                    <option value="1" selected>自動連續量測</option>
-                                                                    <option value="2">間接量測</option>
-                                                                    <option value="3">自行量測</option>
-                                                                </select>
-                                                            </td>
-                                                            <td>
-                                                                <div>
-                                                                    <input class="form-control" type="number" name="value" value="0" id="value" required>
+                                                                <div class="d-inline-flex">
+                                                                    <input class="form-control" type="number" value="42" id="example-number-input">
                                                                 </div>
                                                             </td>
-                                                            <td>
-                                                                <select class="form-select"  id="unit" name="unit" required >
-                                                                    <option value="公升" selected>公升</option>
-                                                                    <option value="公噸" selected>公噸</option>
-                                                                </select>
-                                                            </td>
-                                                            <td><input class="form-control" type="text" name="emission_value" value="" id="emission_value" readonly></td>
+                                                            <td>公升</td>
+                                                            <td>0.0005555</td>
                                                         </tr>
                                                     </tbody>
                                                 </table>
@@ -554,8 +546,8 @@
                                 <div class="col-12 text-end">
                                     <button type="button" class="btn btn-danger me-1" data-bs-dismiss="modal"><i
                                             class="bx bx-x me-1 align-middle"></i>取消</button>
-                                    <button type="sumbit" class="btn btn-success" id="btn_create_data">
-                                        <i class="bx bx-check me-1 align-middle"></i>儲存
+                                    <button type="button" class="btn btn-success" id="btn_create">
+                                        <i class="bx bx-check me-1 align-middle"></i>新增
                                     </button>
                                 </div>
                             </div>
@@ -1007,164 +999,8 @@
                 });
 
                 $(document).on('click', '.edit_data', function(e) {
-                    var dataId = $(this).attr('alt');
-
-                    var url = "{{ route('emission.edit', ':id') }}";
-                    url = url.replace(':id', dataId);
-
-                    $.ajax({
-                        type: 'GET', // 一般来说，编辑操作通常是GET请求，而不是POST
-                        url: url,
-                        data: {
-                            _token: '{{ csrf_token() }}'
-                        },
-                        success: function(data) {
-                            $.each(devices, function(index, device) {
-                                if (device.id == data.device_id) {
-                                    $("#data_device_id").html(device.name);
-                                }
-                            });
-                            $.each(devices, function(index, device) {
-                                if (device.id == data.device_id) {
-                                    $("#data_device_item").html(device.name);
-                                }
-                            });
-                            $.each(proces, function(index, process) {
-                                if (process.id == data.process_id) {
-                                    $("#data_process_id").html(process.description);
-                                }
-                            });
-                            $("#data_fuel").html(data.fuel);
-                            $("#data_fuel_item").html(data.fuel);
-                            $("#emission_id").val(data.id);
-
-                            if(data.electricity_type == 0){
-                                electricity_name = "火力發電";
-                            }else if(data.electricity_type == 1){
-                                electricity_name = "水力發電";
-                            }else if(data.electricity_type == 2){
-                                electricity_name = "潮汐發電";
-                            }else if(data.electricity_type == 3){
-                                electricity_name = "風力發電";
-                            }else if(data.electricity_type == 4){
-                                electricity_name = "人力發電";
-                            }else if(data.electricity_type == 5){
-                                electricity_name = "電瓶發電";
-                            }
-                            
-                            $("#data_electricity_type").html(electricity_name);
-                            $("#data_electricity_source").html(data.electricity_source);
-                            $.each(scopes, function(index, scope) {
-                                if (scope.id == data.scope_id) {
-                                    $("#data_scope_id").html(scope.name);
-                                }
-                            });
-                            $.each(iso14064s, function(index, iso14064) {
-                                if (iso14064.id == data.iso16064_id) {
-                                    $("#data_iso16064_id").html(iso14064.name);
-                                }
-                            });
-                            $.each(ghgProtocols, function(index, ghgProtocol) {
-                                if (ghgProtocol.id == data.ghg_id) {
-                                    $("#data_ghg_id").html(ghgProtocol.name);
-                                }
-                            });
-                            $.each(sources, function(index, source) {
-                                if (source.id == data.source_id) {
-                                    $("#data_source_id").html(source.name);
-                                }
-                            });
-                            $("#data_text").html(data.text);
-
-                            var url = "{{ route('emission_item.edit', ':id') }}";
-                            url = url.replace(':id', data.id);
-                            $.ajax({
-                                type: 'GET',
-                                url: url,
-                                data:{
-                                    'emission_id':data.id,
-                                },
-                                success: function(data) {
-                                    if (Object.keys(data).length > 0) {
-                                        // 对象有值（属性）
-                                        $("#value_type").val(data.value_type);
-                                        $("#value").val(data.value);
-                                        $("#unit").val(data.unit);
-                                        $("#emission_value").val(data.emission_value);
-                                    } else {
-                                        $("#value").val(0);
-                                        $("#emission_value").val(0);
-                                    }
-                                },
-                                error: function(error) {
-                                    console.log(error);
-                                }
-                            });         
-
-                        },
-                        error: function(error) {
-                            console.log(error);
-                        }
-                    });
+                    console.log('data');
                 });
-
-                $('#btn_create_data').on('click', function(e) {
-                    e.preventDefault();
-
-                    // 初始化变量，以跟踪是否有任何空的 required 字段
-                    var isValid = true;
-                    
-                    // 检查所有 required 属性的输入字段是否已填写
-                    $('#emissionData input, #emissionData select').each(function() {
-                        if ($(this).prop('required') && !$(this).val()) {
-                            alert('请填寫所有必填字段！');
-                            isValid = false;
-                            return false; // 退出循环
-                        }
-                    });
-
-                    // 如果有空的 required 字段，则停止提交
-                    if (!isValid) {
-                        return;
-                    }
-
-                    //判斷是否有取的數據
-                    //收集表单数据
-                    var formData = {};
-                    $('#emissionData').serializeArray().map(function(item) {
-                        formData[item.name] = item.value;
-                    });
-                    console.log(formData);
-
-                    var emission_id = $("#emission_id").val();
-                    console.log(emission_id);
-                    var url = "{{ route('emission_item.update', ':id') }}";
-                    url = url.replace(':id', emission_id);
-                    // 关闭模态框
-                    $.ajax({
-                        type: 'PUT',
-                        url: url,
-                        data:formData,
-                        success: function(data) {
-                            console.log(data);
-                            $('#create-data').modal('hide');
-                        },
-                        error: function(error) {
-                            console.log(error);
-                        }
-                    });           
-                });
-                
-                $("#value").change(function() {
-                    var value = $(this).val();
-                    $("#emission_value").val(value);
-                });
-
-                $("#value").on('input', function() {
-                    var value = $(this).val();
-                    $("#emission_value").val(value);
-                });
-
 
             $.ajaxSetup({ headers: { 'csrftoken' : '{{ csrf_token() }}' } });
         });

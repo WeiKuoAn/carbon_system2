@@ -26,4 +26,29 @@ class Emission extends Model
         'image',
         'status',
     ];
+
+    public function device_data()
+    {
+        return $this->hasOne('App\Models\Device', 'id', 'device_id');
+    }
+
+    public function process_data()
+    {
+        return $this->hasOne('App\Models\process', 'id', 'process_id');
+    }
+
+    public function source_data()
+    {
+        return $this->hasOne('App\Models\source', 'id', 'source_id');
+    }
+
+    public function iso14064_data()
+    {
+        return $this->hasOne('App\Models\Iso14064', 'id', 'iso16064_id');
+    }
+
+    public function ghg_data()
+    {
+        return $this->hasOne('App\Models\GhgProtocol', 'id', 'ghg_id');
+    }
 }

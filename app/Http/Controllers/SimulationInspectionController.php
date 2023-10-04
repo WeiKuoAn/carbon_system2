@@ -11,11 +11,54 @@ use App\Models\Customer;
 use App\Models\Scope;
 use App\Models\IndustryCategory;
 use App\Models\Device;
+use App\Models\Emission;
 use App\Models\Iso14064;
 use App\Models\GhgProtocol;
+use App\Models\process;
+use App\Models\source;
 
 class SimulationInspectionController extends Controller
 {
+    /*ajax*/
+    public function iso14064_datas(Request $request)
+    {
+        if ($request->ajax()) {
+            $output = "";
+            $Iso14064s = Iso14064::where('scope_id', $request->scope_id)->get();
+
+            if(count($Iso14064s) > 0){
+                foreach ($Iso14064s as $key => $Iso14064) {
+                    $output.= '<option value="'.$Iso14064->id.'">'.$Iso14064->name."</option>'";
+                  }
+            }else{
+                $output= '<option value=" ">'."請選擇..."."</option>'";
+            }
+            return Response($output);
+        }
+    }
+
+    public function ghg_datas(Request $request)
+    {
+        if ($request->ajax()) {
+            $output = "";
+            if($request->iso16064_id == '1'){
+                $ghgs = GhgProtocol::where('iso14064_id', '1')->get();
+            }elseif($request->iso16064_id =='2'){
+                $ghgs = GhgProtocol::where('iso14064_id', '2')->get();
+            }else{
+                $ghgs = GhgProtocol::whereNull('iso14064_id')->get();
+            }
+            
+            if(count($ghgs) > 0){
+                foreach ($ghgs as $key => $ghg) {
+                    $output.= '<option value="'.$ghg->id.'">'.$ghg->name."</option>'";
+                  }
+            }else{
+                $output= '<option value=" ">'."請選擇..."."</option>'";
+            }
+            return Response($output);
+        }
+    }
 
     public function step1()
     {
@@ -59,7 +102,6 @@ class SimulationInspectionController extends Controller
 
         $inventory = BasicInventory::orderBy('id', 'desc')->first();
         $inventory->update($data);      
-
         // 使用验证后的数据创建新记录
         
 
@@ -69,14 +111,46 @@ class SimulationInspectionController extends Controller
 
     public function step3()
     {   
+        $inventory = BasicInventory::orderBy('id', 'desc')->first();
         $scopes = Scope::get();
         $devices = Device::get();
         $iso14064s = Iso14064::get();
         $ghgProtocols = GhgProtocol::get();
+        $proces = process::get();
+        $sources = source::get();
+        $datas = [];
+        foreach($scopes as $scope)
+        {
+            $datas[$scope->id]['name'] = $scope->name;
+            $datas[$scope->id]['emission_datas'] = Emission::where('basic_inventory_id', $inventory->id)->where('scope_id',$scope->id)->get();
+        }
+        // dd($datas);
         return view('simulation-inspection.step3')->with('scopes', $scopes)
                                                   ->with('devices', $devices)
                                                   ->with('iso14064s', $iso14064s)
-                                                  ->with('ghgProtocols', $ghgProtocols);
+                                                  ->with('ghgProtocols', $ghgProtocols)
+                                                  ->with('proces', $proces)
+                                                  ->with('sources', $sources)
+                                                  ->with('inventory',$inventory)
+                                                  ->with('datas', $datas);
+    }
+
+    public function step4(Request $request)
+    {
+        
+        return view('simulation-inspection.step4');
+    }
+
+    public function step5(Request $request)
+    {
+        
+        return view('simulation-inspection.step5');
+    }
+
+    public function step6(Request $request)
+    {
+        
+        return view('simulation-inspection.step6');
     }
 
     
