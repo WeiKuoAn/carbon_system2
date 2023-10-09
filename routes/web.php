@@ -68,3 +68,6 @@ Route::post('/process/{id}', [App\Http\Controllers\sourceController::class, 'des
 
 //上傳檔案
 Route::post('/upload', [FileUploadController::class, 'upload'])->name('upload');
+
+Route::get('/import', [App\Http\Controllers\ExcelImportController::class,'showImportForm']);
+Route::post('/import', [App\Http\Controllers\ExcelImportController::class,'import']);
