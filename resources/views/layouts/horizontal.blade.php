@@ -311,8 +311,8 @@
                                 <div class="arrow-down"></div>
                             </a>
                             <div class="dropdown-menu" aria-labelledby="topnav-dashboard">
-                                <a href="#" class="dropdown-item">新增問卷</a>
-                                <a href="#" class="dropdown-item">問卷列表</a>
+                                <a href="{{ route('survey.create') }}" class="dropdown-item">新增問卷</a>
+                                <a href="{{ route('survey.index') }}" class="dropdown-item">問卷列表</a>
                             </div>
                         </li>
 

@@ -60,8 +60,16 @@
                                     <tr>
                                         <td>{{ $key+1 }}</td>
                                         <td>{{ $data->year }}</td>
-                                        <td>{{ $data->cust_data->name }}</td>
-                                        <td>{{ $data->branch_data->name }}</td>
+                                        <td>
+                                            @if(isset($data->cust_data))
+                                                {{ $data->cust_data->name }}
+                                            @endif
+                                        </td>
+                                        <td>
+                                            @if(isset($data->branch_data))
+                                                {{ $data->branch_data->name }}
+                                            @endif
+                                        </td>
                                         <td>{{ $data->reason_data() }}</td>
                                         <td>
                                             @if($data->base_year == '0')

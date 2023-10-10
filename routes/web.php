@@ -24,6 +24,14 @@ Route::resource('customer', App\Http\Controllers\CustomerController::class);
 Route::resource('industry-category', App\Http\Controllers\IndustryCategoryController::class);
 Route::resource('user', App\Http\Controllers\UserController::class);
 
+//廠商問卷查看
+Route::get('customer/{id}/surveys', [App\Http\Controllers\CustomerSurveyController::class , 'index'])->name('cust.surveys.index');
+Route::get('customer/{id}/surveys/{survey_id}/create', [App\Http\Controllers\CustomerSurveyController::class , 'create'])->name('cust.surveys.create');
+Route::post('customer/{id}/surveys/{survey_id}/store', [App\Http\Controllers\CustomerSurveyController::class , 'store'])->name('cust.surveys.store');
+Route::get('customer/{id}/surveys/{survey_id}/edit', [App\Http\Controllers\CustomerSurveyController::class , 'edit'])->name('cust.surveys.edit');
+Route::put('customer/{id}/surveys/{survey_id}/update', [App\Http\Controllers\CustomerSurveyController::class , 'update'])->name('cust.surveys.update');
+
+
 Route::get('branch/datas', [App\Http\Controllers\BranchController::class,'branch_datas'])->name('branch.datas');
 Route::get('branch/data', [App\Http\Controllers\BranchController::class,'branch_data'])->name('branch.data');
 Route::resource('branches', App\Http\Controllers\BranchController::class);
@@ -59,6 +67,16 @@ Route::resource('device', App\Http\Controllers\DeviceController::class);
 
 Route::resource('source', App\Http\Controllers\sourceController::class);
 Route::resource('process', App\Http\Controllers\processController::class);
+
+Route::resource('survey', App\Http\Controllers\SurveyController::class);
+
+//問卷選項設定
+Route::get('survey/questions/{id}', [App\Http\Controllers\QuestionController::class , 'index'])->name('survey.questions.index');
+Route::get('survey/questions/{id}/create', [App\Http\Controllers\QuestionController::class , 'create'])->name('survey.questions.create');
+Route::post('survey/questions/{id}/store', [App\Http\Controllers\QuestionController::class , 'store'])->name('survey.questions.store');
+Route::get('survey/questions/{id}/edit', [App\Http\Controllers\QuestionController::class , 'edit'])->name('survey.questions.edit');
+Route::post('survey/questions/{id}/update', [App\Http\Controllers\QuestionController::class , 'update'])->name('survey.questions.update');
+Route::get('survey/questions/{id}/preview', [App\Http\Controllers\SurveyController::class , 'preview'])->name('survey.questions.preview');
 
 
 Route::post('/source/{id}', [App\Http\Controllers\sourceController::class, 'update'])->name('source.update');

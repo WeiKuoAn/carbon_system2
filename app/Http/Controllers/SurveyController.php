@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Survey;
+use App\Models\SurveyFace;
+use App\Models\SurveyQuestion;
 
 class SurveyController extends Controller
 {
@@ -11,7 +14,15 @@ class SurveyController extends Controller
      */
     public function index()
     {
-        //
+        $datas = Survey::get();
+        return view('survey.index')->with('datas',$datas);
+    }
+
+    public function preview($id)
+    {
+        $survey = Survey::where('id',$id)->first();
+        $question_datas = SurveyQuestion::where('survey_id',$id)->get();
+        return view('survey.question_preview')->with('survey',$survey)->with('question_datas',$question_datas);
     }
 
     /**
@@ -19,7 +30,7 @@ class SurveyController extends Controller
      */
     public function create()
     {
-        //
+        return view('survey.create');
     }
 
     /**
@@ -27,7 +38,28 @@ class SurveyController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = new Survey;
+        $data->category = $request->category;
+        $data->title = $request->title;
+        $data->description = $request->description;
+        $data->start_date = $request->start_date;
+        $data->end_date = $request->end_date;
+        $data->status = $request->status;
+        $data->save();
+
+        $survey = Survey::orderby('id','desc')->first();
+        foreach($request->faces as $key=>$face)
+        {
+            if(isset($face))
+            {
+                $face_data = new SurveyFace;
+                $face_data->survey_id = $survey->id;
+                $face_data->name = $face;
+                $face_data->description = $request->face_descs[$key];
+                $face_data->save();
+            }
+        }
+        return redirect()->route('survey.index');
     }
 
     /**
@@ -35,7 +67,7 @@ class SurveyController extends Controller
      */
     public function show(string $id)
     {
-        //
+        
     }
 
     /**
@@ -43,7 +75,8 @@ class SurveyController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $data = Survey::where('id',$id)->first();
+        return view('survey.edit')->with('data',$data);
     }
 
     /**
@@ -51,7 +84,29 @@ class SurveyController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $data = Survey::where('id',$id)->first();
+        $data->category = $request->category;
+        $data->title = $request->title;
+        $data->description = $request->description;
+        $data->start_date = $request->start_date;
+        $data->end_date = $request->end_date;
+        $data->status = $request->status;
+        $data->save();
+
+        SurveyFace::where('survey_id',$id)->delete();
+        foreach($request->faces as $key=>$face)
+        {
+            if(isset($face))
+            {
+                $face_data = new SurveyFace;
+                $face_data->survey_id = $id;
+                $face_data->name = $face;
+                $face_data->description = $request->face_descs[$key];
+                $face_data->save();
+            }
+        }
+
+        return redirect()->route('survey.index');
     }
 
     /**

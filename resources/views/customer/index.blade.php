@@ -45,11 +45,15 @@
                                 <thead class="table-light">
                                     <tr>
                                         <th scope="col">廠商名稱</th>
-                                        <th scope="col">Position</th>
-                                        <th scope="col">Email</th>
-                                        <th scope="col">Projects</th>
-                                        <th scope="col">分廠</th>
-                                        <th scope="col" style="width: 200px;">Action</th>
+                                        <th scope="col">產業別</th>
+                                        <th scope="col">主要聯絡人</th>
+                                        <th scope="col">聯絡人電話</th>
+                                        <th scope="col">公司縣市</th>
+                                        <th scope="col">公司規模</th>
+                                        <th scope="col">上市櫃狀態</th>
+                                        <th scope="col">銷售方向</th>
+                                        <th scope="col">權限</th>
+                                        <th scope="col" style="width: 200px;">操作</th>
                                     </tr>
                                 </thead>
 
@@ -61,10 +65,36 @@
                                                 class="avatar rounded-circle img-thumbnail me-2">
                                             <a href="#" class="text-body">{{ $data->name }}</a>
                                         </td>
-                                        <td><span class="badge badge-soft-success mb-0">Full Stack Developer</span></td>
-                                        <td>SimonRyles@minible.com</td>
-                                        <td>125</td>
-                                        <td>有</td>
+                                        <td>
+                                            @if(isset($data->industry_category_data))
+                                                {{ $data->industry_category_data->name }}
+                                            @endif
+                                        </td>
+                                        <td>{{ $data->primary_contact_name }}</td>
+                                        <td>{{ $data->primary_contact_phone }}</td>
+                                        <td>{{ $data->county }}</td>
+                                        <td>
+                                            @if(isset($data->company_scale))
+                                                {{ $data->company_scale() }}
+                                            @endif
+                                        </td>
+                                        <td>
+                                            @if(isset($data->stock_status))
+                                                {{ $data->stock_status() }}
+                                            @endif
+                                        </td>
+                                        <td>
+                                            @if(isset($data->sales_orientation))
+                                                {{ $data->sales_orientation() }}
+                                            @endif
+                                        </td>
+                                        <td>
+                                            @if($data->permission_status == 0)
+                                                啟動
+                                            @else
+                                                關閉
+                                            @endif
+                                        </td>
                                         <td>
                                             <ul class="list-inline mb-0">
                                                 <li class="list-inline-item dropdown">
@@ -75,7 +105,7 @@
 
                                                     <div class="dropdown-menu dropdown-menu-end">
                                                         <a class="dropdown-item" href="#">廠商資料</a>
-                                                        <a class="dropdown-item" href="#">ESG問卷查看</a>
+                                                        <a class="dropdown-item" href="{{ route('cust.surveys.index',$data->id) }}">問卷查看</a>
                                                         <a class="dropdown-item" href="#">盤查紀錄</a>
                                                     </div>
                                                 </li>

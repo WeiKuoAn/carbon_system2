@@ -21,25 +21,6 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-body">
-                        <div class="row align-items-center mb-3">
-                            <div class="col-md-6">
-                                {{-- <div class="mb-3">
-                                    <h5 class="card-title">Contact List <span class="text-muted fw-normal ms-2">(834)</span></h5>
-                                </div> --}}
-                            </div>
-                            <div class="col-md-6">
-                                <div class="d-flex flex-wrap align-items-center justify-content-end gap-2 mb-3">
-                                    <div>
-                                        <a  href="{{ route('survey.create') }}">
-                                            <button type="button"
-                                                class="btn btn-success btn-rounded waves-effect waves-light mb-2 me-2">
-                                                <i class="mdi mdi-plus me-1"></i>
-                                                新增問卷</button>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
                         <div class="table-responsive">
                             <table class="table table-nowrap align-middle">
                                 <thead class="table-light">
@@ -48,9 +29,9 @@
                                         <th scope="col">問卷類別</th>
                                         <th scope="col">問卷描述</th>
                                         <th scope="col">問卷面向</th>
-                                        <th scope="col">開始時間</th>
                                         <th scope="col">結束時間</th>
                                         <th scope="col">狀態</th>
+                                        <th scope="col">得分</th>
                                         <th scope="col" style="width: 200px;">操作</th>
                                     </tr>
                                 </thead>
@@ -79,30 +60,25 @@
                                                 無面向
                                             @endif
                                         </td>
-                                        <td>{{ $data->start_date }}</td>
                                         <td>{{ $data->end_date }}</td>
                                         <td>
-                                            @if($data->status == '0')
-                                                開啟
-                                            @elseif($data->status == '1')
-                                                關閉
+                                            @if($data->response_data()->where('customer_id', $customer_id)->first())
+                                                已完成
+                                            @else
+                                                未完成
                                             @endif
                                         </td>
+                                        <td>{{ $data->response_data()->where('customer_id', $customer_id)->value('score'); }}</td>
                                         <td>
-                                            <ul class="list-inline mb-0">
-                                                <li class="list-inline-item dropdown">
-                                                    <a class="table-action-btn dropdown-toggle arrow-none btn btn-outline-dark waves-effect" href="#"
-                                                        role="button" data-bs-toggle="dropdown" aria-haspopup="true">動作
-                                                        <i class="bx bxs-down-arrow"></i>
-                                                    </a>
-
-                                                    <div class="dropdown-menu dropdown-menu-end">
-                                                        <a class="dropdown-item" href="{{ route('survey.edit',$data->id) }}">編輯問卷</a>
-                                                        <a class="dropdown-item" href="{{ route('survey.questions.index', ['id' => $data->id]) }}">問卷內容</a>
-                                                        <a class="dropdown-item" href="{{ route('survey.questions.preview', ['id' => $data->id]) }}">查看問卷</a>
-                                                    </div>
-                                                </li>
-                                            </ul>
+                                            @if($data->response_data()->where('customer_id', $customer_id)->first())
+                                                <a href="{{ route('cust.surveys.edit',['id'=>$customer_id , 'survey_id'=>$data->id]) }}">
+                                                    <button class="btn btn-danger">更新</button>
+                                                </a>
+                                            @else
+                                                <a href="{{ route('cust.surveys.create',['id'=>$customer_id , 'survey_id'=>$data->id]) }}">
+                                                    <button class="btn btn-primary">填寫</button>
+                                                </a>
+                                            @endif
                                         </td>
                                     </tr>
                                     @endforeach
