@@ -24,20 +24,20 @@
                                 <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist"
                                     aria-orientation="vertical" style="background: white;">
                                     <a class="nav-link mb-2 " id="v-pills-home-tab" 
-                                    href="{{ route('simulation-inspection.step1') }}">盤查企業設定</a>
+                                    href="{{ route('simulation-inspection-edit.step1.show',$inventory->id) }}">盤查企業設定</a>
                                     <a class="nav-link mb-2 " id="v-pills-home-tab" 
-                                    href="{{ route('simulation-inspection.step2') }}">盤查基本設定</a>
+                                    href="{{ route('simulation-inspection-edit.step2.show',$inventory->id) }}">盤查基本設定</a>
                                     <a class="nav-link mb-2 active" id="v-pills-profile-tab" 
-                                        href="{{ route('simulation-inspection.step3') }}"
+                                        href="{{ route('simulation-inspection-edit.step3.show',$inventory->id) }}"
                                         aria-selected="false">排放源鑑別</a>
                                     <a class="nav-link" id="v-pills-settings-tab"
-                                        href="{{ route('simulation-inspection.step4') }}"
+                                        href="{{ route('simulation-inspection-edit.step4.show',$inventory->id) }}"
                                         aria-selected="false">統計報表</a>
                                     <a class="nav-link" id="v-pills-carbonbooks-tab"
-                                        href="{{ route('simulation-inspection.step5') }}"
+                                        href="{{ route('simulation-inspection-edit.step5.show',$inventory->id) }}"
                                         aria-selected="false">盤查清冊產生</a>
                                     <a class="nav-link" id="v-pills-carbonbooks-tab"
-                                        href="{{ route('simulation-inspection.step6') }}"
+                                        href="{{ route('simulation-inspection-edit.step6.show',$inventory->id) }}"
                                         aria-selected="false">減排計畫</a>
                                 </div>
                             </div><!-- end col -->

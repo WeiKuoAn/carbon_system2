@@ -27,7 +27,7 @@
                                     href="{{ route('simulation-inspection.step1') }}">盤查企業設定</a>
                                     <a class="nav-link mb-2 " id="v-pills-home-tab" 
                                     href="{{ route('simulation-inspection.step2') }}">盤查基本設定</a>
-                                    <a class="nav-link mb-2 " id="v-pills-profile-tab" 
+                                    <a class="nav-link mb-2 active" id="v-pills-profile-tab" 
                                         href="{{ route('simulation-inspection.step3') }}"
                                         aria-selected="false">排放源鑑別</a>
                                     <a class="nav-link" id="v-pills-settings-tab"
@@ -36,7 +36,7 @@
                                     <a class="nav-link" id="v-pills-carbonbooks-tab"
                                         href="{{ route('simulation-inspection.step5') }}"
                                         aria-selected="false">盤查清冊產生</a>
-                                    <a class="nav-link active" id="v-pills-carbonbooks-tab"
+                                    <a class="nav-link" id="v-pills-carbonbooks-tab"
                                         href="{{ route('simulation-inspection.step6') }}"
                                         aria-selected="false">減排計畫</a>
                                 </div>
@@ -51,8 +51,8 @@
                                             <div class="col-md-12">
                                                 <div class="d-flex flex-wrap align-items-center justify-content-end gap-2 mb-3">
                                                     <div>
-                                                        <a href="#" class="btn btn-success" data-bs-toggle="modal" data-bs-target=".create-reduction" >
-                                                            <i class="bx bx-plus me-1"></i>新增減徘</a>
+                                                        <a href="#" class="btn btn-success" data-bs-toggle="modal" data-bs-target=".create-source" >
+                                                            <i class="bx bx-plus me-1"></i>新增排放源</a>
                                                     </div>
                                                     {{-- <div class="dropdown">
                                                         <a class="btn btn-link text-muted py-1 font-size-16 shadow-none dropdown-toggle" href="#"
@@ -68,33 +68,40 @@
                                                 </div>
                                             </div>
                                             <div class="table-responsive">
-                                                <table class="table mb-0 align-middle" id="reductionTable">
+                                                <table class="table mb-0" id="reductionTable">
                                                     <thead>
-                                                        <tr>
-                                                            <td width="5%"align="center"></td>
-                                                            <td width="14%" align="center">預估達成日期</td>
-                                                            <td width="25%">減排措施名稱與描述</td>
-                                                            <td width="30%" align="center">如何實施</td>
-                                                            <td width="8%">預算</td>
-                                                            <td width="10%" align="center">進度狀態</td>
+                                                        <tr align="center">
+                                                            <th>日期</th>
+                                                            <th>碳排放量 (公噸CO₂e)</th>
+                                                            <th>減排措施</th>
+                                                            <th>備註</th>
                                                         </tr>
                                                     </thead>
                                                     <tbody >
-                                                        @foreach($datas as $key=>$data)
-                                                            <tr>
-                                                                <td align="center">{{ $key+1 }}</td>
-                                                                <td align="center">{{ $data->deadline }}</td>
-                                                                <td>
-                                                                    <div>
-                                                                        <h5 class="text-truncate font-size-16">{{ $data->measure() }}</h5>
-                                                                        <p class="mb-0 mt-1">描述: <span class="fw-medium">{{ $data->description }}</span></p>
-                                                                    </div>
-                                                                </td>
-                                                                <td ><div style="white-space: pre-line;">{{ $data->implementation }}</div></td>
-                                                                <td>{{ $data->budget }}萬</td>
-                                                                <td align="center">{{ $data->status() }}</td>
-                                                            </tr>
-                                                        @endforeach
+                                                        <tr align="center">
+                                                            <td>2023-10-01</td>
+                                                            <td>100</td>
+                                                            <td>開始碳減排計劃</td>
+                                                            <td></td>
+                                                        </tr>
+                                                        <tr align="center">
+                                                            <td>2023-11-01</td>
+                                                            <td>95</td>
+                                                            <td>能源效率改善</td>
+                                                            <td>換裝節能燈泡</td>
+                                                        </tr>
+                                                        <tr align="center">
+                                                            <td>2023-12-01</td>
+                                                            <td>90</td>
+                                                            <td>再生能源利用</td>
+                                                            <td>安裝太陽能板</td>
+                                                        </tr>
+                                                        <tr align="center">
+                                                            <td>2024-01-01</td>
+                                                            <td>85</td>
+                                                            <td>廢物減量</td>
+                                                            <td>實施循環利用計劃</td>
+                                                        </tr>
                                                     </tbody>
                                                 </table>
                                             </div>
@@ -110,7 +117,7 @@
         <!--新增排放源-->
         <form id="reductionForm">
             @csrf
-            <div class="modal fade create-reduction" id="create-reduction" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel"
+            <div class="modal fade create-source" id="create-source" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel"
                 aria-hidden="true">
                 <div class="modal-dialog modal-xl modal-dialog-centered">
                     <div class="modal-content">
@@ -255,57 +262,70 @@
                     });
 
                     console.log(formData);
-                    var rowCount = $('#reductionTable tbody tr').length + 1;
+
                     // 发送 Ajax 请求
                     $.ajax({
-                        type: "POST",  // 請求類型
-                        url: "{{ route('simulation-inspection.step6.store') }}",  // 請替換成實際的 API 端點
-                        data: formData,  // 發送的數據
-                        dataType: "json",  // 響應數據類型
-                        success: function(response) {
-                            // 清空表單
-                            $("#reductionForm")[0].reset();
-
-                            var type = {
-                                '0': '準備中',
-                                '1': '執行中',
-                                '2': '完成'
-                            };
-
-                            var measure = {
-                                '0' : '開始碳減排計劃',
-                                '1' : '能源效率改進',
-                                '2' : '可再生能源',
-                                '3' : '供應鏈優化',
-                                '4' : '廢物減量和回收',
-                                '5' : '員工教育和參與',
-                                '6' : '碳抵消',
-                                '7' : '遠程工作和虛擬會議',
-                                '8' : '綠色建築',
-                                '9' : '碳盤查和報告'
-                            };
-
-                            // 在表格中新增一列資料
-                            var newRow = "<tr>" +
-                                            "<td align='center'>" + rowCount + "</td>" +
-                                            "<td align='center'>" + response.deadline + "</td>" +
-                                            "<td>" + 
-                                                "<div>" + 
-                                                    "<h5 class='text-truncate font-size-16'>" + measure[response.measure_name] + "</h5>" +
-                                                    "<p class='mb-0 mt-1'>描述: <span class='fw-medium'>" + response.description + "</span></p>" +
-                                                "</div>" + 
-                                            "</td>" + 
-                                            "<td><div style='white-space: pre-line;'>" + response.implementation + "</div></td>" +
-                                            "<td>" + response.budget + "萬</td>" +
-                                            "<td align='center'>" + type[response.progress_status] + "</td>" +
-                                        "</tr>"
-                            $("#reductionTable tbody").append(newRow);
+                        type: 'POST',
+                        url: "{{ route('emission.store') }}",
+                        data: formData,
+                        success: function (data) {
+                            scope_id = $("#create_scope_id").val();
+                            console.log(scope_id);
+                            var rowCount = $('#emissionTable-'+scope_id+' tbody tr').length + 1;
+                            console.log(rowCount);
+                            var content = '';
+                            content += '<tr data-row-id="'+ data.id +'"align="center">';
+                            content += '<th>'+ rowCount +'</th>';
+                            //設備
+                            $.each(devices, function(index, device) {
+                                if (device.id == data.device_id) {
+                                    // 在找到匹配的scope时构建content
+                                    content += '<td width="20%" data-field="device">' + device.name + '</td>';
+                                }
+                            });
+                            content += '<td data-field="fuel">' + data.fuel + '</td>';
+                            //排放源形式
+                            $.each(sources, function(index, source) {
+                                if (source.id == data.source_id) {
+                                    // 在找到匹配的scope时构建content
+                                    content += '<td data-field="source">' + source.name + '</td>';
+                                }
+                            });
+                            //iso14064
+                            $.each(iso14064s, function(index, iso14064) {
+                                if (iso14064.id == data.iso16064_id) {
+                                    // 在找到匹配的scope时构建content
+                                    content += '<td data-field="iso14064">' + iso14064.name + '</td>';
+                                }
+                            });
+                            //ghgProtocol
+                            $.each(ghgProtocols, function(index, ghgProtocol) {
+                                if (ghgProtocol.id == data.ghg_id) {
+                                    console.log(ghgProtocol);
+                                    // 在找到匹配的scope时构建content
+                                    content += '<td data-field="ghg">' + ghgProtocol.name + '</td>';
+                                }
+                            });
+                            content += '<td data-field="included">是</td>';
+                            content += '<td>';
+                            content += '<ul class="list-inline mb-0">';
+                            content += '<li class="list-inline-item">';
+                            content += ' <a href="#" alt="'+ data.id +'" data-bs-toggle="modal" data-bs-target=".edit-source" data-bs-placement="top" title="Edit" class="px-2 text-primary edit_emission"><i class="mdi mdi-pencil font-size-20"></i></a>';
+                            content += '</li>';
+                            content += '<li class="list-inline-item">';
+                            content += '<a href="#" alt="'+ data.id +'" data-bs-toggle="modal" data-bs-target=".create-data" data-bs-placement="top" title="data" class="px-2 text-danger"><i class="mdi mdi-chart-bar font-size-20"></i></a>';
+                            content += '</li>';
+                            content += '</ul>';
+                            content += '</td>';
+                            content += '</tr>';
                             
-                            // 關閉模態對話框
-                            $("#create-reduction").modal("hide");
-                        },
+                             // 插入新行到表格
+                             $('#emissionTable-' + scope_id + ' tbody').append(content);
+                             console.log( '#emissionTable-' + scope_id + ' tbody');
+                             // 关闭模态框
+                             $('#create-source').modal('hide');
+                         },
                         error: function(error) {
-                            // 處理錯誤
                             console.log(error);
                         }
                     });

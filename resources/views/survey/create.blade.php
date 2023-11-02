@@ -20,88 +20,90 @@
     @section('content')
     <form action="{{ route('survey.store') }}" method="POST">
     @csrf
-    <div class="row">
-        <div class="col-xl-12 mt-3">
-            <div class="card">
-                <div class="card-body">
-                    
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="mb-3">
-                                    <label class="form-label" for="AddNew-Username">問卷類別</label>
-                                    <select class="form-control" name="category" required >
-                                            <option value="0" selected>ESG</option>
-                                            <option value="99">其他</option>
-                                    </select>
-                                </div>
-                            </div>
-
-                            <div class="col-md-12">
-                                <div class="mb-3">
-                                    <label class="form-label" for="AddNew-Username">問卷名稱</label>
-                                    <input type="text" class="form-control" name="title" required>
-                                </div>
-                            </div>
-
-                            <div class="col-md-12">
-                                <div class="mb-3">
+        <div class="row">
+            <div class="col-xl-12 mt-3">
+                <div class="card">
+                    <div class="card-body">
+                        <h4>基本設定</h4>
+                            <div class="row mt-3">
+                                <div class="col-md-12">
                                     <div class="mb-3">
-                                        <label class="form-label" for="CreateTask-Task Description">問卷描述</label>
-                                        <textarea class="form-control" id="projectdesc" rows="2" name="description" required ></textarea>
+                                        <label class="form-label" for="AddNew-Username">問卷類別</label>
+                                        <select class="form-control" name="category" required >
+                                                <option value="0" selected>ESG</option>
+                                                <option value="99">其他</option>
+                                        </select>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="col-md-12" id="questionnaire">
-                                <label class="form-label">問卷面向: </label>
-                                <div class="hstack gap-3 mb-3">
-                                    <div class="col-md-6">
-                                        <input class="form-control me-3" type="text" placeholder="新增面向" name="faces[]">
-                                    </div>
-                                    <div class="col-md-5">
-                                        <input class="form-control me-3" type="text" placeholder="面向描述" name="face_descs[]">
-                                    </div>
-                                    <div class="col-md-2">
-                                        <button type="button" class="btn btn-primary waves-effect waves-light" id="addFace">＋</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                </div>
-            </div>
-            <!-- end card -->
-        </div> <!-- end col -->
-    </div>
-    <div class="row">
-        <div class="col-xl-12 mt-3">
-            <div class="card">
-                <div class="card-body">
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="mb-3">
-                                    <label class="form-label" for="AddNew-Username">開始時間</label>
-                                    <input class="form-control" type="datetime-local" name="start_date" value="" required>
-                                </div>
-                            </div>
 
-                            <div class="col-md-12">
-                                <div class="mb-3">
-                                    <label class="form-label" for="AddNew-Username">關閉時間</label>
-                                    <input class="form-control" type="datetime-local" name="end_date" value="" required>
+                                <div class="col-md-12">
+                                    <div class="mb-3">
+                                        <label class="form-label" for="AddNew-Username">問卷名稱</label>
+                                        <input type="text" class="form-control" name="title" required>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-12">
+                                    <div class="mb-3">
+                                        <div class="mb-3">
+                                            <label class="form-label" for="CreateTask-Task Description">問卷描述</label>
+                                            <textarea class="form-control" id="projectdesc" rows="2" name="description" required ></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-12" id="questionnaire">
+                                    <label class="form-label">問卷面向: </label>
+                                    <div class="hstack gap-3 mb-3">
+                                        <div class="col-md-6">
+                                            <input class="form-control me-3" type="text" placeholder="新增面向" name="faces[]">
+                                        </div>
+                                        <div class="col-md-5">
+                                            <input class="form-control me-3" type="text" placeholder="面向描述" name="face_descs[]">
+                                        </div>
+                                        <div class="col-md-2">
+                                            <button type="button" class="btn btn-primary waves-effect waves-light" id="addFace">＋</button>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                            
-                            <div class="col-md-12">
-                                <div class="mb-3">
-                                    <label class="form-label">問卷狀態</label>
-                                    <select class="form-select" name="status" required>
-                                        <option value="0" selected>啟用</option>
-                                        <option value="1" >禁用</option>
-                                    </select>
-                                </div>
-                            </div>
-                            
-                        </div>
+                    </div>
                 </div>
+                <!-- end card -->
+            </div> <!-- end col -->
+        </div>
+
+        <div class="row">
+            <div class="col-xl-12 mt-3">
+                <div class="card">
+                    <div class="card-body">
+                            <div class="row">
+                                <h4>權限設定</h4>
+                                <div class="col-md-12">
+                                    <div class="mb-3">
+                                        <label class="form-label" for="AddNew-Username">開始時間</label>
+                                        <input class="form-control" type="datetime-local" name="start_date" value="" required>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-12">
+                                    <div class="mb-3">
+                                        <label class="form-label" for="AddNew-Username">關閉時間</label>
+                                        <input class="form-control" type="datetime-local" name="end_date" value="" required>
+                                    </div>
+                                </div>
+                                
+                                <div class="col-md-12">
+                                    <div class="mb-3">
+                                        <label class="form-label">問卷狀態</label>
+                                        <select class="form-select" name="status" required>
+                                            <option value="0" selected>啟用</option>
+                                            <option value="1" >禁用</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                
+                            </div>
+                    </div>
             </div>
             <!-- end card -->
         </div> <!-- end col -->

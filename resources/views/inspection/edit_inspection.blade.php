@@ -1,6 +1,6 @@
 @extends('layouts.master')
 @section('title')
-    盤查建檢管理
+    修改盤查建檢管理
 @endsection
 @section('css')
     <!-- choices css -->
@@ -15,7 +15,7 @@
     <link rel="stylesheet" href="{{ URL::asset('build/libs/flatpickr/flatpickr.min.css') }}">
 @endsection
 @section('page-title')
-    盤查建檢管理
+    修改盤查建檢管理
 @endsection
 @section('body')
 
@@ -64,17 +64,19 @@
                                 <div class="mt-3">
                                     <div class="col-md-12">
                                         <div class="mb-2">
-                                            <h5 class="mb-2" id="company_name">企業名稱</h5>
-                                            <select class="form-select"  id="customer_id" name="customer_id"  required >
-                                                <option value="" selected>請選擇企業</option>
+                                            <h5 class="mb-2" id="company_name">{{ $data->customer_data->name .'-'. $data->branch_data->name }}</h5>
+                                            <select class="form-select"  id="customer_id" name="customer_id"  required disabled >
+                                                <option value="" selected >請選擇企業</option>
                                                 @foreach($customers as $customer)
-                                                    <option value="{{ $customer->id }}">{{ $customer->name }}</option>
+                                                    <option value="{{ $customer->id }}"  @if($data->customer_id == $customer->id) selected @endif >{{ $customer->name }}</option>
                                                 @endforeach
                                             </select>
                                         </div>
                                         <div class="mb-1">
-                                            <select class="form-select"  id="branch_id" name="branch_id" required >
-                                                <option value="" selected>請選擇分場</option>
+                                            <select class="form-select"  id="branch_id" name="branch_id" required  disabled>
+                                                @foreach($branches as $branch)
+                                                    <option value="{{ $branch->id }}" @if($data->branch_id == $branch->id) selected @endif>{{ $branch->name }}</option>
+                                                @endforeach
                                             </select>
                                         </div>
                                     </div>
@@ -89,53 +91,53 @@
                                         <tr>
                                             <th class="fw-bold">
                                                 聯絡人 :</th>
-                                            <td class="text-muted" id="contact_name"></td>
+                                            <td class="text-muted" id="contact_name">{{ $data->branch_data->contact_name }}</td>
                                         </tr>
                                         <tr>
                                             <th class="fw-bold">聯絡電話 :</th>
-                                            <td class="text-muted" id="contact_phone"></td>
+                                            <td class="text-muted" id="contact_phone">{{ $data->branch_data->contact_phone }}</td>
                                         </tr>
                                         <!-- end tr -->
 
                                         <tr>
                                             <th class="fw-bold">聯絡信箱 :</th>
-                                            <td class="text-muted" id="contact_email"></td>
+                                            <td class="text-muted" id="contact_email">{{ $data->branch_data->contact_email }}</td>
                                         </tr>
                                         <!-- end tr -->
                                         <tr>
                                             <th class="fw-bold">
                                                 地址 :</th>
-                                            <td class="text-muted" id="branch_address"></td>
+                                            <td class="text-muted" id="branch_address">{{ $data->branch_data->address }}</td>
                                         </tr>
                                         <!-- end tr -->
                                         <tr>
                                             <th class="fw-bold">
                                                 統一編號 :</th>
-                                            <td class="text-muted" id="business_registration_no"></td>
+                                            <td class="text-muted" id="business_registration_no">{{ $data->customer_data->business_registration_no }}</td>
                                         </tr>
                                         <!-- end tr -->
                                         <tr>
                                             <th class="fw-bold">
                                                 公司規模 :</th>
-                                            <td class="text-muted" id="company_scale"></td>
+                                            <td class="text-muted" id="company_scale">{{ $data->customer_data->company_scale }}</td>
                                         </tr>
                                         <!-- end tr -->
                                         <tr>
                                             <th class="fw-bold">
                                                 上市櫃狀態 :</th>
-                                            <td class="text-muted" id="stock_status"></td>
+                                            <td class="text-muted" id="stock_status">{{ $data->customer_data->stock_status }}</td>
                                         </tr>
                                         <!-- end tr -->
                                         <tr>
                                             <th class="fw-bold">
                                                 銷售方向 :</th>
-                                            <td class="text-muted" id="sales_orientation"></td>
+                                            <td class="text-muted" id="sales_orientation">{{ $data->customer_data->sales_orientation }}</td>
                                         </tr>
                                         <!-- end tr -->
                                         <tr>
                                             <th class="fw-bold">
                                                 銷售方向 :</th>
-                                            <td class="text-muted" id="sales_region"></td>
+                                            <td class="text-muted" id="sales_region">{{ $data->customer_data->sales_region }}</td>
                                         </tr>
                                         <!-- end tr -->
                                     </tbody><!-- end tbody -->
@@ -192,8 +194,9 @@
                 </div>
             </div>
                 <div class="col-lg-9">
-                    <input class="form-control mt-3" type="hidden" id="customber_id_text" name="customber_id_text" value="">
-                    <input class="form-control mt-3" type="hidden" id="branch_id_text" name="branch_id_text" value="">
+                    <input class="form-control mt-3" type="hidden" id="customber_id_text" name="customber_id_text" value="{{ $data->customer_id }}">
+                    <input class="form-control mt-3" type="hidden" id="branch_id_text" name="branch_id_text" value="{{ $data->branch_id }}">
+                    <input class="form-control mt-3" type="hidden" id="stage_id" name="stage_id" value="{{ $data->id }}">
                     <div id="addproduct-accordion" class="custom-accordion">
                         <div class="card">
                             <a href="#addproduct-productinfo-collapse" class="text-dark" data-bs-toggle="collapse"
@@ -229,8 +232,8 @@
                                             <div class="col-md-10">
                                                 <select class="form-select"  id="year" name="year" required >
                                                         <option value="" selected>請選擇...</option>
-                                                        @foreach($years as $year)
-                                                            <option value="{{ $year}}">{{ $year }}年</option>
+                                                            @foreach($years as $year)
+                                                            <option value="{{ $year }}" @if($data->year ==  $year) selected @endif>{{ $year }}年</option>
                                                         @endforeach
                                                 </select>
                                             </div>
@@ -238,29 +241,39 @@
                                         <div class="mb-3 row">
                                             <label for="example-search-input" class="col-md-2 col-form-label">起始會議</label>
                                             <div class="col-md-10">
-                                                <div id="Step1_inputGroupFile01-preview"></div>
-                                                <div class="input-group">
-                                                    <input type="file" class="form-control" id="Step1_inputGroupFile01" name="Step1_inputGroupFile01" aria-describedby="inputGroupFileAddon01" aria-label="Upload">
-                                                    <button class="btn btn-primary" type="button" id="Step1_inputGroupFileAddon01">上傳</button>
-                                                </div>
+                                                @if(isset($data->starting_data->meeting_file_path))
+                                                    <div class="mt-2">
+                                                        <a href="/storage/uploads/{{ $data->starting_data && $data->starting_data->meeting_file_path ? urldecode($data->starting_data->meeting_file_path) : '' }}">{{ urldecode($data->starting_data->meeting_file_path) }}</a>
+                                                    </div>
+                                                @else
+                                                    <div id="Step1_inputGroupFile01-preview"></div>
+                                                    <div class="input-group">
+                                                        <input type="file" class="form-control" id="Step1_inputGroupFile01" name="Step1_inputGroupFile01" aria-describedby="inputGroupFileAddon01" aria-label="Upload">
+                                                        <button class="btn btn-primary" type="button" id="Step1_inputGroupFileAddon01">上傳</button>
+                                                    </div>
+                                                @endif
                                             </div>
                                         </div>
                                         <div class="mb-3 row">
                                             <label for="example-email-input" class="col-md-2 col-form-label">經營者/高階主管共同承諾日期</label>
                                             <div class="col-md-10">
-                                                <input class="form-control mt-3" type="date" name="commitment_date" value="">
+                                                <input class="form-control mt-3" type="date" name="commitment_date" value="{{ $data->starting_data->commitment_date }}">
                                             </div>
                                         </div>
                                         <div class="mb-3 row">
                                             <label for="example-url-input" class="col-md-2 col-form-label">推動成立組織</label>
                                             <div class="col-md-10">
-                                                <div id="Step1_inputGroupFile02-preview"></div>
-                                                <div class="input-group">
-                                                    <input type="file" class="form-control" id="Step1_inputGroupFile02"
-                                                        aria-describedby="Step1_inputGroupFileAddon02" name="Step1_inputGroupFile02" aria-label="Upload">
-                                                    <button class="btn btn-primary" type="button"
-                                                        id="Step1_inputGroupFileAddon02">上傳</button>
-                                                </div>
+                                                @if(isset($data->starting_data->organization_file_path))
+                                                    <a href="/storage/uploads/{{ $data->starting_data && $data->starting_data->organization_file_path ? urldecode($data->starting_data->organization_file_path) : '' }}" target="_blank">{{ urldecode($data->starting_data->organization_file_path) }}</a>
+                                                @else
+                                                    <div id="Step1_inputGroupFile02-preview"></div>
+                                                    <div class="input-group">
+                                                        <input type="file" class="form-control" id="Step1_inputGroupFile02"
+                                                            aria-describedby="Step1_inputGroupFileAddon02" name="Step1_inputGroupFile02" aria-label="Upload">
+                                                        <button class="btn btn-primary" type="button"
+                                                            id="Step1_inputGroupFileAddon02">上傳</button>
+                                                    </div>
+                                                @endif
                                             </div>
                                         </div>
                                 </div>
@@ -300,9 +313,9 @@
                                                 <label class="col-md-2 col-form-label">盤查使用標準</label>
                                                 <div class="col-md-10">
                                                     <select class="form-select" name="standard">
-                                                        <option value="null" selected>請選擇</option>
-                                                        <option value="0">使用ISO14064-1標準</option>
-                                                        <option value="1">使用環保署標準</option>
+                                                        <option value="null"  @if($data->boundary_setting_data->standard == null) selected @endif>請選擇</option>
+                                                        <option value="0" @if($data->boundary_setting_data->standard == 0) selected @endif>使用ISO14064-1標準</option>
+                                                        <option value="1" @if($data->boundary_setting_data->standard == 1) selected @endif>使用環保署標準</option>
                                                     </select>
                                                 </div>
                                             </div>
@@ -310,22 +323,23 @@
                                                 <label class="col-md-2 col-form-label">組織邊界設定</label>
                                                 <div class="col-md-10">
                                                     <select class="form-select" name="organizational_boundary_setting">
-                                                        <option value="null" selected>請選擇</option>
-                                                        <option value="0">營運控制權</option>
-                                                        <option value="1">股權比例法</option>
+                                                        <option value="" selected>請選擇</option>
+                                                        <option value="0" @if($data->boundary_setting_data->organizational_boundary_setting == 0) selected @endif>營運控制權</option>
+                                                        <option value="1" @if($data->boundary_setting_data->organizational_boundary_setting == 1) selected @endif>股權比例法</option>
                                                     </select>
                                                 </div>
                                             </div>
                                             <div class="mb-3 row">
                                                 <label class="col-md-2 col-form-label">盤查邊界設定</label>
                                                 <div class="col-md-10">
-                                                    <input class="form-control" type="text" id="boundary_setting" name="boundary_setting" placeholder="請輸入區域，EX：辦公室、廠區">
+                                                    <input class="form-control" type="text" id="boundary_setting" name="boundary_setting" 
+                                                        placeholder="請輸入區域，EX：辦公室、廠區" value="{{ $data->boundary_setting_data->boundary_setting }}">
                                                 </div>
                                             </div>
                                             <div class="mb-3 row">
                                                 <label class="col-md-2 col-form-label">盤查邊界地址</label>
                                                 <div class="col-md-10">
-                                                    <input class="form-control" type="text"  id="address" name="address" value="">
+                                                    <input class="form-control" type="text"  id="address" name="address" value="{{ $data->boundary_setting_data->boundary_address }}">
                                                 </div>
                                             </div>
                                     </div>
@@ -364,12 +378,16 @@
                                         <div class="mb-3 row">
                                             <label class="col-md-2 col-form-label">現場勘查與活動數據匯入</label>
                                             <div class="col-md-10">
-                                                <div class="input-group">
-                                                    <input type="file" class="form-control" id="Step3_excel_import"
-                                                        aria-describedby="Step3_inputGroupExcelImport" name="Step3_excel_import" aria-label="Upload">
-                                                    <button class="btn btn-primary" type="button"
-                                                        id="Step3_inputGroupExcelImport">上傳</button>
-                                                </div>
+                                                @if(isset($data->emission_source_identification_data->activity_data_file_path))
+                                                    <a href="/storage/uploads/{{ $data->emission_source_identification_data && $data->emission_source_identification_data->activity_data_file_path ? urldecode($data->emission_source_identification_data->activity_data_file_path) : '' }}" target="_blank">{{ urldecode($data->emission_source_identification_data->activity_data_file_path) }}</a>
+                                                @else
+                                                    <div class="input-group">
+                                                        <input type="file" class="form-control" id="Step3_excel_import"
+                                                            aria-describedby="Step3_inputGroupExcelImport" name="Step3_excel_import" aria-label="Upload">
+                                                        <button class="btn btn-primary" type="button"
+                                                            id="Step3_inputGroupExcelImport">上傳</button>
+                                                    </div>
+                                                @endif
                                             </div>
                                         </div>
                                         <div id="ExcelImportPreview" class="table-responsive">
@@ -426,20 +444,24 @@
                                         <div class="mb-3 row">
                                             <label class="col-md-2 col-form-label">建立排放量清冊</label>
                                             <div class="col-md-10">
-                                                <div id="Step4_inputGroupFile01-preview"></div>
-                                                <div class="input-group">
-                                                    <input type="file" class="form-control" id="Step4_inputGroupFile01"
-                                                        aria-describedby="Step4_inputGroupFileAddon01" aria-label="Upload">
-                                                    <button class="btn btn-primary" type="button"
-                                                        id="Step4_inputGroupFileAddon01">上傳</button>
-                                                </div>
+                                                @if(isset($data->system_calculation_data->emission_inventory_file_path))
+                                                    <a href="/storage/uploads/{{ $data->system_calculation_data && $data->system_calculation_data->emission_inventory_file_path ? urldecode($data->system_calculation_data->emission_inventory_file_path) : '' }}" target="_blank">{{ urldecode($data->system_calculation_data->emission_inventory_file_path) }}</a>
+                                                @else
+                                                    <div id="Step4_inputGroupFile01-preview"></div>
+                                                    <div class="input-group">
+                                                        <input type="file" class="form-control" id="Step4_inputGroupFile01"
+                                                            aria-describedby="Step4_inputGroupFileAddon01" aria-label="Upload">
+                                                        <button class="btn btn-primary" type="button"
+                                                            id="Step4_inputGroupFileAddon01">上傳</button>
+                                                    </div>
+                                                @endif
                                             </div>
                                         </div>
                                         <div class="mb-3 row">
                                             <label class="col-md-2 col-form-label">驗證單位審查</label>
                                             <div class="col-md-10">
-                                                <input class="form-control" type="text" id="verification_unit_review" name="verification_unit_review" placeholder="請輸入驗證單位">
-                                                <input class="form-control mt-3" type="date"  id="verification_unit_review_date" name="verification_unit_review_date">
+                                                <input class="form-control" type="text" id="verification_unit_review" name="verification_unit_review" placeholder="請輸入驗證單位" value="{{  $data->system_calculation_data->verification_unit_review }}">
+                                                <input class="form-control mt-3" type="date"  id="verification_unit_review_date" name="verification_unit_review_date" value="{{  $data->system_calculation_data->verification_unit_review_date }}">
                                             </div>
                                         </div>
                                 </div>
@@ -475,62 +497,79 @@
                             <div id="addproduct-productinfo-collapse3" class="collapse"
                                 data-bs-parent="#addproduct-accordion3">
                                 <div class="p-4 border-top">
+                                    <form>
                                         <div class="mb-3 row">
                                             <label class="col-md-2 col-form-label">內部查證/外部稽核</label>
                                             <div class="col-md-10">
                                                 <select class="form-select" name="internal_verification">
-                                                    <option value="null" selected>請選擇</option>
-                                                    <option value="0">內部</option>
-                                                    <option value="1">外部</option>
+                                                    <option value="" @if(!isset($data->audit_storage_data->internal_verification))selected @endif>請選擇</option>
+                                                    <option value="0" @if($data->audit_storage_data->internal_verification == 0)selected @endif>內部</option>
+                                                    <option value="1" @if($data->audit_storage_data->internal_verification == 1)selected @endif>外部</option>
                                                 </select>
                                             </div>
                                         </div>
                                         <div class="mb-3 row">
                                             <label class="col-md-2 col-form-label">亞瑞仕國際驗證ISO14064-1證書</label>
                                             <div class="col-md-10">
-                                                <div id="Step5_inputGroupFile01-preview"></div>
-                                                <div class="input-group">
-                                                    <input type="file" class="form-control" id="Step5_inputGroupFile01"
-                                                        aria-describedby="Step5_inputGroupFileAddon01" aria-label="Upload">
-                                                    <button class="btn btn-primary" type="button"
-                                                        id="Step5_inputGroupFileAddon01">上傳</button>
-                                                </div>
+                                                @if(isset($data->audit_storage_data->ares_international_certification_iso14064_1))
+                                                    <a href="/storage/uploads/{{ $data->audit_storage_data && $data->audit_storage_data->ares_international_certification_iso14064_1 ? urldecode($data->audit_storage_data->ares_international_certification_iso14064_1) : '' }}" target="_blank">{{ urldecode($data->audit_storage_data->ares_international_certification_iso14064_1) }}</a>
+                                                @else
+                                                    <div id="Step5_inputGroupFile01-preview"></div>
+                                                    <div class="input-group">
+                                                        <input type="file" class="form-control" id="Step5_inputGroupFile01"
+                                                            aria-describedby="Step5_inputGroupFileAddon01" aria-label="Upload">
+                                                        <button class="btn btn-primary" type="button"
+                                                            id="Step5_inputGroupFileAddon01">上傳</button>
+                                                    </div>
+                                                @endif
                                             </div>
                                         </div>
                                         <div class="mb-3 row">
                                             <label class="col-md-2 col-form-label">亞瑞仕國際驗證零碳證書</label>
                                             <div class="col-md-10">
-                                                <div id="Step5_inputGroupFile02-preview"></div>
-                                                <div class="input-group">
-                                                    <input type="file" class="form-control" id="Step5_inputGroupFile02"
-                                                        aria-describedby="Step5_inputGroupFileAddon02" aria-label="Upload">
-                                                    <button class="btn btn-primary" type="button"
-                                                        id="Step5_inputGroupFileAddon02">上傳</button>
-                                                </div>
+                                                @if(isset($data->audit_storage_data->ares_international_certification_zero_carbon))
+                                                    <a href="/storage/uploads/{{ $data->audit_storage_data && $data->audit_storage_data->ares_international_certification_zero_carbon ? urldecode($data->audit_storage_data->ares_international_certification_zero_carbon) : '' }}" target="_blank">{{ urldecode($data->audit_storage_data->ares_international_certification_zero_carbon) }}</a>
+                                                @else
+                                                    <div id="Step5_inputGroupFile02-preview"></div>
+                                                    <div class="input-group">
+                                                        <input type="file" class="form-control" id="Step5_inputGroupFile02"
+                                                            aria-describedby="Step5_inputGroupFileAddon02" aria-label="Upload">
+                                                        <button class="btn btn-primary" type="button"
+                                                            id="Step5_inputGroupFileAddon02">上傳</button>
+                                                    </div>
+                                                @endif
                                             </div>
                                         </div>
                                         <div class="mb-3 row">
                                             <label class="col-md-2 col-form-label">聯合國碳權證書</label>
                                             <div class="col-md-10">
-                                                <div id="Step5_inputGroupFile03-preview"></div>
-                                                <div class="input-group">
-                                                    <input type="file" class="form-control" id="Step5_inputGroupFile03"
-                                                        aria-describedby="Step5_inputGroupFileAddon03" aria-label="Upload">
-                                                    <button class="btn btn-primary" type="button"
-                                                        id="Step5_inputGroupFileAddon03">上傳</button>
-                                                </div>
+                                                @if(isset($data->audit_storage_data->un_carbon_certificate))
+                                                    <a href="/storage/uploads/{{ $data->audit_storage_data && $data->audit_storage_data->un_carbon_certificate ? urldecode($data->audit_storage_data->un_carbon_certificate) : '' }}" target="_blank">{{ urldecode($data->audit_storage_data->un_carbon_certificate) }}</a>
+                                                @else
+                                                    <div id="Step5_inputGroupFile03-preview"></div>
+                                                    <div class="input-group">
+                                                        <input type="file" class="form-control" id="Step5_inputGroupFile03"
+                                                            aria-describedby="Step5_inputGroupFileAddon03" aria-label="Upload">
+                                                        <button class="btn btn-primary" type="button"
+                                                            id="Step5_inputGroupFileAddon03">上傳</button>
+                                                    </div>
+                                                @endif
                                             </div>
                                         </div>
                                         <div class="mb-3 row">
                                             <label class="col-md-2 col-form-label">盤查清冊</label>
                                             <div class="col-md-10">
-                                                <div id="Step5_inputGroupFile04-preview"></div>
-                                                <div class="input-group">
-                                                    <input type="file" class="form-control" id="Step5_inputGroupFile04"
-                                                        aria-describedby="Step5_inputGroupFileAddon04" aria-label="Upload">
-                                                    <button class="btn btn-primary" type="button"
-                                                        id="Step5_inputGroupFileAddon04">上傳</button>
-                                                </div>
+                                                @if(isset($data->audit_storage_data->inventory_checklist))
+                                                    <a href="/storage/uploads/{{ $data->audit_storage_data && $data->audit_storage_data->inventory_checklist ? urldecode($data->audit_storage_data->inventory_checklist) : '' }}" target="_blank">{{ urldecode($data->audit_storage_data->inventory_checklist) }}</a>
+                                                @else
+                                                    <div id="Step5_inputGroupFile04-preview"></div>
+                                                    <div class="input-group">
+                                                        <input type="file" class="form-control" id="Step5_inputGroupFile04"
+                                                            aria-describedby="Step5_inputGroupFileAddon04" aria-label="Upload">
+                                                        <button class="btn btn-primary" type="button"
+                                                            id="Step5_inputGroupFileAddon04">上傳</button>
+                                                    </div>
+                                                @endif
                                             </div>
                                         </div>
                                     
@@ -589,36 +628,57 @@
                 // 檢查 'customber_id_text' 和 'branch_id_text' 是否有值
                 var customberId = $('#customber_id_text').val().trim();
                 var branchId = $('#branch_id_text').val().trim();
+                var stageId = $('#stage_id').val();
                 
                 if (!customberId || !branchId) {
                     alert('請確保公司名稱和分行名稱都已填入。');
                     return;  // 返回並不進行後續的操作
                 }
-
-                var Step01_filename01 = $('#Step1_inputGroupFile01').val().split('\\').pop(); // 從完整的路徑名中提取檔名
-                var Step01_filename02 = $('#Step1_inputGroupFile02').val().split('\\').pop(); // 從完整的路徑名中提取檔名
-                var Step03_filename01 = $('#Step3_excel_import').val().split('\\').pop(); // 從完整的路徑名中提取檔名
-                var Step04_filename01 = $("#Step4_inputGroupFile01").val().split('\\').pop(); 
-                var Step05_filename01 = $("#Step5_inputGroupFile01").val().split('\\').pop();
-                var Step05_filename02 = $("#Step5_inputGroupFile02").val().split('\\').pop(); 
-                var Step05_filename03 = $("#Step5_inputGroupFile03").val().split('\\').pop(); 
-                var Step05_filename04 = $("#Step5_inputGroupFile04").val().split('\\').pop(); 
-
+                
                 var formData = $('#data-submit-form').serializeArray(); // 獲取除文件外的其他表單數據
-                formData.push({ name: "Step1_inputGroupFile01_filename", value: Step01_filename01 }); // 將檔名添加到數據中
-                formData.push({ name: "Step1_inputGroupFile02_filename", value: Step01_filename02 }); // 將檔名添加到數據中
-                formData.push({ name: "Step3_inputGroupFile01_filename", value: Step03_filename01 });
-                formData.push({ name: "Step4_inputGroupFile01_filename", value: Step04_filename01 });
-                formData.push({ name: "Step5_inputGroupFile01_filename", value: Step05_filename01 });
-                formData.push({ name: "Step5_inputGroupFile02_filename", value: Step05_filename02 });
-                formData.push({ name: "Step5_inputGroupFile03_filename", value: Step05_filename03 });
-                formData.push({ name: "Step5_inputGroupFile04_filename", value: Step05_filename04 });
-                console.log(formData);
+                if ($('#Step1_inputGroupFile01').length > 0 && $('#Step1_inputGroupFile01').val() !== "") {
+                    var Step01_filename01 = $('#Step1_inputGroupFile01').val().split('\\').pop(); // 獲取文件名
+                    formData.push({ name: "Step1_inputGroupFile01_filename", value: Step01_filename01 });
+                }
+                if ($('#Step1_inputGroupFile02').length > 0 && $('#Step1_inputGroupFile02').val() !== "") {
+                    var Step01_filename02 = $('#Step1_inputGroupFile02').val().split('\\').pop(); // 獲取文件名
+                    formData.push({ name: "Step1_inputGroupFile02_filename", value: Step01_filename02 });
+                }
+                if ($('#Step3_excel_import').length > 0 && $('#Step3_excel_import').val() !== "") {
+                    var Step03_filename01 = $('#Step3_excel_import').val().split('\\').pop(); // 獲取文件名
+                    formData.push({ name: "Step3_inputGroupFile01_filename", value: Step03_filename01 });
+                }
+                if ($('#Step4_inputGroupFile01').length > 0 && $('#Step4_inputGroupFile01').val() !== "") {
+                    var Step04_filename01 = $('#Step4_inputGroupFile01').val().split('\\').pop(); // 獲取文件名
+                    formData.push({ name: "Step4_inputGroupFile01_filename", value: Step04_filename01 });
+                }
+                if ($('#Step5_inputGroupFile01').length > 0 && $('#Step5_inputGroupFile01').val() !== "") {
+                    var Step05_filename01 = $('#Step5_inputGroupFile01').val().split('\\').pop(); // 獲取文件名
+                    formData.push({ name: "Step5_inputGroupFile01_filename", value: Step05_filename01 });
+                }
+                if ($('#Step5_inputGroupFile02').length > 0 && $('#Step5_inputGroupFile02').val() !== "") {
+                    var Step05_filename02 = $('#Step5_inputGroupFile02').val().split('\\').pop(); // 獲取文件名
+                    formData.push({ name: "Step5_inputGroupFile02_filename", value: Step05_filename02 });
+                }
+                if ($('#Step5_inputGroupFile03').length > 0 && $('#Step5_inputGroupFile03').val() !== "") {
+                    var Step05_filename03 = $('#Step5_inputGroupFile03').val().split('\\').pop(); // 獲取文件名
+                    formData.push({ name: "Step5_inputGroupFile03_filename", value: Step05_filename03 });
+                }
+                if ($('#Step5_inputGroupFile04').length > 0 && $('#Step5_inputGroupFile04').val() !== "") {
+                    var Step05_filename04 = $('#Step5_inputGroupFile04').val().split('\\').pop(); // 獲取文件名
+                    formData.push({ name: "Step5_inputGroupFile04_filename", value: Step05_filename04 });
+                }
+
+                
+
+                var url = "{{ route('inspection.update', ':id') }}";
+                    url = url.replace(':id', stageId);
 
                 $.ajax({
-                    url: '{{ route('inspection.store') }}',
-                    method: 'POST',
+                    url: url,
+                    method: 'PUT',
                     data: $.param(formData),
+                    
                     success: function(response) {
                         alert('Data submitted successfully');
                         if (response.redirect_url) {
@@ -639,12 +699,6 @@
                     var fileInput = $(inputSelector)[0];
                     if(fileInput.files.length === 0) {
                         alert('No file selected');
-                        return;
-                    }
-                    // 檢查檔案名稱是否包含空白字符
-                    var filename = fileInput.files[0].name;
-                    if (filename.includes(' ')) {
-                        alert('檔案名稱不能包含空白字符！');
                         return;
                     }
                     formData.append('file', fileInput.files[0]);
@@ -853,7 +907,6 @@
                         }
                     });
                 });
-                
                 
                 $.ajaxSetup({ headers: { 'csrftoken' : '{{ csrf_token() }}' } });
             }

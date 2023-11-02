@@ -70,7 +70,11 @@
                                                 {{ $data->branch_data->name }}
                                             @endif
                                         </td>
-                                        <td>{{ $data->reason_data() }}</td>
+                                        <td>
+                                            @if(isset($data->reason))
+                                                {{ $data->reason_data() }}
+                                            @endif
+                                        </td>
                                         <td>
                                             @if($data->base_year == '0')
                                             是
@@ -88,8 +92,12 @@
                                                     </a>
 
                                                     <div class="dropdown-menu dropdown-menu-end">
-                                                        <a class="dropdown-item" href="{{ route('simulation-inspection.edit',$data->id) }}">編輯</a>
-                                                        <a class="dropdown-item" href="#">刪除</a>
+                                                        <a class="dropdown-item" href="{{ route('simulation-inspection-edit.step1.show',$data->id) }}">編輯</a>
+                                                        <form action="{{ route('simulation-inspection.destroy',$data->id) }}" method="POST">
+                                                        @method('delete')
+                                                        @csrf
+                                                            <button class="dropdown-item" type="submit"  onclick="if(!confirm('是否確定刪除?')){event.returnValue=false;return false;}" >刪除</button>
+                                                        </form>
                                                     </div>
                                                 </li>
                                             </ul>

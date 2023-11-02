@@ -5,11 +5,14 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Log;
+use App\Models\Customer;
+use App\Models\Branch;
 
 class FileUploadController extends Controller
 {
     public function upload(Request $request)
     {
+        // dd($request->all());
         Log::info('Upload method called');
         Log::info('Files in request: ', $request->allFiles());
     
@@ -23,7 +26,7 @@ class FileUploadController extends Controller
             return response()->json(['error' => 'File is not valid'], 400);
         }
     
-        $allowedFileExtensions = ['pdf','jpg','png'];
+        $allowedFileExtensions = ['pdf','jpg','png','xlsx','docx'];
         $extension = $file->getClientOriginalExtension();
     
         if(!in_array($extension, $allowedFileExtensions)) {
@@ -31,7 +34,11 @@ class FileUploadController extends Controller
         }
     
         $destinationPath = public_path('storage/uploads');
-        $fileName = '123'.$file->getClientOriginalName();
+
+        // dd($request->all());
+        $customer = Customer::where('id',$request->customber_id_text)->first();
+        $branch = Branch::where('id',$request->branch_id_text)->first();
+        $fileName = $customer->name.'_'.$branch->name.'_'.$file->getClientOriginalName();
         $file->move($destinationPath, $fileName);
     
         $path = 'storage/uploads/' . $fileName;

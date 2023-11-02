@@ -12,10 +12,13 @@ use App\Models\Scope;
 use App\Models\IndustryCategory;
 use App\Models\Device;
 use App\Models\Emission;
+use App\Models\EmissionData;
 use App\Models\Iso14064;
 use App\Models\GhgProtocol;
 use App\Models\process;
 use App\Models\source;
+use App\Models\CarbonReduction;
+use Illuminate\Support\Facades\DB;
 
 class SimulationInspectionController extends Controller
 {
@@ -89,23 +92,29 @@ class SimulationInspectionController extends Controller
 
     public function step2_store(Request $request)
     {
-        // 验证请求数据
-        $data = $request->validate([
-            'year' => 'required|string|max:20',
-            'reason' => 'required|in:0,1,2',
-            'norm' => 'required|in:0,1,2',
-            'ipcc_id' => 'required|string|max:20',
-            'verification_agency' => 'required|string|max:100',
-            'base_year' => 'required|in:0,1',
-        ]);
-        // dd($data);
-
         $inventory = BasicInventory::orderBy('id', 'desc')->first();
-        $inventory->update($data);      
-        // 使用验证后的数据创建新记录
-        
 
-        return redirect()->route('simulation-inspection.step3');
+        $check = BasicInventory::where('year',$request->year)->where('customer_id',$inventory->customer_id)->first();
+        // dd($check);
+        if(!isset($check)){
+            // 验证请求数据
+            $data = $request->validate([
+                'year' => 'required|string|max:20',
+                'reason' => 'required|in:0,1,2',
+                'norm' => 'required|in:0,1,2',
+                'ipcc_id' => 'required|string|max:20',
+                'verification_agency' => 'required|string|max:100',
+                'base_year' => 'required|in:0,1',
+            ]);
+            // dd($data);
+
+            $inventory->update($data);      
+            // 使用验证后的数据创建新记录
+        
+            return redirect()->route('simulation-inspection.step3');
+        }else{
+            return redirect()->route('simulation-inspection.step2')->with('error', '盤查年度已存在，請重新選擇');
+        }
     }
 
 
@@ -137,8 +146,29 @@ class SimulationInspectionController extends Controller
 
     public function step4(Request $request)
     {
-        
-        return view('simulation-inspection.step4');
+        $inventory = BasicInventory::orderBy('id', 'desc')->first();
+        $datas = Emission::where('basic_inventory_id',$inventory->id)->get();
+        $total = 0;
+        $emission_ids = [];
+        foreach($datas as $data)
+        {
+            $item = EmissionData::where('emission_id',$data->id)->first();
+            if(isset($item->emission_value))
+            {
+                $total += intval($item->emission_value);
+            }
+            $emission_ids[] = $data->id;
+        }
+
+        $items = DB::table('emission')
+                ->join('emission_data', 'emission.id', '=', 'emission_data.emission_id')
+                ->join('process', 'emission.process_id', '=', 'process.id')
+                ->select('emission.*', 'emission_data.*', 'process.description') // 选择您需要的列
+                ->whereIn('emission_id',$emission_ids)->orderby('emission_value','desc')
+                ->get();
+
+        // dd($totals);
+        return view('simulation-inspection.step4')->with('datas',$datas)->with('total',$total)->with('items',$items);
     }
 
     public function step5(Request $request)
@@ -149,8 +179,31 @@ class SimulationInspectionController extends Controller
 
     public function step6(Request $request)
     {
+        $inventory = BasicInventory::orderBy('id', 'desc')->first();
+        $datas = CarbonReduction::where('customer_id',$inventory->customer_id)->get();
+        return view('simulation-inspection.step6')->with('inventory',$inventory)->with('datas',$datas);
+    }
+
+    public function step6_store(Request $request)
+    {
+        // dd($request->all());
+        // 驗證表單數據
+        $validatedData = $request->validate([
+            'customer_id' => 'required|string',
+            'deadline' => 'required|date',
+            'budget' => 'required|numeric',
+            'measure_name' => 'required|string',
+            'description' => 'required|string',
+            'implementation' => 'required|string',
+            'progress_status' => 'required|string|max:50',
+        ]);
+        // dd($validatedData);
+
+        // 創建新的減排資料
+        $carbonReduction = CarbonReduction::create($validatedData);
         
-        return view('simulation-inspection.step6');
+        // 返回成功響應
+        return response()->json($carbonReduction, 201); // 201 表示已創建成功
     }
 
     
@@ -208,6 +261,16 @@ class SimulationInspectionController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $inventory = BasicInventory::where('id', $id)->first();
+        CarbonReduction::where('customer_id', $inventory->customer_id)->delete();
+        $emissions = Emission::where('basic_inventory_id',$inventory->id)->get();
+        foreach($emissions as $emission)
+        {
+            EmissionData::where('emission_id',$emission->id)->delete();
+        }
+        Emission::where('basic_inventory_id',$inventory->id)->delete();
+        BasicInventory::where('id', $id)->delete();
+
+        return redirect()->route('simulation-inspection.index');
     }
 }

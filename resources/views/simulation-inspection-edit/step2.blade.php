@@ -3,7 +3,7 @@
 碳盤模擬流程
 @endsection
 @section('page-title')
-    碳盤模擬流程
+    更新碳盤模擬流程
 @endsection
 @section('css')
     <!-- quill css -->
@@ -15,30 +15,30 @@
     <body data-layout="horizontal">
     @endsection
     @section('content')
-    <form action="{{ route('simulation-inspection.step2.store') }}" method="POST">
+    <form action="{{ route('simulation-inspection-edit.step2.update',$data->id) }}" method="POST">
         @csrf
         <div class="row">
             <div class="card-body mt-5">
                         <div class="row">
                              <!----大標題------>
-                            <div class="col-md-2">
+                             <div class="col-md-2">
                                 <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist"
                                     aria-orientation="vertical" style="background: white;">
                                     <a class="nav-link mb-2 " id="v-pills-home-tab" 
-                                    href="{{ route('simulation-inspection.step1') }}">盤查企業設定</a>
+                                    href="{{ route('simulation-inspection-edit.step1.show',$data->id) }}">盤查企業設定</a>
                                     <a class="nav-link mb-2 active" id="v-pills-home-tab" 
-                                    href="{{ route('simulation-inspection.step2') }}">盤查基本設定</a>
+                                    href="{{ route('simulation-inspection-edit.step2.show',$data->id) }}">盤查基本設定</a>
                                     <a class="nav-link mb-2 " id="v-pills-profile-tab" 
-                                        href="{{ route('simulation-inspection.step3') }}"
+                                        href="{{ route('simulation-inspection-edit.step3.show',$data->id) }}"
                                         aria-selected="false">排放源鑑別</a>
                                     <a class="nav-link" id="v-pills-settings-tab"
-                                        href="{{ route('simulation-inspection.step4') }}"
+                                        href="{{ route('simulation-inspection-edit.step4.show',$data->id) }}"
                                         aria-selected="false">統計報表</a>
                                     <a class="nav-link" id="v-pills-carbonbooks-tab"
-                                        href="{{ route('simulation-inspection.step5') }}"
+                                        href="{{ route('simulation-inspection-edit.step5.show',$data->id) }}"
                                         aria-selected="false">盤查清冊產生</a>
                                     <a class="nav-link" id="v-pills-carbonbooks-tab"
-                                        href="{{ route('simulation-inspection.step6') }}"
+                                        href="{{ route('simulation-inspection-edit.step6.show',$data->id) }}"
                                         aria-selected="false">減排計畫</a>
                                 </div>
                             </div><!-- end col -->
@@ -61,7 +61,7 @@
                                                             <select class="form-select"  id="year" name="year" required >
                                                                     <option value="" selected>請選擇...</option>
                                                                     @foreach($years as $year)
-                                                                        <option value="{{ $year}}">{{ $year }}年</option>
+                                                                        <option value="{{ $year}}" @if($data->year == $year) selected @endif>{{ $year }}年</option>
                                                                     @endforeach
                                                             </select>
                                                         </div>
@@ -69,37 +69,37 @@
                                                     <div class="mb-3">
                                                         <label class="form-label" for="reason">盤查原因</label>
                                                         <select class="form-select" name="reason" required>
-                                                                <option value="0" selected>自主盤查</option>
-                                                                <option value="1">依法申報</option>
-                                                                <option value="2">其他</option>
+                                                                <option value="0" @if($data->reason == 0) selected @endif>自主盤查</option>
+                                                                <option value="1" @if($data->reason == 1) selected @endif>依法申報</option>
+                                                                <option value="2" @if($data->reason == 2) selected @endif>其他</option>
                                                             </select>
                                                     </div>
                                                     <div class="mb-3">
                                                         <label class="form-label" for="verification_agency">查證機構</label>
-                                                        <input type="text" class="form-control" name="verification_agency" value="" required >
+                                                        <input type="text" class="form-control" name="verification_agency" value="{{ $data->verification_agency }}" required >
                                                     </div>
                                                     <div class="col-md-12">
                                                         <div class="mb-3">
                                                             <label class="form-label" for="norm">規範使用</label>
                                                             <select class="form-select" name="norm" required>
-                                                                <option value="" selected>請選擇</option>
-                                                                <option value="0">使用ISO14064-1標準</option>
-                                                                <option value="1">使用環保署標準</option>
+                                                                <option value="">請選擇</option>
+                                                                <option value="0" @if($data->norm == 0) selected @endif>使用ISO14064-1標準</option>
+                                                                <option value="1" @if($data->norm == 1) selected @endif>使用環保署標準</option>
                                                             </select>
                                                         </div>
                                                         <div class="mb-3">
                                                             <label class="form-label" for="ipcc_id">GWP版本</label>
                                                             <select class="form-select" name="ipcc_id" required>
                                                                     <option value="" selected>請選擇</option>
-                                                                    <option value="1">IPCC AR6（2021）</option>
+                                                                    <option value="1" @if($data->ipcc_id == 1) selected @endif>IPCC AR6（2021）</option>
                                                                 </select>
                                                         </div>
                                                         <div class="mb-3">
                                                             <label class="form-label" for="base_year">基準年</label>
                                                             <select class="form-select" name="base_year" required>
                                                                     <option value="" selected>請選擇</option>
-                                                                    <option value="0">是</option>
-                                                                    <option value="1">否</option>
+                                                                    <option value="0" @if($data->base_year == 0) selected @endif>是</option>
+                                                                    <option value="1" @if($data->base_year == 1) selected @endif>否</option>
                                                                 </select>
                                                         </div>
                                                     </div>

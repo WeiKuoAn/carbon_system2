@@ -51,4 +51,10 @@ class Emission extends Model
     {
         return $this->hasOne('App\Models\GhgProtocol', 'id', 'ghg_id');
     }
+
+    public function emission_data()
+    {
+        return $this->hasOne('App\Models\EmissionData', 'emission_id', 'id');
+    }
+
 }

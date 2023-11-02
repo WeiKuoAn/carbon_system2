@@ -97,9 +97,10 @@
                                                     </a>
 
                                                     <div class="dropdown-menu dropdown-menu-end">
-                                                        <a class="dropdown-item" href="{{ route('survey.edit',$data->id) }}">編輯問卷</a>
-                                                        <a class="dropdown-item" href="{{ route('survey.questions.index', ['id' => $data->id]) }}">問卷內容</a>
                                                         <a class="dropdown-item" href="{{ route('survey.questions.preview', ['id' => $data->id]) }}">查看問卷</a>
+                                                        <a class="dropdown-item" href="{{ route('survey.questions.index', ['id' => $data->id]) }}">問卷內容</a>
+                                                        <a class="dropdown-item" href="{{ route('survey.edit',$data->id) }}">編輯問卷</a>
+                                                        <a class="dropdown-item" href="{{ route('survey.questions.default',['id'=>$data->id]) }}">設定問卷回覆</a>
                                                     </div>
                                                 </li>
                                             </ul>

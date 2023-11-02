@@ -19,9 +19,9 @@
 
                             <div class="mb-4 pb-2">
                                 <a href="index" class="d-block auth-logo">
-                                    <img src="{{ URL::asset('build/images/logo-dark.png') }}" alt="" height="30"
+                                    <img src="{{ URL::asset('build/images/logo.png') }}" alt="" height="80"
                                         class="auth-logo-dark me-start">
-                                    <img src="{{ URL::asset('build/images/logo-light.png') }}" alt="" height="30"
+                                    <img src="{{ URL::asset('build/images/logo.png') }}" alt="" height="80"
                                         class="auth-logo-light me-start">
                                 </a>
                             </div>
@@ -29,18 +29,18 @@
                             <div class="card">
                                 <div class="card-body p-4">
                                     <div class="text-center mt-2">
-                                        <h5>Welcome Back !</h5>
-                                        <p class="text-muted">Sign in to continue to webadmin.</p>
+                                        <h5>歡迎回來！</h5>
+                                        <p class="text-muted">登入至名偵碳治郎.</p>
                                     </div>
                                     <div class="p-2 mt-4">
                                         <form method="POST" action="{{ route('login') }}" class="auth-input">
                                             @csrf
                                             <div class="mb-2">
-                                                <label for="email" class="form-label">Email <span class="text-danger">*</span></label>
+                                                <label for="email" class="form-label">信箱 <span class="text-danger">*</span></label>
                                                 <input id="email" type="email"
                                                     class="form-control @error('email') is-invalid @enderror" name="email"
                                                     value="{{ old('email') }}" required autocomplete="email" autofocus
-                                                    value="admin@themesbrand.com">
+                                                    value="" placeholder="Enter email">
                                                 @error('email')
                                                     <span class="invalid-feedback" role="alert">
                                                         <strong>{{ $message }}</strong>
@@ -49,17 +49,17 @@
                                             </div>
 
                                             <div class="mb-3">
-                                                <div class="float-end">
+                                                {{-- <div class="float-end">
                                                     <a href="{{ route('password.update') }}"
                                                         class="text-muted text-decoration-underline">Forgot password?</a>
-                                                </div>
-                                                <label class="form-label" for="password-input">Password <span class="text-danger">*</span></label>
-                                                <div class="position-relative auth-pass-inputgroup input-custom-icon">
+                                                </div> --}}
+                                                <label class="form-label" for="password-input">密碼 <span class="text-danger">*</span></label>
+                                                <div class="position-relative auth-pass-inputgroup input-custom-icon" >
                                                     <span class="bx bx-lock-alt"></span>
                                                     <input type="password"
                                                         class="form-control @error('password') is-invalid @enderror"
                                                         placeholder="Enter password" id="password-input" name="password"
-                                                        required autocomplete="current-password" value="12345678">
+                                                        required autocomplete="current-password" value="">
                                                     <button type="button"
                                                         class="btn btn-link position-absolute h-100 end-0 top-0"
                                                         id="password-addon">
@@ -81,11 +81,10 @@
                                             </div>
 
                                             <div class="mt-4">
-                                                <button class="btn btn-primary w-100" type="submit">Sign
-                                                    In</button>
+                                                <button class="btn btn-primary w-100" type="submit">登入</button>
                                             </div>
 
-                                            <div class="mt-4 text-center">
+                                            {{-- <div class="mt-4 text-center">
                                                 <div class="signin-other-title">
                                                     <h5 class="font-size-14 mb-3 mt-2 title"> Sign in with </h5>
                                                 </div>
@@ -110,10 +109,10 @@
                                                         </a>
                                                     </li>
                                                 </ul>
-                                            </div>
+                                            </div> --}}
                                             <div class="mt-4 text-center">
-                                                <p class="mb-0">Don't have an account ? <a href="{{ route('register') }}"
-                                                        class="fw-medium text-primary"> Register</a></p>
+                                                <p class="mb-0">還沒有帳號 ? <a href="{{ route('register') }}"
+                                                        class="fw-medium text-primary">點我註冊</a></p>
                                             </div>
                                         </form>
                                     </div>
@@ -130,8 +129,8 @@
                                 <p>©
                                     <script>
                                         document.write(new Date().getFullYear())
-                                    </script> webadmin. Crafted with <i
-                                        class="mdi mdi-heart text-danger"></i> by Themesdesign
+                                    </script> . Crafted with <i
+                                        class="mdi mdi-heart text-danger"></i> by 名偵碳治郎
                                 </p>
                             </div>
                         </div>

@@ -45,10 +45,7 @@ class BasicInventory extends Model
     public function reason_data()
     {
         $reason_type = ['0'=>'自主盤查','1'=>'依法申報','2'=>'其他'];
-        if($this->reason)
-        {
-            return $reason_type[$this->reason];
-        }
+        return $reason_type[$this->reason];
     }
 
     public function status()

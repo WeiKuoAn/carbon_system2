@@ -297,7 +297,7 @@
                             </div>
                         </li>
 
-                        {{-- <li class="nav-item dropdown">
+                        <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle arrow-none" href="#" id="topnav-dashboard"
                                 role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <i class="bx bx-book-content icon nav-icon"></i>
@@ -308,7 +308,35 @@
                                 <a href="{{ route('survey.create') }}" class="dropdown-item">新增問卷</a>
                                 <a href="{{ route('survey.index') }}" class="dropdown-item">問卷列表</a>
                             </div>
-                        </li> --}}
+                        </li>
+
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle arrow-none" href="#" id="topnav-dashboard"
+                                role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="bx bx-coffee  icon nav-icon"></i>
+                                <span data-key="t-dashboards">企業盤查建檢管理</span>
+                                <div class="arrow-down"></div>
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="topnav-dashboard">
+                                <a href="{{ route('inspection.create') }}" class="dropdown-item">新增盤查建檢管理</a>
+                                {{-- <a href="{{ route('inspection.create') }}" class="dropdown-item">盤查建檢管理2</a> --}}
+                            </div>
+                        </li>
+
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle arrow-none" href="#" id="topnav-dashboard"
+                                role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="bx bx-user icon nav-icon"></i>
+                                <span data-key="t-dashboards">用戶管理</span>
+                                <div class="arrow-down"></div>
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="topnav-dashboard">
+                                <a href="{{ route('user.index') }}" class="dropdown-item">用戶列表</a>
+                                <a href="#" class="dropdown-item">部門設定</a>
+                                <a href="#" class="dropdown-item">職稱設定</a>
+                                <a href="#" class="dropdown-item">權限設定</a>
+                            </div>
+                        </li>
 
                     </ul>
                 </div>

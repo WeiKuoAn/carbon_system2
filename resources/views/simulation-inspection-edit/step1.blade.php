@@ -3,7 +3,7 @@
 碳盤模擬流程
 @endsection
 @section('page-title')
-    碳盤模擬流程
+    更新碳盤模擬流程
 @endsection
 @section('css')
     <!-- quill css -->
@@ -15,7 +15,7 @@
     <body data-layout="horizontal">
     @endsection
     @section('content')
-    <form action="{{ route('simulation-inspection.step1.store') }}" method="POST">
+    <form action="{{ route('simulation-inspection-edit.step1.update',$data->id) }}" method="POST">
         @csrf
         <div class="row">
             <div class="card-body mt-5">
@@ -25,20 +25,20 @@
                                 <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist"
                                     aria-orientation="vertical" style="background: white;">
                                     <a class="nav-link mb-2 active" id="v-pills-home-tab" 
-                                    href="{{ route('simulation-inspection.step1') }}">盤查企業設定</a>
+                                    href="{{ route('simulation-inspection-edit.step1.show',$data->id) }}">盤查企業設定</a>
                                     <a class="nav-link mb-2 " id="v-pills-home-tab" 
-                                    href="{{ route('simulation-inspection.step2') }}">盤查基本設定</a>
+                                    href="{{ route('simulation-inspection-edit.step2.show',$data->id) }}">盤查基本設定</a>
                                     <a class="nav-link mb-2 " id="v-pills-profile-tab" 
-                                        href="{{ route('simulation-inspection.step3') }}"
+                                        href="{{ route('simulation-inspection-edit.step3.show',$data->id) }}"
                                         aria-selected="false">排放源鑑別</a>
                                     <a class="nav-link" id="v-pills-settings-tab"
-                                        href="{{ route('simulation-inspection.step4') }}"
+                                        href="{{ route('simulation-inspection-edit.step4.show',$data->id) }}"
                                         aria-selected="false">統計報表</a>
                                     <a class="nav-link" id="v-pills-carbonbooks-tab"
-                                        href="{{ route('simulation-inspection.step5') }}"
+                                        href="{{ route('simulation-inspection-edit.step5.show',$data->id) }}"
                                         aria-selected="false">盤查清冊產生</a>
                                     <a class="nav-link" id="v-pills-carbonbooks-tab"
-                                        href="{{ route('simulation-inspection.step6') }}"
+                                        href="{{ route('simulation-inspection-edit.step6.show',$data->id) }}"
                                         aria-selected="false">減排計畫</a>
                                 </div>
                             </div><!-- end col -->
@@ -57,7 +57,7 @@
                                                     <select class="form-select"  id="customer_id" name="customer_id" required >
                                                         <option value="" selected>請選擇...</option>
                                                         @foreach($customers as $customer)
-                                                            <option value="{{ $customer->id }}">{{ $customer->name }}</option>
+                                                            <option value="{{ $customer->id }}" @if($data->customer_id == $customer->id) selected @endif>{{ $customer->name }}</option>
                                                         @endforeach
                                                     </select>
                                                 </div>
@@ -65,6 +65,9 @@
                                                     <label class="form-label" for="AddNew-Username">分行名稱</label>
                                                     <select class="form-select" id="branch_id" name="branch_id" required >
                                                         <option selected>請選擇...</option>
+                                                        @foreach($branches as $branch)
+                                                            <option value="{{ $branch->id }}" @if($data->branch_id == $branch->id) selected @endif>{{ $branch->name }}</option>
+                                                        @endforeach
                                                     </select>
                                                 </div>
                             
@@ -72,11 +75,11 @@
                                            <div class="col-md-6 mt-3">
                                             <div class="mb-3">
                                                 <label class="form-label" for="AddNew-Email">廠商地址</label>
-                                                <input type="text" class="form-control" placeholder="請輸入廠商地址" id="customer_address" value="">
+                                                <input type="text" class="form-control" placeholder="請輸入廠商地址" id="customer_address" value="{{ $data->cust_data->county.$data->cust_data->district.$data->cust_data->address }}">
                                             </div>
                                             <div class="mb-3">
                                                 <label class="form-label" for="AddNew-Email">分行地址</label>
-                                                <input type="text" class="form-control" placeholder="請輸入分行地址" id="branch_address" value="">
+                                                <input type="text" class="form-control" placeholder="請輸入分行地址" id="branch_address" value="{{ $data->branch_data->address }}">
                                             </div>
                                             
                                            </div>
@@ -84,16 +87,16 @@
 
                                             <div class="mb-3">
                                                 <label class="form-label" for="AddNew-Email">專案聯絡人</label>
-                                                <input type="text" class="form-control" placeholder="請輸入專案聯絡人" id="contact_name" value="">
+                                                <input type="text" class="form-control" placeholder="請輸入專案聯絡人" id="contact_name" value="{{ $data->branch_data->contact_name }}">
                                             </div>
                                             <div class="mb-3">
                                                 <label class="form-label" for="AddNew-Email">聯絡電話</label>
-                                                <input type="text" class="form-control" placeholder="請輸入E-Mail" id="contact_phone"  value="">
+                                                <input type="text" class="form-control" placeholder="請輸入E-Mail" id="contact_phone"  value="{{ $data->branch_data->contact_phone }}">
                                             </div>
 
                                             <div class="mb-3">
                                                 <label class="form-label" for="AddNew-Email">聯絡E-Mail</label>
-                                                <input type="text" class="form-control" placeholder="請輸入E-Mail" id="contact_email"  value="">
+                                                <input type="text" class="form-control" placeholder="請輸入E-Mail" id="contact_email"  value="{{ $data->branch_data->contact_email }}">
                                             </div>
                                             
                                            </div>

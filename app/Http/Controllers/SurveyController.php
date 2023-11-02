@@ -25,6 +25,8 @@ class SurveyController extends Controller
         return view('survey.question_preview')->with('survey',$survey)->with('question_datas',$question_datas);
     }
 
+    
+
     /**
      * Show the form for creating a new resource.
      */
