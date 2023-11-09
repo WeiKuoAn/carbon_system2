@@ -10,6 +10,7 @@
     <link href="{{ URL::asset('build/libs/quill/quill.core.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ URL::asset('build/libs/quill/quill.bubble.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ URL::asset('build/libs/quill/quill.snow.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ URL::asset('build/css/select2.min.css') }}" id="app-style" rel="stylesheet" type="text/css" />
 @endsection
 @section('body')
     <body data-layout="horizontal">
@@ -205,7 +206,7 @@
             });
             
         </script>
-        <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" rel="stylesheet" />
+        {{-- <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" rel="stylesheet" /> --}}
         <script src="{{ URL::asset('build/libs/select2/select2.min.js') }}"></script>
         <!-- apexcharts -->
         <script src="{{ URL::asset('build/libs/apexcharts/apexcharts.min.js') }}"></script>
