@@ -84,7 +84,7 @@
     @endsection
     @section('scripts')
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-        <script src="{{ URL::asset('build/js/twzipcode-1.4.1-min.js') }}"></script>
+        <script src="{{ asset('assets/js/twzipcode-1.4.1-min.js') }}"></script>
 
        
 

@@ -102,7 +102,7 @@
 
     @endsection
     @section('scripts')
-        <script src="{{ URL::asset('build/js/twzipcode-1.4.1-min.js') }}"></script>
+        <script src="{{ asset('assets/js/twzipcode-1.4.1-min.js') }}"></script>
 
         <script>
             $(document).ready(function(){
