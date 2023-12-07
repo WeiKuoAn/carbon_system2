@@ -16,38 +16,41 @@
 
 @yield('body')
 
-    <!-- Begin page -->
-    <div id="layout-wrapper">
+<!-- Begin page -->
+<div id="layout-wrapper">
+    <!-- topbar -->
+    @include('layouts.topbar')
 
-            <!-- horizontal -->
-            @include('layouts.horizontal')
+    <!-- sidebar components -->
+    @include('layouts.sidebar')
+    @include('layouts.horizontal')
 
-            <!-- ============================================================== -->
-            <!-- Start right Content here -->
-            <!-- ============================================================== -->
-            <div class="main-content">
+    <!-- ============================================================== -->
+    <!-- Start right Content here -->
+    <!-- ============================================================== -->
+    <div class="main-content">
 
-                <div class="page-content">
-                    <div class="container-fluid">
-                        @yield('content')
-                    </div>
-                    <!-- container-fluid -->
-                </div>
-                <!-- End Page-content -->
-
-                <!-- footer -->
-                @include('layouts.footer')
-
+        <div class="page-content">
+            <div class="container-fluid">
+                @yield('content')
             </div>
-            <!-- end main content-->
+            <!-- container-fluid -->
+        </div>
+        <!-- End Page-content -->
+
+        <!-- footer -->
+        @include('layouts.footer')
+
     </div>
-    <!-- END layout-wrapper -->
+    <!-- end main content-->
+</div>
+<!-- END layout-wrapper -->
 
-    <!-- customizer -->
-    {{-- @include('layouts.right-sidebar') --}}
+<!-- customizer -->
+@include('layouts.right-sidebar')
 
-    <!-- vendor-scripts -->
-    @include('layouts.vendor-scripts')
+<!-- vendor-scripts -->
+@include('layouts.vendor-scripts')
 
 </body>
 

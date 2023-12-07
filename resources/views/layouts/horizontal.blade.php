@@ -5,19 +5,19 @@
             <div class="navbar-brand-box">
                 <a href="index" class="logo logo-dark">
                     <span class="logo-sm">
-                        <img src="{{ asset('assets/image/logo.png') }}" alt="" height="60">
+                        <img src="{{ URL::asset('build/images/logo.png') }}" alt="" height="60">
                     </span>
                     <span class="logo-lg">
-                        <img src="{{ asset('assets/image/logo.png') }}" alt="" height="60">
+                        <img src="{{ URL::asset('build/images/logo.png') }}" alt="" height="60">
                     </span>
                 </a>
 
                 <a href="index" class="logo logo-light">
                     <span class="logo-sm">
-                        <img src="{{ asset('assets/image/logo.png') }}" alt="" height="26">
+                        <img src="{{ URL::asset('build/images/logo.png') }}" alt="" height="26">
                     </span>
                     <span class="logo-lg">
-                        <img src="{{ asset('assets/image/logo.png') }}" alt="" height="30">
+                        <img src="{{ URL::asset('build/images/logo.png') }}" alt="" height="30">
                     </span>
                 </a>
             </div>
@@ -252,13 +252,13 @@
                             </div>
                         </li> --}}
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle arrow-none" href="#" id="topnav-dashboard"
+                            <a class="nav-link dropdown-toggle arrow-none" href="#" id="topnav-other"
                                 role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <i class="bx bx-clipboard  icon nav-icon"></i>
                                 <span data-key="t-dashboards">其他設定</span>
                                 <div class="arrow-down"></div>
                             </a>
-                            <div class="dropdown-menu" aria-labelledby="topnav-dashboard">
+                            <div class="dropdown-menu" aria-labelledby="topnav-other">
                                 {{-- <a href="{{route('ipcc_report.index')}}" class="dropdown-item">IPCC評估報告</a> --}}
                                 <a href="{{ route('scope.index') }}" class="dropdown-item">範疇</a>
                                 <a href="{{ route('iso14064.index') }}" class="dropdown-item">ISO14064排放源類別</a>
@@ -270,13 +270,13 @@
                         </li>
                         
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle arrow-none" href="#" id="topnav-dashboard"
+                            <a class="nav-link dropdown-toggle arrow-none" href="#" id="topnav-inspection"
                                 role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <i class="bx bx-clipboard  icon nav-icon"></i>
                                 <span data-key="t-dashboards">碳盤模擬流程</span>
                                 <div class="arrow-down"></div>
                             </a>
-                            <div class="dropdown-menu" aria-labelledby="topnav-dashboard">
+                            <div class="dropdown-menu" aria-labelledby="topnav-inspection">
                                 {{-- <a href="{{ route('simulation-inspection.create') }}" class="dropdown-item">新增盤查</a> --}}
                                 <a href="{{ route('simulation-inspection.step1') }}" class="dropdown-item">新增盤查</a>
                                 <a href="{{ route('simulation-inspection.index') }}" class="dropdown-item">盤查列表</a>
@@ -284,13 +284,13 @@
                         </li>
 
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle arrow-none" href="#" id="topnav-dashboard"
+                            <a class="nav-link dropdown-toggle arrow-none" href="#" id="topnav-vendor"
                                 role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <i class="bx bx-store icon nav-icon"></i>
                                 <span data-key="t-dashboards">廠商管理</span>
                                 <div class="arrow-down"></div>
                             </a>
-                            <div class="dropdown-menu" aria-labelledby="topnav-dashboard">
+                            <div class="dropdown-menu" aria-labelledby="topnav-vendor">
                                 <a href="{{ route('customer.create') }}" class="dropdown-item">新增廠商</a>
                                 <a href="{{ route('customer.index') }}" class="dropdown-item">廠商列表</a>
                                 <a href="{{ route('industry-category.index') }}" class="dropdown-item">行業類別設定</a>
@@ -307,6 +307,34 @@
                             <div class="dropdown-menu" aria-labelledby="topnav-dashboard">
                                 <a href="{{ route('survey.create') }}" class="dropdown-item">新增問卷</a>
                                 <a href="{{ route('survey.index') }}" class="dropdown-item">問卷列表</a>
+                            </div>
+                        </li>
+
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle arrow-none" href="#" id="topnav-dashboard"
+                                role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="bx bx-coffee  icon nav-icon"></i>
+                                <span data-key="t-dashboards">企業盤查建檢管理</span>
+                                <div class="arrow-down"></div>
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="topnav-dashboard">
+                                <a href="{{ route('inspection.create') }}" class="dropdown-item">新增盤查建檢管理</a>
+                                <a href="{{ route('inspection.create') }}" class="dropdown-item">盤查建檢管理2</a>
+                            </div>
+                        </li> --}}
+
+                        {{-- <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle arrow-none" href="#" id="topnav-dashboard"
+                                role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="bx bx-user icon nav-icon"></i>
+                                <span data-key="t-dashboards">用戶管理</span>
+                                <div class="arrow-down"></div>
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="topnav-dashboard">
+                                <a href="{{ route('user.index') }}" class="dropdown-item">用戶列表</a>
+                                <a href="#" class="dropdown-item">部門設定</a>
+                                <a href="#" class="dropdown-item">職稱設定</a>
+                                <a href="#" class="dropdown-item">權限設定</a>
                             </div>
                         </li> --}}
 

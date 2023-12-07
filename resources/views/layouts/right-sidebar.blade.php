@@ -1,7 +1,7 @@
 <!-- Right Sidebar -->
-<a href="#" class="right-bar-toggle layout-setting-btn" id="right-bar-toggle">
+{{-- <a href="#" class="right-bar-toggle layout-setting-btn" id="right-bar-toggle">
     <i class="bx bx-cog icon-sm font-size-18"></i> <span>Settings</span>
-</a>
+</a> --}}
 
 <!-- Right Sidebar -->
 <div class="right-bar">
