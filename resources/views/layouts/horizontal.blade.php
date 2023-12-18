@@ -297,7 +297,7 @@
                             </div>
                         </li>
 
-                        {{-- <li class="nav-item dropdown">
+                        <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle arrow-none" href="#" id="topnav-dashboard"
                                 role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <i class="bx bx-book-content icon nav-icon"></i>
@@ -319,9 +319,9 @@
                             </a>
                             <div class="dropdown-menu" aria-labelledby="topnav-dashboard">
                                 <a href="{{ route('inspection.create') }}" class="dropdown-item">新增盤查建檢管理</a>
-                                <a href="{{ route('inspection.create') }}" class="dropdown-item">盤查建檢管理2</a>
+                                {{-- <a href="{{ route('inspection.create') }}" class="dropdown-item">盤查建檢管理2</a> --}}
                             </div>
-                        </li> --}}
+                        </li>
 
                         {{-- <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle arrow-none" href="#" id="topnav-dashboard"
