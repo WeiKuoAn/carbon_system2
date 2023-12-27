@@ -21,6 +21,8 @@ Route::get('/', [App\Http\Controllers\HomeController::class, 'root']);
 // Route::get('{any}', [App\Http\Controllers\HomeController::class, 'index'])->name('index');
 Route::get('customer/data', [App\Http\Controllers\CustomerController::class,'customer_data'])->name('customer.data');
 Route::get('customer/business-create', [App\Http\Controllers\CustomerController::class,'BusinessCreate'])->name('customer.business.create');
+Route::get('customer/business-appendix', [App\Http\Controllers\CustomerController::class,'BusinessAppendix'])->name('customer.business.appendix');
+Route::get('customer/manufacturing-appendix', [App\Http\Controllers\CustomerController::class,'ManufacturingAppendix'])->name('customer.manufacturing.appendix');
 Route::get('customer/business1-create', [App\Http\Controllers\CustomerController::class,'Business1Create'])->name('customer.business1.create');
 Route::get('customer/manufacturing-create', [App\Http\Controllers\CustomerController::class,'ManufacturingCreate'])->name('customer.Manufacturing.create');
 Route::resource('customer', App\Http\Controllers\CustomerController::class);

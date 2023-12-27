@@ -38,6 +38,16 @@ class CustomerController extends Controller
         $categories = IndustryCategory::get();
         return view('customer.business-create')->with('categories', $categories);
     }
+    
+    public function BusinessAppendix()
+    {
+        return view('customer.business-appendix');
+    }
+
+    public function ManufacturingAppendix()
+    {
+        return view('customer.manufacturing-appendix');
+    }
 
     public function Business1Create()
     {
