@@ -20,182 +20,171 @@
 
     <div class="row">
         <div class="col-lg-12">
-            <div id="addproduct-accordion" class="custom-accordion">
-                <div class="card">
-                    <a href="#addproduct-productinfo-collapse" class="text-dark" data-bs-toggle="collapse"
-                        aria-expanded="true" aria-controls="addproduct-productinfo-collapse">
-                        <div class="p-4">
-                            <div class="d-flex align-items-center">
-                                <div class="flex-shrink-0 me-3">
-                                    <div class="avatar">
-                                        <div class="avatar-title rounded-circle bg-soft-primary text-primary">
-                                            <h5 class="text-primary font-size-17 mb-0">01</h5>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="flex-grow-1 overflow-hidden">
-                                    <h5 class="font-size-16 mb-1">廠商基本資料</h5>
-                                    <p class="text-muted text-truncate mb-0">申請計畫使用</p>
-                                </div>
-                                <div class="flex-shrink-0">
-                                    <i class="mdi mdi-chevron-up accor-down-icon font-size-24"></i>
-                                </div>
+            <div class="row">
+                <div class="col-12 mb-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="text-center mb-3">
+                                <h2>廠商基本資料</h2>
                             </div>
-                        </div>
-                    </a>
+                            <div class="row">'
+                                <div class="col-md-12">
+                                    <div class="mb-4">
+                                        <label class="form-label" for="AddNew-Username"><b>廠商名稱</b></label>
+                                        <input type="text" class="form-control" name="name" value="錚典科技國際有限公司" disabled>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="mb-4">
+                                        <label class="form-label" for="AddNew-Phone"><b>公司常態投保人數</b>（申請計畫使用）</label>
+                                        <input type="number" class="form-control" placeholder="常態投保人數">
+                                    </div>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label class="form-label" for="AddNew-Phone"><b>公司工廠登記地址</b>(若有超過一間工廠，請選一間工廠作為標的)</label>
+                                    <div class="row twzipcode mb-2">
+                                        <select data-role="county" required ></select>
+                                        <select data-role="district" required></select>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label" for="AddNew-Phone">&nbsp;</label>
+                                    <input type="text" class="form-control" name="address" value="" required>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="mb-4">
+                                        <label class="form-label" for="AddNew-Phone"><b>公司常態投保人數</b>（申請計畫使用）</label>
+                                        <input type="number" class="form-control" placeholder="常態投保人數">
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="mb-4">
+                                        <label class="form-label" for="AddNew-Phone"><b>員工人數</b>（申請計畫使用）</label>
+                                        <input type="number" class="form-control"  placeholder="總員工人數">
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="mb-4">
+                                        <label class="form-label" for="AddNew-Phone"><b>&nbsp;</b></label>
+                                        <input type="number" class="form-control" placeholder="男生員工人數">
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="mb-4">
+                                        <label class="form-label" for="AddNew-Phone"><b>&nbsp;</b></label>
+                                        <input type="number" class="form-control" placeholder="女生員工人數">
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <label class="form-label" for="AddNew-Username"><b>公司主要聯繫窗口</b>（用於與錚典對接）</label>
+                                    <div class="mb-4">
+                                        <input type="text" class="form-control" name="name" value="" placeholder="姓名">
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <label class="form-label" for="AddNew-Username">&nbsp;</label>
+                                    <div class="mb-4">
+                                        <input type="text" class="form-control" name="name" value="" placeholder="信箱">
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <label class="form-label" for="AddNew-Username">&nbsp;</label>
+                                    <div class="mb-4">
+                                        <input type="text" class="form-control" name="name" value="" placeholder="電話">
+                                    </div>
+                                </div>
 
-                    <div id="addproduct-productinfo-collapse" class="collapse show"
-                        data-bs-parent="#addproduct-accordion">
-                        <div class="p-4 border-top">
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <div class="mb-4">
-                                            <label class="form-label" for="AddNew-Username"><b>廠商名稱</b></label>
-                                            <input type="text" class="form-control" name="name" value="錚典科技國際有限公司" disabled>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="mb-4">
-                                            <label class="form-label" for="AddNew-Phone"><b>去年整年度營業額（單位：元/新台幣）</b></label>
-                                            <input type="number" class="form-control" value="0">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="mb-4">
-                                            <label class="form-label" for="AddNew-Phone"><b>公司工廠登記坪數（單位：坪）</b></label>
-                                            <input type="number" class="form-control" value="0">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-12">
-                                        <div class="mb-4">
-                                            <label class="form-label" for="AddNew-Phone"><b>公司常態投保人數</b>（申請計畫使用）</label>
-                                            <input type="number" class="form-control" placeholder="常態投保人數">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6 mb-3">
-                                        <label class="form-label" for="AddNew-Phone"><b>公司工廠登記地址</b>(若有超過一間工廠，請選一間工廠作為標的)</label>
-                                        <div class="row twzipcode mb-2">
-                                            <select data-role="county" required ></select>
-                                            <select data-role="district" required></select>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <label class="form-label" for="AddNew-Phone">&nbsp;</label>
-                                        <input type="text" class="form-control" name="address" value="" required>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <div class="mb-4">
-                                            <label class="form-label" for="AddNew-Phone"><b>員工人數</b>（申請計畫使用）</label>
-                                            <input type="number" class="form-control"  placeholder="總員工人數">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <div class="mb-4">
-                                            <label class="form-label" for="AddNew-Phone"><b>&nbsp;</b></label>
-                                            <input type="number" class="form-control" placeholder="男生員工人數">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <div class="mb-4">
-                                            <label class="form-label" for="AddNew-Phone"><b>&nbsp;</b></label>
-                                            <input type="number" class="form-control" placeholder="女生員工人數">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <label class="form-label" for="AddNew-Username"><b>公司主要聯繫窗口</b>（用於與錚典對接）</label>
-                                        <div class="mb-4">
-                                            <input type="text" class="form-control" name="name" value="" placeholder="姓名">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <label class="form-label" for="AddNew-Username">&nbsp;</label>
-                                        <div class="mb-4">
-                                            <input type="text" class="form-control" name="name" value="" placeholder="信箱">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <label class="form-label" for="AddNew-Username">&nbsp;</label>
-                                        <div class="mb-4">
-                                            <input type="text" class="form-control" name="name" value="" placeholder="電話">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-12 mt-3">
-                                        <h5 class="text-uppercase bg-light p-2 mt-0 mb-1">公司對外的網站或社群網址-若有不只一個，請都附上。若無，請寫「無」即可</h5>
-                                        <div class="row">
-                                            <div class="col-md-12">
-                                                <div class="table-responsive mt-1">
-                                                    <table id="socail" class="table socail-list">
-                                                        <thead>
-                                                            <tr align="center">
-                                                                <th>編號</th>
-                                                                <th>類別<span class="text-danger">*</span></th>
-                                                                <th>網址<span class="text-danger">*</span></th>
-                                                                <th></th>
+                                <hr>
+
+                                <div class="col-md-12 mt-3 mb-3">
+                                    <h5 class="text-uppercase bg-light p-2 mt-0 mb-1">公司對外的網站或社群網址-若有不只一個，請都附上。若無，請寫「無」即可</h5>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="table-responsive mt-1">
+                                                <table id="socail" class="table socail-list">
+                                                    <thead>
+                                                        <tr align="center">
+                                                            <th>編號</th>
+                                                            <th>類別<span class="text-danger">*</span></th>
+                                                            <th>網址<span class="text-danger">*</span></th>
+                                                            <th></th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody valign="center" align="center">
+                                                         @for ($i = 0; $i < 1; $i++)
+                                                            <tr id="row-{{ $i }}" >
+                                                                <td>{{$i+1}}</td>
+                                                                <td>
+                                                                    <select id="gdpaper_id_${socailRowCount}" alt="{{ $i }}" class="mobile form-select" name="gdpaper_ids[]">
+                                                                        <option value="" selected>請選擇...</option>
+                                                                        <option value="0">網站</option>
+                                                                        <option value="1">社群</option>
+                                                                        <option value="2">其他</option>
+                                                                    </select>
+                                                                </td>
+                                                                <td>
+                                                                    <input id="pay_date-{{ $i }}" class="mobile form-control" type="text" name="pay_data_date[]" value="" required>
+                                                                </td>
+                                                                <td>
+                                                                    <button class="mobile btn btn-danger del-row" alt="{{ $i }}" type="button" name="button" onclick="del_row(this)">刪除</button>
+                                                                </td>
                                                             </tr>
-                                                        </thead>
-                                                        <tbody valign="center" align="center">
-                                                             @for ($i = 0; $i < 1; $i++)
-                                                                <tr id="row-{{ $i }}" >
-                                                                    <td>{{$i+1}}</td>
-                                                                    <td>
-                                                                        <select id="gdpaper_id_${socailRowCount}" alt="{{ $i }}" class="mobile form-select" name="gdpaper_ids[]">
-                                                                            <option value="" selected>請選擇...</option>
-                                                                            <option value="0">網站</option>
-                                                                            <option value="1">社群</option>
-                                                                            <option value="2">其他</option>
-                                                                        </select>
-                                                                    </td>
-                                                                    <td>
-                                                                        <input id="pay_date-{{ $i }}" class="mobile form-control" type="text" name="pay_data_date[]" value="" required>
-                                                                    </td>
-                                                                    <td>
-                                                                        <button class="mobile btn btn-danger del-row" alt="{{ $i }}" type="button" name="button" onclick="del_row(this)">刪除</button>
-                                                                    </td>
-                                                                </tr>
-                                                        @endfor
-                                                        </tbody>
-                                                    </table>
-                                                </div> <!-- end .table-responsive -->
-                                                <div class="form-group row">
-                                                    <div class="col-12">
-                                                    <input id="add_socail" class="btn btn-primary" type="button" name="" value="新增筆數">
-                                                    </div>
+                                                    @endfor
+                                                    </tbody>
+                                                </table>
+                                            </div> <!-- end .table-responsive -->
+                                            <div class="form-group row">
+                                                <div class="col-12">
+                                                <input id="add_socail" class="btn btn-primary" type="button" name="" value="新增筆數">
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                    </div>
-                </div>
-            </div>
 
-            <div class="card">
-                <a href="#introduction-collapse" class="text-dark collapsed" data-bs-toggle="collapse"
-                aria-haspopup="true" aria-expanded="false" aria-haspopup="true" aria-controls="introduction-collapse">
-                    <div class="p-4">
-                        <div class="d-flex align-items-center">
-                            <div class="flex-shrink-0 me-3">
-                                <div class="avatar">
-                                    <div class="avatar-title rounded-circle bg-soft-primary text-primary">
-                                        <h5 class="text-primary font-size-17 mb-0">02</h5>
+                                <hr>
+
+                                <div class="col-md-12 font-size-18">
+                                    <label class="form-label" for="AddNew-Username">&nbsp;</label>
+                                    <input type="checkbox" class="form-check-input" name="customCheck1" id="customCheck1" value="1">
+                                    <label class="form-check-label" for="customCheck1">有無申請其他政府機關之研發或升級轉型補助</label>
+                                </div>
+                                <div class="col-md-6 px-5" id="customCheck1_div">
+                                    <div class="mb-4">
+                                        <input type="text" class="form-control" name="name" value="" placeholder="請提供機關名稱">
                                     </div>
                                 </div>
-                            </div>
-                            <div class="flex-grow-1 overflow-hidden">
-                                <h5 class="font-size-16 mb-1">公司簡介</h5>
-                                <p class="text-muted text-truncate mb-0">申請計畫使用</p>
-                            </div>
-                            <div class="flex-shrink-0">
-                                <i class="mdi mdi-chevron-up accor-down-icon font-size-24"></i>
-                            </div>
 
+                                <div class="col-md-12 font-size-18">
+                                    <label class="form-label" for="AddNew-Username">&nbsp;</label>
+                                    <input type="checkbox" class="form-check-input" name="customCheck2" id="customCheck2" value="0">
+                                    <label class="form-check-label" for="customCheck2">有無須於審查階段迴避之人員</label>
+                                </div>
+                                <div class="row px-5" id="customCheck2_div">
+                                    <div class="col-md-2">
+                                        <input type="text" class="form-control" name="name" value=""  placeholder="單位">
+                                    </div>
+                                    <div class="col-md-2">
+                                        <input type="text" class="form-control" name="name" value="" placeholder="職稱" >
+                                    </div>
+                                    <div class="col-md-2">
+                                        <input type="text" class="form-control" name="name" value="" placeholder="姓名">
+                                    </div>
+                                </div>
+
+                                
+                            </div>
                         </div>
-
                     </div>
-                </a>
+                </div>
 
-                <div id="introduction-collapse" class="collapse" data-bs-parent="#addproduct-accordion">
-                        <div class="p-4 border-top">
+                <div class="col-12 mb-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="text-center mb-3">
+                                <h2>公司簡介</h2>
+                                <p class="font-size-18">申請計畫使用</p>
+                            </div>
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="mb-4">
@@ -228,160 +217,94 @@
                                     </div>
                                 </div>
                                 <div class="col-md-4">
-                                    <label class="form-label" for="AddNew-Phone"><b>姓名</b></label>
-                                    <input type="text" class="form-control" name="name" value="">
+                                    <label class="form-label" for="AddNew-Phone"><b>前三年營收</b></label>
+                                    <input type="number" class="form-control" name="name" value="" placeholder="2021">
                                 </div>
                                 <div class="col-md-4">
-                                    <label class="form-label" for="AddNew-Username"><b>部門</b></label>
-                                    <input type="text" class="form-control" name="name" value="">
+                                    <label class="form-label" for="AddNew-Username"><b>&nbsp;</b></label>
+                                    <input type="number" class="form-control" name="name" value="" placeholder="2022">
                                 </div>
                                 <div class="col-md-4">
-                                    <label class="form-label" for="AddNew-Username"><b>職稱</b></label>
-                                    <input type="text" class="form-control" name="name" value="" >
-                                </div>
-                                <div class="col-md-4 mt-3">
-                                    <label class="form-label" for="AddNew-Username"><b>工作內容</b></label>
-                                    <input type="text" class="form-control" name="name" value="">
-                                </div>
-                                <div class="col-md-4 mt-3">
-                                    <label class="form-label" for="AddNew-Username"><b>專長/經歷</b></label>
-                                    <input type="text" class="form-control" name="name" value="">
-                                </div>
-                                <div class="col-md-4 mt-3">
-                                    <label class="form-label" for="AddNew-Username"><b>電話(含分機)</b></label>
-                                    <input type="text" class="form-control" name="name" value="" >
-                                </div>
-                                <div class="col-md-4 mt-3">
-                                    <label class="form-label" for="AddNew-Username"><b>手機</b></label>
-                                    <input type="text" class="form-control" name="name" value="">
-                                </div>
-                                <div class="col-md-4 mt-3">
-                                    <label class="form-label" for="AddNew-Username"><b>信箱</b></label>
-                                    <input type="text" class="form-control" name="name" value="">
+                                    <label class="form-label" for="AddNew-Username"><b>&nbsp;</b></label>
+                                    <input type="number" class="form-control" name="name" value="" placeholder="2023" >
                                 </div>
 
                                 <hr class="mt-4 mb-4">
-
-                                <h5 class="text-uppercase bg-light p-2 mt-0 mb-3">計畫聯絡人資料
-                                        <button type="button" class="btn btn-secondary btn-sm waves-effect waves-light">同上</button>
-                                </h5>
-                                <div class="col-md-4">
-                                    <label class="form-label" for="AddNew-Phone"><b>姓名</b></label>
-                                    <input type="text" class="form-control" name="name" value="">
+                                <label class="form-label" for="AddNew-Username"><b>公司指標客戶（請列舉3-5家）</b></label>
+                                <div class="col-md-2">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" id="norm" placeholder="公司指標客戶1">
+                                    </div>
                                 </div>
-                                <div class="col-md-4">
-                                    <label class="form-label" for="AddNew-Username"><b>部門</b></label>
-                                    <input type="text" class="form-control" name="name" value="">
+                                <div class="col-md-2">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" id="norm" placeholder="公司指標客戶2">
+                                    </div>
                                 </div>
-                                <div class="col-md-4">
-                                    <label class="form-label" for="AddNew-Username"><b>職稱</b></label>
-                                    <input type="text" class="form-control" name="name" value="" >
+                                <div class="col-md-2">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" id="norm" placeholder="公司指標客戶3">
+                                    </div>
                                 </div>
-                                <div class="col-md-4 mt-3">
-                                    <label class="form-label" for="AddNew-Username"><b>工作內容</b></label>
-                                    <input type="text" class="form-control" name="name" value="">
+                                <div class="col-md-2">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" id="norm" placeholder="公司指標客戶4">
+                                    </div>
                                 </div>
-                                <div class="col-md-4 mt-3">
-                                    <label class="form-label" for="AddNew-Username"><b>專長/經歷</b></label>
-                                    <input type="text" class="form-control" name="name" value="">
+                                <div class="col-md-2">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" id="norm" placeholder="公司指標客戶5">
+                                    </div>
                                 </div>
-                                <div class="col-md-4 mt-3">
-                                    <label class="form-label" for="AddNew-Username"><b>電話(含分機)</b></label>
-                                    <input type="text" class="form-control" name="name" value="" >
-                                </div>
-                                <div class="col-md-4 mt-3">
-                                    <label class="form-label" for="AddNew-Username"><b>手機</b></label>
-                                    <input type="text" class="form-control" name="name" value="">
-                                </div>
-                                <div class="col-md-4 mt-3">
-                                    <label class="form-label" for="AddNew-Username"><b>信箱</b></label>
-                                    <input type="text" class="form-control" name="name" value="">
-                                </div>
-
+                                {{-- <div class="form-group row mt-3">
+                                    <div class="col-12">
+                                    <input id="add_norm" class="btn btn-primary" type="button" name="" value="新增筆數">
+                                    </div>
+                                </div> --}}
                                 <hr class="mt-4 mb-4">
 
-                                <div class="col-md-12 mt-3">
-                                    <h5 class="text-uppercase bg-light p-2 mt-0 mb-3">人事名單（約4-6位-皆須在勞保投保明細中）</h5>
-                                    <div class="row">
-                                        <div class="col-md-12">
-                                            <div class="table-responsive">
-                                                <table id="preson" class="table preson-list">
-                                                    <thead>
-                                                        <tr align="center">
-                                                            <th>編號</th>
-                                                            <th>姓名<span class="text-danger">*</span></th>
-                                                            <th>部門<span class="text-danger">*</span></th>
-                                                            <th>職稱<span class="text-danger">*</span></th>
-                                                            <th>工作內容/專長經歷<span class="text-danger">*</span></th>
-                                                            <th></th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody valign="center" align="center">
-                                                         @for ($i = 0; $i < 1; $i++)
-                                                            <tr id="row-{{ $i }}" >
-                                                                <td>{{$i+1}}</td>
-                                                                <td>
-                                                                    <input id="pay_date-{{ $i }}" class="mobile form-control" type="text" name="pay_data_date[]" value="" required>
-                                                                </td>
-                                                                <td>
-                                                                    <input id="pay_date-{{ $i }}" class="mobile form-control" type="text" name="pay_data_date[]" value="" required>
-                                                                </td>
-                                                                <td>
-                                                                <input id="pay_price-{{ $i }}" class="mobile form-control" type="text" name="pay_price[]" value="" required>
-                                                                </td>
-                                                                <td>
-                                                                    <input id="pay_price-{{ $i }}" class="mobile form-control" type="text" name="pay_price[]" value="" required>
-                                                                </td>
-                                                                <td>
-                                                                    <button class="mobile btn btn-danger del-row" alt="{{ $i }}" type="button" name="button" onclick="del_row(this)">刪除</button>
-                                                                </td>
-                                                            </tr>
-                                                    @endfor
-                                                    </tbody>
-                                                </table>
-                                            </div> <!-- end .table-responsive -->
-                                            <div class="form-group row">
-                                                <div class="col-12">
-                                                <input id="add_preson" class="btn btn-primary" type="button" name="" value="新增筆數">
-                                                </div>
-                                            </div>
-                                        </div>
+                                <div class="col-md-12 font-size-18">
+                                    <label class="form-label" for="AddNew-Username">&nbsp;</label>
+                                    <input type="checkbox" class="form-check-input" name="carbonCheck" id="carbonCheck" value="1">
+                                    <label class="form-check-label" for="carbonCheck">是否做過碳盤查？</label>
+                                    <span class="text-danger" id="carbonCheck_text">※否，請提供油(柴油、汽油)、電(要注意一般用電或是契約用電)、水、天然氣費帳單</span>
+                                </div>
+
+                                <div class="col-md-12 font-size-18">
+                                    <label class="form-label" for="AddNew-Username">&nbsp;</label>
+                                    <input type="checkbox" class="form-check-input" name="checkIso" id="checkIso" value="0">
+                                    <label class="form-check-label" for="checkIso">是否已申請通過ISO？</label>
+                                </div>
+                                <div class="row px-5" id="checkIso_div">
+                                    <div class="col-md-2">
+                                        <input type="text" class="form-control" name="name" value=""  placeholder="ISO名稱">
+                                    </div>
+                                    <div class="col-md-2">
+                                        <select class="form-select"  id="create_scope_id" name="scope_id" required >
+                                            <option value="" selected>選擇年度</option>
+                                            <option value="">2023</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <select class="form-select"  id="create_scope_id" name="scope_id" required >
+                                            <option value="" selected>選擇狀態</option>
+                                            <option value="">已通過</option>
+                                            <option value="">申請中</option>
+                                        </select>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                </div>
-            </div>
-
-            <div class="card">
-                <a href="#addproduct-img-collapse" class="text-dark collapsed" data-bs-toggle="collapse"
-                    aria-haspopup="true" aria-expanded="true" aria-haspopup="true"
-                    aria-controls="addproduct-img-collapse">
-                    <div class="p-4">
-
-                        <div class="d-flex align-items-center">
-                            <div class="flex-shrink-0 me-3">
-                                <div class="avatar">
-                                    <div class="avatar-title rounded-circle bg-soft-primary text-primary">
-                                        <h5 class="text-primary font-size-17 mb-0">03</h5>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="flex-grow-1 overflow-hidden">
-                                <h5 class="font-size-16 mb-1">人事資料</h5>
-                                <p class="text-muted text-truncate mb-0">申請計畫使用</p>
-                            </div>
-                            <div class="flex-shrink-0">
-                                <i class="mdi mdi-chevron-up accor-down-icon font-size-24"></i>
-                            </div>
-
-                        </div>
-
                     </div>
-                </a>
+                </div>
 
-                <div id="addproduct-img-collapse" class="collapse" data-bs-parent="#addproduct-accordion">
-                        <div class="p-4 border-top">
+
+                <div class="col-12 mb-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="text-center mb-3">
+                                <h2>人事資料</h2>
+                            </div>
                             <div class="row">
                                 <h5 class="text-uppercase bg-light p-2 mt-0 mb-3">計畫主持人資料</h5>
                                 <div class="col-md-4">
@@ -507,38 +430,16 @@
                                 </div>
                             </div>
                         </div>
-                </div>
-            </div>
-
-            <div class="card">
-                <a href="#branch-collapse" class="text-dark collapsed" data-bs-toggle="collapse"
-                    aria-haspopup="true" aria-expanded="false" aria-haspopup="true"
-                    aria-controls="branch-collapse">
-                    <div class="p-4">
-
-                        <div class="d-flex align-items-center">
-                            <div class="flex-shrink-0 me-3">
-                                <div class="avatar">
-                                    <div class="avatar-title rounded-circle bg-soft-primary text-primary">
-                                        <h5 class="text-primary font-size-17 mb-0">04</h5>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="flex-grow-1 overflow-hidden">
-                                <h5 class="font-size-16 mb-1">五家被帶動的企業</h5>
-                                <p class="text-muted text-truncate mb-0">申請計畫使用</p>
-                            </div>
-                            <div class="flex-shrink-0">
-                                <i class="mdi mdi-chevron-up accor-down-icon font-size-24"></i>
-                            </div>
-
-                        </div>
-
                     </div>
-                </a>
+                </div>
 
-                <div id="branch-collapse" class="collapse" data-bs-parent="#addproduct-accordion">
-                        <div class="p-4 border-top">
+                <div class="col-12 mb-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="text-center mb-3">
+                                <h2>五家被帶動的企業</h2>
+                                <p class="font-size-18">申請計畫使用</p>
+                            </div>
                             <div class="row">
                                 <div class="col-md-12 mt-3">
                                     <h5 class="text-uppercase bg-light p-2 mt-0 mb-3">企業名單</h5>
@@ -590,44 +491,22 @@
                                 </div>
                             </div>
                         </div>
-                </div>
-            </div>
-
-            <div class="card">
-                <a href="#need-collapse" class="text-dark collapsed" data-bs-toggle="collapse"
-                    aria-haspopup="true" aria-expanded="false" aria-haspopup="true"
-                    aria-controls="need-collapse">
-                    <div class="p-4">
-
-                        <div class="d-flex align-items-center">
-                            <div class="flex-shrink-0 me-3">
-                                <div class="avatar">
-                                    <div class="avatar-title rounded-circle bg-soft-primary text-primary">
-                                        <h5 class="text-primary font-size-17 mb-0">05</h5>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="flex-grow-1 overflow-hidden">
-                                <h5 class="font-size-16 mb-1">需求</h5>
-                                <p class="text-muted text-truncate mb-0">申請計畫使用</p>
-                            </div>
-                            <div class="flex-shrink-0">
-                                <i class="mdi mdi-chevron-up accor-down-icon font-size-24"></i>
-                            </div>
-
-                        </div>
-
                     </div>
-                </a>
+                </div>
 
-                <div id="need-collapse" class="collapse" data-bs-parent="#addproduct-accordion">
-                        <div class="p-4 border-top">
+                <div class="col-12 mb-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="text-center mb-3">
+                                <h2>需求</h2>
+                                <p class="font-size-18">申請計畫使用</p>
+                            </div>
                             <div class="row">
                                 <div class="col-md-12 mt-1">
-                                    <div class="alert alert-danger" role="alert">
-                                        公司現在原有的系統有哪些？請簡述系統及購入廠商
-                                        （ex：採購系統、電商平台等）
-                                        並請針對想更新或汰換的系統或設備進行排序
+                                    <div class="alert alert-danger text-center" role="alert">
+                                        公司現在原有的系統或設備（有在財產清冊裡的設備即可）有哪些？請簡述
+                                        （ex：空壓機、冷凍機、採購系統、ERP企業資源計劃系統、MES執行系統...等）<br>
+                                        📌並請針對想更新或汰換的系統或設備進行排序
                                     </div>
                                     <h5 class="text-uppercase bg-light p-2 mt-0 mb-3">需求列表</h5>
                                     <div class="row">
@@ -636,8 +515,8 @@
                                                 <table id="need" class="table need-list">
                                                     <thead>
                                                         <tr align="center">
-                                                            <th>編號</th>
-                                                            <th>系統名稱<span class="text-danger">*</span></th>
+                                                            <th>汰換排序</th>
+                                                            <th>系統/設備名稱<span class="text-danger">*</span></th>
                                                             <th>購入單位<span class="text-danger">*</span></th>
                                                             <th></th>
                                                         </tr>
@@ -660,7 +539,7 @@
                                                     </tbody>
                                                 </table>
                                             </div> <!-- end .table-responsive -->
-                                            <div class="form-group row">
+                                            <div class="form-group row mb-4">
                                                 <div class="col-12">
                                                 <input id="add_need" class="btn btn-primary" type="button" name="" value="新增筆數">
                                                 </div>
@@ -668,40 +547,135 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                        </div>
-                </div>
-            </div>
 
-            <div class="card">
-                <a href="#todo-collapse" class="text-dark collapsed" data-bs-toggle="collapse"
-                    aria-haspopup="true" aria-expanded="false" aria-haspopup="true"
-                    aria-controls="todo-collapse">
-                    <div class="p-4">
-
-                        <div class="d-flex align-items-center">
-                            <div class="flex-shrink-0 me-3">
-                                <div class="avatar">
-                                    <div class="avatar-title rounded-circle bg-soft-primary text-primary">
-                                        <h5 class="text-primary font-size-17 mb-0">06</h5>
+                                <div class="col-md-12 font-size-18 mb-3">
+                                    <label class="form-label" for="AddNew-Username">&nbsp;</label>
+                                    <input type="checkbox" class="form-check-input" name="CheckNeed" id="CheckNeed" value="0">
+                                    <label class="form-check-label" for="CheckNeed">是否有其他需求？</label>
+                                </div>
+                                <div class="row px-5 mb-5" id="CheckNeed_div">
+                                    <div class="col-md-12">
+                                        <input type="text" class="form-control" name="name" value=""  placeholder="需求填寫">
                                     </div>
                                 </div>
-                            </div>
-                            <div class="flex-grow-1 overflow-hidden">
-                                <h5 class="font-size-16 mb-1">檢附資料</h5>
-                                <p class="text-muted text-truncate mb-0">申請計畫使用</p>
-                            </div>
-                            <div class="flex-shrink-0">
-                                <i class="mdi mdi-chevron-up accor-down-icon font-size-24"></i>
-                            </div>
 
+                                <hr>
+
+                                <h5 class="text-uppercase bg-light p-2 mt-4 mb-3">預計購買新設備等設備資訊列表</h5>
+                                    <div class="col-md-12">
+                                        <div class="table-responsive">
+                                            <table id="need-device" class="table need-device-list">
+                                                <thead>
+                                                    <tr align="center">
+                                                        <th>設備名稱<span class="text-danger">*</span></th>
+                                                        <th>設備品牌<span class="text-danger">*</span></th>
+                                                        <th>設備型號<span class="text-danger">*</span></th>
+                                                        <th>用途/規格<span class="text-danger">*</span></th>
+                                                        <th>費用<span class="text-danger">*</span></th>
+                                                        <th>採購對象<span class="text-danger">*</span></th>
+                                                        <th>產地<span class="text-danger">*</span></th>
+                                                        <th></th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody valign="center" align="center">
+                                                     @for ($i = 0; $i < 1; $i++)
+                                                        <tr id="row-{{ $i }}" >
+                                                            <td>
+                                                                <input id="pay_date-{{ $i }}" class="mobile form-control" type="text" name="pay_data_date[]" value="" required>
+                                                            </td>
+                                                            <td>
+                                                                <input id="pay_date-{{ $i }}" class="mobile form-control" type="text" name="pay_data_date[]" value="" required>
+                                                            </td>
+                                                            <td>
+                                                                <input id="pay_date-{{ $i }}" class="mobile form-control" type="text" name="pay_data_date[]" value="" required>
+                                                            </td>
+                                                            <td>
+                                                                <input id="pay_date-{{ $i }}" class="mobile form-control" type="text" name="pay_data_date[]" value="" required>
+                                                            </td>
+                                                            <td>
+                                                                <input id="pay_date-{{ $i }}" class="mobile form-control" type="text" name="pay_data_date[]" value="" required>
+                                                            </td>
+                                                            <td>
+                                                                <input id="pay_date-{{ $i }}" class="mobile form-control" type="text" name="pay_data_date[]" value="" required>
+                                                            </td>
+                                                            <td>
+                                                                <input id="pay_date-{{ $i }}" class="mobile form-control" type="text" name="pay_data_date[]" value="" required>
+                                                            </td>
+                                                            <td>
+                                                                <button class="mobile btn btn-danger del-row" alt="{{ $i }}" type="button" name="button" onclick="del_row(this)">刪除</button>
+                                                            </td>
+                                                        </tr>
+                                                @endfor
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        </div> <!-- end .table-responsive -->
+                                        <div class="form-group row mb-4">
+                                            <div class="col-12">
+                                            <input id="add_device_need" class="btn btn-primary" type="button" name="" value="新增筆數">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <hr>
+
+                                <h5 class="text-uppercase bg-light p-2 mt-4 mb-3">預計改善設備等設備資訊</h5>
+                                    <div class="col-md-12">
+                                        <div class="table-responsive">
+                                            <table id="expected-device" class="table expected-device-list">
+                                                <thead>
+                                                    <tr align="center">
+                                                        <th>設備名稱<span class="text-danger">*</span></th>
+                                                        <th>改善重點<span class="text-danger">*</span></th>
+                                                        <th>費用<span class="text-danger">*</span></th>
+                                                        <th>委託對象<span class="text-danger">*</span></th>
+                                                        <th></th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody valign="center" align="center">
+                                                     @for ($i = 0; $i < 1; $i++)
+                                                        <tr id="row-{{ $i }}" >
+                                                            <td>
+                                                                <input id="pay_date-{{ $i }}" class="mobile form-control" type="text" name="pay_data_date[]" value="" required>
+                                                            </td>
+                                                            <td>
+                                                                <input id="pay_date-{{ $i }}" class="mobile form-control" type="text" name="pay_data_date[]" value="" required>
+                                                            </td>
+                                                            <td>
+                                                                <input id="pay_date-{{ $i }}" class="mobile form-control" type="text" name="pay_data_date[]" value="" required>
+                                                            </td>
+                                                            <td>
+                                                                <input id="pay_date-{{ $i }}" class="mobile form-control" type="text" name="pay_data_date[]" value="" required>
+                                                            </td>
+                                                            <td>
+                                                                <button class="mobile btn btn-danger del-row" alt="{{ $i }}" type="button" name="button" onclick="del_row(this)">刪除</button>
+                                                            </td>
+                                                        </tr>
+                                                @endfor
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        </div> <!-- end .table-responsive -->
+                                        <div class="form-group row mb-4">
+                                            <div class="col-12">
+                                            <input id="add_device_expected" class="btn btn-primary" type="button" name="" value="新增筆數">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
                         </div>
-
                     </div>
-                </a>
+                </div>
 
-                <div id="todo-collapse" class="collapse" data-bs-parent="#addproduct-accordion">
-                        <div class="p-4 border-top">
+                <div class="col-12 mb-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="text-center mb-3">
+                                <h2>檢附資料</h2>
+                                <p class="font-size-18">申請計畫使用</p>
+                            </div>
                             <div class="row">
                                 <div class="col-md-12 mt-3">
                                     <div class="alert alert-primary" role="alert">
@@ -832,8 +806,7 @@
                                                     <td>
                                                         <h5 class="text-truncate font-size-16 m-0"><a href="javascript: void(0);"
                                                                 class="text-dark">碳盤查報告(計劃書需要)</a><br>
-                                                            <li class="mt-2 text-danger">是 - 碳盤查報告書</li>
-                                                            <li class="mt-2 text-danger">否 - 油(柴油、汽油)、電(要注意一般用電或是其他用電)、水、天然氣費帳單</li>
+                                                            <li class="mt-2 text-danger" id="carbon_need_text">否 - 油(柴油、汽油)、電(要注意一般用電或是其他用電)、水、天然氣費帳單是 - 碳盤查報告書</li>
                                                         </h5>
                                                     </td>
                                                 </tr>
@@ -855,9 +828,8 @@
                                 </div>
                             </div>
                         </div>
+                    </div>
                 </div>
-            </div>
-            
         </div>
 
         <div class="row mt-4 mb-2">
@@ -1036,6 +1008,162 @@
                 $(this).closest('tr').remove();
                 needRowCount--;
             });
+
+            $("#customCheck1_div").hide();
+            $("#customCheck2_div").hide();
+            $("#checkIso_div").hide();
+            $("#CheckNeed_div").hide();
+            
+            $("#customCheck1").on("change", function() {
+                if ($(this).is(':checked')) {
+                    $("#customCheck1_div").show(300);
+                    $(this).val(1);
+                }
+                else {
+                    $("#customCheck1_div").hide(300);
+                }
+            });
+
+            $("#customCheck2").on("change", function() {
+                if ($(this).is(':checked')) {
+                    $("#customCheck2_div").show(300);
+                    $(this).val(1);
+                }
+                else {
+                    $("#customCheck2_div").hide(300);
+                }
+            });
+
+            $("#carbonCheck").on("change", function() {
+                if ($(this).is(':checked')) {
+                    $("#carbonCheck_text").html('※是，請提供碳排查報告');
+                    $("#carbon_need_text").html('是 - 碳盤查報告書');
+                    $(this).val(1);
+                }
+                else {
+                    $("#carbonCheck_text").html('※否，請提供油(柴油、汽油)、電(要注意一般用電或是契約用電)、水、天然氣費帳單');
+                    $("#carbon_need_text").html('否 - 油(柴油、汽油)、電(要注意一般用電或是其他用電)、水、天然氣費帳單是 - 碳盤查報告書');
+                }
+            });
+
+            $("#checkIso").on("change", function() {
+                if ($(this).is(':checked')) {
+                    $("#checkIso_div").show(300);
+                    $(this).val(1);
+                }
+                else {
+                    $("#checkIso_div").hide(300);
+                }
+            });
+
+            $("#CheckNeed").on("change", function() {
+                if ($(this).is(':checked')) {
+                    $("#CheckNeed_div").show(300);
+                    $(this).val(1);
+                }
+                else {
+                    $("#CheckNeed_div").hide(300);
+                }
+            });
+
+            var addDeviceRowCount = $('#need-device tbody tr').length;
+            $('#add_device_need').click(function() {
+                if (addDeviceRowCount < 5) {
+                    addDeviceRowCount++;
+                    var newRow = `<tr id="row-${addDeviceRowCount}">
+                                    <td>
+                                        <input id="pay_date-${addDeviceRowCount}" class="mobile form-control" type="text" name="pay_data_date[]" value="" required>
+                                    </td>
+                                    <td>
+                                        <input id="department-${addDeviceRowCount}" class="mobile form-control" type="text" name="department[]" value="" required>
+                                    </td>
+                                    <td>
+                                        <input id="title-${addDeviceRowCount}" class="mobile form-control" type="text" name="title[]" value="" required>
+                                    </td>
+                                    <td>
+                                        <input id="pay_date-${addDeviceRowCount}" class="mobile form-control" type="text" name="pay_data_date[]" value="" required>
+                                    </td>
+                                    <td>
+                                        <input id="department-${addDeviceRowCount}" class="mobile form-control" type="text" name="department[]" value="" required>
+                                    </td>
+                                    <td>
+                                        <input id="title-${addDeviceRowCount}" class="mobile form-control" type="text" name="title[]" value="" required>
+                                    </td>
+                                    <td>
+                                        <input id="work_content-${addDeviceRowCount}" class="mobile form-control" type="text" name="work_content[]" value="" required>
+                                    </td>
+                                    <td>
+                                        <button class="mobile btn btn-danger del-row" alt="${addDeviceRowCount}" type="button" name="button">刪除</button>
+                                    </td>
+                                </tr>`;
+                    $('#need-device tbody').append(newRow);
+                } else {
+                    alert('已達5筆最高新增上限');
+                }
+            });
+
+            // Event delegation for dynamically added elements
+            $('#need-device').on('click', '.del-row', function() {
+                $(this).closest('tr').remove();
+                addDeviceRowCount--;
+            });
+
+
+            var expectedDeviceRowCount = $('#expected-device tbody tr').length;
+            $('#add_device_expected').click(function() {
+                if (expectedDeviceRowCount < 5) {
+                    expectedDeviceRowCount++;
+                    var newRow = `<tr id="row-${expectedDeviceRowCount}">
+                                    <td>
+                                        <input id="pay_date-${expectedDeviceRowCount}" class="mobile form-control" type="text" name="pay_data_date[]" value="" required>
+                                    </td>
+                                    <td>
+                                        <input id="department-${expectedDeviceRowCount}" class="mobile form-control" type="text" name="department[]" value="" required>
+                                    </td>
+                                    <td>
+                                        <input id="title-${expectedDeviceRowCount}" class="mobile form-control" type="text" name="title[]" value="" required>
+                                    </td>
+                                    <td>
+                                        <input id="work_content-${expectedDeviceRowCount}" class="mobile form-control" type="text" name="work_content[]" value="" required>
+                                    </td>
+                                    <td>
+                                        <button class="mobile btn btn-danger del-row" alt="${expectedDeviceRowCount}" type="button" name="button">刪除</button>
+                                    </td>
+                                </tr>`;
+                    $('#expected-device tbody').append(newRow);
+                } else {
+                    alert('已達5筆最高新增上限');
+                }
+            });
+
+            // Event delegation for dynamically added elements
+            $('#expected-device').on('click', '.del-row', function() {
+                $(this).closest('tr').remove();
+                expectedDeviceRowCount--;
+            });
+
+            // var normcount = 1; // 用于跟踪当前添加的输入组数量
+
+            // $('#add_norm').click(function(){
+            //     if(normcount < 5) { // 检查是否已经添加了五个输入组
+            //         normcount++; // 增加计数器
+            //         var newInputGroup = $('<div class="col-md-2">' +
+            //                             '    <div class="input-group">' +
+            //                             '        <input type="text" class="form-control" id="norm' + normcount + ' " placeholder="公司指標客戶'+normcount+'">' +
+            //                             '        <button class="btn btn-sm btn-secondary norm_del" type="button">－</button>' +
+            //                             '    </div>' +
+            //                             '</div>');
+            //         $(this).closest('.form-group').before(newInputGroup); // 在当前元素之前添加新输入组
+            //     }
+            // });
+
+            // // 使用事件委托处理动态添加的元素
+            // $(document).on('click', '.norm_del', function(){
+            //     $(this).closest('.col-md-2').remove(); // 移除最近的.col-md-2元素
+            //     normcount--; // 减少计数器
+            // });
+
+            
         </script>
 
 

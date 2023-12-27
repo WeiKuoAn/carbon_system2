@@ -17,6 +17,26 @@
     appearance: none;
     margin-left: .8rem;
 }
+.table {
+    --bs-table-color-type: initial;
+    --bs-table-bg-type: initial;
+    --bs-table-color-state: initial;
+    --bs-table-bg-state: initial;
+    --bs-table-color: #545965;
+    --bs-table-bg: #d1d1d13c;
+    --bs-table-border-color: #eff0f2;
+    --bs-table-accent-bg: transparent;
+    --bs-table-striped-color: #545965;
+    --bs-table-striped-bg: #f8f9fa;
+    --bs-table-active-color: #545965;
+    --bs-table-active-bg: rgba(0, 0, 0, .1);
+    --bs-table-hover-color: #545965;
+    --bs-table-hover-bg: #f8f9fa;
+    width: 100%;
+    margin-bottom: 1rem;
+    vertical-align: top;
+    border-color: var(--bs-table-border-color);
+}
 
 .manufactyring-input {
     --bs-form-select-bg-img: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%233F4452' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M2 5l6 6 6-6'/%3e%3c/svg%3e");

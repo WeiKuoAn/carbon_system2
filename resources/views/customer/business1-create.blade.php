@@ -98,6 +98,7 @@
                                     
                                     <div class="row">
                                         <div class="col-md-12">
+                                            <h5 class="text-uppercase bg-light p-2 mt-0 mb-1">公司對外的網站或社群網址-若有不只一個，請都附上。若無，請寫「無」即可</h5>
                                             <div class="table-responsive mt-1">
                                                 <table id="socail" class="table socail-list">
                                                     <thead>
