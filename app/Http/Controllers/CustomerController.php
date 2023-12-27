@@ -33,10 +33,22 @@ class CustomerController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function BusinessCreate()
     {
         $categories = IndustryCategory::get();
-        return view('customer.create')->with('categories', $categories);
+        return view('customer.business-create')->with('categories', $categories);
+    }
+
+    public function Business1Create()
+    {
+        $categories = IndustryCategory::get();
+        return view('customer.business1-create')->with('categories', $categories);
+    }
+
+    public function ManufacturingCreate()
+    {
+        $categories = IndustryCategory::get();
+        return view('customer.manufacturing-create')->with('categories', $categories);
     }
 
     /**

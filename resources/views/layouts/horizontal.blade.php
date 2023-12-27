@@ -291,7 +291,9 @@
                                 <div class="arrow-down"></div>
                             </a>
                             <div class="dropdown-menu" aria-labelledby="topnav-vendor">
-                                <a href="{{ route('customer.create') }}" class="dropdown-item">新增廠商-商業服務類</a>
+                                <a href="{{ route('customer.business.create') }}" class="dropdown-item">新增廠商-商業服務類</a>
+                                <a href="{{ route('customer.Manufacturing.create') }}" class="dropdown-item">新增廠商-製造類</a>
+                                <a href="{{ route('customer.business1.create') }}" class="dropdown-item">新增廠商-商業服務類(其他版型)</a>
                                 <a href="{{ route('customer.index') }}" class="dropdown-item">廠商列表</a>
                                 <a href="{{ route('industry-category.index') }}" class="dropdown-item">行業類別設定</a>
                             </div>
