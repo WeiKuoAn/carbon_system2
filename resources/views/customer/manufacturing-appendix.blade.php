@@ -104,7 +104,7 @@
                                         <h2>應備資料</h2>
                                     </div>
                                     <div class="alert alert-primary" role="alert">
-                                        <label class="form-label" for="AddNew-Username"><b>上傳連結：
+                                        <label class="form-label" for="AddNew-Username"><b>
                                             <a href="#" target="_blank">
                                                 補助款
                                             </a></b>
@@ -161,6 +161,20 @@
                                                                 class="text-dark">4.委託研究或驗證費</a></h5>
                                                     </td>
                                                 </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+
+                                    <div class="alert alert-primary mt-5" role="alert">
+                                        <label class="form-label" for="AddNew-Username"><b>
+                                            <a href="#" target="_blank">
+                                                自籌款
+                                            </a></b>
+                                        </label>
+                                    </div>
+                                    <div class="table-responsive">
+                                        <table class="table table-nowrap align-middle mb-0">
+                                            <tbody>
                                                 <tr>
                                                     <td style="width: 40px;">
                                                         <div class="form-check font-size-16">
@@ -170,7 +184,7 @@
                                                     </td>
                                                     <td>
                                                         <h5 class="text-truncate font-size-16 m-0"><a href="javascript: void(0);"
-                                                                class="text-dark">去年度資產負債表與損益表</a></h5>
+                                                                class="text-dark">1.人事費</a></h5>
                                                     </td>
                                                 </tr>
                                                 <tr>
@@ -182,36 +196,13 @@
                                                     </td>
                                                     <td>
                                                         <h5 class="text-truncate font-size-16 m-0"><a href="javascript: void(0);"
-                                                                class="text-dark">5.技術移轉費</a></h5>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td style="width: 40px;">
-                                                        <div class="form-check font-size-16">
-                                                            <input class="form-check-input" type="checkbox" id="upcomingtaskCheck01">
-                                                            <label class="form-check-label" for="upcomingtaskCheck01"></label>
-                                                        </div>
-                                                    </td>
-                                                    <td>
-                                                        <h5 class="text-truncate font-size-16 m-0"><a href="javascript: void(0);"
-                                                                class="text-dark">6.差旅費</a></h5>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td style="width: 40px;">
-                                                        <div class="form-check font-size-16">
-                                                            <input class="form-check-input" type="checkbox" id="upcomingtaskCheck01">
-                                                            <label class="form-check-label" for="upcomingtaskCheck01"></label>
-                                                        </div>
-                                                    </td>
-                                                    <td>
-                                                        <h5 class="text-truncate font-size-16 m-0"><a href="javascript: void(0);"
-                                                                class="text-dark">7.市場驗證費</a></h5>
+                                                                class="text-dark">2.無形資產引進費</a></h5>
                                                     </td>
                                                 </tr>
                                             </tbody>
                                         </table>
                                     </div>
+
                                 </div>
                             </div>
                             <div class="row mt-4 mb-2">
