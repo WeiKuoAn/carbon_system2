@@ -26,7 +26,7 @@
                             <div class="row">
                                 <div class="col-md-12 mt-3">
                                     <div class="text-center mb-3">
-                                        <h2>應備資料</h2>
+                                        <h2>第一階段檢附資料</h2>
                                     </div>
                                     <div class="alert alert-primary" role="alert">
                                         <label class="form-label" for="AddNew-Username"><b>上傳連結：
@@ -47,7 +47,7 @@
                                                     </td>
                                                     <td>
                                                         <h5 class="text-truncate font-size-16 m-0"><a href="javascript: void(0);"
-                                                                class="text-dark">1.依法設立登記之證明(PDF)</a></h5>
+                                                                class="text-dark">1.依法設立登記之證明</a></h5>
                                                     </td>
                                                 </tr>
                                                 <tr>
@@ -59,7 +59,7 @@
                                                     </td>
                                                     <td>
                                                         <h5 class="text-truncate font-size-16 m-0"><a href="javascript: void(0);"
-                                                                class="text-dark">2.切結證明書(PDF)</a></h5>
+                                                                class="text-dark">2.最新的投保單位被保險人名冊</a></h5>
                                                     </td>
                                                 </tr>
                                                 <tr>
@@ -71,7 +71,55 @@
                                                     </td>
                                                     <td>
                                                         <h5 class="text-truncate font-size-16 m-0"><a href="javascript: void(0);"
-                                                                class="text-dark">3.蒐集個人資料告知事項暨個人資料提供同意書(PDF)</a></h5>
+                                                                class="text-dark">3.最近一年度資產負債表</a></h5>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td style="width: 40px;">
+                                                        <div class="form-check font-size-16">
+                                                            <input class="form-check-input" type="checkbox" id="upcomingtaskCheck01">
+                                                            <label class="form-check-label" for="upcomingtaskCheck01"></label>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <h5 class="text-truncate font-size-16 m-0"><a href="javascript: void(0);"
+                                                                class="text-dark">4.最近一年度損益表</a></h5>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td style="width: 40px;">
+                                                        <div class="form-check font-size-16">
+                                                            <input class="form-check-input" type="checkbox" id="upcomingtaskCheck01">
+                                                            <label class="form-check-label" for="upcomingtaskCheck01"></label>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <h5 class="text-truncate font-size-16 m-0"><a href="javascript: void(0);"
+                                                                class="text-dark">5.最近一年度稅務申報書</a></h5>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td style="width: 40px;">
+                                                        <div class="form-check font-size-16">
+                                                            <input class="form-check-input" type="checkbox" id="upcomingtaskCheck01">
+                                                            <label class="form-check-label" for="upcomingtaskCheck01"></label>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <h5 class="text-truncate font-size-16 m-0"><a href="javascript: void(0);"
+                                                                class="text-dark">6.地方稅為無違章欠稅</a></h5>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td style="width: 40px;">
+                                                        <div class="form-check font-size-16">
+                                                            <input class="form-check-input" type="checkbox" id="upcomingtaskCheck01">
+                                                            <label class="form-check-label" for="upcomingtaskCheck01"></label>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <h5 class="text-truncate font-size-16 m-0"><a href="javascript: void(0);"
+                                                                class="text-dark">7.國稅為無違章欠稅</a></h5>
                                                     </td>
                                                 </tr>
                                             </tbody>
@@ -79,12 +127,6 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="row mt-4 mb-2">
-                                <div class="col text-end">
-                                    <button class="btn btn-danger" onclick="history.go(-1)"><i class="bx bx-x me-1"></i> 取消 </button>
-                                    <button class="btn btn-success" type="submit" id="btn_submit"><i class=" bx bx-file me-1"></i> 保存 </button>
-                                </div> <!-- end col -->
-                            </div> <!-- end row-->  
                         </div>
                     </div>
                 </div>
@@ -101,7 +143,7 @@
                             <div class="row">
                                 <div class="col-md-12 mt-3">
                                     <div class="text-center mb-3">
-                                        <h2>應備資料</h2>
+                                        <h2>第二階段檢附資料(送件前須檢附完成)</h2>
                                     </div>
                                     <div class="alert alert-primary" role="alert">
                                         <label class="form-label" for="AddNew-Username"><b>上傳連結：
@@ -110,6 +152,7 @@
                                             </a></b>
                                         </label>
                                     </div>
+                                    
                                     <div class="table-responsive">
                                         <table class="table table-nowrap align-middle mb-0">
                                             <tbody>
@@ -122,7 +165,7 @@
                                                     </td>
                                                     <td>
                                                         <h5 class="text-truncate font-size-16 m-0"><a href="javascript: void(0);"
-                                                                class="text-dark">1.人事費</a></h5>
+                                                                class="text-dark">1.切結聲明書(請點擊我下載文件)</a></h5>
                                                     </td>
                                                 </tr>
                                                 <tr>
@@ -134,79 +177,8 @@
                                                     </td>
                                                     <td>
                                                         <h5 class="text-truncate font-size-16 m-0"><a href="javascript: void(0);"
-                                                                class="text-dark">2.消耗性器材及原材料費</a></h5>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td style="width: 40px;">
-                                                        <div class="form-check font-size-16">
-                                                            <input class="form-check-input" type="checkbox" id="upcomingtaskCheck01">
-                                                            <label class="form-check-label" for="upcomingtaskCheck01"></label>
-                                                        </div>
-                                                    </td>
-                                                    <td>
-                                                        <h5 class="text-truncate font-size-16 m-0"><a href="javascript: void(0);"
-                                                                class="text-dark">3.設備及軟體使用費</a></h5>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td style="width: 40px;">
-                                                        <div class="form-check font-size-16">
-                                                            <input class="form-check-input" type="checkbox" id="upcomingtaskCheck01">
-                                                            <label class="form-check-label" for="upcomingtaskCheck01"></label>
-                                                        </div>
-                                                    </td>
-                                                    <td>
-                                                        <h5 class="text-truncate font-size-16 m-0"><a href="javascript: void(0);"
-                                                                class="text-dark">4.設備維護費</a></h5>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td style="width: 40px;">
-                                                        <div class="form-check font-size-16">
-                                                            <input class="form-check-input" type="checkbox" id="upcomingtaskCheck01">
-                                                            <label class="form-check-label" for="upcomingtaskCheck01"></label>
-                                                        </div>
-                                                    </td>
-                                                    <td>
-                                                        <h5 class="text-truncate font-size-16 m-0"><a href="javascript: void(0);"
-                                                                class="text-dark">去年度資產負債表與損益表</a></h5>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td style="width: 40px;">
-                                                        <div class="form-check font-size-16">
-                                                            <input class="form-check-input" type="checkbox" id="upcomingtaskCheck01">
-                                                            <label class="form-check-label" for="upcomingtaskCheck01"></label>
-                                                        </div>
-                                                    </td>
-                                                    <td>
-                                                        <h5 class="text-truncate font-size-16 m-0"><a href="javascript: void(0);"
-                                                                class="text-dark">5.技術移轉費</a></h5>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td style="width: 40px;">
-                                                        <div class="form-check font-size-16">
-                                                            <input class="form-check-input" type="checkbox" id="upcomingtaskCheck01">
-                                                            <label class="form-check-label" for="upcomingtaskCheck01"></label>
-                                                        </div>
-                                                    </td>
-                                                    <td>
-                                                        <h5 class="text-truncate font-size-16 m-0"><a href="javascript: void(0);"
-                                                                class="text-dark">6.差旅費</a></h5>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td style="width: 40px;">
-                                                        <div class="form-check font-size-16">
-                                                            <input class="form-check-input" type="checkbox" id="upcomingtaskCheck01">
-                                                            <label class="form-check-label" for="upcomingtaskCheck01"></label>
-                                                        </div>
-                                                    </td>
-                                                    <td>
-                                                        <h5 class="text-truncate font-size-16 m-0"><a href="javascript: void(0);"
-                                                                class="text-dark">7.市場驗證費</a></h5>
+                                                                class="text-dark">2.蒐集個人資料告知事項暨個人資料提供同意書(請點擊我下載文件)</a></h5>
+                                                        <h5 class="text-truncate font-size-16 m-0">備註：主提案商所有參與人員、被帶動企業負責人都要簽名</h5>
                                                     </td>
                                                 </tr>
                                             </tbody>
@@ -214,14 +186,14 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="row mt-4 mb-2">
-                                <div class="col text-end">
-                                    <button class="btn btn-danger" onclick="history.go(-1)"><i class="bx bx-x me-1"></i> 取消 </button>
-                                    <button class="btn btn-success" type="submit" id="btn_submit"><i class=" bx bx-file me-1"></i> 保存 </button>
-                                </div> <!-- end col -->
-                            </div> <!-- end row-->  
                         </div>
                     </div>
+                    <div class="row mt-4 mb-2">
+                        <div class="col text-center">
+                            <button class="btn btn-danger" onclick="history.go(-1)"><i class="bx bx-x me-1"></i> 取消 </button>
+                            <button class="btn btn-success" type="submit" id="btn_submit"><i class=" bx bx-file me-1"></i> 保存 </button>
+                        </div> <!-- end col -->
+                    </div> <!-- end row-->  
                 </div>
             </div>
         </div>
