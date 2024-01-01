@@ -352,7 +352,7 @@
                                     <div class="row">
                                         <div class="col-md-12">
                                             <div class="table-responsive">
-                                                <table id="need" class="table need-list">
+                                                <table id="situation" class="table situation-list">
                                                     <thead>
                                                         <tr align="center">
                                                             <th>編號</th>
@@ -381,7 +381,7 @@
                                             </div> <!-- end .table-responsive -->
                                             <div class="form-group row">
                                                 <div class="col-12">
-                                                <input id="add_need" class="btn btn-primary" type="button" name="" value="新增筆數">
+                                                <input id="add_situation" class="btn btn-primary" type="button" name="" value="新增筆數">
                                                 </div>
                                             </div>
                                         </div>
@@ -623,6 +623,33 @@
             $('#need').on('click', '.del-row', function() {
                 $(this).closest('tr').remove();
                 needRowCount--;
+            });
+
+            var situationRowCount = $('#situation tbody tr').length;
+
+            $('#add_situation').click(function() {
+                    situationRowCount++;
+                    var newRow = `<tr id="row-${situationRowCount}">
+                                    <td>
+                                        ${situationRowCount}
+                                    </td>
+                                    <td>
+                                        <input id="pay_date-${situationRowCount}" class="mobile form-control" type="text" name="pay_data_date[]" value="" required>
+                                    </td>
+                                    <td>
+                                        <input id="department-${situationRowCount}" class="mobile form-control" type="text" name="department[]" value="" required>
+                                    </td>
+                                    <td>
+                                        <button class="mobile btn btn-danger del-row" alt="${situationRowCount}" type="button" name="button">刪除</button>
+                                    </td>
+                                </tr>`;
+                    $('#situation tbody').append(newRow);
+            });
+
+            // Event delegation for dynamically added elements
+            $('#situation').on('click', '.del-row', function() {
+                $(this).closest('tr').remove();
+                situationRowCount--;
             });
         </script>
 
