@@ -55,20 +55,19 @@
                                         <th scope="col">姓名</th>
                                         <th scope="col">職稱</th>
                                         <th scope="col">帳號</th>
-                                        <th scope="col">Projects</th>
-                                        <th scope="col" style="width: 200px;">Action</th>
+                                        <th scope="col">權限</th>
+                                        <th scope="col" style="width: 200px;">動作</th>
                                     </tr>
                                 </thead>
 
                                 <tbody>
+                                    @foreach($datas as $data)
                                     <tr>
                                         <td>
-                                            <img src="{{ URL::asset('build/images/users/avatar-2.jpg') }}" alt=""
-                                                class="avatar rounded-circle img-thumbnail me-2">
-                                            <a href="#" class="text-body">Simon Ryles</a>
+                                            {{ $data->name }}
                                         </td>
-                                        <td><span class="badge badge-soft-success mb-0">Full Stack Developer</span></td>
-                                        <td>SimonRyles@minible.com</td>
+                                        <td><span class="badge badge-soft-success mb-0">1</span></td>
+                                        <td>{{ $data->email }}</td>
                                         <td>125</td>
                                         <td>
                                             <ul class="list-inline mb-0">
@@ -97,8 +96,7 @@
                                             </ul>
                                         </td>
                                     </tr>
-
-                                    
+                                    @endforeach
                                 </tbody>
                             </table>
                         </div>
@@ -108,7 +106,7 @@
         </div>
         <!-- end row -->
 
-        <div class="row g-0 align-items-center pb-4">
+        {{-- <div class="row g-0 align-items-center pb-4">
             <div class="col-sm-6">
                 <div>
                     <p class="mb-sm-0">Showing 1 to 10 of 57 entries</p>
@@ -141,7 +139,7 @@
                     </ul>
                 </div>
             </div>
-        </div>
+        </div> --}}
         <!-- end row -->
 
 
@@ -171,21 +169,21 @@
             <div class="modal-dialog modal-xl modal-dialog-centered">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="myExtraLargeModalLabel">Add New</h5>
+                        <h5 class="modal-title" id="myExtraLargeModalLabel">新增用戶</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="mb-3">
-                                    <label class="form-label" for="AddNew-Username">Username</label>
+                                    <label class="form-label" for="AddNew-Username">帳號</label>
                                     <input type="text" class="form-control" placeholder="Enter Username"
                                         id="AddNew-Username">
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="mb-3">
-                                    <label class="form-label">Position</label>
+                                    <label class="form-label">職稱</label>
                                     <select class="form-select">
                                         <option selected>Select Position</option>
                                         <option>Full Stack Developer</option>
@@ -197,17 +195,26 @@
                             </div>
                             <div class="col-md-6">
                                 <div class="mb-3">
-                                    <label class="form-label" for="AddNew-Email">Email</label>
+                                    <label class="form-label" for="AddNew-Email">密碼</label>
                                     <input type="text" class="form-control" placeholder="Enter Email"
                                         id="AddNew-Email">
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="mb-3">
-                                    <label class="form-label" for="AddNew-Phone">Phone</label>
+                                    <label class="form-label" for="AddNew-Phone">電話</label>
                                     <input type="text" class="form-control" placeholder="Enter Phone"
                                         id="AddNew-Phone">
                                 </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label class="form-label">權限</label>
+                                <select class="form-select">
+                                    <option selected>啟用</option>
+                                    <option>停用</option>
+                                </select>
                             </div>
                         </div>
                         <div class="row mt-2">

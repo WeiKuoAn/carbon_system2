@@ -37,7 +37,7 @@
                                             @csrf
                                             <div class="mb-2">
                                                 <label for="email" class="form-label">信箱 <span class="text-danger">*</span></label>
-                                                <input id="email" type="email"
+                                                <input id="email" type="text"
                                                     class="form-control @error('email') is-invalid @enderror" name="email"
                                                     value="{{ old('email') }}" required autocomplete="email" autofocus
                                                     value="" placeholder="Enter email">

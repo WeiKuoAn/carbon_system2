@@ -290,8 +290,8 @@
                                 <div class="arrow-down"></div>
                             </a>
                             <div class="dropdown-menu" aria-labelledby="topnav-vendor">
-                                <a href="{{ route('customer.business.create') }}" class="dropdown-item">新增用戶</a>
-                                <a href="{{ route('customer.business.appendix') }}" class="dropdown-item">用戶列表</a>
+                                <a href="{{ route('user.index') }}" class="dropdown-item">新增用戶</a>
+                                <a href="{{ route('user.index') }}" class="dropdown-item">用戶列表</a>
                             </div>
                         </li>
 

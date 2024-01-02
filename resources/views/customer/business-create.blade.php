@@ -357,7 +357,7 @@
                                                         <tr align="center">
                                                             <th>編號</th>
                                                             <th>系統名稱<span class="text-danger">*</span></th>
-                                                            <th>購入單位<span class="text-danger">*</span></th>
+                                                            <th>簡述內容<span class="text-danger">*</span></th>
                                                             <th></th>
                                                         </tr>
                                                     </thead>
@@ -415,7 +415,7 @@
                                                         <tr align="center">
                                                             <th>編號</th>
                                                             <th>系統名稱<span class="text-danger">*</span></th>
-                                                            <th>購入單位<span class="text-danger">*</span></th>
+                                                            <th>購入內容簡述<span class="text-danger">*</span></th>
                                                             <th></th>
                                                         </tr>
                                                     </thead>

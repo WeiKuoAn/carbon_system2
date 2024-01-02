@@ -21,6 +21,7 @@ class CustomerController extends Controller
         }
     }
 
+
     /**
      * Display a listing of the resource.
      */
@@ -28,6 +29,12 @@ class CustomerController extends Controller
     {
         $datas = Customer::paginate(50);
         return view('customer.index')->with('datas', $datas);
+    }
+
+    public function Create()
+    {
+        $categories = IndustryCategory::get();
+        return view('customer.create')->with('categories', $categories);
     }
 
     /**
