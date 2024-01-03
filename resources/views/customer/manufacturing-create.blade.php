@@ -100,9 +100,25 @@
                                     <input type="checkbox" class="form-check-input" name="customCheck1" id="customCheck1" value="1">
                                     <label class="form-check-label" for="customCheck1"><span class="text-danger">有</span>申請其他政府機關之研發或升級轉型補助</label>
                                 </div>
-                                <div class="col-md-6 px-5" id="customCheck1_div">
-                                    <div class="mb-4">
-                                        <input type="text" class="form-control" name="name" value="" placeholder="請提供機關名稱">
+                                <div class="col-md-8 px-5 mb-4" id="customCheck1_div">
+                                    <div class="customCheck1_data row">
+                                        <div class="col-4">
+                                            <input type="text" class="form-control" name="name" value="" placeholder="請提供年份">
+                                        </div>
+                                        <div class="col-4">
+                                            <input type="text" class="form-control" name="name" value="" placeholder="請提供機關名稱">
+                                        </div>
+                                        <div class="col-2">
+                                            <button class="mobile btn btn-danger del-row" type="button" name="button" onclick="del_row(this)">刪除</button>
+                                        </div>
+                                    </div>
+                                    <div class="customCheck1_container ">
+                                        <!-- 這裡放置您原有的自定義檢查項目 HTML 程式碼 -->
+                                    </div>
+                                    <div class="form-group row mt-3">
+                                        <div class="col-12">
+                                        <input id="add_customCheck1" class="btn btn-primary" type="button" name="" value="新增附件">
+                                        </div>
                                     </div>
                                 </div>
 
@@ -124,22 +140,29 @@
                                 </div>
 
                                 <hr class="mt-3">
-                                <div class="col-md-12">
+                                <div class="col-md-12 row mt-3 appendix">
                                     <label for="example-search-input" class="col-form-label"><b>附件上傳</b>（EX：公司介紹、產品簡報）</label>
-                                    <div class="col-md-12">
+                                    <div class="col-11">
                                         <div id="Step1_inputGroupFile01-preview"></div>
                                         <div class="input-group">
                                             <input type="file" class="form-control" id="Step1_inputGroupFile01" name="Step1_inputGroupFile01" aria-describedby="inputGroupFileAddon01" aria-label="Upload">
                                             <button class="btn btn-primary" type="button" id="Step1_inputGroupFileAddon01">上傳</button>
                                         </div>
                                     </div>
-                                    <div class="form-group row mt-3">
-                                        <div class="col-12">
-                                        <input id="add_socail" class="btn btn-primary" type="button" name="" value="新增附件">
-                                        </div>
+                                    {{-- <div class="col-1">
+                                        <button class="mobile btn btn-danger del-row" alt="{{ $i }}" type="button" name="button" onclick="del_row(this)">刪除</button>
+                                    </div> --}}
+                                </div>
+                                <div class="appendix-container">
+                                    <div class="col-md-12 row appendix">
+                                        <!-- 這裡放置您原有的附件上傳區塊 HTML 程式碼 -->
                                     </div>
                                 </div>
-                                
+                                <div class="form-group row mt-3">
+                                    <div class="col-12">
+                                    <input id="add_appendix" class="btn btn-primary" type="button" name="" value="新增附件">
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -862,6 +885,52 @@
                     $(this).closest('tr').remove();
                     socailRowCount--;
                 });
+
+                $('#add_appendix').click(function() {
+                    var appendixCount = $('.appendix').length;
+                    var newAppendix = `
+                        <div class="col-md-12 row mt-3 appendix">
+                            <div class="col-11">
+                                <div id="Step1_inputGroupFile0${appendixCount+1}-preview"></div>
+                                <div class="input-group">
+                                    <input type="file" class="form-control" id="Step1_inputGroupFile0${appendixCount+1}" name="Step1_inputGroupFile0${appendixCount+1}" aria-describedby="inputGroupFileAddon0${appendixCount+1}" aria-label="Upload">
+                                    <button class="btn btn-primary" type="button" id="Step1_inputGroupFileAddon0${appendixCount+1}">上傳</button>
+                                </div>
+                            </div>
+                            <div class="col-1">
+                                <button class="mobile btn btn-danger del-row" type="button" name="button">刪除</button>
+                            </div>
+                        </div>`;
+                    $('.appendix-container').append(newAppendix);
+                });
+
+                // 刪除附件的功能
+                $(document).on('click', '.del-row', function() {
+                    $(this).closest('.appendix').remove();
+                });
+
+                //新增計劃案
+                $('#add_customCheck1').click(function() {
+                    var newCustomCheck = `
+                        <div class="customCheck1_data row mt-2">
+                            <div class="col-4">
+                                <input type="text" class="form-control" name="name" value="" placeholder="請提供年份">
+                            </div>
+                            <div class="col-4">
+                                <input type="text" class="form-control" name="name" value="" placeholder="請提供機關名稱">
+                            </div>
+                            <div class="col-2">
+                                <button class="mobile btn btn-danger del-row" type="button" name="button">刪除</button>
+                            </div>
+                        </div>`;
+                    $('.customCheck1_container').append(newCustomCheck);
+                });
+
+                // 刪除自定義檢查項目的功能
+                $(document).on('click', '.del-row', function() {
+                    $(this).closest('.customCheck1_data').remove();
+                });
+
                 var presonRowCount = $('#preson tbody tr').length;
 
                 $('#add_preson').click(function() {

@@ -139,19 +139,27 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-12 mt-3">
+                                <div class="col-md-12 row mt-3 appendix">
                                     <label for="example-search-input" class="col-form-label"><b>附件上傳</b>（EX：公司介紹、產品簡報）</label>
-                                    <div class="col-md-12">
+                                    <div class="col-11">
                                         <div id="Step1_inputGroupFile01-preview"></div>
                                         <div class="input-group">
                                             <input type="file" class="form-control" id="Step1_inputGroupFile01" name="Step1_inputGroupFile01" aria-describedby="inputGroupFileAddon01" aria-label="Upload">
                                             <button class="btn btn-primary" type="button" id="Step1_inputGroupFileAddon01">上傳</button>
                                         </div>
                                     </div>
-                                    <div class="form-group row mt-3">
-                                        <div class="col-12">
-                                        <input id="add_socail" class="btn btn-primary" type="button" name="" value="新增附件">
-                                        </div>
+                                    {{-- <div class="col-1">
+                                        <button class="mobile btn btn-danger del-row" alt="{{ $i }}" type="button" name="button" onclick="del_row(this)">刪除</button>
+                                    </div> --}}
+                                </div>
+                                <div class="appendix-container">
+                                    <div class="col-md-12 row appendix">
+                                        <!-- 這裡放置您原有的附件上傳區塊 HTML 程式碼 -->
+                                    </div>
+                                </div>
+                                <div class="form-group row mt-3">
+                                    <div class="col-12">
+                                    <input id="add_appendix" class="btn btn-primary" type="button" name="" value="新增附件">
                                     </div>
                                 </div>
                             </div>
@@ -526,6 +534,31 @@
                     $(this).closest('tr').remove();
                     socailRowCount--;
                 });
+
+                $('#add_appendix').click(function() {
+                    var appendixCount = $('.appendix').length;
+                    var newAppendix = `
+                        <div class="col-md-12 row mt-3 appendix">
+                            <div class="col-11">
+                                <div id="Step1_inputGroupFile0${appendixCount+1}-preview"></div>
+                                <div class="input-group">
+                                    <input type="file" class="form-control" id="Step1_inputGroupFile0${appendixCount+1}" name="Step1_inputGroupFile0${appendixCount+1}" aria-describedby="inputGroupFileAddon0${appendixCount+1}" aria-label="Upload">
+                                    <button class="btn btn-primary" type="button" id="Step1_inputGroupFileAddon0${appendixCount+1}">上傳</button>
+                                </div>
+                            </div>
+                            <div class="col-1">
+                                <button class="mobile btn btn-danger del-row" type="button" name="button">刪除</button>
+                            </div>
+                        </div>`;
+                    $('.appendix-container').append(newAppendix);
+                });
+
+                // 刪除附件的功能
+                $(document).on('click', '.del-row', function() {
+                    $(this).closest('.appendix').remove();
+                });
+
+
                 var presonRowCount = $('#preson tbody tr').length;
 
                 $('#add_preson').click(function() {
