@@ -33,7 +33,25 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="mb-3">
-                                    <label class="form-label" for="AddNew-Username">廠商名稱</label><span class="text-danger">*</span>
+                                    <label class="form-label" for="AddNew-Username">廠商名稱<</label>
+                                    <input type="text" class="form-control" name="name" required>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label class="form-label">計劃案申報類別</label>
+                                    <select class="form-select" name="stock_status" required>
+                                        <option value="" selected>請選擇</option>
+                                        <option value="0" >商業服務類</option>
+                                        <option value="1" >製造類</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label class="form-label" for="AddNew-Username">廠商帳號</label>
                                     <input type="text" class="form-control" name="name" required>
                                 </div>
                             </div>
@@ -47,7 +65,7 @@
 
                             <div class="col-md-6">
                                 <div class="mb-3">
-                                    <label class="form-label" for="AddNew-Username">廠商帳號</label><span class="text-danger">*</span>
+                                    <label class="form-label" for="AddNew-Username">廠商密碼</label>
                                     <input type="text" class="form-control" name="name" required>
                                 </div>
                             </div>
@@ -56,18 +74,6 @@
                                 <div class="mb-3">
                                     <label class="form-label" for="AddNew-Phone">公司聯絡人職稱</label>
                                     <input type="text" class="form-control" name="contact_job" required>
-                                </div>
-                            </div>
-
-                            <div class="col-md-6 ">
-                                <label class="form-label" for="AddNew-Username">廠商密碼</label><span class="text-danger">*</span>
-                                <div class="mb-3 row">
-                                    <div class="col-10">
-                                        <input class="form-control me-auto" type="text" name="password" placeholder="請產生密碼">
-                                    </div>
-                                    <div class="col-2">
-                                        <button type="bytton" id="pwd_create" class="btn btn-outline-danger">生成密碼</button>
-                                    </div>
                                 </div>
                             </div>
 
@@ -80,17 +86,6 @@
 
                             <div class="col-md-6">
                                 <div class="mb-3">
-                                    <label class="form-label">計劃案申報類別</label><span class="text-danger">*</span>
-                                    <select class="form-select" name="stock_status" required>
-                                        <option value="" selected>請選擇</option>
-                                        <option value="0" >商業服務類</option>
-                                        <option value="1" >製造類</option>
-                                    </select>
-                                </div>
-                            </div>
-
-                            <div class="col-md-6">
-                                <div class="mb-3">
                                     <label class="form-label" for="AddNew-Email">公司聯絡人信箱</label>
                                     <input type="email" class="form-control" name="primary_contact_email" required>
                                 </div>
@@ -98,7 +93,7 @@
 
                             <div class="col-md-6">
                                 <div class="mb-3">
-                                    <label class="form-label" for="AddNew-Phone">統一編號</label><span class="text-danger">*</span>
+                                    <label class="form-label" for="AddNew-Phone">統一編號</label>
                                     <input type="text" class="form-control" name="business_registration_no" required>
                                 </div>
                             </div>

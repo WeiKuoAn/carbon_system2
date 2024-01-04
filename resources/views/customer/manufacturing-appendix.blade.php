@@ -203,7 +203,7 @@
                                                     </td>
                                                     <td>
                                                         <h5 class="text-truncate font-size-16 m-0"><a href="javascript: void(0);"
-                                                                class="text-dark">1.蒐集個人資料告知事項暨個人資料提供同意書(請點擊我下載文件)</a></h5>
+                                                                class="text-dark">1.蒐集個人資料告知事項暨個人資料提供同意書(請點擊我下載空白文件)</a></h5>
                                                     </td>
                                                 </tr>
                                                 <tr>
@@ -215,7 +215,7 @@
                                                     </td>
                                                     <td>
                                                         <h5 class="text-truncate font-size-16 m-0"><a href="javascript: void(0);"
-                                                                class="text-dark">2.建議迴避之人員清單(若無者請於表格中姓名欄中填【無】，另下方處需加蓋公司大小章。)(請點擊我下載文件)</a></h5>
+                                                                class="text-dark">2.建議迴避之人員清單(若無者請於表格中姓名欄中填【無】，另下方處需加蓋公司大小章。)(請點擊我下載空白文件)</a></h5>
                                                     </td>
                                                 </tr>
                                                 <tr>
@@ -227,7 +227,7 @@
                                                     </td>
                                                     <td>
                                                         <h5 class="text-truncate font-size-16 m-0"><a href="javascript: void(0);"
-                                                                class="text-dark">3.基本資料暨同意聲明(請點擊我下載文件)</a></h5>
+                                                                class="text-dark">3.基本資料暨同意聲明(請點擊我下載空白文件)</a></h5>
                                                     </td>
                                                 </tr>
                                             </tbody>

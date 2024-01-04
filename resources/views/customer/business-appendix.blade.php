@@ -165,7 +165,7 @@
                                                     </td>
                                                     <td>
                                                         <h5 class="text-truncate font-size-16 m-0"><a href="javascript: void(0);"
-                                                                class="text-dark">1.切結聲明書(請點擊我下載文件)</a></h5>
+                                                                class="text-dark">1.切結聲明書(請點擊我下載空白文件)</a></h5>
                                                     </td>
                                                 </tr>
                                                 <tr>
@@ -177,7 +177,7 @@
                                                     </td>
                                                     <td>
                                                         <h5 class="text-truncate font-size-16 m-0"><a href="javascript: void(0);"
-                                                                class="text-dark">2.蒐集個人資料告知事項暨個人資料提供同意書(請點擊我下載文件)</a></h5>
+                                                                class="text-dark">2.蒐集個人資料告知事項暨個人資料提供同意書(請點擊我下載空白文件)</a></h5>
                                                         <h5 class="text-truncate font-size-16 m-0">備註：主提案商所有參與人員、被帶動企業負責人都要簽名</h5>
                                                     </td>
                                                 </tr>

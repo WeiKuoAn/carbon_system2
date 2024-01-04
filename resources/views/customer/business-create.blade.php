@@ -141,25 +141,10 @@
                                 </div>
                                 <div class="col-md-12 row mt-3 appendix">
                                     <label for="example-search-input" class="col-form-label"><b>附件上傳</b>（EX：公司介紹、產品簡報）</label>
-                                    <div class="col-11">
-                                        <div id="Step1_inputGroupFile01-preview"></div>
-                                        <div class="input-group">
-                                            <input type="file" class="form-control" id="Step1_inputGroupFile01" name="Step1_inputGroupFile01" aria-describedby="inputGroupFileAddon01" aria-label="Upload">
-                                            <button class="btn btn-primary" type="button" id="Step1_inputGroupFileAddon01">上傳</button>
+                                    <div class="pl-5">
+                                        <div class="alert alert-primary" role="alert">
+                                            上傳網址： <a href="javascript: void(0);" class="alert-link">請點擊我</a>
                                         </div>
-                                    </div>
-                                    {{-- <div class="col-1">
-                                        <button class="mobile btn btn-danger del-row" alt="{{ $i }}" type="button" name="button" onclick="del_row(this)">刪除</button>
-                                    </div> --}}
-                                </div>
-                                <div class="appendix-container">
-                                    <div class="col-md-12 row appendix">
-                                        <!-- 這裡放置您原有的附件上傳區塊 HTML 程式碼 -->
-                                    </div>
-                                </div>
-                                <div class="form-group row mt-3">
-                                    <div class="col-12">
-                                    <input id="add_appendix" class="btn btn-primary" type="button" name="" value="新增附件">
                                     </div>
                                 </div>
                             </div>
@@ -247,7 +232,7 @@
                                                         </tr>
                                                     </thead>
                                                     <tbody valign="center" align="center">
-                                                         @for ($i = 0; $i < 5; $i++)
+                                                         @for ($i = 0; $i < 1; $i++)
                                                             <tr id="row-{{ $i }}" >
                                                                 <td>{{$i+1}}</td>
                                                                 <td>
@@ -363,21 +348,15 @@
                                                 <table id="situation" class="table situation-list">
                                                     <thead>
                                                         <tr align="center">
-                                                            <th>編號</th>
-                                                            <th>系統名稱<span class="text-danger">*</span></th>
                                                             <th>簡述內容<span class="text-danger">*</span></th>
                                                             <th></th>
                                                         </tr>
                                                     </thead>
                                                     <tbody valign="center" align="center">
                                                          @for ($i = 0; $i < 1; $i++)
-                                                            <tr id="row-{{ $i }}" >
-                                                                <td>{{$i+1}}</td>
-                                                                <td>
-                                                                    <input id="pay_date-{{ $i }}" class="mobile form-control" type="text" name="pay_data_date[]" value="" required>
-                                                                </td>
-                                                                <td>
-                                                                    <input id="pay_date-{{ $i }}" class="mobile form-control" type="text" name="pay_data_date[]" value="" required>
+                                                            <tr id="row-{{ $i }}" valign="middle">
+                                                                <td width="90%">
+                                                                    <textarea  class="form-control" name="note" rows="2"></textarea>
                                                                 </td>
                                                                 <td>
                                                                     <button class="mobile btn btn-danger del-row" alt="{{ $i }}" type="button" name="button" onclick="del_row(this)">刪除</button>
@@ -662,15 +641,9 @@
 
             $('#add_situation').click(function() {
                     situationRowCount++;
-                    var newRow = `<tr id="row-${situationRowCount}">
-                                    <td>
-                                        ${situationRowCount}
-                                    </td>
-                                    <td>
-                                        <input id="pay_date-${situationRowCount}" class="mobile form-control" type="text" name="pay_data_date[]" value="" required>
-                                    </td>
-                                    <td>
-                                        <input id="department-${situationRowCount}" class="mobile form-control" type="text" name="department[]" value="" required>
+                    var newRow = `<tr id="row-${situationRowCount}" valign="middle">
+                                    <td width="90%">
+                                        <textarea  class="form-control" name="note" rows="2"></textarea>
                                     </td>
                                     <td>
                                         <button class="mobile btn btn-danger del-row" alt="${situationRowCount}" type="button" name="button">刪除</button>

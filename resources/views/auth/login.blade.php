@@ -19,9 +19,9 @@
 
                             <div class="mb-4 pb-2">
                                 <a href="index" class="d-block auth-logo">
-                                    <img src="{{ asset('assets/image/logo.png') }}" alt="" height="80"
+                                    <img src="{{ asset('assets/image/LOGO.png') }}" alt="" height="100"
                                         class="auth-logo-dark me-start">
-                                    <img src="{{ asset('assets/image/logo.png') }}" alt="" height="80"
+                                    <img src="{{ asset('assets/image/LOGO.png') }}" alt="" height="100"
                                         class="auth-logo-light me-start">
                                 </a>
                             </div>
@@ -130,7 +130,7 @@
                                     <script>
                                         document.write(new Date().getFullYear())
                                     </script> . Crafted with <i
-                                        class="mdi mdi-heart text-danger"></i> by 名偵碳治郎
+                                        class="mdi mdi-heart text-danger"></i> by 錚典科技國際有限公司
                                 </p>
                             </div>
                         </div>

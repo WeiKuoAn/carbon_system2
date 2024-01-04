@@ -106,7 +106,7 @@
                                             <input type="text" class="form-control" name="name" value="" placeholder="請提供年份">
                                         </div>
                                         <div class="col-4">
-                                            <input type="text" class="form-control" name="name" value="" placeholder="請提供機關名稱">
+                                            <input type="text" class="form-control" name="name" value="" placeholder="請提供計畫名稱">
                                         </div>
                                         <div class="col-2">
                                             <button class="mobile btn btn-danger del-row" type="button" name="button" onclick="del_row(this)">刪除</button>
@@ -142,25 +142,10 @@
                                 <hr class="mt-3">
                                 <div class="col-md-12 row mt-3 appendix">
                                     <label for="example-search-input" class="col-form-label"><b>附件上傳</b>（EX：公司介紹、產品簡報）</label>
-                                    <div class="col-11">
-                                        <div id="Step1_inputGroupFile01-preview"></div>
-                                        <div class="input-group">
-                                            <input type="file" class="form-control" id="Step1_inputGroupFile01" name="Step1_inputGroupFile01" aria-describedby="inputGroupFileAddon01" aria-label="Upload">
-                                            <button class="btn btn-primary" type="button" id="Step1_inputGroupFileAddon01">上傳</button>
+                                    <div class="pl-5">
+                                        <div class="alert alert-primary" role="alert">
+                                            上傳網址： <a href="javascript: void(0);" class="alert-link">請點擊我</a>
                                         </div>
-                                    </div>
-                                    {{-- <div class="col-1">
-                                        <button class="mobile btn btn-danger del-row" alt="{{ $i }}" type="button" name="button" onclick="del_row(this)">刪除</button>
-                                    </div> --}}
-                                </div>
-                                <div class="appendix-container">
-                                    <div class="col-md-12 row appendix">
-                                        <!-- 這裡放置您原有的附件上傳區塊 HTML 程式碼 -->
-                                    </div>
-                                </div>
-                                <div class="form-group row mt-3">
-                                    <div class="col-12">
-                                    <input id="add_appendix" class="btn btn-primary" type="button" name="" value="新增附件">
                                     </div>
                                 </div>
                             </div>
@@ -185,12 +170,12 @@
                                 <div class="col-md-12">
                                     <div class="mb-4">
                                         <label class="form-label" for="AddNew-Phone"><b>產品製程圖</b></label>
-                                        <div id="Step1_inputGroupFile02-preview"></div>
-                                        <div class="input-group">
-                                            <input type="file" class="form-control" id="Step1_inputGroupFile02"
-                                                aria-describedby="Step1_inputGroupFileAddon02" name="Step1_inputGroupFile02" aria-label="Upload">
-                                            <button class="btn btn-primary" type="button"
-                                                id="Step1_inputGroupFileAddon02">上傳</button>
+                                        <div class="col-md-12 appendix">
+                                            <div class="pl-5">
+                                                <div class="alert alert-primary" role="alert">
+                                                    上傳網址： <a href="javascript: void(0);" class="alert-link">請點擊我</a>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -221,29 +206,41 @@
 
                                 <hr class="mt-4 mb-4">
                                 <label class="form-label" for="AddNew-Username"><b>公司指標客戶（請列舉3-5家）</b></label>
-                                <div class="col-md-2">
-                                    <div class="input-group">
-                                        <input type="text" class="form-control" id="norm" placeholder="公司指標客戶1">
-                                    </div>
-                                </div>
-                                <div class="col-md-2">
-                                    <div class="input-group">
-                                        <input type="text" class="form-control" id="norm" placeholder="公司指標客戶2">
-                                    </div>
-                                </div>
-                                <div class="col-md-2">
-                                    <div class="input-group">
-                                        <input type="text" class="form-control" id="norm" placeholder="公司指標客戶3">
-                                    </div>
-                                </div>
-                                <div class="col-md-2">
-                                    <div class="input-group">
-                                        <input type="text" class="form-control" id="norm" placeholder="公司指標客戶4">
-                                    </div>
-                                </div>
-                                <div class="col-md-2">
-                                    <div class="input-group">
-                                        <input type="text" class="form-control" id="norm" placeholder="公司指標客戶5">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="table-responsive mt-1">
+                                            <table id="customer" class="table customer-list">
+                                                <thead>
+                                                    <tr align="center">
+                                                        <th>編號</th>
+                                                        <th>公司指標客戶<span class="text-danger">*</span></th>
+                                                        <th>指標客戶服務<span class="text-danger">*</span></th>
+                                                        <th></th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody valign="center" align="center">
+                                                     @for ($i = 0; $i < 1; $i++)
+                                                        <tr id="row-{{ $i }}" valign="middle" >
+                                                            <td>{{$i+1}}</td>
+                                                            <td width="30%">
+                                                                <input id="pay_date-{{ $i }}" class="mobile form-control" type="text" name="pay_data_date[]" value="" required>
+                                                            </td>
+                                                            <td>
+                                                                <input id="pay_date-{{ $i }}" class="mobile form-control" type="text" name="pay_data_date[]" value="" required>
+                                                            </td>
+                                                            <td>
+                                                                <button class="mobile btn btn-danger del-row" alt="{{ $i }}" type="button" name="button" onclick="del_row(this)">刪除</button>
+                                                            </td>
+                                                        </tr>
+                                                @endfor
+                                                </tbody>
+                                            </table>
+                                        </div> <!-- end .table-responsive -->
+                                        <div class="form-group row">
+                                            <div class="col-12">
+                                            <input id="add_customer" class="btn btn-primary" type="button" name="" value="新增筆數">
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                                 {{-- <div class="form-group row mt-3">
@@ -320,10 +317,7 @@
                                                     <input type="text" class="form-control" name="name" value=""  placeholder="ISO名稱">
                                                 </div>
                                                 <div class="col-md-2">
-                                                    <select class="form-select"  id="create_scope_id" name="scope_id" required >
-                                                        <option value="" selected>選擇年度</option>
-                                                        <option value="">2023</option>
-                                                    </select>
+                                                    <input type="text" class="form-control" name="name" value=""  placeholder="年份">
                                                 </div>
                                                 <div class="col-md-2">
                                                     <select class="form-select"  id="create_scope_id" name="scope_id" required >
@@ -507,23 +501,21 @@
                                                 <table id="need" class="table need-list">
                                                     <thead>
                                                         <tr align="center">
-                                                            <th>汰換排序</th>
                                                             <th>簡述內容<span class="text-danger">*</span></th>
                                                             <th></th>
                                                         </tr>
                                                     </thead>
-                                                    <tbody valign="center" align="center">
-                                                         @for ($i = 0; $i < 1; $i++)
-                                                            <tr id="row-{{ $i }}" >
-                                                                <td>{{$i+1}}</td>
-                                                                <td>
-                                                                    <input id="pay_date-{{ $i }}" class="mobile form-control" type="text" name="pay_data_date[]" value="" required>
+                                                    <tbody  align="center">
+                                                        @for ($i = 0; $i < 1; $i++)
+                                                            <tr id="row-{{ $i }}" valign="middle" >
+                                                                <td width="90%">
+                                                                    <textarea  class="form-control" name="note" rows="2"></textarea>
                                                                 </td>
-                                                                <td>
+                                                                <td valign="center">
                                                                     <button class="mobile btn btn-danger del-row" alt="{{ $i }}" type="button" name="button" onclick="del_row(this)">刪除</button>
                                                                 </td>
                                                             </tr>
-                                                    @endfor
+                                                        @endfor
                                                     </tbody>
                                                 </table>
                                             </div> <!-- end .table-responsive -->
@@ -854,6 +846,34 @@
             });
 
             $(document).ready(function() {
+
+                var customerRowCount = $('#customer tbody tr').length;
+
+                $('#add_customer').click(function() {
+                        customerRowCount++;
+                        var newRow = `<tr id="row-${customerRowCount}">
+                                        <td>
+                                            ${customerRowCount}
+                                        </td>
+                                        <td width="30%">
+                                            <input id="pay_date-{{ $i }}" class="mobile form-control" type="text" name="pay_data_date[]" value="" required>
+                                        </td>
+                                        <td>
+                                            <input id="department-${customerRowCount}" class="mobile form-control" type="text" name="department[]" value="" required>
+                                        </td>
+                                        <td>
+                                            <button class="mobile btn btn-danger del-row" alt="${customerRowCount}" type="button" name="button">刪除</button>
+                                        </td>
+                                    </tr>`;
+                        $('#customer tbody').append(newRow);
+                });
+
+                // Event delegation for dynamically added elements
+                $('#customer').on('click', '.del-row', function() {
+                    $(this).closest('tr').remove();
+                    customerRowCount--;
+                });
+
                 var socailRowCount = $('#socail tbody tr').length;
 
                 $('#add_socail').click(function() {
@@ -1010,12 +1030,9 @@
 
             $('#add_need').click(function() {
                     needRowCount++;
-                    var newRow = `<tr id="row-${needRowCount}">
-                                    <td>
-                                        ${needRowCount}
-                                    </td>
-                                    <td>
-                                        <input id="pay_date-${needRowCount}" class="mobile form-control" type="text" name="pay_data_date[]" value="" required>
+                    var newRow = `<tr id="row-${needRowCount}" valign="middle">
+                                    <td width="90%">
+                                        <textarea  class="form-control" name="note" rows="2"></textarea>
                                     </td>
                                     <td>
                                         <button class="mobile btn btn-danger del-row" alt="${needRowCount}" type="button" name="button">刪除</button>
@@ -1090,10 +1107,7 @@
                             <input type="text" class="form-control" name="name" value=""  placeholder="ISO名稱">
                         </div>
                         <div class="col-md-2">
-                            <select class="form-select" name="scope_id" required>
-                                <option value="" selected>選擇年度</option>
-                                <option value="">2023</option>
-                            </select>
+                            <input type="text" class="form-control" name="name" value=""  placeholder="年份">
                         </div>
                         <div class="col-md-2">
                             <select class="form-select" name="status_id" required>
