@@ -29,11 +29,17 @@ Route::get('projects', [App\Http\Controllers\ProjectController::class,'index'])-
 //專案新增
 Route::get('project/business-create', [App\Http\Controllers\ProjectController::class,'BusinessCreate'])->name('project.business.create');
 Route::post('project/business-create', [App\Http\Controllers\ProjectController::class,'BusinessStore'])->name('project.business.store');
+Route::get('project/manufacturing-create', [App\Http\Controllers\ProjectController::class,'ManufacturingCreate'])->name('project.Manufacturing.create');
+Route::post('project/manufacturing-create', [App\Http\Controllers\ProjectController::class,'ManufacturingStore'])->name('project.Manufacturing.store');
+
+Route::get('project/{id}/business-create', [App\Http\Controllers\UserProjectController::class,'BusinessCreate'])->name('user.project.business.create');
+Route::post('project/{id}/business-create', [App\Http\Controllers\UserProjectController::class,'BusinessStore'])->name('user.project.business.store');
+Route::get('project/{id}/manufacturing-create', [App\Http\Controllers\UserProjectController::class,'ManufacturingCreate'])->name('user.project.Manufacturing.create');
+Route::post('project/{id}/manufacturing-create', [App\Http\Controllers\UserProjectController::class,'ManufacturingStore'])->name('user.project.Manufacturing.store');
 
 Route::get('project/business-appendix', [App\Http\Controllers\ProjectController::class,'BusinessAppendix'])->name('project.business.appendix');
 Route::get('project/manufacturing-appendix', [App\Http\Controllers\ProjectController::class,'ManufacturingAppendix'])->name('project.manufacturing.appendix');
-Route::get('project/manufacturing-create', [App\Http\Controllers\ProjectController::class,'ManufacturingCreate'])->name('project.Manufacturing.create');
-Route::post('project/manufacturing-create', [App\Http\Controllers\ProjectController::class,'ManufacturingStore'])->name('project.Manufacturing.store');
+
 
 //廠商問卷查看
 Route::get('customer/{id}/surveys', [App\Http\Controllers\CustomerSurveyController::class , 'index'])->name('cust.surveys.index');

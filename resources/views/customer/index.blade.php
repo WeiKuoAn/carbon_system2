@@ -104,7 +104,7 @@
                                                     </a>
 
                                                     <div class="dropdown-menu dropdown-menu-end">
-                                                        <a class="dropdown-item" href="#">廠商專案</a>
+                                                        <a class="dropdown-item" href="{{ route('user.project.business.create',$data->user_id) }}">廠商專案</a>
                                                         {{-- <a class="dropdown-item" href="{{ route('cust.surveys.index',$data->id) }}">問卷查看</a>
                                                         <a class="dropdown-item" href="#">盤查紀錄</a>
                                                         <a class="dropdown-item" href="{{ route('process_emission.index',$data->id) }}">盤查熱點分析</a>
