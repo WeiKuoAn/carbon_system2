@@ -13,7 +13,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        $datas = User::get();
+        $datas = User::where('group_id','1')->get();
         return view('user.index')->with('datas', $datas);
     }
 
