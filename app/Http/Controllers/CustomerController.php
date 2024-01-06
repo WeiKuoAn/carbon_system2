@@ -3,9 +3,13 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Customer;
+use App\Models\CustData;
 use App\Models\IndustryCategory;
 use App\Models\Branch;
+use App\Models\User;
+use App\Models\CustProject;
+use Illuminate\Support\Facades\Hash;
+use Carbon\Carbon;
 
 class CustomerController extends Controller
 {
@@ -13,7 +17,7 @@ class CustomerController extends Controller
     {
         if ($request->ajax()) {
             $output = "";
-            $cust = Customer::where('id',  $request->cust_id)->first();
+            $cust = CustData::where('id',  $request->cust_id)->first();
 
             if($cust){
                 return Response($cust);
@@ -27,94 +31,57 @@ class CustomerController extends Controller
      */
     public function index()
     {
-        $datas = Customer::paginate(50);
+        $datas = CustData::paginate(50);
         return view('customer.index')->with('datas', $datas);
     }
 
     public function Create()
     {
-        $categories = IndustryCategory::get();
-        return view('customer.create')->with('categories', $categories);
+        return view('customer.create');
     }
 
     /**
      * Show the form for creating a new resource.
      */
-    public function BusinessCreate()
-    {
-        $categories = IndustryCategory::get();
-        return view('customer.business-create')->with('categories', $categories);
-    }
     
-    public function BusinessAppendix()
-    {
-        return view('customer.business-appendix');
-    }
-
-    public function ManufacturingAppendix()
-    {
-        return view('customer.manufacturing-appendix');
-    }
-
-    public function Business1Create()
-    {
-        $categories = IndustryCategory::get();
-        return view('customer.business1-create')->with('categories', $categories);
-    }
-
-    public function ManufacturingCreate()
-    {
-        $categories = IndustryCategory::get();
-        return view('customer.manufacturing-create')->with('categories', $categories);
-    }
 
     /**
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
     {
-        // dd('1');
-         // 驗證輸入資料
-         $validated = $request->validate([
-            'name' => 'required|string|max:20',
-            'industry_id' => 'required|string|max:10',
-            'primary_contact_name' => 'required|string|max:10',
-            'primary_contact_phone' => 'required|string|max:20',
-            'primary_contact_email' => 'required|string|max:100',
-            'contact_job' => 'required|string|max:20',
-            'county' => 'required|string',
-            'district' => 'required|string',
-            'address' => 'required|string',
-            'business_registration_no' => 'required|string|max:100',
-            'established_date' => 'nullable|date',
-            'operational_status' => 'required|in:0,1',
-            'company_scale' => 'required|in:0,1,2,3',
-            'stock_status' => 'required|in:0,1,2',
-            'sales_orientation' => 'required|string|max:10',
-            'sales_region' => 'required|string|max:10',
-            'permission_status' => 'required|in:0,1,2',
-            'note' => 'nullable|string',
-        ]);
+        //新增帳號
+        $user = new User;
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->password = Hash::make($request->password);
+        $user->level = '2';
+        $user->group_id = '2';
+        $user->save();
 
-        // 儲存資料
-        $customer = Customer::create($validated);
+        $user_data = User::orderby('id', 'DESC')->first();
 
-        $customer_data = Customer::orderby('id', 'desc')->first();
-        
-        $branch = Branch::where('customer_id',$customer_data->id)->first();
-        if(!isset($branch))
-        {
-            $branch_data = new Branch();
-            $branch_data->customer_id = $customer_data->id;
-            $branch_data->name = '總公司';
-            $branch_data->contact_name = $request->primary_contact_name;
-            $branch_data->contact_phone = $request->primary_contact_phone;
-            $branch_data->contact_email = $request->primary_contact_email;
-            $branch_data->address = $request->county.$request->district.$request->address;
-            $branch_data->save();
-        }
+        //新增客戶資料
+        $cust_data = new CustData;
+        $cust_data->user_id = $user_data->id;
+        $cust_data->contact_name = $request->contact_name;
+        $cust_data->contact_job = $request->contact_job;
+        $cust_data->contact_email = $request->contact_email;
+        $cust_data->contact_phone = $request->contact_phone;
+        $cust_data->registration_no = $request->registration_no;
+        $cust_data->county = $request->county;
+        $cust_data->district = $request->district;
+        $cust_data->address = $request->address;
+        $cust_data->save();
 
-        // 重定向到客戶列表頁面或其他適當位置
+        //新增客戶計畫案內容
+        $project = new CustProject;
+        $project->year = Carbon::now()->year;
+        $project->user_id = $user_data->id;
+        $project->type = $request->type;
+        $project->nas_link = $request->nas_link;
+        $project->save();
+
         return redirect()->route('customer.create')->with('success', '客戶已成功新增');
     }
 

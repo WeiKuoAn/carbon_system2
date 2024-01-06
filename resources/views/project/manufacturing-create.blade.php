@@ -17,7 +17,22 @@
     <body data-layout="horizontal">
     @endsection
     @section('content')
-
+    <!--  successfully modal  -->
+    <div id="success-btn" class="modal fade" tabindex="-1" aria-labelledby="success-btnLabel" aria-hidden="true"
+    data-bs-scroll="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="text-center">
+                    <i class="bx bx-check-circle display-1 text-success"></i>
+                    <h4 class="mt-3">新增製造類資料成功！</h4>
+                </div>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+    <form action="{{ route('project.Manufacturing.store') }}" method="POST">
+    @csrf
     <div class="row">
         <div class="col-lg-12">
             <div class="row">
@@ -31,67 +46,68 @@
                                 <div class="col-md-12">
                                     <div class="mb-4">
                                         <label class="form-label" for="AddNew-Username"><b>廠商名稱</b></label>
-                                        <input type="text" class="form-control" name="name" value="錚典科技國際有限公司" disabled>
+                                        <input type="text" class="form-control required-input" value="{{ $project->user_data->name }}" disabled>
                                     </div>
                                 </div>
                                 <div class="col-md-12">
                                     <div class="mb-4">
-                                        <label class="form-label" for="AddNew-Phone"><b>前一年度營業額</b>（申請計畫使用）</label>
-                                        <input type="number" class="form-control" placeholder="前一年度營業額">
+                                        <label class="form-label" for="AddNew-Phone"><b>去年整年度營業額（單位：元/新台幣）</b></label>
+                                        <input type="number" class="form-control required-input" name="last_year_revenue" @if(isset($project)) value="{{ $project->last_year_revenue }}" @else value="0" @endif>
                                     </div>
                                 </div>
+                                {{-- {{ dd($project->cust_data)}} --}}
                                 <div class="col-md-6 mb-3">
                                     <label class="form-label" for="AddNew-Phone"><b>公司工廠登記地址</b>(若有超過一間工廠，請選一間工廠作為標的)</label>
                                     <div class="row twzipcode mb-2">
-                                        <select data-role="county" required ></select>
-                                        <select data-role="district" required></select>
-                                        <select data-role="zipcode" required></select>
+                                        <select data-role="county" data-value="{{ $project->cust_data->county }}" selected></select>
+                                        <select data-role="district"  data-value="{{ $project->cust_data->district }}"></select>
+                                        <select data-role="zipcode"  data-value="{{ $project->cust_data->zipcode }}"></select>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <label class="form-label" for="AddNew-Phone">&nbsp;</label>
-                                    <input type="text" class="form-control" name="address" value="" required>
+                                    <input type="text" class="form-control" name="address" value="{{ $project->cust_data->address }}" >
                                 </div>
                                 <div class="col-md-12">
                                     <div class="mb-4">
                                         <label class="form-label" for="AddNew-Phone"><b>近一年平均投保人數</b>（申請計畫使用）</label>
-                                        <input type="number" class="form-control" placeholder="近一年平均投保人數">
+                                        <input type="number" class="form-control required-input" name="Insured_employees" placeholder="近一年平均投保人數" @if(isset($project)) value="{{ $project->insured_employees }}" @endif>
                                     </div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class="mb-4">
                                         <label class="form-label" for="AddNew-Phone"><b>最近一期勞保投保人數</b>（申請計畫使用）</label>
-                                        <input type="number" class="form-control"  placeholder="男生投保人數">
+                                        <input type="number" class="form-control required-input" name="insurance_male" id="insurance_male"  placeholder="男生投保人數" @if(isset($project)) value="{{ $project->insurance_male }}" @endif>
                                     </div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class="mb-4">
                                         <label class="form-label" for="AddNew-Phone"><b>&nbsp;</b></label>
-                                        <input type="number" class="form-control" placeholder="女生投保人數">
+                                        <input type="number" class="form-control required-input" name="insurance_female" id="insurance_female" placeholder="女生投保人數" @if(isset($project)) value="{{ $project->insurance_female }}" @endif>
                                     </div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class="mb-4">
                                         <label class="form-label" for="AddNew-Phone"><b>&nbsp;</b></label>
-                                        <input type="number" class="form-control" placeholder="總投保人數" readonly>
+                                        <input type="number" class="form-control required-input" placeholder="總投保人數" name="insurance_total"  id="insurance_total" @if(isset($project)) value="{{ $project->insurance_total }}" @endif readonly>
                                     </div>
                                 </div>
                                 <div class="col-md-4">
                                     <label class="form-label" for="AddNew-Username"><b>公司主要聯繫窗口</b>（用於與錚典對接）</label>
                                     <div class="mb-4">
-                                        <input type="text" class="form-control" name="name" value="" placeholder="姓名">
+                                        <input type="text" class="form-control required-input" name="main_contact_name" placeholder="姓名"  @if(isset($project)) value="{{ $project->contact_name }}" @endif>
                                     </div>
                                 </div>
                                 <div class="col-md-4">
                                     <label class="form-label" for="AddNew-Username">&nbsp;</label>
                                     <div class="mb-4">
-                                        <input type="text" class="form-control" name="name" value="" placeholder="信箱">
+                                        <input type="email" class="form-control required-input" name="main_contact_email" placeholder="信箱"  @if(isset($project)) value="{{ $project->contact_email }}" @endif>
                                     </div>
                                 </div>
                                 <div class="col-md-4">
                                     <label class="form-label" for="AddNew-Username">&nbsp;</label>
                                     <div class="mb-4">
-                                        <input type="text" class="form-control" name="name" value="" placeholder="電話">
+                                        <input type="text" class="form-control required-input" name="main_contact_phone" placeholder="電話"  @if(isset($project)) value="{{ $project->contact_phone }}" @endif>
                                     </div>
                                 </div>
                                 <hr>
@@ -144,7 +160,7 @@
                                     <label for="example-search-input" class="col-form-label"><b>附件上傳</b>（EX：公司介紹、產品簡報）</label>
                                     <div class="pl-5">
                                         <div class="alert alert-primary" role="alert">
-                                            上傳網址： <a href="javascript: void(0);" class="alert-link">請點擊我</a>
+                                            上傳網址： <a href="{{ $project->nas_link }}" target="_blank" class="alert-link">請點擊我</a>
                                         </div>
                                     </div>
                                 </div>
@@ -164,7 +180,7 @@
                                 <div class="col-md-12">
                                     <div class="mb-4">
                                         <label class="form-label" for="AddNew-Phone"><b>公司基本介紹</b></label>
-                                        <textarea  class="form-control" name="note" rows="4"></textarea>
+                                        <textarea  class="form-control required-input" name="introduce" rows="4">@if(isset($cust_data)){{ $cust_data->introduce }}@endif</textarea>
                                     </div>
                                 </div>
                                 <div class="col-md-12">
@@ -173,7 +189,7 @@
                                         <div class="col-md-12 appendix">
                                             <div class="pl-5">
                                                 <div class="alert alert-primary" role="alert">
-                                                    上傳網址： <a href="javascript: void(0);" class="alert-link">請點擊我</a>
+                                                    上傳網址： <a href="{{ $project->nas_link }}" target="_blank" class="alert-link">請點擊我</a>
                                                 </div>
                                             </div>
                                         </div>
@@ -182,13 +198,13 @@
                                 <div class="col-md-12">
                                     <div class="mb-4">
                                         <label class="form-label" for="AddNew-Phone"><b>主要客戶與市場</b>(如過往公司有介紹簡報有提到相關內容也可提供)</label>
-                                        <textarea  class="form-control" name="note" rows="4"></textarea>
+                                        <textarea  class="form-control required-input" name="clients_market" rows="4">{{ $project->clients_market }}</textarea>
                                     </div>
                                 </div>
                                 <div class="col-md-12">
                                     <div class="mb-4">
                                         <label class="form-label" for="AddNew-Phone"><b>公司產品出口情形/比例</b></label>
-                                        <textarea  class="form-control" name="note" rows="4"></textarea>
+                                        <textarea  class="form-control required-input" name="export_status" rows="4">{{ $project->export_status }}</textarea>
                                     </div>
                                 </div>
                                 <div class="col-md-4">
@@ -219,20 +235,37 @@
                                                     </tr>
                                                 </thead>
                                                 <tbody valign="center" align="center">
-                                                     @for ($i = 0; $i < 1; $i++)
-                                                        <tr id="row-{{ $i }}" valign="middle" >
-                                                            <td>{{$i+1}}</td>
-                                                            <td width="30%">
-                                                                <input id="pay_date-{{ $i }}" class="mobile form-control" type="text" name="pay_data_date[]" value="" required>
-                                                            </td>
-                                                            <td>
-                                                                <input id="pay_date-{{ $i }}" class="mobile form-control" type="text" name="pay_data_date[]" value="" required>
-                                                            </td>
-                                                            <td>
-                                                                <button class="mobile btn btn-danger del-row" alt="{{ $i }}" type="button" name="button" onclick="del_row(this)">刪除</button>
-                                                            </td>
-                                                        </tr>
-                                                @endfor
+                                                    @if(count($project->manufacture_norm_datas)>0)
+                                                            @foreach ($project->manufacture_norm_datas as $key=>$manufacture_norm_data)
+                                                            <tr id="row-{{ $key }}" valign="middle" >
+                                                                <td>{{$key+1}}</td>
+                                                                <td width="30%">
+                                                                    <input id="pay_date-{{ $key }}" class="mobile form-control" type="text" name="norm_names[]" value="{{ $manufacture_norm_data->name }}">
+                                                                </td>
+                                                                <td>
+                                                                    <input id="pay_date-{{ $key }}" class="mobile form-control" type="text" name="norm_context[]" value="{{ $manufacture_norm_data->context }}">
+                                                                </td>
+                                                                <td>
+                                                                    <button class="mobile btn btn-danger del-row" alt="{{ $key }}" type="button" name="button" onclick="del_row(this)">刪除</button>
+                                                                </td>
+                                                            </tr>
+                                                            @endforeach
+                                                    @else
+                                                        @for ($i = 0; $i < 1; $i++)
+                                                            <tr id="row-{{ $i }}" valign="middle" >
+                                                                <td>{{$i+1}}</td>
+                                                                <td width="30%">
+                                                                    <input id="pay_date-{{ $i }}" class="mobile form-control" type="text" name="norm_names[]" value="">
+                                                                </td>
+                                                                <td>
+                                                                    <input id="pay_date-{{ $i }}" class="mobile form-control" type="text" name="norm_context[]" value="">
+                                                                </td>
+                                                                <td>
+                                                                    <button class="mobile btn btn-danger del-row" alt="{{ $i }}" type="button" name="button" onclick="del_row(this)">刪除</button>
+                                                                </td>
+                                                            </tr>
+                                                        @endfor
+                                                    @endif
                                                 </tbody>
                                             </table>
                                         </div> <!-- end .table-responsive -->
@@ -251,9 +284,9 @@
                                 <hr class="mt-4 mb-4">
 
                                 <div class="col-md-12">
-                                    <h5 class="text-uppercase bg-light p-2 mt-0 mb-1">公司對外的網站或社群網址-若有不只一個，請都附上。若無，請寫「無」即可</h5>
                                     <div class="row">
                                         <div class="col-md-12">
+                                            <h5 class="text-uppercase bg-light p-2 mt-0 mb-1">公司對外的網站或社群網址-若有不只一個，請都附上。若無，請寫「無」即可</h5>
                                             <div class="table-responsive mt-1">
                                                 <table id="socail" class="table socail-list">
                                                     <thead>
@@ -265,25 +298,47 @@
                                                         </tr>
                                                     </thead>
                                                     <tbody valign="center" align="center">
-                                                         @for ($i = 0; $i < 1; $i++)
-                                                            <tr id="row-{{ $i }}" >
-                                                                <td>{{$i+1}}</td>
-                                                                <td>
-                                                                    <select id="gdpaper_id_${socailRowCount}" alt="{{ $i }}" class="mobile form-select" name="gdpaper_ids[]">
-                                                                        <option value="" selected>請選擇...</option>
-                                                                        <option value="0">網站</option>
-                                                                        <option value="1">社群</option>
-                                                                        <option value="2">其他</option>
-                                                                    </select>
-                                                                </td>
-                                                                <td>
-                                                                    <input id="pay_date-{{ $i }}" class="mobile form-control" type="text" name="pay_data_date[]" value="" required>
-                                                                </td>
-                                                                <td>
-                                                                    <button class="mobile btn btn-danger del-row" alt="{{ $i }}" type="button" name="button" onclick="del_row(this)">刪除</button>
-                                                                </td>
-                                                            </tr>
-                                                    @endfor
+                                                        @if(count($project->socail_datas)>0)
+                                                            @foreach ($project->socail_datas as $key=>$socail_data)
+                                                                <tr id="row-{{ $key }}" >
+                                                                    <td>{{$key+1}}</td>
+                                                                    <td>
+                                                                        <select id="gdpaper_id" alt="{{ $key }}" class="mobile form-select" name="socail_types[]">
+                                                                            <option value="" selected>請選擇...</option>
+                                                                            <option value="0" @if($socail_data->type == '0') selected @endif>網站</option>
+                                                                            <option value="1" @if($socail_data->type == '1') selected @endif>社群</option>
+                                                                            <option value="2" @if($socail_data->type == '2') selected @endif>其他</option>
+                                                                        </select>
+                                                                    </td>
+                                                                    <td>
+                                                                        <input id="pay_date-{{ $key }}" class="mobile form-control required-input" type="text" name="socail_contexts[]" value="{{ $socail_data->context }}">
+                                                                    </td>
+                                                                    <td>
+                                                                        <button class="mobile btn btn-danger del-row" alt="{{ $key }}" type="button" name="button" onclick="del_row(this)">刪除</button>
+                                                                    </td>
+                                                                </tr>
+                                                            @endforeach
+                                                        @else
+                                                            @for ($i = 0; $i < 1; $i++)
+                                                                <tr id="row-{{ $i }}" >
+                                                                    <td>{{$i+1}}</td>
+                                                                    <td>
+                                                                        <select id="gdpaper_id" alt="{{ $i }}" class="mobile form-select" name="socail_types[]">
+                                                                            <option value="" selected>請選擇...</option>
+                                                                            <option value="0">網站</option>
+                                                                            <option value="1">社群</option>
+                                                                            <option value="2">其他</option>
+                                                                        </select>
+                                                                    </td>
+                                                                    <td>
+                                                                        <input id="pay_date-{{ $i }}" class="mobile form-control required-input" type="text" name="socail_contexts[]" value="">
+                                                                    </td>
+                                                                    <td>
+                                                                        <button class="mobile btn btn-danger del-row" alt="{{ $i }}" type="button" name="button" onclick="del_row(this)">刪除</button>
+                                                                    </td>
+                                                                </tr>
+                                                            @endfor
+                                                        @endif
                                                     </tbody>
                                                 </table>
                                             </div> <!-- end .table-responsive -->
@@ -320,7 +375,7 @@
                                                     <input type="text" class="form-control" name="name" value=""  placeholder="年份">
                                                 </div>
                                                 <div class="col-md-2">
-                                                    <select class="form-select"  id="create_scope_id" name="scope_id" required >
+                                                    <select class="form-select"  id="create_scope_id" name="scope_id" >
                                                         <option value="" selected>選擇狀態</option>
                                                         <option value="">已通過</option>
                                                         <option value="">申請中</option>
@@ -354,35 +409,35 @@
                                 <h5 class="text-uppercase bg-light p-2 mt-0 mb-3">計畫主持人資料</h5>
                                 <div class="col-md-4">
                                     <label class="form-label" for="AddNew-Phone"><b>姓名</b></label>
-                                    <input type="text" class="form-control" name="name" value="">
+                                    <input type="text" class="form-control required-input" name="host_name" @if(isset($project_host_data)) value="{{ $project_host_data->name }}" @endif>
                                 </div>
                                 <div class="col-md-4">
                                     <label class="form-label" for="AddNew-Username"><b>部門</b></label>
-                                    <input type="text" class="form-control" name="name" value="">
+                                    <input type="text" class="form-control required-input" name="host_department" @if(isset($project_host_data)) value="{{ $project_host_data->department }}" @endif>
                                 </div>
                                 <div class="col-md-4">
                                     <label class="form-label" for="AddNew-Username"><b>職稱</b></label>
-                                    <input type="text" class="form-control" name="name" value="" >
+                                    <input type="text" class="form-control required-input" name="host_job" @if(isset($project_host_data)) value="{{ $project_host_data->job }}" @endif >
                                 </div>
                                 <div class="col-md-4 mt-3">
                                     <label class="form-label" for="AddNew-Username"><b>工作內容</b></label>
-                                    <input type="text" class="form-control" name="name" value="">
+                                    <input type="text" class="form-control required-input" name="host_context" @if(isset($project_host_data)) value="{{ $project_host_data->context }}" @endif>
                                 </div>
                                 <div class="col-md-4 mt-3">
                                     <label class="form-label" for="AddNew-Username"><b>專長/經歷</b></label>
-                                    <input type="text" class="form-control" name="name" value="">
+                                    <input type="text" class="form-control required-input" name="host_experience" @if(isset($project_host_data)) value="{{ $project_host_data->experience }}" @endif >
                                 </div>
                                 <div class="col-md-4 mt-3">
                                     <label class="form-label" for="AddNew-Username"><b>電話(含分機)</b></label>
-                                    <input type="text" class="form-control" name="name" value="" >
+                                    <input type="text" class="form-control required-input" name="host_mobile" @if(isset($project_host_data)) value="{{ $project_host_data->mobile }}" @endif >
                                 </div>
                                 <div class="col-md-4 mt-3">
                                     <label class="form-label" for="AddNew-Username"><b>手機</b></label>
-                                    <input type="text" class="form-control" name="name" value="">
+                                    <input type="text" class="form-control required-input" name="host_phone" @if(isset($project_host_data)) value="{{ $project_host_data->phone }}" @endif>
                                 </div>
                                 <div class="col-md-4 mt-3">
                                     <label class="form-label" for="AddNew-Username"><b>信箱</b></label>
-                                    <input type="text" class="form-control" name="name" value="">
+                                    <input type="text" class="form-control required-input" name="host_email" @if(isset($project_host_data)) value="{{ $project_host_data->email }}" @endif >
                                 </div>
 
                                 <hr class="mt-4 mb-4">
@@ -390,35 +445,36 @@
                                 <h5 class="text-uppercase bg-light p-2 mt-0 mb-3">計畫聯絡人資料</h5>
                                 <div class="col-md-4">
                                     <label class="form-label" for="AddNew-Phone"><b>姓名</b></label>
-                                    <input type="text" class="form-control" name="name" value="">
+                                    <input type="text" class="form-control required-input" name="contact_name" @if(isset($project_contact_data)) value="{{ $project_contact_data->name }}" @endif>
                                 </div>
                                 <div class="col-md-4">
                                     <label class="form-label" for="AddNew-Username"><b>部門</b></label>
-                                    <input type="text" class="form-control" name="name" value="">
+                                    <input type="text" class="form-control required-input" name="contact_department" @if(isset($project_contact_data)) value="{{ $project_contact_data->department }}" @endif>
                                 </div>
                                 <div class="col-md-4">
                                     <label class="form-label" for="AddNew-Username"><b>職稱</b></label>
-                                    <input type="text" class="form-control" name="name" value="" >
+                                    <input type="text" class="form-control required-input" name="contact_job" @if(isset($project_contact_data)) value="{{ $project_contact_data->job }}" @endif >
                                 </div>
                                 <div class="col-md-4 mt-3">
                                     <label class="form-label" for="AddNew-Username"><b>工作內容</b></label>
-                                    <input type="text" class="form-control" name="name" value="">
+                                    <input type="text" class="form-control required-input" name="contact_context" @if(isset($project_contact_data)) value="{{ $project_contact_data->context }}" @endif>
                                 </div>
                                 <div class="col-md-4 mt-3">
                                     <label class="form-label" for="AddNew-Username"><b>專長/經歷</b></label>
-                                    <input type="text" class="form-control" name="name" value="">
+                                    <input type="text" class="form-control required-input" name="contact_experience" @if(isset($project_contact_data)) value="{{ $project_contact_data->experience }}" @endif >
                                 </div>
                                 <div class="col-md-4 mt-3">
                                     <label class="form-label" for="AddNew-Username"><b>電話(含分機)</b></label>
-                                    <input type="text" class="form-control" name="name" value="" >
+                                    <input type="text" class="form-control required-input" name="contact_mobile" @if(isset($project_contact_data)) value="{{ $project_contact_data->mobile }}" @endif >
                                 </div>
                                 <div class="col-md-4 mt-3">
                                     <label class="form-label" for="AddNew-Username"><b>手機</b></label>
-                                    <input type="text" class="form-control" name="name" value="">
+                                    <input type="text" class="form-control required-input" name="contact_phone" @if(isset($project_contact_data)) value="{{ $project_contact_data->phone }}" @endif>
                                 </div>
+
                                 <div class="col-md-4 mt-3">
                                     <label class="form-label" for="AddNew-Username"><b>信箱</b></label>
-                                    <input type="text" class="form-control" name="name" value="">
+                                    <input type="text" class="form-control required-input" name="contact_email" @if(isset($project_contact_data)) value="{{ $project_contact_data->email }}" @endif >
                                 </div>
 
                                 <hr class="mt-4 mb-4">
@@ -441,29 +497,55 @@
                                                         </tr>
                                                     </thead>
                                                     <tbody valign="center" align="center">
-                                                         @for ($i = 0; $i < 1; $i++)
-                                                            <tr id="row-{{ $i }}" >
-                                                                <td>{{$i+1}}</td>
-                                                                <td>
-                                                                    <input id="pay_date-{{ $i }}" class="mobile form-control" type="text" name="pay_data_date[]" value="" required>
-                                                                </td>
-                                                                <td>
-                                                                    <input id="pay_date-{{ $i }}" class="mobile form-control" type="text" name="pay_data_date[]" value="" required>
-                                                                </td>
-                                                                <td>
-                                                                <input id="pay_price-{{ $i }}" class="mobile form-control" type="text" name="pay_price[]" value="" required>
-                                                                </td>
-                                                                <td>
-                                                                    <input id="pay_price-{{ $i }}" class="mobile form-control" type="text" name="pay_price[]" value="" required>
-                                                                </td>
-                                                                <td>
-                                                                    <input id="pay_price-{{ $i }}" class="mobile form-control" type="text" name="pay_price[]" value="" required>
-                                                                </td>
-                                                                <td>
-                                                                    <button class="mobile btn btn-danger del-row" alt="{{ $i }}" type="button" name="button" onclick="del_row(this)">刪除</button>
-                                                                </td>
-                                                            </tr>
-                                                    @endfor
+                                                        @if(count($project->personnel_datas)>0)
+                                                            @foreach ($project->personnel_datas as $key=>$personnel_data)
+                                                                <tr id="row-{{ $key }}" >
+                                                                    <td>{{$key+1}}</td>
+                                                                    <td>
+                                                                        <input id="pay_date-{{ $key }}" class="mobile form-control required-input" type="text" name="personnel_names[]" value="{{ $personnel_data->name }}">
+                                                                    </td>
+                                                                    <td>
+                                                                        <input id="pay_date-{{ $key }}" class="mobile form-control required-input" type="text" name="personnel_departments[]" value="{{ $personnel_data->department }}">
+                                                                    </td>
+                                                                    <td>
+                                                                    <input id="pay_price-{{ $key }}" class="mobile form-control required-input" type="text" name="personnel_jobs[]" value="{{ $personnel_data->job }}">
+                                                                    </td>
+                                                                    <td>
+                                                                        <input id="pay_price-{{ $key }}" class="mobile form-control required-input" type="text" name="personnel_contexts[]" value="{{ $personnel_data->context }}">
+                                                                    </td>
+                                                                    <td>
+                                                                        <input id="pay_price-{{ $key }}" class="mobile form-control required-input" type="text" name="personnel_experiences[]" value="{{ $personnel_data->experience }}">
+                                                                    </td>
+                                                                    <td>
+                                                                        <button class="mobile btn btn-danger del-row" alt="{{ $key }}" type="button" name="button" onclick="del_row(this)">刪除</button>
+                                                                    </td>
+                                                                </tr>
+                                                            @endforeach
+                                                        @else
+                                                            @for ($i = 0; $i < 1; $i++)
+                                                                <tr id="row-{{ $i }}" >
+                                                                    <td>{{$i+1}}</td>
+                                                                    <td>
+                                                                        <input id="pay_date-{{ $i }}" class="mobile form-control required-input" type="text" name="personnel_names[]" value="">
+                                                                    </td>
+                                                                    <td>
+                                                                        <input id="pay_date-{{ $i }}" class="mobile form-control required-input" type="text" name="personnel_departments[]" value="">
+                                                                    </td>
+                                                                    <td>
+                                                                    <input id="pay_price-{{ $i }}" class="mobile form-control required-input" type="text" name="personnel_jobs[]" value="">
+                                                                    </td>
+                                                                    <td>
+                                                                        <input id="pay_price-{{ $i }}" class="mobile form-control required-input" type="text" name="personnel_contexts[]" value="">
+                                                                    </td>
+                                                                    <td>
+                                                                        <input id="pay_price-{{ $key }}" class="mobile form-control required-input" type="text" name="personnel_s[]" value="">
+                                                                    </td>
+                                                                    <td>
+                                                                        <button class="mobile btn btn-danger del-row" alt="{{ $i }}" type="button" name="button" onclick="del_row(this)">刪除</button>
+                                                                    </td>
+                                                                </tr>
+                                                            @endfor
+                                                        @endif
                                                     </tbody>
                                                 </table>
                                             </div> <!-- end .table-responsive -->
@@ -506,16 +588,29 @@
                                                         </tr>
                                                     </thead>
                                                     <tbody  align="center">
-                                                        @for ($i = 0; $i < 1; $i++)
-                                                            <tr id="row-{{ $i }}" valign="middle" >
-                                                                <td width="90%">
-                                                                    <textarea  class="form-control" name="note" rows="2"></textarea>
-                                                                </td>
-                                                                <td valign="center">
-                                                                    <button class="mobile btn btn-danger del-row" alt="{{ $i }}" type="button" name="button" onclick="del_row(this)">刪除</button>
-                                                                </td>
-                                                            </tr>
-                                                        @endfor
+                                                        @if(count($project->manufacture_need_datas)>0)
+                                                            @foreach ($project->manufacture_need_datas as $key=>$manufacture_need_data)
+                                                                <tr id="row-{{ $key }}" valign="middle" >
+                                                                    <td width="90%">
+                                                                        <textarea  class="form-control" name="need_contexts[]" rows="2">{{ $manufacture_need_data->context }}</textarea>
+                                                                    </td>
+                                                                    <td>
+                                                                          <button class="mobile btn btn-danger del-row" alt="{{ $key }}" type="button" name="button" onclick="del_row(this)">刪除</button>
+                                                                     </td>
+                                                                  </tr>
+                                                             @endforeach
+                                                        @else
+                                                            @for ($i = 0; $i < 1; $i++)
+                                                                <tr id="row-{{ $i }}" valign="middle" >
+                                                                    <td width="90%">
+                                                                        <textarea  class="form-control" name="need_contexts[]" rows="2"></textarea>
+                                                                    </td>
+                                                                    <td valign="center">
+                                                                        <button class="mobile btn btn-danger del-row" alt="{{ $i }}" type="button" name="button" onclick="del_row(this)">刪除</button>
+                                                                    </td>
+                                                                </tr>
+                                                            @endfor
+                                                        @endif
                                                     </tbody>
                                                 </table>
                                             </div> <!-- end .table-responsive -->
@@ -547,34 +642,65 @@
                                                     </tr>
                                                 </thead>
                                                 <tbody valign="center" align="center">
-                                                     @for ($i = 0; $i < 1; $i++)
-                                                        <tr id="row-{{ $i }}" >
-                                                            <td>
-                                                                <input id="pay_date-{{ $i }}" class="mobile form-control" type="text" name="pay_data_date[]" value="" required>
-                                                            </td>
-                                                            <td>
-                                                                <input id="pay_date-{{ $i }}" class="mobile form-control" type="text" name="pay_data_date[]" value="" required>
-                                                            </td>
-                                                            <td>
-                                                                <input id="pay_date-{{ $i }}" class="mobile form-control" type="text" name="pay_data_date[]" value="" required>
-                                                            </td>
-                                                            <td>
-                                                                <input id="pay_date-{{ $i }}" class="mobile form-control" type="text" name="pay_data_date[]" value="" required>
-                                                            </td>
-                                                            <td>
-                                                                <input id="pay_date-{{ $i }}" class="mobile form-control" type="text" name="pay_data_date[]" value="" required>
-                                                            </td>
-                                                            <td>
-                                                                <input id="pay_date-{{ $i }}" class="mobile form-control" type="text" name="pay_data_date[]" value="" required>
-                                                            </td>
-                                                            <td>
-                                                                <input id="pay_date-{{ $i }}" class="mobile form-control" type="text" name="pay_data_date[]" value="" required>
-                                                            </td>
-                                                            <td>
-                                                                <button class="mobile btn btn-danger del-row" alt="{{ $i }}" type="button" name="button" onclick="del_row(this)">刪除</button>
-                                                            </td>
-                                                        </tr>
-                                                @endfor
+                                                    @if(count($project->manufacture_expected_datas)>0)
+                                                        @foreach ($project->manufacture_expected_datas as $key=>$manufacture_expected_data)
+                                                            <tr id="row-{{ $key }}" valign="middle" >
+                                                                <td>
+                                                                    <input id="pay_date-{{ $key }}" class="mobile form-control" type="text" name="expected_names[]" value="{{ $manufacture_expected_data->name }}">
+                                                                </td>
+                                                                <td>
+                                                                    <input id="pay_date-{{ $key }}" class="mobile form-control" type="text" name="expected_brands[]" value="{{ $manufacture_expected_data->brand }}">
+                                                                </td>
+                                                                <td>
+                                                                    <input id="pay_date-{{ $key }}" class="mobile form-control" type="text" name="expected_models[]" value="{{ $manufacture_expected_data->model }}">
+                                                                </td>
+                                                                <td>
+                                                                    <input id="pay_date-{{ $key }}" class="mobile form-control" type="text" name="expected_purposes[]" value="{{ $manufacture_expected_data->purpose }}">
+                                                                </td>
+                                                                <td>
+                                                                    <input id="pay_date-{{ $key }}" class="mobile form-control" type="text" name="expected_costs[]" value="{{ $manufacture_expected_data->cost }}">
+                                                                </td>
+                                                                <td>
+                                                                    <input id="pay_date-{{ $key }}" class="mobile form-control" type="text" name="expected_procurements[]" value="{{ $manufacture_expected_data->procurement }}">
+                                                                </td>
+                                                                <td>
+                                                                    <input id="pay_date-{{ $key }}" class="mobile form-control" type="text" name="expected_origins[]" value="{{ $manufacture_expected_data->origin }}">
+                                                                </td>
+                                                                <td>
+                                                                    <button class="mobile btn btn-danger del-row" alt="{{ $key }}" type="button" name="button" onclick="del_row(this)">刪除</button>
+                                                                </td>
+                                                            </tr>
+                                                        @endforeach
+                                                    @else
+                                                        @for ($i = 0; $i < 1; $i++)
+                                                            <tr id="row-{{ $i }}" >
+                                                                <td>
+                                                                    <input id="pay_date-{{ $i }}" class="mobile form-control" type="text" name="expected_names[]" value="">
+                                                                </td>
+                                                                <td>
+                                                                    <input id="pay_date-{{ $i }}" class="mobile form-control" type="text" name="expected_brands[]" value="">
+                                                                </td>
+                                                                <td>
+                                                                    <input id="pay_date-{{ $i }}" class="mobile form-control" type="text" name="expected_models[]" value="">
+                                                                </td>
+                                                                <td>
+                                                                    <input id="pay_date-{{ $i }}" class="mobile form-control" type="text" name="expected_purposes[]" value="">
+                                                                </td>
+                                                                <td>
+                                                                    <input id="pay_date-{{ $i }}" class="mobile form-control" type="text" name="expected_costs[]" value="">
+                                                                </td>
+                                                                <td>
+                                                                    <input id="pay_date-{{ $i }}" class="mobile form-control" type="text" name="expected_procurements[]" value="">
+                                                                </td>
+                                                                <td>
+                                                                    <input id="pay_date-{{ $i }}" class="mobile form-control" type="text" name="expected_origins[]" value="">
+                                                                </td>
+                                                                <td>
+                                                                    <button class="mobile btn btn-danger del-row" alt="{{ $i }}" type="button" name="button" onclick="del_row(this)">刪除</button>
+                                                                </td>
+                                                            </tr>
+                                                        @endfor
+                                                    @endif
                                                 </tbody>
                                             </table>
                                         </div>
@@ -602,25 +728,47 @@
                                                     </tr>
                                                 </thead>
                                                 <tbody valign="center" align="center">
-                                                     @for ($i = 0; $i < 1; $i++)
-                                                        <tr id="row-{{ $i }}" >
-                                                            <td>
-                                                                <input id="pay_date-{{ $i }}" class="mobile form-control" type="text" name="pay_data_date[]" value="" required>
-                                                            </td>
-                                                            <td>
-                                                                <input id="pay_date-{{ $i }}" class="mobile form-control" type="text" name="pay_data_date[]" value="" required>
-                                                            </td>
-                                                            <td>
-                                                                <input id="pay_date-{{ $i }}" class="mobile form-control" type="text" name="pay_data_date[]" value="" required>
-                                                            </td>
-                                                            <td>
-                                                                <input id="pay_date-{{ $i }}" class="mobile form-control" type="text" name="pay_data_date[]" value="" required>
-                                                            </td>
-                                                            <td>
-                                                                <button class="mobile btn btn-danger del-row" alt="{{ $i }}" type="button" name="button" onclick="del_row(this)">刪除</button>
-                                                            </td>
-                                                        </tr>
-                                                @endfor
+                                                    @if(count($project->manufacture_improve_datas)>0)
+                                                        @foreach ($project->manufacture_improve_datas as $key=>$manufacture_improve_data)
+                                                            <tr id="row-{{ $key }}" >
+                                                                <td>
+                                                                    <input id="pay_date-{{ $key }}" class="mobile form-control" type="text" name="improve_names[]" value="{{ $manufacture_improve_data->name }}">
+                                                                </td>
+                                                                <td>
+                                                                    <input id="pay_date-{{ $key }}" class="mobile form-control" type="text" name="improve_focuss[]" value="{{ $manufacture_improve_data->focus }}">
+                                                                </td>
+                                                                <td>
+                                                                    <input id="pay_date-{{ $key }}" class="mobile form-control" type="text" name="improve_costs[]" value="{{ $manufacture_improve_data->cost }}">
+                                                                </td>
+                                                                <td>
+                                                                    <input id="pay_date-{{ $key }}" class="mobile form-control" type="text" name="improve_delegate_objects[]" value="{{ $manufacture_improve_data->delegate_object }}">
+                                                                </td>
+                                                                <td>
+                                                                    <button class="mobile btn btn-danger del-row" alt="{{ $key }}" type="button" name="button" onclick="del_row(this)">刪除</button>
+                                                                </td>
+                                                            </tr>
+                                                        @endforeach
+                                                    @else
+                                                        @for ($i = 0; $i < 1; $i++)
+                                                            <tr id="row-{{ $i }}" >
+                                                                <td>
+                                                                    <input id="pay_date-{{ $i }}" class="mobile form-control" type="text" name="improve_names[]" value="">
+                                                                </td>
+                                                                <td>
+                                                                    <input id="pay_date-{{ $i }}" class="mobile form-control" type="text" name="improve_focuss[]" value="">
+                                                                </td>
+                                                                <td>
+                                                                    <input id="pay_date-{{ $i }}" class="mobile form-control" type="text" name="improve_costs[]" value="">
+                                                                </td>
+                                                                <td>
+                                                                    <input id="pay_date-{{ $i }}" class="mobile form-control" type="text" name="improve_delegate_objects[]" value="">
+                                                                </td>
+                                                                <td>
+                                                                    <button class="mobile btn btn-danger del-row" alt="{{ $i }}" type="button" name="button" onclick="del_row(this)">刪除</button>
+                                                                </td>
+                                                            </tr>
+                                                        @endfor
+                                                    @endif
                                                 </tbody>
                                             </table>
                                         </div>
@@ -633,198 +781,28 @@
                                     </div>
 
                                 </div>
+                                <div class="row mt-4 mb-2">
+                                    <div class="col text-center">
+                                        <button class="btn btn-danger" onclick="history.go(-1)"><i class="bx bx-x me-1"></i> 取消 </button>
+                                        <button class="btn btn-success" type="submit" id="btn_storage"><i class="bx bx-file me-1"></i> 暫存 </button>
+                                        
+                                        <a href="{{ route('project.business.appendix') }}">
+                                            <button class="btn btn-primary" type="button" id="btn_submit"><i class=" bx bx-check me-1"></i> 確認送出 </button>
+                                        </a>
+                                    </div> <!-- end col -->
+                                </div>
+                            </form>
+                        
                             </div>
                         </div>
                     </div>
                 </div>
 
-                {{-- <div class="col-12 mb-4">
-                    <div class="card">
-                        <div class="card-body">
-                            <div class="text-center mb-3">
-                                <h2>檢附資料</h2>
-                                <p class="font-size-18">申請計畫使用</p>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-12 mt-3">
-                                    <div class="alert alert-primary" role="alert">
-                                        <label class="form-label" for="AddNew-Username"><b>上傳連結：
-                                            <a href="#" target="_blank">
-                                                請點擊我
-                                            </a></b>
-                                        </label>
-                                    </div>
-                                    <div class="table-responsive">
-                                        <table class="table table-nowrap align-middle mb-0">
-                                            <tbody>
-                                                <tr>
-                                                    <td style="width: 40px;">
-                                                        <div class="form-check font-size-16">
-                                                            <input class="form-check-input" type="checkbox" id="upcomingtaskCheck01">
-                                                            <label class="form-check-label" for="upcomingtaskCheck01"></label>
-                                                        </div>
-                                                    </td>
-                                                    <td>
-                                                        <h5 class="text-truncate font-size-16 m-0"><a href="javascript: void(0);"
-                                                                class="text-dark">蒐集個人資料告知事項暨個人資料提供同意書(所有計畫人員皆需簽名)</a></h5>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td style="width: 40px;">
-                                                        <div class="form-check font-size-16">
-                                                            <input class="form-check-input" type="checkbox" id="upcomingtaskCheck01">
-                                                            <label class="form-check-label" for="upcomingtaskCheck01"></label>
-                                                        </div>
-                                                    </td>
-                                                    <td>
-                                                        <h5 class="text-truncate font-size-16 m-0"><a href="javascript: void(0);"
-                                                                class="text-dark">建議迴避之人員清單(若無者請於表格中姓名欄中填【無】，另下方處需加蓋公司大小章。)</a></h5>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td style="width: 40px;">
-                                                        <div class="form-check font-size-16">
-                                                            <input class="form-check-input" type="checkbox" id="upcomingtaskCheck01">
-                                                            <label class="form-check-label" for="upcomingtaskCheck01"></label>
-                                                        </div>
-                                                    </td>
-                                                    <td>
-                                                        <h5 class="text-truncate font-size-16 m-0"><a href="javascript: void(0);"
-                                                                class="text-dark">基本資料暨同意聲明(計畫需求)</a></h5>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td style="width: 40px;">
-                                                        <div class="form-check font-size-16">
-                                                            <input class="form-check-input" type="checkbox" id="upcomingtaskCheck01">
-                                                            <label class="form-check-label" for="upcomingtaskCheck01"></label>
-                                                        </div>
-                                                    </td>
-                                                    <td>
-                                                        <h5 class="text-truncate font-size-16 m-0"><a href="javascript: void(0);"
-                                                                class="text-dark">公司變更登記表</a></h5>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td style="width: 40px;">
-                                                        <div class="form-check font-size-16">
-                                                            <input class="form-check-input" type="checkbox" id="upcomingtaskCheck01">
-                                                            <label class="form-check-label" for="upcomingtaskCheck01"></label>
-                                                        </div>
-                                                    </td>
-                                                    <td>
-                                                        <h5 class="text-truncate font-size-16 m-0"><a href="javascript: void(0);"
-                                                                class="text-dark">111年度營所稅申報書</a></h5>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td style="width: 40px;">
-                                                        <div class="form-check font-size-16">
-                                                            <input class="form-check-input" type="checkbox" id="upcomingtaskCheck01">
-                                                            <label class="form-check-label" for="upcomingtaskCheck01"></label>
-                                                        </div>
-                                                    </td>
-                                                    <td>
-                                                        <h5 class="text-truncate font-size-16 m-0"><a href="javascript: void(0);"
-                                                                class="text-dark">111年度資產負債表</a></h5>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td style="width: 40px;">
-                                                        <div class="form-check font-size-16">
-                                                            <input class="form-check-input" type="checkbox" id="upcomingtaskCheck01">
-                                                            <label class="form-check-label" for="upcomingtaskCheck01"></label>
-                                                        </div>
-                                                    </td>
-                                                    <td>
-                                                        <h5 class="text-truncate font-size-16 m-0"><a href="javascript: void(0);"
-                                                                class="text-dark">111年度損益表</a></h5>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td style="width: 40px;">
-                                                        <div class="form-check font-size-16">
-                                                            <input class="form-check-input" type="checkbox" id="upcomingtaskCheck01">
-                                                            <label class="form-check-label" for="upcomingtaskCheck01"></label>
-                                                        </div>
-                                                    </td>
-                                                    <td>
-                                                        <h5 class="text-truncate font-size-16 m-0"><a href="javascript: void(0);"
-                                                                class="text-dark">如有申請公司銀行貸款，請提供銀行營運計畫書</a></h5>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td style="width: 40px;">
-                                                        <div class="form-check font-size-16">
-                                                            <input class="form-check-input" type="checkbox" id="upcomingtaskCheck01">
-                                                            <label class="form-check-label" for="upcomingtaskCheck01"></label>
-                                                        </div>
-                                                    </td>
-                                                    <td>
-                                                        <h5 class="text-truncate font-size-16 m-0"><a href="javascript: void(0);"
-                                                                class="text-dark">工廠登記證明文件(以確認工廠登記證明)</a></h5>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td style="width: 40px;">
-                                                        <div class="form-check font-size-16">
-                                                            <input class="form-check-input" type="checkbox" id="upcomingtaskCheck01">
-                                                            <label class="form-check-label" for="upcomingtaskCheck01"></label>
-                                                        </div>
-                                                    </td>
-                                                    <td>
-                                                        <h5 class="text-truncate font-size-16 m-0"><a href="javascript: void(0);"
-                                                                class="text-dark">碳盤查報告(計劃書需要)</a><br>
-                                                            <li class="mt-2 text-danger" id="carbon_need_text">否 - 油(柴油、汽油)、電(要注意一般用電或是其他用電)、水、天然氣費帳單是 - 碳盤查報告書</li>
-                                                        </h5>
-                                                    </td>
-                                                </tr>
-                                                <tr>
-                                                    <td style="width: 40px;">
-                                                        <div class="form-check font-size-16">
-                                                            <input class="form-check-input" type="checkbox" id="upcomingtaskCheck01">
-                                                            <label class="form-check-label" for="upcomingtaskCheck01"></label>
-                                                        </div>
-                                                    </td>
-                                                    <td>
-                                                        <h5 class="text-truncate font-size-16 m-0"><a href="javascript: void(0);"
-                                                                class="text-dark">財產清冊(需確認設備資料)</a><br></h5>
-                                                    </td>
-                                                </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div> --}}
         </div>
-
-        <div class="row mt-4 mb-2">
-            <div class="col text-end">
-                <button class="btn btn-danger" onclick="history.go(-1)"><i class="bx bx-x me-1"></i> 取消 </button>
-                <button class="btn btn-success" type="submit" id="btn_submit"><i class=" bx bx-file me-1"></i> 保存 </button>
-            </div> <!-- end col -->
-        </div> <!-- end row-->  
 
         
     </div>
 
-        <!--  successfully modal  -->
-        <div id="success-btn" class="modal fade" tabindex="-1" aria-labelledby="success-btnLabel" aria-hidden="true"
-            data-bs-scroll="true">
-            <div class="modal-dialog modal-dialog-centered">
-                <div class="modal-content">
-                    <div class="modal-body">
-                        <div class="text-center">
-                            <i class="bx bx-check-circle display-1 text-success"></i>
-                            <h4 class="mt-3">新增廠商資料成功！</h4>
-                        </div>
-                    </div>
-                </div><!-- /.modal-content -->
-            </div><!-- /.modal-dialog -->
-        </div><!-- /.modal -->
 
     @endsection
     @section('scripts')
@@ -838,7 +816,11 @@
                     countyName: "county", // 自訂城市 select 標籤的 name 值
                     districtName: "district", // 自訂地區 select 標籤的 name 值
                     zipcodeName: "zipcode", // 自訂地區 select 標籤的 name 值
+                    'countySel': '{{ $project->cust_data->county }}',
+                    'districtSel': '{{ $project->cust_data->district }}',
+                    'zipcodeSel': '{{ $project->cust_data->zipcode }}'
                 });
+
                 
                 @if(session('success'))
                     $('#success-btn').modal('show');
@@ -856,10 +838,10 @@
                                             ${customerRowCount}
                                         </td>
                                         <td width="30%">
-                                            <input id="pay_date-{{ $i }}" class="mobile form-control" type="text" name="pay_data_date[]" value="" required>
+                                            <input id="pay_date-{{ $i }}" class="mobile form-control" type="text" name="norm_names[]" value="" required>
                                         </td>
                                         <td>
-                                            <input id="department-${customerRowCount}" class="mobile form-control" type="text" name="department[]" value="" required>
+                                            <input id="department-${customerRowCount}" class="mobile form-control" type="text" name="norm_contexts[]" value="" required>
                                         </td>
                                         <td>
                                             <button class="mobile btn btn-danger del-row" alt="${customerRowCount}" type="button" name="button">刪除</button>
@@ -961,16 +943,19 @@
                                             ${presonRowCount}
                                         </td>
                                         <td>
-                                            <input id="pay_date-${presonRowCount}" class="mobile form-control" type="text" name="pay_data_date[]" value="" required>
+                                            <input id="pay_date-${presonRowCount}" class="mobile form-control" type="text" name="personnel_names[]" value="" required>
                                         </td>
                                         <td>
-                                            <input id="department-${presonRowCount}" class="mobile form-control" type="text" name="department[]" value="" required>
+                                            <input id="department-${presonRowCount}" class="mobile form-control" type="text" name="personnel_departments[]" value="" required>
                                         </td>
                                         <td>
-                                            <input id="title-${presonRowCount}" class="mobile form-control" type="text" name="title[]" value="" required>
+                                            <input id="title-${presonRowCount}" class="mobile form-control" type="text" name="personnel_jobs[]" value="" required>
                                         </td>
                                         <td>
-                                            <input id="work_content-${presonRowCount}" class="mobile form-control" type="text" name="work_content[]" value="" required>
+                                            <input id="title-${presonRowCount}" class="mobile form-control" type="text" name="personnel_contexts[]" value="" required>
+                                        </td>
+                                        <td>
+                                            <input id="title-${presonRowCount}" class="mobile form-control" type="text" name="personnel_experiences[]" value="" required>
                                         </td>
                                         <td>
                                             <button class="mobile btn btn-danger del-row" alt="${presonRowCount}" type="button" name="button">刪除</button>
@@ -1032,7 +1017,7 @@
                     needRowCount++;
                     var newRow = `<tr id="row-${needRowCount}" valign="middle">
                                     <td width="90%">
-                                        <textarea  class="form-control" name="note" rows="2"></textarea>
+                                        <textarea  class="form-control" name="need_contexts[]" rows="2"></textarea>
                                     </td>
                                     <td>
                                         <button class="mobile btn btn-danger del-row" alt="${needRowCount}" type="button" name="button">刪除</button>
@@ -1140,27 +1125,27 @@
                 if (addDeviceRowCount < 5) {
                     addDeviceRowCount++;
                     var newRow = `<tr id="row-${addDeviceRowCount}">
-                                    <td>
-                                        <input id="pay_date-${addDeviceRowCount}" class="mobile form-control" type="text" name="pay_data_date[]" value="" required>
-                                    </td>
-                                    <td>
-                                        <input id="department-${addDeviceRowCount}" class="mobile form-control" type="text" name="department[]" value="" required>
-                                    </td>
-                                    <td>
-                                        <input id="title-${addDeviceRowCount}" class="mobile form-control" type="text" name="title[]" value="" required>
-                                    </td>
-                                    <td>
-                                        <input id="pay_date-${addDeviceRowCount}" class="mobile form-control" type="text" name="pay_data_date[]" value="" required>
-                                    </td>
-                                    <td>
-                                        <input id="department-${addDeviceRowCount}" class="mobile form-control" type="text" name="department[]" value="" required>
-                                    </td>
-                                    <td>
-                                        <input id="title-${addDeviceRowCount}" class="mobile form-control" type="text" name="title[]" value="" required>
-                                    </td>
-                                    <td>
-                                        <input id="work_content-${addDeviceRowCount}" class="mobile form-control" type="text" name="work_content[]" value="" required>
-                                    </td>
+                        <td>
+                                                                <input id="pay_date-${addDeviceRowCount}" class="mobile form-control" type="text" name="expected_names[]" value="">
+                                                            </td>
+                                                            <td>
+                                                                <input id="pay_date-${addDeviceRowCount}" class="mobile form-control" type="text" name="expected_brands[]" value="">
+                                                            </td>
+                                                            <td>
+                                                                <input id="pay_date-${addDeviceRowCount}" class="mobile form-control" type="text" name="expected_models[]" value="">
+                                                            </td>
+                                                            <td>
+                                                                <input id="pay_date-${addDeviceRowCount}" class="mobile form-control" type="text" name="expected_purposes[]" value="">
+                                                            </td>
+                                                            <td>
+                                                                <input id="pay_date-${addDeviceRowCount}" class="mobile form-control" type="text" name="expected_costs[]" value="">
+                                                            </td>
+                                                            <td>
+                                                                <input id="pay_date-${addDeviceRowCount}" class="mobile form-control" type="text" name="expected_procurements[]" value="">
+                                                            </td>
+                                                            <td>
+                                                                <input id="pay_date-${addDeviceRowCount}" class="mobile form-control" type="text" name="expected_origins[]" value="">
+                                                            </td>
                                     <td>
                                         <button class="mobile btn btn-danger del-row" alt="${addDeviceRowCount}" type="button" name="button">刪除</button>
                                     </td>
@@ -1184,16 +1169,16 @@
                     expectedDeviceRowCount++;
                     var newRow = `<tr id="row-${expectedDeviceRowCount}">
                                     <td>
-                                        <input id="pay_date-${expectedDeviceRowCount}" class="mobile form-control" type="text" name="pay_data_date[]" value="" required>
+                                        <input id="pay_date-${expectedDeviceRowCount}" class="mobile form-control" type="text" name="improve_names[]" value="" required>
                                     </td>
                                     <td>
-                                        <input id="department-${expectedDeviceRowCount}" class="mobile form-control" type="text" name="department[]" value="" required>
+                                        <input id="department-${expectedDeviceRowCount}" class="mobile form-control" type="text" name="improve_focuss[]" value="" required>
                                     </td>
                                     <td>
-                                        <input id="title-${expectedDeviceRowCount}" class="mobile form-control" type="text" name="title[]" value="" required>
+                                        <input id="title-${expectedDeviceRowCount}" class="mobile form-control" type="text" name="improve_costs[]" value="" required>
                                     </td>
                                     <td>
-                                        <input id="work_content-${expectedDeviceRowCount}" class="mobile form-control" type="text" name="work_content[]" value="" required>
+                                        <input id="work_content-${expectedDeviceRowCount}" class="mobile form-control" type="text" name="improve_delegate_objects[]" value="" required>
                                     </td>
                                     <td>
                                         <button class="mobile btn btn-danger del-row" alt="${expectedDeviceRowCount}" type="button" name="button">刪除</button>

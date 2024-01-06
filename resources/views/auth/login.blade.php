@@ -30,13 +30,13 @@
                                 <div class="card-body p-4">
                                     <div class="text-center mt-2">
                                         <h5>歡迎回來！</h5>
-                                        <p class="text-muted">登入至名偵碳治郎.</p>
+                                        <p class="text-muted">登入至錚典科技專案管理系統.</p>
                                     </div>
                                     <div class="p-2 mt-4">
                                         <form method="POST" action="{{ route('login') }}" class="auth-input">
                                             @csrf
                                             <div class="mb-2">
-                                                <label for="email" class="form-label">信箱 <span class="text-danger">*</span></label>
+                                                <label for="email" class="form-label">帳號 <span class="text-danger">*</span></label>
                                                 <input id="email" type="text"
                                                     class="form-control @error('email') is-invalid @enderror" name="email"
                                                     value="{{ old('email') }}" required autocomplete="email" autofocus

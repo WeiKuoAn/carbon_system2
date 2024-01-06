@@ -1,6 +1,6 @@
 @extends('layouts.master')
 @section('title')
-    新增廠商
+    新增廠商計劃案
 @endsection
 @section('css')
     <!-- datepicker css -->
@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="{{ asset('build/libs/gridjs/theme/mermaid.min.css') }}">
 @endsection
 @section('page-title')
-    新增廠商
+    新增廠商計劃案
 @endsection
 @section('body')
 
@@ -22,7 +22,7 @@
         <div class="col-xl-12 mt-3">
             <div class="card">
                 <div class="card-header">
-                    <h6 class="card-title">請填寫廠商資料</h6>
+                    <h6 class="card-title">請設定廠商計劃案</h6>
                 </div>
                 <div class="card-body">
                     <form action="{{ route('customer.store') }}" method="POST">
@@ -41,21 +41,21 @@
                             <div class="col-md-6">
                                 <div class="mb-3">
                                     <label class="form-label" for="AddNew-Phone">公司聯絡人姓名</label>
-                                    <input type="text" class="form-control" name="contact_name" >
+                                    <input type="text" class="form-control" name="primary_contact_name" required>
                                 </div>
                             </div>
 
                             <div class="col-md-6">
                                 <div class="mb-3">
                                     <label class="form-label" for="AddNew-Username">廠商帳號</label><span class="text-danger">*</span>
-                                    <input type="text" class="form-control" name="email" required>
+                                    <input type="text" class="form-control" name="name" required>
                                 </div>
                             </div>
 
                             <div class="col-md-6">
                                 <div class="mb-3">
                                     <label class="form-label" for="AddNew-Phone">公司聯絡人職稱</label>
-                                    <input type="text" class="form-control" name="contact_job" >
+                                    <input type="text" class="form-control" name="contact_job" required>
                                 </div>
                             </div>
 
@@ -63,7 +63,7 @@
                                 <label class="form-label" for="AddNew-Username">廠商密碼</label><span class="text-danger">*</span>
                                 <div class="mb-3 row">
                                     <div class="col-10">
-                                        <input class="form-control me-auto" type="text" name="password" placeholder="請產生密碼" required>
+                                        <input class="form-control me-auto" type="text" name="password" placeholder="請產生密碼">
                                     </div>
                                     <div class="col-2">
                                         <button type="bytton" id="pwd_create" class="btn btn-outline-danger">生成密碼</button>
@@ -74,14 +74,14 @@
                             <div class="col-md-6">
                                 <div class="mb-3">
                                     <label class="form-label" for="AddNew-Phone">公司聯絡人電話</label>
-                                    <input type="text" class="form-control" name="contact_phone">
+                                    <input type="text" class="form-control" name="primary_contact_phone" required>
                                 </div>
                             </div>
 
                             <div class="col-md-6">
                                 <div class="mb-3">
                                     <label class="form-label">計劃案申報類別</label><span class="text-danger">*</span>
-                                    <select class="form-select" name="type" required>
+                                    <select class="form-select" name="stock_status" required>
                                         <option value="" selected>請選擇</option>
                                         <option value="0" >商業服務類</option>
                                         <option value="1" >製造類</option>
@@ -92,28 +92,21 @@
                             <div class="col-md-6">
                                 <div class="mb-3">
                                     <label class="form-label" for="AddNew-Email">公司聯絡人信箱</label>
-                                    <input type="email" class="form-control" name="contact_email">
+                                    <input type="email" class="form-control" name="primary_contact_email" required>
                                 </div>
                             </div>
 
                             <div class="col-md-6">
                                 <div class="mb-3">
-                                    <label class="form-label" for="AddNew-Phone">Nas連結</label><span class="text-danger">*</span>
-                                    <input type="text" class="form-control" name="nas_link" required>
-                                </div>
-                            </div>
-
-                            <div class="col-md-6">
-                                <div class="mb-3">
-                                    <label class="form-label" for="AddNew-Phone">統一編號</label>
-                                    <input type="text" class="form-control" name="registration_no" >
+                                    <label class="form-label" for="AddNew-Phone">統一編號</label><span class="text-danger">*</span>
+                                    <input type="text" class="form-control" name="business_registration_no" required>
                                 </div>
                             </div>
 
                             <div class="col-md-6">
                                 <div class="mb-3">
                                     <label class="form-label">檢視權限</label>
-                                    <select class="form-select" name="status" required>
+                                    <select class="form-select" name="permission_status" required>
                                         <option value="0" selected>啟用</option>
                                         <option value="1" >禁用</option>
                                     </select>
@@ -123,11 +116,11 @@
                             <div class="col-md-6 mb-3">
                                 <label class="form-label" for="AddNew-Phone">公司地址</label>
                                 <div class="row twzipcode mb-2">
-                                    <select data-role="county" ></select>
-                                    <select data-role="district"></select>
+                                    <select data-role="county" required ></select>
+                                    <select data-role="district" required></select>
                                 </div>
                                 <div>
-                                    <input type="text" class="form-control" name="address">
+                                    <input type="text" class="form-control" name="address" required>
                                 </div>
                             </div>
 
@@ -184,22 +177,6 @@
                 @if(session('success'))
                     $('#success-btn').modal('show');
                 @endif
-            });
-            // 密碼生成函數
-            function generatePassword() {
-                var length = 10,
-                    charset = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()",
-                    retVal = "";
-                for (var i = 0, n = charset.length; i < length; ++i) {
-                    retVal += charset.charAt(Math.floor(Math.random() * n));
-                }
-                return retVal;
-            }
-
-            // 點擊事件處理器
-            $("#pwd_create").click(function() {
-                var password = generatePassword();
-                $("input[name='password']").val(password);
             });
         </script>
 

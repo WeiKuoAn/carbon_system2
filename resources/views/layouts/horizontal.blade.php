@@ -282,6 +282,7 @@
                                 <a href="{{ route('simulation-inspection.index') }}" class="dropdown-item">盤查列表</a>
                             </div>
                         </li> --}}
+                        @if(Auth::user()->group_id == 1)
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle arrow-none" href="#" id="topnav-vendor"
                                 role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -305,12 +306,44 @@
                             <div class="dropdown-menu" aria-labelledby="topnav-vendor">
                                 <a href="{{ route('industry-category.index') }}" class="dropdown-item">行業類別設定</a>
                                 <a href="{{ route('customer.index') }}" class="dropdown-item">廠商列表</a>
-                                <a href="{{ route('customer.business.create') }}" class="dropdown-item">新增廠商-商業服務類</a>
-                                <a href="{{ route('customer.business.appendix') }}" class="dropdown-item">商業服務類-附件</a>
-                                <a href="{{ route('customer.Manufacturing.create') }}" class="dropdown-item">新增廠商-製造類</a>
-                                <a href="{{ route('customer.manufacturing.appendix') }}" class="dropdown-item">製造類-附件</a>
                             </div>
                         </li>
+
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle arrow-none" href="#" id="topnav-vendor"
+                                role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="bx bx-store icon nav-icon"></i>
+                                <span data-key="t-dashboards">專案管理</span>
+                                <div class="arrow-down"></div>
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="topnav-vendor">
+                                <a href="{{ route('projects') }}" class="dropdown-item">專案列表</a>
+                                <a href="{{ route('project.business.create') }}" class="dropdown-item">新增廠商-商業服務類</a>
+                                <a href="{{ route('project.business.appendix') }}" class="dropdown-item">商業服務類-附件</a>
+                                <a href="{{ route('project.Manufacturing.create') }}" class="dropdown-item">新增廠商-製造類</a>
+                                <a href="{{ route('project.manufacturing.appendix') }}" class="dropdown-item">製造類-附件</a>
+                            </div>
+                        </li>
+                        @elseif(Auth::user()->group_id == 2)
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle arrow-none" href="#" id="topnav-vendor"
+                                    role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <i class="bx bx-store icon nav-icon"></i>
+                                    <span data-key="t-dashboards">專案管理</span>
+                                    <div class="arrow-down"></div>
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="topnav-vendor">
+                                    @if(Auth::user()->project_data->type == 0)
+                                        <a href="{{ route('project.business.create') }}" class="dropdown-item">新增廠商-商業服務類</a>
+                                        <a href="{{ route('project.business.appendix') }}" class="dropdown-item">商業服務類-附件</a>
+                                    @elseif(Auth::user()->project_data->type ==1)
+                                        <a href="{{ route('project.Manufacturing.create') }}" class="dropdown-item">新增廠商-製造類</a>
+                                        <a href="{{ route('project.manufacturing.appendix') }}" class="dropdown-item">製造類-附件</a>
+                                    @endif
+                                </div>
+                            </li>
+                        @endif
+
 
                         {{-- <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle arrow-none" href="#" id="topnav-dashboard"

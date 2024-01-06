@@ -173,12 +173,14 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
+                        <form action="{{ route('user.store') }}" method="POST">
+                            @csrf
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="mb-3">
                                     <label class="form-label" for="AddNew-Username">帳號</label>
                                     <input type="text" class="form-control" placeholder="Enter Username"
-                                        id="AddNew-Username">
+                                        id="AddNew-Username" name="email">
                                 </div>
                             </div>
                             <div class="col-md-6">
@@ -197,7 +199,7 @@
                                 <div class="mb-3">
                                     <label class="form-label" for="AddNew-Email">密碼</label>
                                     <input type="text" class="form-control" placeholder="Enter Email"
-                                        id="AddNew-Email">
+                                        id="AddNew-Email" name="password">
                                 </div>
                             </div>
                             <div class="col-md-6">
@@ -207,16 +209,24 @@
                                         id="AddNew-Phone">
                                 </div>
                             </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="mb-3">
-                                <label class="form-label">權限</label>
-                                <select class="form-select">
-                                    <option selected>啟用</option>
-                                    <option>停用</option>
-                                </select>
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label class="form-label" for="AddNew-Username">姓名</label>
+                                    <input type="text" class="form-control" placeholder="Enter Username"
+                                        id="AddNew-Username" name="name">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label class="form-label">權限</label>
+                                    <select class="form-select">
+                                        <option selected>啟用</option>
+                                        <option>停用</option>
+                                    </select>
+                                </div>
                             </div>
                         </div>
+                        
                         <div class="row mt-2">
                             <div class="col-12 text-end">
                                 <button type="button" class="btn btn-danger me-1" data-bs-dismiss="modal"><i
@@ -226,7 +236,7 @@
                                         class="bx bx-check me-1 align-middle"></i> Confirm</button>
                             </div>
                         </div>
-
+                    </form>
                     </div>
                 </div><!-- /.modal-content -->
             </div><!-- /.modal-dialog -->

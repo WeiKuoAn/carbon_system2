@@ -20,15 +20,20 @@ Auth::routes();
 Route::get('/', [App\Http\Controllers\HomeController::class, 'root']);
 // Route::get('{any}', [App\Http\Controllers\HomeController::class, 'index'])->name('index');
 Route::get('customer/data', [App\Http\Controllers\CustomerController::class,'customer_data'])->name('customer.data');
-Route::get('customer/business-create', [App\Http\Controllers\CustomerController::class,'BusinessCreate'])->name('customer.business.create');
-Route::get('customer/business-appendix', [App\Http\Controllers\CustomerController::class,'BusinessAppendix'])->name('customer.business.appendix');
-Route::get('customer/manufacturing-appendix', [App\Http\Controllers\CustomerController::class,'ManufacturingAppendix'])->name('customer.manufacturing.appendix');
-Route::get('customer/business1-create', [App\Http\Controllers\CustomerController::class,'Business1Create'])->name('customer.business1.create');
-Route::get('customer/manufacturing-create', [App\Http\Controllers\CustomerController::class,'ManufacturingCreate'])->name('customer.Manufacturing.create');
 Route::resource('customer', App\Http\Controllers\CustomerController::class);
 
 Route::resource('industry-category', App\Http\Controllers\IndustryCategoryController::class);
 Route::resource('user', App\Http\Controllers\UserController::class);
+
+Route::get('projects', [App\Http\Controllers\ProjectController::class,'index'])->name('projects');
+//專案新增
+Route::get('project/business-create', [App\Http\Controllers\ProjectController::class,'BusinessCreate'])->name('project.business.create');
+Route::post('project/business-create', [App\Http\Controllers\ProjectController::class,'BusinessStore'])->name('project.business.store');
+
+Route::get('project/business-appendix', [App\Http\Controllers\ProjectController::class,'BusinessAppendix'])->name('project.business.appendix');
+Route::get('project/manufacturing-appendix', [App\Http\Controllers\ProjectController::class,'ManufacturingAppendix'])->name('project.manufacturing.appendix');
+Route::get('project/manufacturing-create', [App\Http\Controllers\ProjectController::class,'ManufacturingCreate'])->name('project.Manufacturing.create');
+Route::post('project/manufacturing-create', [App\Http\Controllers\ProjectController::class,'ManufacturingStore'])->name('project.Manufacturing.store');
 
 //廠商問卷查看
 Route::get('customer/{id}/surveys', [App\Http\Controllers\CustomerSurveyController::class , 'index'])->name('cust.surveys.index');
@@ -40,6 +45,9 @@ Route::put('customer/{id}/surveys/{survey_id}/update', [App\Http\Controllers\Cus
 
 Route::get('branch/datas', [App\Http\Controllers\BranchController::class,'branch_datas'])->name('branch.datas');
 Route::get('branch/data', [App\Http\Controllers\BranchController::class,'branch_data'])->name('branch.data');
+
+// Route::resource('projects', App\Http\Controllers\ProjectController::class);
+
 Route::resource('branches', App\Http\Controllers\BranchController::class);
 
 Route::resource('inspection', App\Http\Controllers\InspectionhController::class);
