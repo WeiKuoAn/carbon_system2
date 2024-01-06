@@ -538,7 +538,7 @@
                                                                         <input id="pay_price-{{ $i }}" class="mobile form-control required-input" type="text" name="personnel_contexts[]" value="">
                                                                     </td>
                                                                     <td>
-                                                                        <input id="pay_price-{{ $key }}" class="mobile form-control required-input" type="text" name="personnel_s[]" value="">
+                                                                        <input id="pay_price-{{ $i }}" class="mobile form-control required-input" type="text" name="personnel_s[]" value="">
                                                                     </td>
                                                                     <td>
                                                                         <button class="mobile btn btn-danger del-row" alt="{{ $i }}" type="button" name="button" onclick="del_row(this)">刪除</button>
