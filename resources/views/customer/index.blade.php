@@ -61,9 +61,7 @@
                                     @foreach($datas as $data)
                                     <tr>
                                         <td>
-                                            <img src="{{ URL::asset('build/images/users/avatar-2.jpg') }}" alt=""
-                                                class="avatar rounded-circle img-thumbnail me-2">
-                                            <a href="#" class="text-body">{{ $data->name }}</a>
+                                            <a href="#" class="text-body">{{ $data->user_data->name }}</a>
                                         </td>
                                         <td>
                                             @if(isset($data->industry_category_data))

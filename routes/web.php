@@ -19,6 +19,8 @@ Auth::routes();
 
 Route::get('/', [App\Http\Controllers\HomeController::class, 'root']);
 // Route::get('{any}', [App\Http\Controllers\HomeController::class, 'index'])->name('index');
+Route::get('customer/introduce-create', [App\Http\Controllers\CustomerController::class,'IntroduceCreate'])->name('cust.introduce.create');
+Route::post('customer/introduce-create', [App\Http\Controllers\CustomerController::class,'IntroduceStore'])->name('cust.introduce.store');
 Route::get('customer/data', [App\Http\Controllers\CustomerController::class,'customer_data'])->name('customer.data');
 Route::resource('customer', App\Http\Controllers\CustomerController::class);
 
@@ -27,6 +29,7 @@ Route::resource('user', App\Http\Controllers\UserController::class);
 
 Route::get('projects', [App\Http\Controllers\ProjectController::class,'index'])->name('projects');
 //專案新增
+
 Route::get('project/business-create', [App\Http\Controllers\ProjectController::class,'BusinessCreate'])->name('project.business.create');
 Route::post('project/business-create', [App\Http\Controllers\ProjectController::class,'BusinessStore'])->name('project.business.store');
 Route::get('project/manufacturing-create', [App\Http\Controllers\ProjectController::class,'ManufacturingCreate'])->name('project.Manufacturing.create');

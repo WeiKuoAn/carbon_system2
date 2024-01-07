@@ -40,158 +40,6 @@
                         <div class="card">
                             <div class="card-body">
                                 <div class="text-center mb-3">
-                                    <h2>廠商基本資料</h2>
-                                </div>
-                                <div class="row">'
-                                    <div class="col-md-12">
-                                        <div class="mb-4">
-                                            <label class="form-label" for="AddNew-Username"><b>廠商名稱</b></label>
-                                            <input type="text" class="form-control required-input" value="{{ $project->user_data->name }}" disabled>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-12">
-                                        <div class="mb-4">
-                                            <label class="form-label" for="AddNew-Phone"><b>公司簡介</b>（EX.經營理念、旗下品牌、主要/知名產品、專業技術、得獎紀錄）</label>
-                                            <textarea  class="form-control required-input" name="introduce" rows="4">@if(isset($cust_data)){{ $cust_data->introduce }}@endif</textarea>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="mb-4">
-                                            <label class="form-label" for="AddNew-Phone"><b>公司資本額（單位：元/新台幣）</b></label>
-                                            <input type="number" class="form-control required-input" name="capital" @if(isset($cust_data)) value="{{ $cust_data->capital }}" @else value="0" @endif>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="mb-4">
-                                            <label class="form-label" for="AddNew-Phone"><b>去年整年度營業額（單位：元/新台幣）</b></label>
-                                            <input type="number" class="form-control required-input" name="last_year_revenue" @if(isset($project)) value="{{ $project->last_year_revenue }}" @else value="0" @endif>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-12">
-                                        <div class="mb-4">
-                                            <label class="form-label" for="AddNew-Phone"><b>近一年平均投保人數</b>（申請計畫使用）</label>
-                                            <input type="number" class="form-control required-input" name="Insured_employees" placeholder="近一年平均投保人數" @if(isset($project)) value="{{ $project->insured_employees }}" @endif>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <div class="mb-4">
-                                            <label class="form-label" for="AddNew-Phone"><b>最近一期勞保投保人數</b>（申請計畫使用）</label>
-                                            <input type="number" class="form-control required-input" name="insurance_male" id="insurance_male"  placeholder="男生投保人數" @if(isset($project)) value="{{ $project->insurance_male }}" @endif>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <div class="mb-4">
-                                            <label class="form-label" for="AddNew-Phone"><b>&nbsp;</b></label>
-                                            <input type="number" class="form-control required-input" name="insurance_female" id="insurance_female" placeholder="女生投保人數" @if(isset($project)) value="{{ $project->insurance_female }}" @endif>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <div class="mb-4">
-                                            <label class="form-label" for="AddNew-Phone"><b>&nbsp;</b></label>
-                                            <input type="number" class="form-control required-input" placeholder="總投保人數" name="insurance_total"  id="insurance_total" @if(isset($project)) value="{{ $project->insurance_total }}" @endif readonly>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <label class="form-label" for="AddNew-Username"><b>公司主要聯繫窗口</b>（用於與錚典對接）</label>
-                                        <div class="mb-4">
-                                            <input type="text" class="form-control required-input" name="main_contact_name" placeholder="姓名"  @if(isset($project)) value="{{ $project->contact_name }}" @endif>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <label class="form-label" for="AddNew-Username">&nbsp;</label>
-                                        <div class="mb-4">
-                                            <input type="email" class="form-control required-input" name="main_contact_email" placeholder="信箱"  @if(isset($project)) value="{{ $project->contact_email }}" @endif>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <label class="form-label" for="AddNew-Username">&nbsp;</label>
-                                        <div class="mb-4">
-                                            <input type="text" class="form-control required-input" name="main_contact_phone" placeholder="電話"  @if(isset($project)) value="{{ $project->contact_phone }}" @endif>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-12 mt-3">
-                                        <div class="row">
-                                            <div class="col-md-12">
-                                                <h5 class="text-uppercase bg-light p-2 mt-0 mb-1">公司對外的網站或社群網址-若有不只一個，請都附上。若無，請寫「無」即可</h5>
-                                                <div class="table-responsive mt-1">
-                                                    <table id="socail" class="table socail-list">
-                                                        <thead>
-                                                            <tr align="center">
-                                                                <th>編號</th>
-                                                                <th>類別<span class="text-danger">*</span></th>
-                                                                <th>網址<span class="text-danger">*</span></th>
-                                                                <th></th>
-                                                            </tr>
-                                                        </thead>
-                                                        <tbody valign="center" align="center">
-                                                            @if(count($project->socail_datas)>0)
-                                                                @foreach ($project->socail_datas as $key=>$socail_data)
-                                                                    <tr id="row-{{ $key }}" >
-                                                                        <td>{{$key+1}}</td>
-                                                                        <td>
-                                                                            <select id="gdpaper_id" alt="{{ $key }}" class="mobile form-select" name="socail_types[]">
-                                                                                <option value="" selected>請選擇...</option>
-                                                                                <option value="0" @if($socail_data->type == '0') selected @endif>網站</option>
-                                                                                <option value="1" @if($socail_data->type == '1') selected @endif>社群</option>
-                                                                                <option value="2" @if($socail_data->type == '2') selected @endif>其他</option>
-                                                                            </select>
-                                                                        </td>
-                                                                        <td>
-                                                                            <input id="pay_date-{{ $key }}" class="mobile form-control required-input" type="text" name="socail_contexts[]" value="{{ $socail_data->context }}">
-                                                                        </td>
-                                                                        <td>
-                                                                            <button class="mobile btn btn-danger del-row" alt="{{ $key }}" type="button" name="button" onclick="del_row(this)">刪除</button>
-                                                                        </td>
-                                                                    </tr>
-                                                                @endforeach
-                                                            @else
-                                                                @for ($i = 0; $i < 1; $i++)
-                                                                    <tr id="row-{{ $i }}" >
-                                                                        <td>{{$i+1}}</td>
-                                                                        <td>
-                                                                            <select id="gdpaper_id" alt="{{ $i }}" class="mobile form-select" name="socail_types[]">
-                                                                                <option value="" selected>請選擇...</option>
-                                                                                <option value="0">網站</option>
-                                                                                <option value="1">社群</option>
-                                                                                <option value="2">其他</option>
-                                                                            </select>
-                                                                        </td>
-                                                                        <td>
-                                                                            <input id="pay_date-{{ $i }}" class="mobile form-control required-input" type="text" name="socail_contexts[]" value="">
-                                                                        </td>
-                                                                        <td>
-                                                                            <button class="mobile btn btn-danger del-row" alt="{{ $i }}" type="button" name="button" onclick="del_row(this)">刪除</button>
-                                                                        </td>
-                                                                    </tr>
-                                                                @endfor
-                                                            @endif
-                                                        </tbody>
-                                                    </table>
-                                                </div> <!-- end .table-responsive -->
-                                                <div class="form-group row">
-                                                    <div class="col-12">
-                                                    <input id="add_socail" class="btn btn-primary" type="button" name="" value="新增筆數">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-12 row mt-3 appendix">
-                                        <label for="example-search-input" class="col-form-label"><b>附件上傳</b>（EX：公司介紹、產品簡報）</label>
-                                        <div class="pl-5">
-                                            <div class="alert alert-primary" role="alert">
-                                                上傳網址： <a href="{{ $project->nas_link }}" target="_blank" class="alert-link">請點擊我</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-12 mb-4">
-                        <div class="card">
-                            <div class="card-body">
-                                <div class="text-center mb-3">
                                     <h2>人事資料</h2>
                                     <p class="font-size-20 text-danger">所有人員皆須在勞保投保明細中</p>
                                 </div>
@@ -432,7 +280,6 @@
                                                         <thead>
                                                             <tr align="center">
                                                                 <th>簡述內容<span class="text-danger">*</span></th>
-                                                                <th></th>
                                                             </tr>
                                                         </thead>
                                                         <tbody valign="center" align="center">
@@ -442,9 +289,6 @@
                                                                         <td width="90%">
                                                                             <textarea  class="form-control required-input" name="situation_contexts[]" rows="2">{{ $situation_data->context }}</textarea>
                                                                         </td>
-                                                                        <td>
-                                                                            <button class="mobile btn btn-danger del-row" alt="{{ $key }}" type="button" name="button" onclick="del_row(this)">刪除</button>
-                                                                        </td>
                                                                     </tr>
                                                                 @endforeach
                                                             @else
@@ -453,20 +297,12 @@
                                                                         <td width="90%">
                                                                             <textarea  class="form-control required-input" name="situation_contexts[]" rows="2"></textarea>
                                                                         </td>
-                                                                        <td>
-                                                                            <button class="mobile btn btn-danger del-row" alt="{{ $i }}" type="button" name="button" onclick="del_row(this)">刪除</button>
-                                                                        </td>
                                                                     </tr>
                                                                 @endfor
                                                             @endif
                                                         </tbody>
                                                     </table>
                                                 </div> <!-- end .table-responsive -->
-                                                <div class="form-group row">
-                                                    <div class="col-12">
-                                                    <input id="add_situation" class="btn btn-primary" type="button" name="" value="新增筆數">
-                                                    </div>
-                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -498,7 +334,7 @@
                                                             <tr align="center">
                                                                 <th>編號</th>
                                                                 <th>系統名稱<span class="text-danger">*</span></th>
-                                                                <th>購入內容簡述<span class="text-danger">*</span></th>
+                                                                <th>內容簡述</th>
                                                                 <th></th>
                                                             </tr>
                                                         </thead>
@@ -550,7 +386,6 @@
                         </div>
                         <div class="row mt-4 mb-2">
                             <div class="col text-center">
-                                <button class="btn btn-danger" onclick="history.go(-1)"><i class="bx bx-x me-1"></i> 取消 </button>
                                 <button class="btn btn-success" type="submit" id="btn_storage"><i class="bx bx-file me-1"></i> 暫存 </button>
                                 
                                 <a href="{{ route('project.business.appendix') }}">

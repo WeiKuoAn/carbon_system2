@@ -59,42 +59,6 @@ class ProjectController extends Controller
         $cust_data = CustData::where('user_id',Auth::user()->id)->first();
         $project = CustProject::where('user_id',Auth::user()->id)->first();
         
-        //客戶資料
-        $cust_data->introduce = $request->introduce;
-        $cust_data->capital = $request->capital;
-        $cust_data->save();
-
-        $project->last_year_revenue = $request->last_year_revenue;
-        $project->Insured_employees = $request->Insured_employees;
-        $project->insurance_male = $request->insurance_male;
-        $project->insurance_female = $request->insurance_female;
-        $project->insurance_total = $request->insurance_total;
-        $project->contact_name  = $request->main_contact_name;
-        $project->contact_email  = $request->main_contact_email;
-        $project->contact_phone  = $request->main_contact_phone;
-        $project->save();
-
-        $cust_socail_datas = CustSocail::where('project_id',$project->id)->get();
-        // dd($cust_socail_datas);
-        if(count($cust_socail_datas) > 0) {
-            $cust_socail_datas = CustSocail::where('project_id',$project->id)->delete();
-        }
-        if(isset($request->socail_types))
-        {
-            foreach($request->socail_types as $key=>$socail_type)
-            {
-                if(isset($socail_type))
-                {
-                    $cust_socail = new CustSocail;
-                    $cust_socail->user_id = Auth::user()->id;
-                    $cust_socail->project_id = $project->id;
-                    $cust_socail->type = $request->socail_types[$key];
-                    $cust_socail->context = $request->socail_contexts[$key];
-                    $cust_socail->save();
-                }
-            }
-        }
-        
         //計畫主持人
         $project_host = ProjectHost::firstOrNew(['project_id' => $project->id]);
         $project_host->user_id = Auth::user()->id;
@@ -235,48 +199,6 @@ class ProjectController extends Controller
         $cust_data = CustData::where('user_id',Auth::user()->id)->first();
         $project = CustProject::where('user_id',Auth::user()->id)->first();
         
-        //客戶資料
-        $cust_data->introduce = $request->introduce;
-        $cust_data->capital = $request->capital;
-        $cust_data->county = $request->county;
-        $cust_data->district = $request->district;
-        $cust_data->zipcode = $request->zipcode;
-        $cust_data->address = $request->address;
-        $cust_data->save();
-
-        $project->last_year_revenue = $request->last_year_revenue;
-        $project->Insured_employees = $request->Insured_employees;
-        $project->insurance_male = $request->insurance_male;
-        $project->insurance_female = $request->insurance_female;
-        $project->insurance_total = $request->insurance_total;
-        $project->clients_market = $request->clients_market;
-        $project->export_status = $request->export_status;
-        $project->contact_name  = $request->main_contact_name;
-        $project->contact_email  = $request->main_contact_email;
-        $project->contact_phone  = $request->main_contact_phone;
-        $project->save();
-
-        $cust_socail_datas = CustSocail::where('project_id',$project->id)->get();
-        // dd($cust_socail_datas);
-        if(count($cust_socail_datas) > 0) {
-            $cust_socail_datas = CustSocail::where('project_id',$project->id)->delete();
-        }
-        if(isset($request->socail_types))
-        {
-            foreach($request->socail_types as $key=>$socail_type)
-            {
-                if(isset($socail_type))
-                {
-                    $cust_socail = new CustSocail;
-                    $cust_socail->user_id = Auth::user()->id;
-                    $cust_socail->project_id = $project->id;
-                    $cust_socail->type = $request->socail_types[$key];
-                    $cust_socail->context = $request->socail_contexts[$key];
-                    $cust_socail->save();
-                }
-            }
-        }
-        
         //計畫主持人
         $project_host = ProjectHost::firstOrNew(['project_id' => $project->id]);
         $project_host->user_id = Auth::user()->id;
@@ -327,26 +249,7 @@ class ProjectController extends Controller
             }
         }
 
-        //指標客戶
-        $manufacture_norm_datas = ManufactureNorm::where('project_id',$project->id)->get();
-        if(count($manufacture_norm_datas) > 0) {
-            $manufacture_norm_datas = ManufactureNorm::where('project_id',$project->id)->delete();
-        }
-        if(isset($request->norm_names))
-        {
-            foreach($request->norm_names as $key=>$norm_name)
-            {
-                if(isset($norm_name))
-                {
-                    $manufacture_norm = new ManufactureNorm;
-                    $manufacture_norm->user_id = Auth::user()->id;
-                    $manufacture_norm->project_id = $project->id;
-                    $manufacture_norm->name = $request->norm_names[$key];
-                    $manufacture_norm->context= $request->need_contexts[$key];
-                    $manufacture_norm->save();
-                }
-            }
-        }
+        
 
 
 

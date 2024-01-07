@@ -51,9 +51,9 @@ class CustProject extends Model
         return $this->hasMany('App\Models\BusinessNeed', 'project_id', 'id');
     }
 
-    public function manufacture_need_datas()
+    public function manufacture_need_data()
     {
-        return $this->hasMany('App\Models\ManufactureNeed', 'project_id', 'id');
+        return $this->hasone('App\Models\ManufactureNeed', 'project_id', 'id');
     }
 
     public function manufacture_expected_datas()
@@ -69,5 +69,25 @@ class CustProject extends Model
     public function manufacture_norm_datas()
     {
         return $this->hasMany('App\Models\ManufactureNorm', 'project_id', 'id');
+    }
+
+    public function manufacture_income_datas()
+    {
+        return $this->hasMany('App\Models\ManufactureThreeIncome', 'project_id', 'id');
+    }
+
+    public function manufacture_subsidy_datas()
+    {
+        return $this->hasMany('App\Models\ManufactureSubsidy', 'project_id', 'id');
+    }
+
+    public function manufacture_avoid_data()
+    {
+        return $this->hasOne('App\Models\ManufactureAvoid', 'project_id', 'id');
+    }
+
+    public function manufacture_iso_datas()
+    {
+        return $this->hasMany('App\Models\ManufactureIso', 'project_id', 'id');
     }
 }

@@ -325,6 +325,13 @@
                             </div>
                         </li>
                         @elseif(Auth::user()->group_id == 2)
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle arrow-none" href="{{ route('cust.introduce.create') }}" id="topnav-vendor"
+                                role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="bx bx-store icon nav-icon"></i>
+                                <span data-key="t-dashboards">廠商資料</span>
+                            </a>
+                        </li>
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle arrow-none" href="#" id="topnav-vendor"
                                     role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
