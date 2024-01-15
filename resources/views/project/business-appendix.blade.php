@@ -164,7 +164,7 @@
                                                         </div>
                                                     </td>
                                                     <td>
-                                                        <h5 class="text-truncate font-size-16 m-0"><a href="javascript: void(0);"
+                                                        <h5 class="text-truncate font-size-16 m-0"><a href="https://zhengdian.tw6.quickconnect.to/d/s/whRxAQPVmwonrrf8z2PRE9qSOeoD3zJd/webapi/entry.cgi/%E7%B6%93%E6%BF%9F%E9%83%A8%E5%95%86%E6%A5%AD%E6%9C%8D%E5%8B%99%E6%A5%AD%E6%99%BA%E6%85%A7%E6%B8%9B%E7%A2%B3%E8%A3%9C%E5%8A%A9%E8%A8%88%E7%95%AB-%E9%99%84%E4%BB%B6%202%E3%80%81%E5%88%87%E7%B5%90%E8%81%B2%E6%98%8E%E6%9B%B8.pdf?api=SYNO.SynologyDrive.Files&method=download&version=2&files=%5B%22id%3A794638178936993941%22%5D&force_download=false&sharing_token=%22seKqa_5a4Wlv9XBo1OTUMGNpAADUAcVpVpkbiBrRivPCGRnlfSEE7ZYUFcC83BNh1GO3MZETCtqsrg5W2OyTCWmdYDSWYtzOX0hLpRmKDvqbX8aOYq38S575nL0zB8V1Xye7uNYIU.ROnJaWvzB3RkesURUatwQqMAYh8sYA45MfPWEUklCJcjprVu1i0ZFPUpBxC24jf2ZKMq9wbpg.hSmtdSWRpxjEKrmoAeHzJAyST.HhuK0VtWbK%22&_dc=1705324137194" target="_blank"
                                                                 class="text-dark">1.切結聲明書(請點擊我下載空白文件)</a></h5>
                                                     </td>
                                                 </tr>
@@ -176,7 +176,7 @@
                                                         </div>
                                                     </td>
                                                     <td>
-                                                        <h5 class="text-truncate font-size-16 m-0"><a href="javascript: void(0);"
+                                                        <h5 class="text-truncate font-size-16 m-0"><a href="https://zhengdian.tw6.quickconnect.to/d/s/whRxAQPVmwonrrf8z2PRE9qSOeoD3zJd/webapi/entry.cgi/%E7%B6%93%E6%BF%9F%E9%83%A8%E5%95%86%E6%A5%AD%E6%9C%8D%E5%8B%99%E6%A5%AD%E6%99%BA%E6%85%A7%E6%B8%9B%E7%A2%B3%E8%A3%9C%E5%8A%A9%E8%A8%88%E7%95%AB-%E9%99%84%E4%BB%B6%204%E3%80%81%E8%92%90%E9%9B%86%E5%80%8B%E4%BA%BA%E8%B3%87%E6%96%99%E5%91%8A%E7%9F%A5%E4%BA%8B%E9%A0%85%E6%9A%A8%E5%80%8B%E4%BA%BA%E8%B3%87%E6%96%99%E6%8F%90%E4%BE%9B%E5%90%8C%E6%84%8F%E6%9B%B8.pdf?api=SYNO.SynologyDrive.Files&method=download&version=2&files=%5B%22id%3A794638180375640220%22%5D&force_download=false&sharing_token=%22seKqa_5a4Wlv9XBo1OTUMGNpAADUAcVpVpkbiBrRivPCGRnlfSEE7ZYUFcC83BNh1GO3MZETCtqsrg5W2OyTCWmdYDSWYtzOX0hLpRmKDvqbX8aOYq38S575nL0zB8V1Xye7uNYIU.ROnJaWvzB3RkesURUatwQqMAYh8sYA45MfPWEUklCJcjprVu1i0ZFPUpBxC24jf2ZKMq9wbpg.hSmtdSWRpxjEKrmoAeHzJAyST.HhuK0VtWbK%22&_dc=1705324300581" target="_blank"
                                                                 class="text-dark">2.蒐集個人資料告知事項暨個人資料提供同意書(請點擊我下載空白文件)</a></h5>
                                                         <h5 class="text-truncate font-size-16 m-0">備註：主提案商所有參與人員、被帶動企業負責人都要簽名</h5>
                                                     </td>

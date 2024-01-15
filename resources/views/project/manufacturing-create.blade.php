@@ -399,7 +399,7 @@
                                 <div class="row mt-4 mb-2">
                                     <div class="col text-center">
                                         <button class="btn btn-success" type="submit" id="btn_storage"><i class="bx bx-file me-1"></i> 暫存 </button>
-                                        <a href="{{ route('project.business.appendix') }}">
+                                        <a href="{{ route('project.manufacturing.appendix') }}">
                                             <button class="btn btn-primary" type="button" id="btn_submit"><i class=" bx bx-check me-1"></i> 確認送出 </button>
                                         </a>
                                     </div> <!-- end col -->

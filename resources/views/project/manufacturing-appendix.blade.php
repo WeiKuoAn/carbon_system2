@@ -1,6 +1,6 @@
 @extends('layouts.master')
 @section('title')
-    商業服務類-附件
+    製造類-附件
 @endsection
 @section('css')
     <!-- datepicker css -->
@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="{{ asset('build/libs/gridjs/theme/mermaid.min.css') }}">
 @endsection
 @section('page-title')
-    商業服務類-附件
+    製造類-附件
 @endsection
 @section('body')
 

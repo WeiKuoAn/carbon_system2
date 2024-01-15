@@ -25,7 +25,7 @@
             <div class="modal-body">
                 <div class="text-center">
                     <i class="bx bx-check-circle display-1 text-success"></i>
-                    <h4 class="mt-3">新增製造類資料成功！</h4>
+                    <h4 class="mt-3">新增廠商資料成功！</h4>
                 </div>
             </div>
         </div><!-- /.modal-content -->
@@ -71,19 +71,19 @@
                                 <div class="col-md-12">
                                     <div class="mb-4">
                                         <label class="form-label" for="AddNew-Phone"><b>近一年平均投保人數</b>（申請計畫使用）<span class="text-danger">*</span></label>
-                                        <input type="number" class="form-control required-input" name="Insured_employees" placeholder="近一年平均投保人數" @if(isset($project)) value="{{ $project->insured_employees }}" @endif>
+                                        <input type="number" class="form-control required-input number-input" name="Insured_employees" placeholder="近一年平均投保人數" @if(isset($project)) value="{{ $project->insured_employees }}" @endif>
                                     </div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class="mb-4">
                                         <label class="form-label" for="AddNew-Phone"><b>最近一期勞保投保人數</b>（申請計畫使用）<span class="text-danger">*</span></label>
-                                        <input type="number" class="form-control required-input" name="insurance_male" id="insurance_male"  placeholder="男生投保人數" @if(isset($project)) value="{{ $project->insurance_male }}" @endif>
+                                        <input type="number" class="form-control required-input number-input" name="insurance_male" id="insurance_male"  placeholder="男生投保人數" @if(isset($project)) value="{{ $project->insurance_male }}" @endif>
                                     </div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class="mb-4">
                                         <label class="form-label" for="AddNew-Phone"><b>&nbsp;</b></label>
-                                        <input type="number" class="form-control required-input" name="insurance_female" id="insurance_female" placeholder="女生投保人數" @if(isset($project)) value="{{ $project->insurance_female }}" @endif>
+                                        <input type="number" class="form-control required-input number-input" name="insurance_female" id="insurance_female" placeholder="女生投保人數" @if(isset($project)) value="{{ $project->insurance_female }}" @endif>
                                     </div>
                                 </div>
                                 <div class="col-md-4">
@@ -517,6 +517,15 @@
             });
 
             $(document).ready(function() {
+
+
+                $('.number-input').on('input', function(){
+                    var value = $(this).val();
+                    if(value < 0){
+                        $(this).val(0);
+                        alert('投保人數不得小於0');
+                    }
+                });
 
                 var customerRowCount = $('#customer tbody tr').length;
 
