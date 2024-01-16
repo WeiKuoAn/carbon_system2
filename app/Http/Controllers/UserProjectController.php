@@ -31,7 +31,7 @@ class UserProjectController extends Controller
         $project = CustProject::where('user_id',$id)->first();
         $project_host_data = ProjectHost::where('user_id',$id)->first();
         $project_contact_data = ProjectContact::where('user_id',$id)->first();
-        return view('project.business-create')->with('project', $project)
+        return view('admin-project.business-create')->with('project', $project)
                                               ->with('project_host_data',$project_host_data)
                                               ->with('project_contact_data',$project_contact_data)
                                               ->with('cust_data',$cust_data);
@@ -187,17 +187,17 @@ class UserProjectController extends Controller
             }
         }
 
-        return redirect()->route('project.business.create')->with('success', '客戶已成功新增');
+        return redirect()->route('user.project.business.create',$id)->with('success', '客戶已成功新增');
     }
 
     public function BusinessAppendix()
     {
-        return view('project.business-appendix');
+        return view('admin-project.business-appendix');
     }
 
     public function ManufacturingAppendix()
     {
-        return view('project.manufacturing-appendix');
+        return view('admin-project.manufacturing-appendix');
     }
 
     public function ManufacturingCreate($id,)
@@ -207,7 +207,7 @@ class UserProjectController extends Controller
         $project_host_data = ProjectHost::where('user_id',$id)->first();
         $project_contact_data = ProjectContact::where('user_id',$id)->first();
 
-        return view('project.manufacturing-create')->with('project', $project)
+        return view('admin-project.manufacturing-create')->with('project', $project)
                                                     ->with('project_host_data',$project_host_data)
                                                     ->with('project_contact_data',$project_contact_data)
                                                     ->with('cust_data',$cust_data);;
@@ -402,6 +402,6 @@ class UserProjectController extends Controller
             }
         }
 
-        return redirect()->route('project.Manufacturing.create')->with('success', '客戶已成功新增');
+        return redirect()->route('user.project.Manufacturing.create',$id)->with('success', '客戶已成功新增');
     }
 }

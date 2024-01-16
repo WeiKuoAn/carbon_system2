@@ -30,7 +30,7 @@ class ProjectController extends Controller
      */
     public function index()
     {
-        $datas = CustProject::get();
+        $datas = CustProject::orderby('created_at','desc')->get();
         return view('project.index')->with('datas', $datas);
     }
 
@@ -48,6 +48,11 @@ class ProjectController extends Controller
         $project = CustProject::where('user_id',Auth::user()->id)->first();
         $project_host_data = ProjectHost::where('user_id',Auth::user()->id)->first();
         $project_contact_data = ProjectContact::where('user_id',Auth::user()->id)->first();
+        // if(!isset($project)) $project = [];
+        // if(!isset($project_host_data)) $project_host_data = [];
+        // if(!isset($project_contact_data)) $project_contact_data = [];
+        // dd($project_contact_data);
+
         return view('project.business-create')->with('project', $project)
                                               ->with('project_host_data',$project_host_data)
                                               ->with('project_contact_data',$project_contact_data)

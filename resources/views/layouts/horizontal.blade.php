@@ -304,7 +304,7 @@
                                 <div class="arrow-down"></div>
                             </a>
                             <div class="dropdown-menu" aria-labelledby="topnav-vendor">
-                                <a href="{{ route('industry-category.index') }}" class="dropdown-item">行業類別設定</a>
+                                {{-- <a href="{{ route('industry-category.index') }}" class="dropdown-item">行業類別設定</a> --}}
                                 <a href="{{ route('customer.index') }}" class="dropdown-item">廠商列表</a>
                             </div>
                         </li>
@@ -318,10 +318,10 @@
                             </a>
                             <div class="dropdown-menu" aria-labelledby="topnav-vendor">
                                 <a href="{{ route('projects') }}" class="dropdown-item">專案列表</a>
-                                <a href="{{ route('project.business.create') }}" class="dropdown-item">新增廠商-商業服務類</a>
+                                {{-- <a href="{{ route('project.business.create') }}" class="dropdown-item">新增廠商-商業服務類</a>
                                 <a href="{{ route('project.business.appendix') }}" class="dropdown-item">商業服務類-附件</a>
                                 <a href="{{ route('project.Manufacturing.create') }}" class="dropdown-item">新增廠商-製造類</a>
-                                <a href="{{ route('project.manufacturing.appendix') }}" class="dropdown-item">製造類-附件</a>
+                                <a href="{{ route('project.manufacturing.appendix') }}" class="dropdown-item">製造類-附件</a> --}}
                             </div>
                         </li>
                         @elseif(Auth::user()->group_id == 2)

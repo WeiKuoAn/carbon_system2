@@ -13,7 +13,7 @@ class CustProject extends Model
         'user_id', 'year', 'type', 'last_year_revenue', 'insured_employees',
         'insurance_male', 'insurance_female', 'insurance_total' ,'production_chart', 'clients_market',
         'export_status', 'contact_name', 'contact_email', 'contact_phone',
-        'nas_link', 'carbon_done', 'status'
+        'nas_link', 'carbon_done','principal_user_id', 'status','avoid','subsidy','carbon_iso'
     ];
 
     public function user_data()

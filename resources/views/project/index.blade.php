@@ -44,22 +44,25 @@
                             <table class="table table-nowrap align-middle">
                                 <thead class="table-light">
                                     <tr>
+                                        <th scope="col">No</th>
+                                        <th scope="col">新增日期</th>
                                         <th scope="col">廠商名稱</th>
                                         <th scope="col">申請類別</th>
-                                        {{-- <th scope="col">主要聯絡人</th>
+                                        <th scope="col">主要聯絡人</th>
                                         <th scope="col">聯絡人電話</th>
                                         <th scope="col">公司縣市</th>
                                         <th scope="col">公司規模</th>
                                         <th scope="col">上市櫃狀態</th>
                                         <th scope="col">銷售方向</th>
-                                        <th scope="col">權限</th> --}}
+                                        <th scope="col">負責人</th>
                                         <th scope="col" style="width: 200px;">操作</th>
                                     </tr>
                                 </thead>
 
                                 <tbody>
-                                    @foreach($datas as $data)
-                                    <tr>
+                                    @foreach($datas as $key=>$data)
+                                    <tr><td>{{ $key+1 }}</td>
+                                        <td>{{ date('Y-m-d', strtotime($data->created_at)) }}</td>
                                         <td>
                                             <a href="#" class="text-body">{{ $data->user_data->name }}</a>
                                         </td>
@@ -84,8 +87,13 @@
                                                     </a>
 
                                                     <div class="dropdown-menu dropdown-menu-end">
-                                                        <a class="dropdown-item" href="#">編輯</a>
-                                                        <a class="dropdown-item" href="#">刪除</a>
+                                                        <a class="dropdown-item" 
+                                                        @if($data->type == 0)
+                                                            href="{{ route('user.project.business.create',$data->user_id) }}"
+                                                        @elseif($data->type == 1)
+                                                            href="{{ route('user.project.Manufacturing.create',$data->user_id) }}"
+                                                        @endif>編輯</a>
+                                                        <a class="dropdown-item" href="{{ route('user.project.business.create',$data->user_id) }}">預覽</a>
                                                     </div>
                                                 </li>
                                             </ul>

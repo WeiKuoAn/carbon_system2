@@ -45,11 +45,11 @@ Route::get('project/manufacturing-appendix', [App\Http\Controllers\ProjectContro
 
 
 //廠商問卷查看
-Route::get('customer/{id}/surveys', [App\Http\Controllers\CustomerSurveyController::class , 'index'])->name('cust.surveys.index');
-Route::get('customer/{id}/surveys/{survey_id}/create', [App\Http\Controllers\CustomerSurveyController::class , 'create'])->name('cust.surveys.create');
-Route::post('customer/{id}/surveys/{survey_id}/store', [App\Http\Controllers\CustomerSurveyController::class , 'store'])->name('cust.surveys.store');
-Route::get('customer/{id}/surveys/{survey_id}/edit', [App\Http\Controllers\CustomerSurveyController::class , 'edit'])->name('cust.surveys.edit');
-Route::put('customer/{id}/surveys/{survey_id}/update', [App\Http\Controllers\CustomerSurveyController::class , 'update'])->name('cust.surveys.update');
+// Route::get('customer/{id}/surveys', [App\Http\Controllers\CustomerSurveyController::class , 'index'])->name('cust.surveys.index');
+// Route::get('customer/{id}/surveys/{survey_id}/create', [App\Http\Controllers\CustomerSurveyController::class , 'create'])->name('cust.surveys.create');
+// Route::post('customer/{id}/surveys/{survey_id}/store', [App\Http\Controllers\CustomerSurveyController::class , 'store'])->name('cust.surveys.store');
+// Route::get('customer/{id}/surveys/{survey_id}/edit', [App\Http\Controllers\CustomerSurveyController::class , 'edit'])->name('cust.surveys.edit');
+// Route::put('customer/{id}/surveys/{survey_id}/update', [App\Http\Controllers\CustomerSurveyController::class , 'update'])->name('cust.surveys.update');
 
 
 Route::get('branch/datas', [App\Http\Controllers\BranchController::class,'branch_datas'])->name('branch.datas');
