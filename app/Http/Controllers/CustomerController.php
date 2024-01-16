@@ -55,7 +55,7 @@ class CustomerController extends Controller
     public function Create()
     {
         
-        return view('customer.create');
+        return view('customer.create')->with('hint',0);
     }
 
     public function IntroduceCreate()
@@ -77,14 +77,19 @@ class CustomerController extends Controller
     {
         $cust_data = CustData::where('user_id',Auth::user()->id)->first();
         $project = CustProject::where('user_id',Auth::user()->id)->first();
-        
+        // dd( $request->registration_no);
         //客戶資料
         $cust_data->introduce = $request->introduce;
         $cust_data->capital = $request->capital;
         $cust_data->county = $request->county;
         $cust_data->district = $request->district;
         $cust_data->zipcode = $request->zipcode;
+        $cust_data->registration_no = $request->registration_no;
         $cust_data->address = $request->address;
+        $cust_data->contact_name  = $request->main_contact_name;
+        $cust_data->contact_job  = $request->main_contact_job;
+        $cust_data->contact_email  = $request->main_contact_email;
+        $cust_data->contact_phone  = $request->main_contact_phone;
         $cust_data->save();
 
         $project->last_year_revenue = $request->last_year_revenue;
@@ -95,6 +100,7 @@ class CustomerController extends Controller
         $project->clients_market = $request->clients_market;
         $project->export_status = $request->export_status;
         $project->contact_name  = $request->main_contact_name;
+        $project->contact_job  = $request->main_contact_job;
         $project->contact_email  = $request->main_contact_email;
         $project->contact_phone  = $request->main_contact_phone;
 
@@ -279,39 +285,49 @@ class CustomerController extends Controller
      */
     public function store(Request $request)
     {
-        //新增帳號
-        $user = new User;
-        $user->name = $request->name;
-        $user->email = $request->email;
-        $user->password = Hash::make($request->password);
-        $user->level = '2';
-        $user->group_id = '2';
-        $user->save();
+        //先判斷帳號是否有重複
+        $data = User::where('email',$request->email)->first();
+        // dd($data);
+        if(!isset($data))
+        {
+            //新增帳號
+            $user = new User;
+            $user->name = $request->name;
+            $user->email = $request->email;
+            $user->password = Hash::make($request->password);
+            $user->level = '2';
+            $user->group_id = '2';
+            $user->save();
 
-        $user_data = User::orderby('id', 'DESC')->first();
+            $user_data = User::orderby('id', 'DESC')->first();
 
-        //新增客戶資料
-        $cust_data = new CustData;
-        $cust_data->user_id = $user_data->id;
-        $cust_data->contact_name = $request->contact_name;
-        $cust_data->contact_job = $request->contact_job;
-        $cust_data->contact_email = $request->contact_email;
-        $cust_data->contact_phone = $request->contact_phone;
-        $cust_data->registration_no = $request->registration_no;
-        $cust_data->county = $request->county;
-        $cust_data->district = $request->district;
-        $cust_data->address = $request->address;
-        $cust_data->save();
+            //新增客戶資料
+            $cust_data = new CustData;
+            $cust_data->user_id = $user_data->id;
+            $cust_data->contact_name = $request->contact_name;
+            $cust_data->contact_job = $request->contact_job;
+            $cust_data->contact_email = $request->contact_email;
+            $cust_data->contact_phone = $request->contact_phone;
+            $cust_data->registration_no = $request->registration_no;
+            $cust_data->county = $request->county;
+            $cust_data->district = $request->district;
+            $cust_data->address = $request->address;
+            $cust_data->save();
 
-        //新增客戶計畫案內容
-        $project = new CustProject;
-        $project->year = Carbon::now()->year;
-        $project->user_id = $user_data->id;
-        $project->type = $request->type;
-        $project->nas_link = $request->nas_link;
-        $project->save();
+            //新增客戶計畫案內容
+            $project = new CustProject;
+            $project->year = Carbon::now()->year;
+            $project->user_id = $user_data->id;
+            $project->type = $request->type;
+            $project->nas_link = $request->nas_link;
+            $project->save();
 
-        return redirect()->route('customer.create')->with('success', '客戶已成功新增');
+            return redirect()->route('customer.create')->with('success', '客戶已成功新增');
+        }else{
+            // dd(1111);
+            return redirect()->route('customer.create')->with(['hint' => '1']);
+        }
+        
     }
 
     /**

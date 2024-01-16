@@ -52,25 +52,40 @@
                             <table class="table table-nowrap align-middle">
                                 <thead class="table-light">
                                     <tr>
+                                        <th scope="col">#</th>
                                         <th scope="col">姓名</th>
-                                        <th scope="col">職稱</th>
-                                        <th scope="col">帳號</th>
+                                        <th scope="col" width="30%">帳號</th>
+                                        <th scope="col">等級</th>
                                         <th scope="col">權限</th>
                                         <th scope="col" style="width: 200px;">動作</th>
                                     </tr>
                                 </thead>
 
                                 <tbody>
-                                    @foreach($datas as $data)
+                                    @foreach($datas as $key=>$data)
                                     <tr>
+                                        <td>
+                                            {{ $key+1 }}
+                                        </td>
                                         <td>
                                             {{ $data->name }}
                                         </td>
-                                        <td><span class="badge badge-soft-success mb-0">1</span></td>
                                         <td>{{ $data->email }}</td>
+                                        <td>
+                                            <span class="badge badge-soft-success font-size-14">
+                                                @if($data->level == 0)
+                                                    超級管理者
+                                                @elseif($data->level == 1)
+                                                    管理者
+                                                @else
+                                                    一般使用者
+                                                @endif
+                                            </span>
+                                        </td>
                                         <td>125</td>
                                         <td>
                                             <ul class="list-inline mb-0">
+                                                @if($data->level != 0)
                                                 <li class="list-inline-item">
                                                     <a href="javascript:void(0);" data-bs-toggle="tooltip"
                                                         data-bs-placement="top" title="Edit" class="px-2 text-primary"><i
@@ -81,6 +96,7 @@
                                                         data-bs-placement="top" title="Delete" class="px-2 text-danger"><i
                                                             class="bx bx-trash-alt font-size-18"></i></a>
                                                 </li>
+                                                @endif
                                                 <li class="list-inline-item dropdown">
                                                     <a class="text-muted dropdown-toggle font-size-18 px-2" href="#"
                                                         role="button" data-bs-toggle="dropdown" aria-haspopup="true">

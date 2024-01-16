@@ -43,41 +43,67 @@
                         <div class="table-responsive">
                             <table class="table table-nowrap align-middle">
                                 <thead class="table-light">
-                                    <tr>
+                                    <tr align="center">
                                         <th scope="col">No</th>
-                                        <th scope="col">新增日期</th>
+                                        <th scope="col">申請年度</th>
                                         <th scope="col">廠商名稱</th>
                                         <th scope="col">申請類別</th>
                                         <th scope="col">主要聯絡人</th>
+                                        <th scope="col">聯絡人職稱</th>
                                         <th scope="col">聯絡人電話</th>
-                                        <th scope="col">公司縣市</th>
-                                        <th scope="col">公司規模</th>
-                                        <th scope="col">上市櫃狀態</th>
-                                        <th scope="col">銷售方向</th>
-                                        <th scope="col">負責人</th>
+                                        <th scope="col">公司工廠登記地址</th>
+                                        <th scope="col">申請政府補助</th>
+                                        <th scope="col">迴避人員</th>
+                                        <th scope="col">完成碳盤查</th>
+                                        <th scope="col">申請ISO資料</th>
                                         <th scope="col" style="width: 200px;">操作</th>
                                     </tr>
                                 </thead>
 
-                                <tbody>
+                                <tbody align="center">
                                     @foreach($datas as $key=>$data)
                                     <tr><td>{{ $key+1 }}</td>
-                                        <td>{{ date('Y-m-d', strtotime($data->created_at)) }}</td>
+                                        <td>{{ $data->year }}年</td>
                                         <td>
-                                            <a href="#" class="text-body">{{ $data->user_data->name }}</a>
+                                            {{ $data->user_data->name }}
                                         </td>
                                         <td>
                                             @if($data->type == 0) 商業服務類
                                             @elseif($data->type == 1) 製造業
                                             @endif
                                         </td>
-                                        {{-- <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td> --}}
+                                        <td>{{ $data->contact_name }}</td>
+                                        <td>{{ $data->contact_job }}</td>
+                                        <td>{{ $data->contact_phone }}</td>
+                                        <td>{{ $data->cust_data->county.$data->cust_data->district.$data->cust_data->address }}</td>
+                                        <td>
+                                            @if($data->subsidy == '1')
+                                                <b>是</b>
+                                            @else
+                                                否
+                                            @endif
+                                        </td>
+                                        <td>
+                                            @if($data->avoid == '1')
+                                                <b>是</b>
+                                            @else
+                                                否
+                                            @endif
+                                        </td>
+                                        <td>
+                                            @if($data->carbon_done == '1')
+                                                <b>是</b>
+                                            @else
+                                                否
+                                            @endif
+                                        </td>
+                                        <td>
+                                            @if($data->carbon_iso == '1')
+                                                <b>是</b>
+                                            @else
+                                                否
+                                            @endif
+                                        </td>
                                         <td>
                                             <ul class="list-inline mb-0">
                                                 <li class="list-inline-item dropdown">

@@ -78,23 +78,7 @@
                                 </div>
                             </div>
 
-                            <div class="col-md-6">
-                                <div class="mb-3">
-                                    <label class="form-label">計劃案申報類別</label><span class="text-danger">*</span>
-                                    <select class="form-select" name="type" required>
-                                        <option value="" selected>請選擇</option>
-                                        <option value="0" >商業服務類</option>
-                                        <option value="1" >製造類</option>
-                                    </select>
-                                </div>
-                            </div>
-
-                            <div class="col-md-6">
-                                <div class="mb-3">
-                                    <label class="form-label" for="AddNew-Email">公司聯絡人信箱</label>
-                                    <input type="email" class="form-control" name="contact_email">
-                                </div>
-                            </div>
+                            
 
                             <div class="col-md-6">
                                 <div class="mb-3">
@@ -105,10 +89,42 @@
 
                             <div class="col-md-6">
                                 <div class="mb-3">
-                                    <label class="form-label" for="AddNew-Phone">統一編號</label>
-                                    <input type="text" class="form-control" name="registration_no" >
+                                    <label class="form-label" for="AddNew-Email">公司聯絡人信箱</label>
+                                    <input type="email" class="form-control" name="contact_email">
                                 </div>
                             </div>
+                            
+                            <div class="col-md-6">
+                                <label class="form-label">計劃案申報類別</label><span class="text-danger">*</span>
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <div class="form-check mb-3">
+                                            <input class="form-check-input" type="checkbox" id="formCheck1">
+                                            <label class="form-check-label" for="formCheck1">
+                                                商業服務類
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <div class="form-check mb-3">
+                                            <input class="form-check-input" type="checkbox" id="formCheck2">
+                                            <label class="form-check-label" for="formCheck2">
+                                                製造類
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label class="form-label" for="AddNew-Phone">統一編號</label>
+                                    <input type="text" class="form-control" name="registration_no" value="" >
+                                </div>
+                            </div>
+
+                            
+                            
 
                             <div class="col-md-6">
                                 <div class="mb-3">
@@ -140,8 +156,9 @@
                         </div>
 
                         <div class="col-12 text-end">
-                             <button type="button" class="btn btn-danger me-1" onclick="history.go(-1)"><i
-                                    class="bx bx-x me-1"></i> 回上一頁</button>
+                            <a href="{{ route('customer.index') }}">
+                             <button type="button" class="btn btn-danger me-1"><i
+                                    class="bx bx-x me-1"></i> 回上一頁</button></a>
                             <button type="submit" class="btn btn-primary" data-bs-toggle="modal"
                                 ><i class="bx bx-check me-1"></i>
                                 確認新增</button>
@@ -168,6 +185,20 @@
             </div><!-- /.modal-dialog -->
         </div><!-- /.modal -->
 
+        <div id="danger-btn" class="modal fade" tabindex="-1" aria-labelledby="success-btnLabel" aria-hidden="true"
+            data-bs-scroll="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <div class="text-center">
+                            <i class="bx bx-error-alt display-1 text-danger"></i>
+                            <h4 class="mt-3">廠商帳號已被註冊，請重新更換！</h4>
+                        </div>
+                    </div>
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->
+
     @endsection
     @section('scripts')
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -183,6 +214,10 @@
                 
                 @if(session('success'))
                     $('#success-btn').modal('show');
+                @endif
+
+                @if(session('hint'))
+                    $('#danger-btn').modal('show');
                 @endif
             });
             // 密碼生成函數

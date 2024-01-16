@@ -44,53 +44,35 @@
                             <table class="table table-nowrap align-middle">
                                 <thead class="table-light">
                                     <tr>
+                                        <th scope="col">No</th>
                                         <th scope="col">廠商名稱</th>
-                                        <th scope="col">產業別</th>
                                         <th scope="col">主要聯絡人</th>
+                                        <th scope="col">聯絡人職稱</th>
                                         <th scope="col">聯絡人電話</th>
-                                        <th scope="col">公司縣市</th>
-                                        <th scope="col">公司規模</th>
-                                        <th scope="col">上市櫃狀態</th>
-                                        <th scope="col">銷售方向</th>
+                                        <th scope="col">聯絡人信箱</th>
+                                        <th scope="col">公司工廠登記地址</th>
                                         <th scope="col">權限</th>
                                         <th scope="col" style="width: 200px;">操作</th>
                                     </tr>
                                 </thead>
 
                                 <tbody>
-                                    @foreach($datas as $data)
+                                    @foreach($datas as $key=>$data)
                                     <tr>
+                                        <td>{{ $key+1 }}</td>
                                         <td>
                                             <a href="#" class="text-body">{{ $data->user_data->name }}</a>
                                         </td>
+                                        <td>{{ $data->contact_name  }}</td>
+                                        <td>{{ $data->contact_job }}</td>
+                                        <td>{{ $data->contact_phone  }}</td>
+                                        <td>{{ $data->contact_email  }}</td>
+                                        <td>{{ $data->county.$data->district.$data->address  }}</td>
                                         <td>
-                                            @if(isset($data->industry_category_data))
-                                                {{ $data->industry_category_data->name }}
-                                            @endif
-                                        </td>
-                                        <td>{{ $data->primary_contact_name }}</td>
-                                        <td>{{ $data->primary_contact_phone }}</td>
-                                        <td>{{ $data->county }}</td>
-                                        <td>
-                                            @if(isset($data->company_scale))
-                                                {{ $data->company_scale() }}
-                                            @endif
-                                        </td>
-                                        <td>
-                                            @if(isset($data->stock_status))
-                                                {{ $data->stock_status() }}
-                                            @endif
-                                        </td>
-                                        <td>
-                                            @if(isset($data->sales_orientation))
-                                                {{ $data->sales_orientation() }}
-                                            @endif
-                                        </td>
-                                        <td>
-                                            @if($data->permission_status == 0)
+                                            @if($data->user_data->status == 0)
                                                 啟動
                                             @else
-                                                關閉
+                                                <span class="text-danger"><b>關閉</b></span>
                                             @endif
                                         </td>
                                         <td>
@@ -102,7 +84,9 @@
                                                     </a>
 
                                                     <div class="dropdown-menu dropdown-menu-end">
-                                                        <a class="dropdown-item" href="{{ route('user.project.business.create',$data->user_id) }}">廠商專案</a>
+                                                        <a class="dropdown-item" href="{{ route('user.project.business.create',$data->user_id) }}">編輯廠商資料</a>
+                                                        <a class="dropdown-item" href="{{ route('user.project.business.create',$data->user_id) }}">編輯專案資料</a>
+                                                        <a class="dropdown-item" href="{{ route('user.project.business.create',$data->user_id) }}">查看專案</a>
                                                         {{-- <a class="dropdown-item" href="{{ route('cust.surveys.index',$data->id) }}">問卷查看</a>
                                                         <a class="dropdown-item" href="#">盤查紀錄</a>
                                                         <a class="dropdown-item" href="{{ route('process_emission.index',$data->id) }}">盤查熱點分析</a>

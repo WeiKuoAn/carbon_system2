@@ -51,6 +51,12 @@
                                 </div>
                                 <div class="col-md-12">
                                     <div class="mb-4">
+                                        <label class="form-label" for="AddNew-Username"><b>公司統編</b><span class="text-danger">*</span></label>
+                                        <input type="text" class="form-control required-input" name="registration_no" value="{{ $project->cust_data->registration_no }}">
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="mb-4">
                                         <label class="form-label" for="AddNew-Phone"><b>去年整年度營業額（單位：元/新台幣）</b><span class="text-danger">*</span></label>
                                         <input type="number" class="form-control required-input" name="last_year_revenue" @if(isset($project)) value="{{ $project->last_year_revenue }}" @else value="0" @endif>
                                     </div>
@@ -92,20 +98,23 @@
                                         <input type="number" class="form-control required-input" placeholder="總投保人數" name="insurance_total"  id="insurance_total" @if(isset($project)) value="{{ $project->insurance_total }}" @endif readonly>
                                     </div>
                                 </div>
-                                <div class="col-md-4">
-                                    <label class="form-label" for="AddNew-Username"><b>公司主要聯繫窗口</b>（用於與錚典對接）<span class="text-danger">*</span></label>
+                                <label class="form-label" for="AddNew-Username"><b>公司主要聯繫窗口</b>（用於與錚典對接）<span class="text-danger">*</span></label>
+                                <div class="col-md-2">
                                     <div class="mb-4">
                                         <input type="text" class="form-control required-input" name="main_contact_name" placeholder="姓名"  @if(isset($project)) value="{{ $project->contact_name }}" @endif>
                                     </div>
                                 </div>
+                                <div class="col-md-2">
+                                    <div class="mb-4">
+                                        <input type="text" class="form-control required-input" name="main_contact_job" placeholder="職稱"  @if(isset($project)) value="{{ $project->contact_job }}" @endif>
+                                    </div>
+                                </div>
                                 <div class="col-md-4">
-                                    <label class="form-label" for="AddNew-Username">&nbsp;</label>
                                     <div class="mb-4">
                                         <input type="email" class="form-control required-input" name="main_contact_email" placeholder="信箱"  @if(isset($project)) value="{{ $project->contact_email }}" @endif>
                                     </div>
                                 </div>
                                 <div class="col-md-4">
-                                    <label class="form-label" for="AddNew-Username">&nbsp;</label>
                                     <div class="mb-4">
                                         <input type="text" class="form-control required-input" name="main_contact_phone" placeholder="電話"  @if(isset($project)) value="{{ $project->contact_phone }}" @endif>
                                     </div>
