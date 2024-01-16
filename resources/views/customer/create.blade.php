@@ -78,7 +78,23 @@
                                 </div>
                             </div>
 
-                            
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label class="form-label">計劃案申報類別</label><span class="text-danger">*</span>
+                                    <select class="form-select" name="type" required>
+                                        <option value="" selected>請選擇</option>
+                                        <option value="0" >商業服務類</option>
+                                        <option value="1" >製造類</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label class="form-label" for="AddNew-Email">公司聯絡人信箱</label>
+                                    <input type="email" class="form-control" name="contact_email">
+                                </div>
+                            </div>
 
                             <div class="col-md-6">
                                 <div class="mb-3">
@@ -89,12 +105,11 @@
 
                             <div class="col-md-6">
                                 <div class="mb-3">
-                                    <label class="form-label" for="AddNew-Email">公司聯絡人信箱</label>
-                                    <input type="email" class="form-control" name="contact_email">
+                                    <label class="form-label" for="AddNew-Phone">統一編號</label>
+                                    <input type="text" class="form-control" name="registration_no" value="" >
                                 </div>
                             </div>
-                            
-                            <div class="col-md-6">
+                            {{-- <div class="col-md-6">
                                 <label class="form-label">計劃案申報類別</label><span class="text-danger">*</span>
                                 <div class="row">
                                     <div class="col-md-3">
@@ -114,17 +129,7 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-
-                            <div class="col-md-6">
-                                <div class="mb-3">
-                                    <label class="form-label" for="AddNew-Phone">統一編號</label>
-                                    <input type="text" class="form-control" name="registration_no" value="" >
-                                </div>
-                            </div>
-
-                            
-                            
+                            </div> --}}
 
                             <div class="col-md-6">
                                 <div class="mb-3">
