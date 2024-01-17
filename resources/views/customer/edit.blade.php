@@ -51,7 +51,7 @@
                             <div class="col-md-6">
                                 <div class="mb-3">
                                     <label class="form-label" for="AddNew-Phone">Nas連結</label><span class="text-danger">*</span>
-                                    <input type="text" class="form-control" name="nas_link" value="{{ $data->project_data->nas_link }}" required>
+                                    <input type="text" class="form-control" name="nas_link" @if(isset($data->project_data)) value="{{ $data->project_data->nas_link }}" @endif required>
                                 </div>
                             </div>
 
