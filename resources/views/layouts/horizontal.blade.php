@@ -340,10 +340,10 @@
                                     <div class="arrow-down"></div>
                                 </a>
                                 <div class="dropdown-menu" aria-labelledby="topnav-vendor">
-                                    @if(Auth::user()->project_data->type == 0)
+                                    @if(in_array("0",  json_decode(Auth::user()->project_data->type)))
                                         <a href="{{ route('project.business.create') }}" class="dropdown-item">新增廠商-商業服務類</a>
                                         <a href="{{ route('project.business.appendix') }}" class="dropdown-item">商業服務類-附件</a>
-                                    @elseif(Auth::user()->project_data->type ==1)
+                                    @elseif(in_array("1",  json_decode(Auth::user()->project_data->type)))
                                         <a href="{{ route('project.Manufacturing.create') }}" class="dropdown-item">新增廠商-製造類</a>
                                         <a href="{{ route('project.manufacturing.appendix') }}" class="dropdown-item">製造類-附件</a>
                                     @endif
