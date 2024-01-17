@@ -495,6 +495,7 @@
             });
 
             var branchRowCount = $('#branch tbody tr').length;
+            
 
             $('#add_branch').click(function() {
                 branchRowCount++;
@@ -523,7 +524,7 @@
 
             // Event delegation for dynamically added elements
             $('#branch').on('click', '.del-row', function() {
-                if(branchRowCount < 5){
+                if(branchRowCount > 5){
                     $(this).closest('tr').remove();
                     branchRowCount--;
                 }else{

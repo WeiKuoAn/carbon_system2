@@ -18,6 +18,7 @@ use App\Models\ManufactureExpected;
 use App\Models\ManufactureImprove;
 use App\Models\ManufactureSubsidy;
 use App\Models\ManufactureNorm;
+use Carbon\Carbon;
 use App\Models\ManufactureThreeIncome;
 use App\Models\ManufactureIso;
 use SebastianBergmann\CodeCoverage\Report\Xml\Project;
@@ -25,7 +26,13 @@ use Illuminate\Support\Facades\Auth;
 
 class UserProjectController extends Controller
 {
-    public function BusinessCreate($id,)
+    public function index(Request $request,$id)
+    {
+        $datas = CustProject::where('user_id',$id)->get();
+        return view('admin-project.index')->with('datas', $datas);
+    }
+
+    public function BusinessCreate($id)
     {   
         $cust_data = CustData::where('user_id',$id)->first();
         $project = CustProject::where('user_id',$id)->first();
@@ -190,12 +197,50 @@ class UserProjectController extends Controller
         return redirect()->route('user.project.business.create',$id)->with('success', '客戶已成功新增');
     }
 
-    public function BusinessAppendix()
+    public function BusinessAppendix($id)
     {
         return view('admin-project.business-appendix');
     }
 
-    public function ManufacturingAppendix()
+    public function BusinessPreview($id)
+    {
+        $years = [];
+        $now = Carbon::now();
+
+        for ($i = 1; $i <= 3; $i++) {
+            $years[] = $now->copy()->subYears($i)->year;
+        }
+        $cust_data = CustData::where('user_id',$id)->first();
+        $project = CustProject::where('user_id',$id)->first();
+        $project_host_data = ProjectHost::where('user_id',$id)->first();
+        $project_contact_data = ProjectContact::where('user_id',$id)->first();
+        return view('admin-project.business-preview')->with('project', $project)
+                                              ->with('project_host_data',$project_host_data)
+                                              ->with('project_contact_data',$project_contact_data)
+                                              ->with('cust_data',$cust_data)
+                                              ->with('years',$years);
+    }
+
+    public function ManufacturingPreview($id)
+    {
+        $years = [];
+        $now = Carbon::now();
+
+        for ($i = 1; $i <= 3; $i++) {
+            $years[] = $now->copy()->subYears($i)->year;
+        }
+        $cust_data = CustData::where('user_id',$id)->first();
+        $project = CustProject::where('user_id',$id)->first();
+        $project_host_data = ProjectHost::where('user_id',$id)->first();
+        $project_contact_data = ProjectContact::where('user_id',$id)->first();
+        return view('admin-project.manufacturing-preview')->with('project', $project)
+                                                          ->with('project_host_data',$project_host_data)
+                                                           ->with('project_contact_data',$project_contact_data)
+                                                           ->with('cust_data',$cust_data)
+                                                           ->with('years',$years);
+    }
+
+    public function ManufacturingAppendix($id)
     {
         return view('admin-project.manufacturing-appendix');
     }

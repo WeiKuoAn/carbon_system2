@@ -35,10 +35,17 @@ Route::post('project/business-create', [App\Http\Controllers\ProjectController::
 Route::get('project/manufacturing-create', [App\Http\Controllers\ProjectController::class,'ManufacturingCreate'])->name('project.Manufacturing.create');
 Route::post('project/manufacturing-create', [App\Http\Controllers\ProjectController::class,'ManufacturingStore'])->name('project.Manufacturing.store');
 
+Route::get('customer/{id}/introduce-edit', [App\Http\Controllers\UserCustomerController::class,'IntroduceEdit'])->name('user.introduce.edit');
+Route::post('customer/{id}/introduce-edit', [App\Http\Controllers\UserCustomerController::class,'IntroduceUpdate'])->name('user.introduce.update');
+
+Route::get('projects/{id}', [App\Http\Controllers\UserProjectController::class,'index'])->name('user.project.index');
 Route::get('project/{id}/business-create', [App\Http\Controllers\UserProjectController::class,'BusinessCreate'])->name('user.project.business.create');
 Route::post('project/{id}/business-create', [App\Http\Controllers\UserProjectController::class,'BusinessStore'])->name('user.project.business.store');
 Route::get('project/{id}/manufacturing-create', [App\Http\Controllers\UserProjectController::class,'ManufacturingCreate'])->name('user.project.Manufacturing.create');
 Route::post('project/{id}/manufacturing-create', [App\Http\Controllers\UserProjectController::class,'ManufacturingStore'])->name('user.project.Manufacturing.store');
+
+Route::get('project/{id}/business-preview', [App\Http\Controllers\UserProjectController::class,'BusinessPreview'])->name('user.project.business.preview');
+Route::get('project/{id}/manufacturing-preview', [App\Http\Controllers\UserProjectController::class,'ManufacturingPreview'])->name('user.project.Manufacturing.preview');
 
 Route::get('project/business-appendix', [App\Http\Controllers\ProjectController::class,'BusinessAppendix'])->name('project.business.appendix');
 Route::get('project/manufacturing-appendix', [App\Http\Controllers\ProjectController::class,'ManufacturingAppendix'])->name('project.manufacturing.appendix');

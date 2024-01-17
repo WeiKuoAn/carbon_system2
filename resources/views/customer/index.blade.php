@@ -84,9 +84,10 @@
                                                     </a>
 
                                                     <div class="dropdown-menu dropdown-menu-end">
-                                                        <a class="dropdown-item" href="{{ route('user.project.business.create',$data->user_id) }}">編輯廠商資料</a>
-                                                        <a class="dropdown-item" href="{{ route('user.project.business.create',$data->user_id) }}">編輯專案資料</a>
-                                                        <a class="dropdown-item" href="{{ route('user.project.business.create',$data->user_id) }}">查看專案</a>
+                                                        <a class="dropdown-item" href="{{ route('customer.edit',$data->user_id) }}">編輯廠商帳戶資料</a>
+                                                        <a class="dropdown-item" href="{{ route('user.introduce.edit',$data->user_id) }}">編輯廠商基本資料</a>
+                                                        <a class="dropdown-item" href="{{ route('user.project.index',$data->user_id) }}">查看專案資料</a>
+                                                        {{-- <a class="dropdown-item" href="{{ route('user.project.business.create',$data->user_id) }}">查看專案</a> --}}
                                                         {{-- <a class="dropdown-item" href="{{ route('cust.surveys.index',$data->id) }}">問卷查看</a>
                                                         <a class="dropdown-item" href="#">盤查紀錄</a>
                                                         <a class="dropdown-item" href="{{ route('process_emission.index',$data->id) }}">盤查熱點分析</a>
@@ -101,6 +102,7 @@
                             </table>
                         </div>
                     </div>
+                    {{ $datas->links('vendor.pagination.bootstrap-5') }}
                 </div>
             </div>
         </div>

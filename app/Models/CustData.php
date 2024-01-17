@@ -17,4 +17,9 @@ class CustData extends Model
     {
         return $this->hasOne('App\Models\User', 'id', 'user_id');
     }
+
+    public function project_data()
+    {
+        return $this->hasOne('App\Models\CustProject', 'id', 'user_id');
+    }
 }

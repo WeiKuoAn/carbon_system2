@@ -1,6 +1,6 @@
 @extends('layouts.master')
 @section('title')
-    專案列表
+    廠商歷年專案列表
 @endsection
 @section('css')
     <!-- datepicker css -->
@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="{{ URL::asset('build/libs/gridjs/theme/mermaid.min.css') }}">
 @endsection
 @section('page-title')
-    專案列表
+    廠商歷年專案列表
 @endsection
 @section('body')
 
@@ -46,7 +46,6 @@
                                     <tr align="center">
                                         <th scope="col">No</th>
                                         <th scope="col">申請年度</th>
-                                        <th scope="col">廠商名稱</th>
                                         <th scope="col">申請類別</th>
                                         <th scope="col">主要聯絡人</th>
                                         <th scope="col">聯絡人職稱</th>
@@ -65,11 +64,8 @@
                                     <tr><td>{{ $key+1 }}</td>
                                         <td>{{ $data->year }}年</td>
                                         <td>
-                                            {{ $data->user_data->name }}
-                                        </td>
-                                        <td>
-                                            @if(in_array("0",  json_decode($data->type))) 商業服務類
-                                            @elseif(in_array("1",  json_decode($data->type))) 製造業
+                                            @if($data->type == 0) 商業服務類
+                                            @elseif($data->type == 1) 製造業
                                             @endif
                                         </td>
                                         <td>{{ $data->contact_name }}</td>
@@ -111,7 +107,7 @@
                                                         role="button" data-bs-toggle="dropdown" aria-haspopup="true">動作
                                                         <i class="bx bxs-down-arrow"></i>
                                                     </a>
-                                                    {{-- {{dd($data->type)}} --}}
+
                                                     <div class="dropdown-menu dropdown-menu-end">
                                                         <a class="dropdown-item" 
                                                         @if(in_array("0",  json_decode($data->type)))
@@ -119,12 +115,12 @@
                                                         @elseif(in_array("1",  json_decode($data->type)))
                                                             href="{{ route('user.project.Manufacturing.create',$data->user_id) }}"
                                                         @endif>編輯</a>
-                                                        <a class="dropdown-item"
-                                                        @if(in_array("0",  json_decode($data->type)))
-                                                            href="{{ route('user.project.business.preview',$data->user_id) }}"
-                                                        @elseif(in_array("1",  json_decode($data->type)))
-                                                            href="{{ route('user.project.Manufacturing.preview',$data->user_id) }}"
-                                                        @endif>預覽</a>
+                                                            <a class="dropdown-item"
+                                                            @if(in_array("0",  json_decode($data->type)))
+                                                                href="{{ route('user.project.business.preview',$data->user_id) }}"
+                                                            @elseif(in_array("1",  json_decode($data->type)))
+                                                                href="{{ route('user.project.Manufacturing.preview',$data->user_id) }}"
+                                                            @endif>預覽</a>
                                                     </div>
                                                 </li>
                                             </ul>
@@ -134,9 +130,7 @@
                                 </tbody>
                             </table>
                         </div>
-                        {{ $datas->links('vendor.pagination.bootstrap-5') }}
                     </div>
-                    
                 </div>
             </div>
         </div>

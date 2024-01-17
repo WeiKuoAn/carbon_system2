@@ -30,7 +30,7 @@ class ProjectController extends Controller
      */
     public function index()
     {
-        $datas = CustProject::orderby('created_at','desc')->get();
+        $datas = CustProject::orderby('created_at','desc')->paginate(30);
         return view('project.index')->with('datas', $datas);
     }
 

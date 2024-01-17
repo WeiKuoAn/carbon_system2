@@ -4,61 +4,19 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\CustData;
-use App\Models\IndustryCategory;
-use App\Models\Branch;
 use App\Models\CustProject;
-use Illuminate\Support\Facades\Hash;
 use Carbon\Carbon;
 use App\Models\CustSocail;
-use App\Models\BusinessDrive;
-use App\Models\BusinessNeed;
-use App\Models\BusinessSituation;
-use App\Models\ProjectHost;
-use App\Models\ProjectContact;
-use App\Models\User;
-use App\Models\ProjectPersonnel;
-use App\Models\ManufactureNeed;
-use App\Models\ManufactureExpected;
-use App\Models\ManufactureImprove;
 use App\Models\ManufactureSubsidy;
 use App\Models\ManufactureNorm;
 use App\Models\ManufactureThreeIncome;
 use App\Models\ManufactureAvoid;
 use App\Models\ManufactureIso;
-use SebastianBergmann\CodeCoverage\Report\Xml\Project;
 use Illuminate\Support\Facades\Auth;
 
-class CustomerController extends Controller
+class UserCustomerController extends Controller
 {
-    public function customer_data(Request $request)
-    {
-        if ($request->ajax()) {
-            $output = "";
-            $cust = CustData::where('id',  $request->cust_id)->first();
-
-            if($cust){
-                return Response($cust);
-            }
-        }
-    }
-
-
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
-    {
-        $datas = CustData::paginate(50);
-        return view('customer.index')->with('datas', $datas);
-    }
-
-    public function Create()
-    {
-        
-        return view('customer.create')->with('hint',0);
-    }
-
-    public function IntroduceCreate()
+    public function IntroduceEdit($id)
     {
         $years = [];
         $now = Carbon::now();
@@ -66,17 +24,17 @@ class CustomerController extends Controller
         for ($i = 1; $i <= 3; $i++) {
             $years[] = $now->copy()->subYears($i)->year;
         }
-        $cust_data = CustData::where('user_id',Auth::user()->id)->first();
-        $project = CustProject::where('user_id',Auth::user()->id)->first();
-        return view('customer.introduce-create')->with('project', $project)
+        $cust_data = CustData::where('user_id',$id)->first();
+        $project = CustProject::where('user_id',$id)->first();
+        return view('admin-project.introduce-create')->with('project', $project)
                                                 ->with('cust_data',$cust_data)
                                                 ->with('years',$years);
     }
 
-    public function IntroduceStore(Request $request)
+    public function IntroduceUpdate(Request $request,$id)
     {
-        $cust_data = CustData::where('user_id',Auth::user()->id)->first();
-        $project = CustProject::where('user_id',Auth::user()->id)->first();
+        $cust_data = CustData::where('user_id',$id)->first();
+        $project = CustProject::where('user_id',$id)->first();
         // dd( $request->registration_no);
         //客戶資料
         $cust_data->introduce = $request->introduce;
@@ -143,7 +101,7 @@ class CustomerController extends Controller
                     if(isset($subsidy_year))
                     {
                         $cust_subsidy = new ManufactureSubsidy;
-                        $cust_subsidy->user_id = Auth::user()->id;
+                        $cust_subsidy->user_id = $id;
                         $cust_subsidy->project_id = $project->id;
                         $cust_subsidy->year = $request->subsidy_years[$key];
                         $cust_subsidy->name = $request->subsidy_names[$key];
@@ -166,7 +124,7 @@ class CustomerController extends Controller
             if(isset($request->avoid_department))
             {
                 $cust_avoid = new ManufactureAvoid;
-                $cust_avoid->user_id = Auth::user()->id;
+                $cust_avoid->user_id = $id;
                 $cust_avoid->project_id = $project->id;
                 $cust_avoid->department = $request->avoid_department;
                 $cust_avoid->job = $request->avoid_job;
@@ -192,7 +150,7 @@ class CustomerController extends Controller
                     if(isset($iso_name))
                     {
                         $cust_iso = new ManufactureIso;
-                        $cust_iso->user_id = Auth::user()->id;
+                        $cust_iso->user_id = $id;
                         $cust_iso->project_id = $project->id;
                         $cust_iso->name = $request->iso_names[$key];
                         $cust_iso->year = $request->iso_years[$key];
@@ -219,7 +177,7 @@ class CustomerController extends Controller
                 if(isset($socail_type))
                 {
                     $cust_socail = new CustSocail;
-                    $cust_socail->user_id = Auth::user()->id;
+                    $cust_socail->user_id = $id;
                     $cust_socail->project_id = $project->id;
                     $cust_socail->type = $request->socail_types[$key];
                     $cust_socail->context = $request->socail_contexts[$key];
@@ -241,7 +199,7 @@ class CustomerController extends Controller
                 if(isset($three_income))
                 {
                     $cust_income = new ManufactureThreeIncome;
-                    $cust_income->user_id = Auth::user()->id;
+                    $cust_income->user_id = $id;
                     $cust_income->project_id = $project->id;
                     $cust_income->income = $request->three_incomes[$key];
                     $cust_income->year = $request->three_years[$key];
@@ -264,7 +222,7 @@ class CustomerController extends Controller
                 if(isset($norm_name))
                 {
                     $manufacture_norm = new ManufactureNorm;
-                    $manufacture_norm->user_id = Auth::user()->id;
+                    $manufacture_norm->user_id = $id;
                     $manufacture_norm->project_id = $project->id;
                     $manufacture_norm->name = $request->norm_names[$key];
                     $manufacture_norm->context= $request->norm_contexts[$key];
@@ -272,120 +230,8 @@ class CustomerController extends Controller
                 }
             }
         }
-        return redirect()->route('cust.introduce.store')->with('success', '客戶已成功新增');
+        return redirect()->route('user.introduce.update',$id)->with('success', '客戶已成功新增');
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //先判斷帳號是否有重複
-        $data = User::where('email',$request->email)->first();
-        // dd($data);
-        if(!isset($data))
-        {
-            //新增帳號
-            $user = new User;
-            $user->name = $request->name;
-            $user->email = $request->email;
-            $user->password = Hash::make($request->password);
-            $user->level = '2';
-            $user->group_id = '2';
-            $user->save();
-
-            $user_data = User::orderby('id', 'DESC')->first();
-
-            //新增客戶資料
-            $cust_data = new CustData;
-            $cust_data->user_id = $user_data->id;
-            $cust_data->contact_name = $request->contact_name;
-            $cust_data->contact_job = $request->contact_job;
-            $cust_data->contact_email = $request->contact_email;
-            $cust_data->contact_phone = $request->contact_phone;
-            $cust_data->registration_no = $request->registration_no;
-            $cust_data->county = $request->county;
-            $cust_data->district = $request->district;
-            $cust_data->address = $request->address;
-            $cust_data->save();
-
-            //新增客戶計畫案內容
-            $project = new CustProject;
-            $project->year = Carbon::now()->year;
-            $project->user_id = $user_data->id;
-            if($request->has('type')) {
-                $project->type = json_encode($request->type);
-            }
-            $project->nas_link = $request->nas_link;
-            $project->save();
-
-            return redirect()->route('customer.create')->with('success', '客戶已成功新增');
-        }else{
-            // dd(1111);
-            return redirect()->route('customer.create')->with(['hint' => '1']);
-        }
-        
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        $data = CustData::where('user_id',$id)->first();
-        // dd($data);
-        return view('customer.edit')->with('hint',0)->with('data',$data);
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        $user = User::where('id',$id)->first();
-        $user->name = $request->name;
-        $user->save();
-
-        //新增客戶資料
-        $cust_data = CustData::where('user_id',$user->id)->first();
-        $cust_data->contact_name = $request->contact_name;
-        $cust_data->contact_job = $request->contact_job;
-        $cust_data->contact_email = $request->contact_email;
-        $cust_data->contact_phone = $request->contact_phone;
-        $cust_data->registration_no = $request->registration_no;
-        $cust_data->county = $request->county;
-        $cust_data->district = $request->district;
-        $cust_data->address = $request->address;
-        $cust_data->save();
-
-        //新增客戶計畫案內容
-        $project = CustProject::where('user_id',$user->id)->first();
-        if($request->has('type')) {
-            $project->type = json_encode($request->type);
-        }
-        $project->nas_link = $request->nas_link;
-        $project->save();
-        return redirect()->route('customer.index');
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
-    }
 }
