@@ -20,6 +20,6 @@ class CustData extends Model
 
     public function project_data()
     {
-        return $this->hasOne('App\Models\CustProject', 'id', 'user_id');
+        return $this->hasOne('App\Models\CustProject', 'user_id', 'user_id');
     }
 }
