@@ -35,9 +35,9 @@ class UserProjectController extends Controller
     public function BusinessCreate($id)
     {   
         $cust_data = CustData::where('user_id',$id)->first();
-        $project = CustProject::where('user_id',$id)->first();
-        $project_host_data = ProjectHost::where('user_id',$id)->first();
-        $project_contact_data = ProjectContact::where('user_id',$id)->first();
+        $project = CustProject::where('user_id',$id)->where('type','0')->first();
+        $project_host_data = ProjectHost::where('user_id',$id)->where('project_id',$project->id)->first();
+        $project_contact_data = ProjectContact::where('user_id',$id)->where('project_id',$project->id)->first();
         return view('admin-project.business-create')->with('project', $project)
                                               ->with('project_host_data',$project_host_data)
                                               ->with('project_contact_data',$project_contact_data)
@@ -47,22 +47,8 @@ class UserProjectController extends Controller
     public function BusinessStore($id,Request $request)
     {   
         $cust_data = CustData::where('user_id',$id)->first();
-        $project = CustProject::where('user_id',$id)->first();
+        $project = CustProject::where('user_id',$id)->where('type','0')->first();
         
-        //客戶資料
-        $cust_data->introduce = $request->introduce;
-        $cust_data->capital = $request->capital;
-        $cust_data->save();
-
-        $project->last_year_revenue = $request->last_year_revenue;
-        $project->Insured_employees = $request->Insured_employees;
-        $project->insurance_male = $request->insurance_male;
-        $project->insurance_female = $request->insurance_female;
-        $project->insurance_total = $request->insurance_total;
-        $project->contact_name  = $request->main_contact_name;
-        $project->contact_email  = $request->main_contact_email;
-        $project->contact_phone  = $request->main_contact_phone;
-        $project->save();
 
         $cust_socail_datas = CustSocail::where('project_id',$project->id)->get();
         // dd($cust_socail_datas);
@@ -248,9 +234,9 @@ class UserProjectController extends Controller
     public function ManufacturingCreate($id,)
     {
         $cust_data = CustData::where('user_id',$id)->first();
-        $project = CustProject::where('user_id',$id)->first();
-        $project_host_data = ProjectHost::where('user_id',$id)->first();
-        $project_contact_data = ProjectContact::where('user_id',$id)->first();
+        $project = CustProject::where('user_id',$id)->where('type','1')->first();
+        $project_host_data = ProjectHost::where('user_id',$id)->where('project_id',$project->id)->first();
+        $project_contact_data = ProjectContact::where('user_id',$id)->where('project_id',$project->id)->first();
 
         return view('admin-project.manufacturing-create')->with('project', $project)
                                                     ->with('project_host_data',$project_host_data)
@@ -261,28 +247,8 @@ class UserProjectController extends Controller
     public function ManufacturingStore($id,Request $request)
     {   
         $cust_data = CustData::where('user_id',$id)->first();
-        $project = CustProject::where('user_id',$id)->first();
+        $project = CustProject::where('user_id',$id)->where('type','1')->first();
         
-        //客戶資料
-        $cust_data->introduce = $request->introduce;
-        $cust_data->capital = $request->capital;
-        $cust_data->county = $request->county;
-        $cust_data->district = $request->district;
-        $cust_data->zipcode = $request->zipcode;
-        $cust_data->address = $request->address;
-        $cust_data->save();
-
-        $project->last_year_revenue = $request->last_year_revenue;
-        $project->Insured_employees = $request->Insured_employees;
-        $project->insurance_male = $request->insurance_male;
-        $project->insurance_female = $request->insurance_female;
-        $project->insurance_total = $request->insurance_total;
-        $project->clients_market = $request->clients_market;
-        $project->export_status = $request->export_status;
-        $project->contact_name  = $request->main_contact_name;
-        $project->contact_email  = $request->main_contact_email;
-        $project->contact_phone  = $request->main_contact_phone;
-        $project->save();
 
         $cust_socail_datas = CustSocail::where('project_id',$project->id)->get();
         // dd($cust_socail_datas);

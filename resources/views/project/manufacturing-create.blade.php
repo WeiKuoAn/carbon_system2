@@ -177,7 +177,7 @@
                                                                         <input id="pay_price-{{ $i }}" class="mobile form-control required-input" type="text" name="personnel_contexts[]" value="">
                                                                     </td>
                                                                     <td>
-                                                                        <input id="pay_price-{{ $i }}" class="mobile form-control required-input" type="text" name="personnel_s[]" value="">
+                                                                        <input id="pay_price-{{ $i }}" class="mobile form-control required-input" type="text" name="personnel_experiences[]" value="">
                                                                     </td>
                                                                     <td>
                                                                         <button class="mobile btn btn-danger del-row" alt="{{ $i }}" type="button" name="button" onclick="del_row(this)">刪除</button>
@@ -429,9 +429,9 @@
                     countyName: "county", // 自訂城市 select 標籤的 name 值
                     districtName: "district", // 自訂地區 select 標籤的 name 值
                     zipcodeName: "zipcode", // 自訂地區 select 標籤的 name 值
-                    'countySel': '{{ $project->cust_data->county }}',
-                    'districtSel': '{{ $project->cust_data->district }}',
-                    'zipcodeSel': '{{ $project->cust_data->zipcode }}'
+                    'countySel': '{{ $project->county }}',
+                    'districtSel': '{{ $project->district }}',
+                    'zipcodeSel': '{{ $project->zipcode }}'
                 });
 
                 
@@ -451,19 +451,19 @@
                                             ${presonRowCount}
                                         </td>
                                         <td>
-                                            <input id="pay_date-${presonRowCount}" class="mobile form-control" type="text" name="personnel_names[]" value="" required>
+                                            <input id="pay_date-${presonRowCount}" class="mobile form-control" type="text" name="personnel_names[]" value="">
                                         </td>
                                         <td>
-                                            <input id="department-${presonRowCount}" class="mobile form-control" type="text" name="personnel_departments[]" value="" required>
+                                            <input id="department-${presonRowCount}" class="mobile form-control" type="text" name="personnel_departments[]" value="">
                                         </td>
                                         <td>
-                                            <input id="title-${presonRowCount}" class="mobile form-control" type="text" name="personnel_jobs[]" value="" required>
+                                            <input id="title-${presonRowCount}" class="mobile form-control" type="text" name="personnel_jobs[]" value="">
                                         </td>
                                         <td>
-                                            <input id="title-${presonRowCount}" class="mobile form-control" type="text" name="personnel_contexts[]" value="" required>
+                                            <input id="title-${presonRowCount}" class="mobile form-control" type="text" name="personnel_contexts[]" value="">
                                         </td>
                                         <td>
-                                            <input id="title-${presonRowCount}" class="mobile form-control" type="text" name="personnel_experiences[]" value="" required>
+                                            <input id="title-${presonRowCount}" class="mobile form-control" type="text" name="personnel_experiences[]" value="">
                                         </td>
                                         <td>
                                             <button class="mobile btn btn-danger del-row" alt="${presonRowCount}" type="button" name="button">刪除</button>

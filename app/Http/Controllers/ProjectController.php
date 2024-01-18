@@ -45,16 +45,15 @@ class ProjectController extends Controller
     public function BusinessCreate()
     {   
         $cust_data = CustData::where('user_id',Auth::user()->id)->first();
-        $project = CustProject::where('user_id',Auth::user()->id)->first();
-        $project_host_data = ProjectHost::where('user_id',Auth::user()->id)->first();
-        $project_contact_data = ProjectContact::where('user_id',Auth::user()->id)->first();
+        $project = CustProject::where('user_id',Auth::user()->id)->where('type','0')->first();
+        $project_host_data = ProjectHost::where('user_id',Auth::user()->id)->where('project_id',$project->id)->first();
+        $project_contact_data = ProjectContact::where('user_id',Auth::user()->id)->where('project_id',$project->id)->first();
         // if(!isset($project)) $project = [];
         // if(!isset($project_host_data)) $project_host_data = [];
         // if(!isset($project_contact_data)) $project_contact_data = [];
         // dd($project_contact_data);
 
-        return view('project.business-create')->with('project', $project)
-                                              ->with('project_host_data',$project_host_data)
+        return view('project.business-create')->with('project',$project)->with('project_host_data',$project_host_data)
                                               ->with('project_contact_data',$project_contact_data)
                                               ->with('cust_data',$cust_data);
     }
@@ -62,8 +61,7 @@ class ProjectController extends Controller
     public function BusinessStore(Request $request)
     {   
         $cust_data = CustData::where('user_id',Auth::user()->id)->first();
-        $project = CustProject::where('user_id',Auth::user()->id)->first();
-        
+        $project = CustProject::where('user_id',Auth::user()->id)->where('type','0')->first();
         //計畫主持人
         $project_host = ProjectHost::firstOrNew(['project_id' => $project->id]);
         $project_host->user_id = Auth::user()->id;
@@ -189,21 +187,19 @@ class ProjectController extends Controller
     public function ManufacturingCreate()
     {
         $cust_data = CustData::where('user_id',Auth::user()->id)->first();
-        $project = CustProject::where('user_id',Auth::user()->id)->first();
-        $project_host_data = ProjectHost::where('user_id',Auth::user()->id)->first();
-        $project_contact_data = ProjectContact::where('user_id',Auth::user()->id)->first();
-
-        return view('project.manufacturing-create')->with('project', $project)
-                                                    ->with('project_host_data',$project_host_data)
-                                                    ->with('project_contact_data',$project_contact_data)
-                                                    ->with('cust_data',$cust_data);;
+        $project = CustProject::where('user_id',Auth::user()->id)->where('type','1')->first();
+        $project_host_data = ProjectHost::where('user_id',Auth::user()->id)->where('project_id',$project->id)->first();
+        $project_contact_data = ProjectContact::where('user_id',Auth::user()->id)->where('project_id',$project->id)->first();
+        
+        return view('project.manufacturing-create')->with('project',$project)->with('project_host_data',$project_host_data)
+                                                   ->with('project_contact_data',$project_contact_data)
+                                                   ->with('cust_data',$cust_data);;
     }
 
     public function ManufacturingStore(Request $request)
     {   
         $cust_data = CustData::where('user_id',Auth::user()->id)->first();
-        $project = CustProject::where('user_id',Auth::user()->id)->first();
-        
+        $project = CustProject::where('user_id',Auth::user()->id)->where('type','1')->first();
         //計畫主持人
         $project_host = ProjectHost::firstOrNew(['project_id' => $project->id]);
         $project_host->user_id = Auth::user()->id;
@@ -229,7 +225,7 @@ class ProjectController extends Controller
         $project_contact->experience = $request->contact_experience;
         $project_contact->email = $request->contact_email;
         $project_contact->save();
-
+        // dd($request->personnel_experiences);
         //人事名單
         $cust_personnel_datas = ProjectPersonnel::where('project_id',$project->id)->get();
         if(count($cust_personnel_datas) > 0) {

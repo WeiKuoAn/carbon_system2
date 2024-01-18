@@ -332,23 +332,37 @@
                                 <span data-key="t-dashboards">廠商資料</span>
                             </a>
                         </li>
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle arrow-none" href="#" id="topnav-vendor"
-                                    role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <i class="bx bx-store icon nav-icon"></i>
-                                    <span data-key="t-dashboards">專案管理</span>
-                                    <div class="arrow-down"></div>
-                                </a>
-                                <div class="dropdown-menu" aria-labelledby="topnav-vendor">
-                                    @if(in_array("0",  json_decode(Auth::user()->project_data->type)))
-                                        <a href="{{ route('project.business.create') }}" class="dropdown-item">新增廠商-商業服務類</a>
-                                        <a href="{{ route('project.business.appendix') }}" class="dropdown-item">商業服務類-附件</a>
-                                    @elseif(in_array("1",  json_decode(Auth::user()->project_data->type)))
-                                        <a href="{{ route('project.Manufacturing.create') }}" class="dropdown-item">新增廠商-製造類</a>
-                                        <a href="{{ route('project.manufacturing.appendix') }}" class="dropdown-item">製造類-附件</a>
-                                    @endif
-                                </div>
-                            </li>
+                            {{-- {{ dd(Auth::user()->project_datas) }} --}}
+                            @foreach(Auth::user()->project_datas as $project_data)
+                                @if($project_data->type == 0)
+                                    <li class="nav-item dropdown">
+                                        <a class="nav-link dropdown-toggle arrow-none" href="#" id="topnav-vendor"
+                                            role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            <i class="bx bx-store icon nav-icon"></i>
+                                            <span data-key="t-dashboards">商業服務類</span>
+                                            <div class="arrow-down"></div>
+                                        </a>
+                                        <div class="dropdown-menu" aria-labelledby="topnav-vendor">
+                                                <a href="{{ route('project.business.create') }}" class="dropdown-item">新增廠商-商業服務類</a>
+                                                <a href="{{ route('project.business.appendix') }}" class="dropdown-item">商業服務類-附件</a>
+                                        </div>
+                                    </li>
+                                @endif
+                                @if($project_data->type == 1)
+                                    <li class="nav-item dropdown">
+                                        <a class="nav-link dropdown-toggle arrow-none" href="#" id="topnav-vendor"
+                                            role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            <i class="bx bx-store icon nav-icon"></i>
+                                            <span data-key="t-dashboards">製造類</span>
+                                            <div class="arrow-down"></div>
+                                        </a>
+                                        <div class="dropdown-menu" aria-labelledby="topnav-vendor">
+                                                <a href="{{ route('project.Manufacturing.create') }}" class="dropdown-item">新增廠商-製造類</a>
+                                                <a href="{{ route('project.manufacturing.appendix') }}" class="dropdown-item">製造類-附件</a>
+                                        </div>
+                                    </li>
+                                @endif
+                            @endforeach
                         @endif
 
 

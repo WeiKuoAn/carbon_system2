@@ -68,37 +68,36 @@
                                             {{ $data->user_data->name }}
                                         </td>
                                         <td>
-                                            @if(in_array("0",  json_decode($data->type))) 商業服務類
-                                            @elseif(in_array("1",  json_decode($data->type))) 製造業
-                                            @endif
+                                            @if($data->type == 0)商業服務類@endif
+                                            @if($data->type == 1)製造業@endif
                                         </td>
-                                        <td>{{ $data->contact_name }}</td>
-                                        <td>{{ $data->contact_job }}</td>
-                                        <td>{{ $data->contact_phone }}</td>
+                                        <td>@if(isset($data->project_host)){{ $data->project_host->name }}@endif</td>
+                                        <td>@if(isset($data->project_host)){{ $data->project_host->job }}@endif</td>
+                                        <td>@if(isset($data->project_host)){{ $data->project_host->mobile }}@endif</td>
                                         <td>{{ $data->cust_data->county.$data->cust_data->district.$data->cust_data->address }}</td>
                                         <td>
-                                            @if($data->subsidy == '1')
+                                            @if($data->cust_data->subsidy == '1')
                                                 <b>是</b>
                                             @else
                                                 否
                                             @endif
                                         </td>
                                         <td>
-                                            @if($data->avoid == '1')
+                                            @if($data->cust_data->avoid == '1')
                                                 <b>是</b>
                                             @else
                                                 否
                                             @endif
                                         </td>
                                         <td>
-                                            @if($data->carbon_done == '1')
+                                            @if($data->cust_data->carbon_done == '1')
                                                 <b>是</b>
                                             @else
                                                 否
                                             @endif
                                         </td>
                                         <td>
-                                            @if($data->carbon_iso == '1')
+                                            @if($data->cust_data->carbon_iso == '1')
                                                 <b>是</b>
                                             @else
                                                 否
@@ -114,17 +113,19 @@
                                                     {{-- {{dd($data->type)}} --}}
                                                     <div class="dropdown-menu dropdown-menu-end">
                                                         <a class="dropdown-item" 
-                                                        @if(in_array("0",  json_decode($data->type)))
+                                                        @if($data->type == 0)
                                                             href="{{ route('user.project.business.create',$data->user_id) }}"
-                                                        @elseif(in_array("1",  json_decode($data->type)))
+                                                        @elseif($data->type == 1)
                                                             href="{{ route('user.project.Manufacturing.create',$data->user_id) }}"
-                                                        @endif>編輯</a>
+                                                        @endif
+                                                        >編輯</a>
                                                         <a class="dropdown-item"
-                                                        @if(in_array("0",  json_decode($data->type)))
+                                                        @if($data->type == 0)
                                                             href="{{ route('user.project.business.preview',$data->user_id) }}"
-                                                        @elseif(in_array("1",  json_decode($data->type)))
+                                                        @elseif($data->type == 1)
                                                             href="{{ route('user.project.Manufacturing.preview',$data->user_id) }}"
-                                                        @endif>預覽</a>
+                                                        @endif
+                                                        >預覽</a>
                                                     </div>
                                                 </li>
                                             </ul>

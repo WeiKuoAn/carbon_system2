@@ -44,8 +44,13 @@ class User extends Authenticatable
         'password' => 'hashed',
     ];
 
-    public function project_data()
+    public function cust_data()
     {
-        return $this->hasOne('App\Models\CustProject', 'user_id', 'id');
+        return $this->hasOne('App\Models\CustData', 'user_id', 'id');
+    }
+
+    public function project_datas()
+    {
+        return $this->hasMany('App\Models\CustProject', 'user_id', 'id');
     }
 }

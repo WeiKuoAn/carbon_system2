@@ -8,13 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class CustProject extends Model
 {
     use HasFactory;
-    protected $table = 'cust_project';
-    protected $fillable = [
-        'user_id', 'year', 'type', 'last_year_revenue', 'insured_employees',
-        'insurance_male', 'insurance_female', 'insurance_total' ,'production_chart', 'clients_market',
-        'export_status', 'contact_name', 'contact_email', 'contact_phone','contact_job',
-        'nas_link', 'carbon_done','principal_user_id', 'status','avoid','subsidy','carbon_iso'
-    ];
+    protected $table = "cust_project";
+    protected $fillable = ['user_id','year','type'];
 
     public function user_data()
     {
@@ -24,11 +19,6 @@ class CustProject extends Model
     public function cust_data()
     {
         return $this->hasOne('App\Models\CustData', 'user_id', 'user_id');
-    }
-
-    public function socail_datas()
-    {
-        return $this->hasMany('App\Models\CustSocail', 'project_id', 'id');
     }
 
     public function personnel_datas()
@@ -66,28 +56,8 @@ class CustProject extends Model
         return $this->hasMany('App\Models\ManufactureImprove', 'project_id', 'id');
     }
 
-    public function manufacture_norm_datas()
+    public function project_host()
     {
-        return $this->hasMany('App\Models\ManufactureNorm', 'project_id', 'id');
-    }
-
-    public function manufacture_income_datas()
-    {
-        return $this->hasMany('App\Models\ManufactureThreeIncome', 'project_id', 'id');
-    }
-
-    public function manufacture_subsidy_datas()
-    {
-        return $this->hasMany('App\Models\ManufactureSubsidy', 'project_id', 'id');
-    }
-
-    public function manufacture_avoid_data()
-    {
-        return $this->hasOne('App\Models\ManufactureAvoid', 'project_id', 'id');
-    }
-
-    public function manufacture_iso_datas()
-    {
-        return $this->hasMany('App\Models\ManufactureIso', 'project_id', 'id');
+        return $this->hasOne('App\Models\ProjectHost', 'project_id', 'id');
     }
 }

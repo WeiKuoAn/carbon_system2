@@ -51,7 +51,7 @@
                             <div class="col-md-6">
                                 <div class="mb-3">
                                     <label class="form-label" for="AddNew-Phone">Nas連結</label><span class="text-danger">*</span>
-                                    <input type="text" class="form-control" name="nas_link" @if(isset($data->project_data)) value="{{ $data->project_data->nas_link }}" @endif required>
+                                    <input type="text" class="form-control" name="nas_link" @if(isset($data)) value="{{ $data->nas_link }}" @endif required>
                                 </div>
                             </div>
 
@@ -72,7 +72,7 @@
                                 <div class="row font-size-16 mt-2">
                                     <div class="col-md-3">
                                         <div class="form-check mb-3">
-                                            <input class="form-check-input type" type="checkbox" name="type[]" id="formCheck1" value="0" @if(in_array("0", json_decode($data->project_data->type))) checked @endif>
+                                            <input class="form-check-input type" type="checkbox" name="type[]" id="formCheck1"  @if($data->user_project->type == 0) value="0" checked @endif value="off">
                                             <label class="form-check-label" for="formCheck1">
                                                 商業服務
                                             </label>
@@ -80,7 +80,7 @@
                                     </div>
                                     <div class="col-md-2">
                                         <div class="form-check mb-3">
-                                            <input class="form-check-input type" type="checkbox" name="type[]" id="formCheck2" value="1" @if(in_array("1", json_decode($data->project_data->type))) checked @endif>
+                                            <input class="form-check-input type" type="checkbox" name="type[]" id="formCheck2"  @if($data->user_project->type == 1) value="1" checked @endif value="off">
                                             <label class="form-check-label" for="formCheck2">
                                                 製造類
                                             </label>
@@ -91,89 +91,9 @@
                             
                         </div>
                 </div>
+                
             </div>
             <!-- end card -->
-        </div> <!-- end col -->
-    </div>
-    <div class="row">
-        <div class="col-xl-12 mt-3">
-            <div class="card">
-                <div class="card-body">
-
-                        <div class="row">
-
-
-                            <div class="col-md-6">
-                                <div class="mb-3">
-                                    <label class="form-label" for="AddNew-Phone">公司聯絡人姓名</label>
-                                    <input type="text" class="form-control" name="contact_name" >
-                                </div>
-                            </div>
-
-
-                            <div class="col-md-6">
-                                <div class="mb-3">
-                                    <label class="form-label" for="AddNew-Phone">公司聯絡人職稱</label>
-                                    <input type="text" class="form-control" name="contact_job" >
-                                </div>
-                            </div>
-
-
-                            <div class="col-md-6">
-                                <div class="mb-3">
-                                    <label class="form-label" for="AddNew-Phone">公司聯絡人電話</label>
-                                    <input type="text" class="form-control" name="contact_phone">
-                                </div>
-                            </div>
-                        
-
-                            <div class="col-md-6">
-                                <div class="mb-3">
-                                    <label class="form-label" for="AddNew-Email">公司聯絡人信箱</label>
-                                    <input type="email" class="form-control" name="contact_email">
-                                </div>
-                            </div>
-
-                            <div class="col-md-6">
-                                <div class="mb-3">
-                                    <label class="form-label" for="AddNew-Phone">統一編號</label>
-                                    <input type="text" class="form-control" name="registration_no" value="" >
-                                </div>
-                            </div>
-                           
-
-                            <div class="col-md-6">
-                                <div class="mb-3">
-                                    <label class="form-label">檢視權限</label>
-                                    <select class="form-select" name="status" required>
-                                        <option value="0" selected>啟用</option>
-                                        <option value="1" >禁用</option>
-                                    </select>
-                                </div>
-                            </div>
-                            
-                            <div class="col-md-6 mb-3">
-                                <label class="form-label" for="AddNew-Phone">公司地址</label>
-                                <div class="row twzipcode mb-2">
-                                    <select data-role="county" ></select>
-                                    <select data-role="district"></select>
-                                </div>
-                                <div>
-                                    <input type="text" class="form-control" name="address">
-                                </div>
-                            </div>
-
-                            <div class="col-md-6">
-                                <div class="mb-3">
-                                    <label class="form-label" for="AddNew-Phone">備註</label>
-                                    <textarea  class="form-control" name="note" rows="3"></textarea>
-                                </div>
-                            </div>
-                        </div>
-
-                        
-                </div>
-            </div>
             <div class="col-12 mb-5 text-center">
                 <a href="{{ route('customer.index') }}">
                  <button type="button" class="btn btn-danger me-1"><i
@@ -183,7 +103,6 @@
                     確認編輯</button>
             </div>
         </form>
-            <!-- end card -->
         </div> <!-- end col -->
     </div>
 

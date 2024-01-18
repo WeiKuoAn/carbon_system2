@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="{{ asset('build/libs/gridjs/theme/mermaid.min.css') }}">
 @endsection
 @section('page-title')
-    商業服務類-編輯內容【{{ $cust_data->user_data->name }}】
+    商業服務類-編輯內容【{{ $project->user_data->name }}】
 @endsection
 @section('body')
 
@@ -25,13 +25,13 @@
             <div class="modal-body">
                 <div class="text-center">
                     <i class="bx bx-check-circle display-1 text-success"></i>
-                    <h4 class="mt-3">編輯【{{ $cust_data->user_data->name }}】商業服務類資料成功！</h4>
+                    <h4 class="mt-3">編輯【{{ $project->user_data->name }}】商業服務類資料成功！</h4>
                 </div>
             </div>
         </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->
     </div><!-- /.modal -->
-    <form action="{{ route('user.project.business.create',$cust_data->user_id) }}" method="POST">
+    <form action="{{ route('user.project.business.create',$project->user_id) }}" method="POST">
         @csrf
         <div class="row">
             <div class="col-lg-12">

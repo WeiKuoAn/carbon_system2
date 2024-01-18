@@ -61,15 +61,15 @@
                                     <tr>
                                         <td>{{ $key+1 }}</td>
                                         <td>
-                                            <a href="#" class="text-body">{{ $data->user_data->name }}</a>
+                                            <a href="#" class="text-body">{{ $data->name }}</a>
                                         </td>
-                                        <td>{{ $data->contact_name  }}</td>
-                                        <td>{{ $data->contact_job }}</td>
-                                        <td>{{ $data->contact_phone  }}</td>
-                                        <td>{{ $data->contact_email  }}</td>
-                                        <td>{{ $data->county.$data->district.$data->address  }}</td>
+                                        <td>@if(isset($data->cust_data)){{ $data->cust_data->contact_name  }}@endif</td>
+                                        <td>@if(isset($data->cust_data)){{ $data->cust_data->contact_job }}@endif</td>
+                                        <td>@if(isset($data->cust_data)){{ $data->cust_data->contact_phone  }}@endif</td>
+                                        <td>@if(isset($data->cust_data)){{ $data->cust_data->contact_email  }}@endif</td>
+                                        <td>@if(isset($data->cust_data)){{ $data->cust_data->county.$data->cust_data->district.$data->cust_data->address  }}@endif</td>
                                         <td>
-                                            @if($data->user_data->status == 0)
+                                            @if($data->status == 0)
                                                 啟動
                                             @else
                                                 <span class="text-danger"><b>關閉</b></span>
@@ -84,9 +84,9 @@
                                                     </a>
 
                                                     <div class="dropdown-menu dropdown-menu-end">
-                                                        <a class="dropdown-item" href="{{ route('customer.edit',$data->user_id) }}">編輯廠商帳戶資料</a>
-                                                        <a class="dropdown-item" href="{{ route('user.introduce.edit',$data->user_id) }}">編輯廠商基本資料</a>
-                                                        <a class="dropdown-item" href="{{ route('user.project.index',$data->user_id) }}">查看專案資料</a>
+                                                        <a class="dropdown-item" href="{{ route('customer.edit',$data->id) }}">編輯廠商帳戶資料</a>
+                                                        <a class="dropdown-item" href="{{ route('user.introduce.edit',$data->id) }}">編輯廠商基本資料</a>
+                                                        <a class="dropdown-item" href="{{ route('user.project.index',$data->id) }}">查看專案資料</a>
                                                         {{-- <a class="dropdown-item" href="{{ route('user.project.business.create',$data->user_id) }}">查看專案</a> --}}
                                                         {{-- <a class="dropdown-item" href="{{ route('cust.surveys.index',$data->id) }}">問卷查看</a>
                                                         <a class="dropdown-item" href="#">盤查紀錄</a>

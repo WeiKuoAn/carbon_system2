@@ -45,87 +45,87 @@
                                 <div class="col-md-12">
                                     <div class="mb-4">
                                         <label class="form-label" for="AddNew-Username"><b>廠商名稱</b><span class="text-danger">*</span></label>
-                                        <input type="text" class="form-control required-input" value="{{ $project->user_data->name }}" disabled>
+                                        <input type="text" class="form-control required-input" value="{{ $cust_data->user_data->name }}" disabled>
                                     </div>
                                 </div>
                                 <div class="col-md-12">
                                     <div class="mb-4">
                                         <label class="form-label" for="AddNew-Username"><b>公司統編</b><span class="text-danger">*</span></label>
-                                        <input type="text" class="form-control required-input" name="registration_no" value="{{ $project->cust_data->registration_no }}">
+                                        <input type="text" class="form-control required-input" name="registration_no" value="{{ $cust_data->registration_no }}">
                                     </div>
                                 </div>
                                 <div class="col-md-12">
                                     <div class="mb-4">
                                         <label class="form-label" for="AddNew-Phone"><b>去年整年度營業額（單位：元/新台幣）</b><span class="text-danger">*</span></label>
-                                        <input type="number" class="form-control required-input" name="last_year_revenue" @if(isset($project)) value="{{ $project->last_year_revenue }}" @else value="0" @endif>
+                                        <input type="number" class="form-control required-input" name="last_year_revenue" @if(isset($project)) value="{{ $cust_data->last_year_revenue }}" @else value="0" @endif>
                                     </div>
                                 </div>
-                                {{-- {{ dd($project->cust_data)}} --}}
+                                {{-- {{ dd($cust_data)}} --}}
                                 <label class="form-label" for="AddNew-Phone"><b>公司工廠登記地址</b>(若有超過一間工廠，請選一間工廠作為標的)<span class="text-danger">*</span></label>
                                 <div class="col-md-6 mb-3">
                                     <div class="row twzipcode mb-2">
-                                        <select data-role="county" data-value="{{ $project->cust_data->county }}" selected></select>
-                                        <select data-role="district"  data-value="{{ $project->cust_data->district }}"></select>
-                                        <select data-role="zipcode"  data-value="{{ $project->cust_data->zipcode }}"></select>
+                                        <select data-role="county" data-value="{{ $cust_data->county }}" selected></select>
+                                        <select data-role="district"  data-value="{{ $cust_data->district }}"></select>
+                                        <select data-role="zipcode"  data-value="{{ $cust_data->zipcode }}"></select>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
-                                    <input type="text" class="form-control" name="address" value="{{ $project->cust_data->address }}" >
+                                    <input type="text" class="form-control" name="address" value="{{ $cust_data->address }}" >
                                 </div>
                                 <label class="form-label" for="AddNew-Phone"><b>近一年平均投保人數</b>（申請計畫使用）<span class="text-danger">*</span></label>
                                 <div class="col-md-12">
                                     <div class="mb-4">
-                                        <input type="number" class="form-control required-input number-input" name="Insured_employees" placeholder="近一年平均投保人數" @if(isset($project)) value="{{ $project->insured_employees }}" @endif>
+                                        <input type="number" class="form-control required-input number-input" name="Insured_employees" placeholder="近一年平均投保人數" @if(isset($project)) value="{{ $cust_data->insured_employees }}" @endif>
                                     </div>
                                 </div>
                                 <label class="form-label" for="AddNew-Phone"><b>最近一期勞保投保人數</b>（申請計畫使用）<span class="text-danger">*</span></label>
                                 <div class="col-md-4">
                                     <label class="form-label" for="AddNew-Phone">男生投保人數<span class="text-danger">*</span></label>
                                     <div class="mb-4">
-                                        <input type="number" class="form-control required-input number-input" name="insurance_male" id="insurance_male"  placeholder="男生投保人數" @if(isset($project)) value="{{ $project->insurance_male }}" @endif>
+                                        <input type="number" class="form-control required-input number-input" name="insurance_male" id="insurance_male"  placeholder="男生投保人數" @if(isset($project)) value="{{ $cust_data->insurance_male }}" @endif>
                                     </div>
                                 </div>
                                 <div class="col-md-4">
                                     <label class="form-label" for="AddNew-Phone">女生投保人數<span class="text-danger">*</span></label>
                                     <div class="mb-4">
-                                        <input type="number" class="form-control required-input number-input" name="insurance_female" id="insurance_female" placeholder="女生投保人數" @if(isset($project)) value="{{ $project->insurance_female }}" @endif>
+                                        <input type="number" class="form-control required-input number-input" name="insurance_female" id="insurance_female" placeholder="女生投保人數" @if(isset($project)) value="{{ $cust_data->insurance_female }}" @endif>
                                     </div>
                                 </div>
                                 <div class="col-md-4">
                                     <label class="form-label" for="AddNew-Phone">總投保人數<span class="text-danger">*</span></label>
                                     <div class="mb-4">
-                                        <input type="number" class="form-control required-input" placeholder="總投保人數" name="insurance_total"  id="insurance_total" @if(isset($project)) value="{{ $project->insurance_total }}" @endif readonly>
+                                        <input type="number" class="form-control required-input" placeholder="總投保人數" name="insurance_total"  id="insurance_total" @if(isset($project)) value="{{ $cust_data->insurance_total }}" @endif readonly>
                                     </div>
                                 </div>
                                 <label class="form-label" for="AddNew-Username"><b>公司主要聯繫窗口</b>（用於與錚典對接）<span class="text-danger">*</span></label>
                                 <div class="col-md-2">
                                     <div class="mb-4">
-                                        <input type="text" class="form-control required-input" name="main_contact_name" placeholder="姓名"  @if(isset($project)) value="{{ $project->contact_name }}" @endif>
+                                        <input type="text" class="form-control required-input" name="main_contact_name" placeholder="姓名"  @if(isset($project)) value="{{ $cust_data->contact_name }}" @endif>
                                     </div>
                                 </div>
                                 <div class="col-md-2">
                                     <div class="mb-4">
-                                        <input type="text" class="form-control required-input" name="main_contact_job" placeholder="職稱"  @if(isset($project)) value="{{ $project->contact_job }}" @endif>
+                                        <input type="text" class="form-control required-input" name="main_contact_job" placeholder="職稱"  @if(isset($project)) value="{{ $cust_data->contact_job }}" @endif>
                                     </div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class="mb-4">
-                                        <input type="email" class="form-control required-input" name="main_contact_email" placeholder="信箱"  @if(isset($project)) value="{{ $project->contact_email }}" @endif>
+                                        <input type="email" class="form-control required-input" name="main_contact_email" placeholder="信箱"  @if(isset($project)) value="{{ $cust_data->contact_email }}" @endif>
                                     </div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class="mb-4">
-                                        <input type="text" class="form-control required-input" name="main_contact_phone" placeholder="電話"  @if(isset($project)) value="{{ $project->contact_phone }}" @endif>
+                                        <input type="text" class="form-control required-input" name="main_contact_phone" placeholder="電話"  @if(isset($project)) value="{{ $cust_data->contact_phone }}" @endif>
                                     </div>
                                 </div>
                                 <hr>
                                 <div class="col-md-12 font-size-18">
                                     <label class="form-label" for="AddNew-Username">&nbsp;</label>
-                                    <input type="checkbox" class="form-check-input" name="customCheck1" id="customCheck1"  value="{{ $project->subsidy == '1' ? '1' : '0' }}" {{ $project->subsidy == '1' ? 'checked' : '' }}>
+                                    <input type="checkbox" class="form-check-input" name="customCheck1" id="customCheck1"  value="{{ $cust_data->subsidy == '1' ? '1' : '0' }}" {{ $cust_data->subsidy == '1' ? 'checked' : '' }}>
                                     <label class="form-check-label" for="customCheck1"><span class="text-danger">有</span>申請其他政府機關之研發或升級轉型補助</label>
                                 </div>
                                 <div class="col-md-8 px-5 mb-4" id="customCheck1_div">
-                                    @if($project->subsidy == '1')
+                                    @if($cust_data->subsidy == '1')
                                             <div class="customCheck1_data row mt-2">
                                                 <div class="table-responsive mt-1">
                                                     <table id="customer" class="table customer-list">
@@ -136,11 +136,11 @@
                                                             </tr>
                                                         </thead>
                                                         <tbody valign="center" align="center">
-                                                            @if(count($project->manufacture_subsidy_datas) > 0)
-                                                                @foreach($project->manufacture_subsidy_datas as $project->manufacture_subsidy_data)
+                                                            @if(count($cust_data->manufacture_subsidy_datas) > 0)
+                                                                @foreach($cust_data->manufacture_subsidy_datas as $cust_data->manufacture_subsidy_data)
                                                                     <tr valign="middle" >
-                                                                        <td>{{ $project->manufacture_subsidy_data->year }}</td>
-                                                                        <td>{{ $project->manufacture_subsidy_data->name }}</td>
+                                                                        <td>{{ $cust_data->manufacture_subsidy_data->year }}</td>
+                                                                        <td>{{ $cust_data->manufacture_subsidy_data->name }}</td>
                                                                     </tr>
                                                                 @endforeach
                                                             @else
@@ -170,12 +170,12 @@
 
                                 <div class="col-md-12 font-size-18">
                                     <label class="form-label" for="AddNew-Username">&nbsp;</label>
-                                    <input type="checkbox" class="form-check-input" name="customCheck2" id="customCheck2" value="{{ $project->avoid == '1' ? '1' : '0' }}" {{ $project->avoid == '1' ? 'checked' : '' }}>
+                                    <input type="checkbox" class="form-check-input" name="customCheck2" id="customCheck2" value="{{ $cust_data->avoid == '1' ? '1' : '0' }}" {{ $cust_data->avoid == '1' ? 'checked' : '' }}>
                                     <label class="form-check-label" for="customCheck2"><span class="text-danger">有</span>須於審查階段迴避之人員</label>
                                 </div>
                                 <div class="row px-5" id="customCheck2_div">
-                                    @if($project->avoid == '1')
-                                        @if(isset($project->manufacture_avoid_data))
+                                    @if($cust_data->avoid == '1')
+                                        @if(isset($cust_data->manufacture_avoid_data))
                                             <div class="table-responsive mt-1 col-md-8">
                                                 <table id="customer" class="table customer-list">
                                                     <thead>
@@ -187,9 +187,9 @@
                                                     </thead>
                                                     <tbody valign="center" align="center">
                                                         <tr valign="middle" >
-                                                            <td>{{$project->manufacture_avoid_data->department}}</td>
-                                                            <td>{{$project->manufacture_avoid_data->job}}</td>
-                                                            <td>{{$project->manufacture_avoid_data->name}}</td>
+                                                            <td>{{$cust_data->manufacture_avoid_data->department}}</td>
+                                                            <td>{{$cust_data->manufacture_avoid_data->job}}</td>
+                                                            <td>{{$cust_data->manufacture_avoid_data->name}}</td>
                                                         </tr>
                                                     </tbody>
                                                 </table>
@@ -213,7 +213,7 @@
                                     <label for="example-search-input" class="col-form-label"><b>附件上傳</b>（EX：公司介紹、產品簡報）<span class="text-danger">*</span></label>
                                     <div class="pl-5">
                                         <div class="pl-5">
-                                            上傳網址： <a href="{{ $project->nas_link }}">{{ $project->nas_link }}</a>
+                                            上傳網址： <a href="{{ $cust_data->nas_link }}">{{ $cust_data->nas_link }}</a>
                                         </div>
                                     </div>
                                 </div>
@@ -241,7 +241,7 @@
                                         <label class="form-label" for="AddNew-Phone"><b>產品製程圖</b><span class="text-danger">*</span></label>
                                         <div class="col-md-12 appendix">
                                             <div class="pl-5">
-                                                上傳網址： <a href="{{ $project->nas_link }}">{{ $project->nas_link }}</a>
+                                                上傳網址： <a href="{{ $cust_data->nas_link }}">{{ $cust_data->nas_link }}</a>
                                             </div>
                                         </div>
                                     </div>
@@ -249,24 +249,24 @@
                                 <div class="col-md-12">
                                     <div class="mb-4">
                                         <label class="form-label" for="AddNew-Phone"><b>主要客戶與市場</b>(如過往公司有介紹簡報有提到相關內容也可提供)<span class="text-danger">*</span></label>
-                                        <textarea  class="form-control required-input" name="clients_market" rows="4">{{ $project->clients_market }}</textarea>
+                                        <textarea  class="form-control required-input" name="clients_market" rows="4">{{ $cust_data->clients_market }}</textarea>
                                     </div>
                                 </div>
                                 <div class="col-md-12">
                                     <div class="mb-4">
                                         <label class="form-label" for="AddNew-Phone"><b>公司產品出口情形/比例</b><span class="text-danger">*</span></label>
-                                        <textarea  class="form-control required-input" name="export_status" rows="4">{{ $project->export_status }}</textarea>
+                                        <textarea  class="form-control required-input" name="export_status" rows="4">{{ $cust_data->export_status }}</textarea>
                                     </div>
                                 </div>
                                 <div>
                                     <label class="form-label" for="AddNew-Phone"><b>前三年營收</b><span class="text-danger">*</span></label>
                                 </div>
-                                @if(count($project->manufacture_income_datas) > 0)
-                                    @foreach($project->manufacture_income_datas as $project->manufacture_income_data)
+                                @if(count($cust_data->manufacture_income_datas) > 0)
+                                    @foreach($cust_data->manufacture_income_datas as $cust_data->manufacture_income_data)
                                         <div class="col-md-4">
-                                            <label class="form-label" for="AddNew-Phone"><b>{{$project->manufacture_income_data->year}}年度</b><span class="text-danger">*</span></label>
-                                            <input type="hidden" class="form-control" name="three_years[]" value="{{$project->manufacture_income_data->year}}">
-                                            <input type="number" class="form-control" name="three_incomes[]" value="{{$project->manufacture_income_data->income}}">
+                                            <label class="form-label" for="AddNew-Phone"><b>{{$cust_data->manufacture_income_data->year}}年度</b><span class="text-danger">*</span></label>
+                                            <input type="hidden" class="form-control" name="three_years[]" value="{{$cust_data->manufacture_income_data->year}}">
+                                            <input type="number" class="form-control" name="three_incomes[]" value="{{$cust_data->manufacture_income_data->income}}">
                                         </div>
                                     @endforeach
                                 @else
@@ -294,8 +294,8 @@
                                                     </tr>
                                                 </thead>
                                                 <tbody valign="center" align="center">
-                                                    @if(count($project->manufacture_norm_datas)>0)
-                                                            @foreach ($project->manufacture_norm_datas as $key=>$manufacture_norm_data)
+                                                    @if(count($cust_data->manufacture_norm_datas)>0)
+                                                            @foreach ($cust_data->manufacture_norm_datas as $key=>$manufacture_norm_data)
                                                             <tr id="row-{{ $key }}" valign="middle" >
                                                                 <td>{{$key+1}}</td>
                                                                 <td>
@@ -332,8 +332,8 @@
                                                         </tr>
                                                     </thead>
                                                     <tbody valign="center" align="center">
-                                                        @if(count($project->socail_datas)>0)
-                                                            @foreach ($project->socail_datas as $key=>$socail_data)
+                                                        @if(count($cust_data->socail_datas)>0)
+                                                            @foreach ($cust_data->socail_datas as $key=>$socail_data)
                                                                 <tr id="row-{{ $key }}" >
                                                                     <td>{{$key+1}}</td>
                                                                     <td>
@@ -363,22 +363,22 @@
 
                                 <div class="col-md-12 font-size-18">
                                     <label class="form-label" for="AddNew-Username">&nbsp;</label>
-                                    <input type="checkbox" class="form-check-input" name="carbonCheck" id="carbonCheck" value="{{ $project->carbon_done == '1' ? '1' : '0' }}" {{ $project->carbon_done == '1' ? 'checked' : '' }}>
+                                    <input type="checkbox" class="form-check-input" name="carbonCheck" id="carbonCheck" value="{{ $cust_data->carbon_done == '1' ? '1' : '0' }}" {{ $cust_data->carbon_done == '1' ? 'checked' : '' }}>
                                     <label class="form-check-label" for="carbonCheck">是否做過碳盤查？</label>
-                                    @if($project->carbon_done == '0')
+                                    @if($cust_data->carbon_done == '0')
                                         <span class="text-danger" id="carbonCheck_text">※否，請提供最近一年度全年度的油(柴油、汽油)、電(要注意一般用電或是契約用電)、水、天然氣費帳單</span>
-                                    @elseif($project->carbon_done == '1')
+                                    @elseif($cust_data->carbon_done == '1')
                                     <span class="text-danger" id="carbonCheck_text">※是，請提供碳排查報告</span>
                                     @endif
                                 </div>
 
                                 <div class="col-md-12 font-size-18">
                                     <label class="form-label" for="AddNew-Username">&nbsp;</label>
-                                    <input type="checkbox" class="form-check-input" name="checkIso" id="checkIso"  value="{{ $project->carbon_iso == '1' ? '1' : '0' }}" {{ $project->carbon_iso == '1' ? 'checked' : '' }}>
+                                    <input type="checkbox" class="form-check-input" name="checkIso" id="checkIso"  value="{{ $cust_data->carbon_iso == '1' ? '1' : '0' }}" {{ $cust_data->carbon_iso == '1' ? 'checked' : '' }}>
                                     <label class="form-check-label" for="checkIso">是否有已申請過的ISO或是目前正在申請的ISO資訊？</label>
                                 </div>
                                     <div class="checkIso_div px-5">
-                                        @if($project->carbon_iso == '1')
+                                        @if($cust_data->carbon_iso == '1')
                                             <div class="table-responsive mt-1 col-md-8">
                                                 <table id="customer" class="table customer-list">
                                                     <thead>
@@ -389,8 +389,8 @@
                                                         </tr>
                                                     </thead>
                                                     <tbody valign="center" align="center">
-                                                        @if(count($project->manufacture_iso_datas) > 0)
-                                                            @foreach($project->manufacture_iso_datas as $manufacture_iso_data)
+                                                        @if(count($cust_data->manufacture_iso_datas) > 0)
+                                                            @foreach($cust_data->manufacture_iso_datas as $manufacture_iso_data)
                                                                 <tr valign="middle" >
                                                                     <td>{{ $manufacture_iso_data->name }}</td>
                                                                     <td>{{ $manufacture_iso_data->year }}</td>
@@ -744,9 +744,9 @@
                     countyName: "county", // 自訂城市 select 標籤的 name 值
                     districtName: "district", // 自訂地區 select 標籤的 name 值
                     zipcodeName: "zipcode", // 自訂地區 select 標籤的 name 值
-                    'countySel': '{{ $project->cust_data->county }}',
-                    'districtSel': '{{ $project->cust_data->district }}',
-                    'zipcodeSel': '{{ $project->cust_data->zipcode }}'
+                    'countySel': '{{ $cust_data->county }}',
+                    'districtSel': '{{ $cust_data->district }}',
+                    'zipcodeSel': '{{ $cust_data->zipcode }}'
                 });
 
                 
