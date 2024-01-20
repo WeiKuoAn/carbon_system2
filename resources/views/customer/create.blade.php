@@ -102,6 +102,18 @@
                                     <input type="text" class="form-control" name="registration_no" required>
                                 </div>
                             </div>
+
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label class="form-label">限制瀏覽</label>
+                                    <select class="form-select" name="limit_status">
+                                        <option value="all" >不限</option>
+                                        @foreach($groups as $group)
+                                            <option value="{{ $group->id }}" >{{ $group->name }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
                             
                         </div>
                 </div>

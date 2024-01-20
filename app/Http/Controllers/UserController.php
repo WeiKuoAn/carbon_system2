@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\UserGroup;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 
@@ -14,8 +15,9 @@ class UserController extends Controller
      */
     public function index()
     {
-        $datas = User::where('group_id','1')->get();
-        return view('user.index')->with('datas', $datas);
+        $groups = UserGroup::whereNotIn('id',[2])->get();
+        $datas = User::whereNotIn('group_id',[2])->get();
+        return view('user.index')->with('datas', $datas)->with('groups', $groups);
     }
 
     /**
@@ -35,8 +37,8 @@ class UserController extends Controller
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
-            'level' => '1',
-            'group_id' => 1,
+            'level' => $request->level,
+            'group_id' => $request->group_id,
         ]);
 
         return redirect()->route('user.index');

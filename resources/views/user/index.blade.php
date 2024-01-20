@@ -57,6 +57,7 @@
                                         <th scope="col">#</th>
                                         <th scope="col">姓名</th>
                                         <th scope="col" width="30%">帳號</th>
+                                        <th scope="col">群組</th>
                                         <th scope="col">等級</th>
                                         <th scope="col">權限</th>
                                         <th scope="col" style="width: 200px;">動作</th>
@@ -73,6 +74,7 @@
                                             {{ $data->name }}
                                         </td>
                                         <td>{{ $data->email }}</td>
+                                        <td>{{ $data->group_data->name }}</td>
                                         <td>
                                             <span class="badge badge-soft-success font-size-14">
                                                 @if($data->level == 0)
@@ -217,6 +219,16 @@
                                     <label class="form-label" for="AddNew-Email">密碼</label>
                                     <input type="text" class="form-control"
                                         id="AddNew-Email" name="password">
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="mb-3">
+                                    <label class="form-label">群組</label>
+                                    <select class="form-select" name="group_id">
+                                        @foreach($groups as $group)
+                                            <option value="{{ $group->id }}" >{{ $group->name }}</option>
+                                        @endforeach
+                                    </select>
                                 </div>
                             </div>
                             <div class="col-md-12">

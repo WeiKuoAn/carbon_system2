@@ -282,7 +282,7 @@
                                 <a href="{{ route('simulation-inspection.index') }}" class="dropdown-item">盤查列表</a>
                             </div>
                         </li> --}}
-                        @if(Auth::user()->group_id == 1)
+                        @if(Auth::user()->group_id != 2)
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle arrow-none" href="#" id="topnav-vendor"
                                 role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

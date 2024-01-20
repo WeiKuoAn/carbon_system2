@@ -31,7 +31,10 @@ class ProjectController extends Controller
      */
     public function index()
     {
-        $datas = CustProject::orderby('created_at','desc')->paginate(30);
+        $datas = CustProject::join('cust_data', 'cust_data.user_id', '=', 'cust_project.user_id')
+                              ->whereIn('cust_data.limit_status',['all',Auth::user()->group_id])
+                              ->orderby('cust_data.id','desc')
+                              ->paginate(30);
         return view('project.index')->with('datas', $datas);
     }
 

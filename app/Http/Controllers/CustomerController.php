@@ -16,6 +16,7 @@ use App\Models\BusinessSituation;
 use App\Models\ProjectHost;
 use App\Models\ProjectContact;
 use App\Models\User;
+use App\Models\UserGroup;
 use App\Models\ProjectPersonnel;
 use App\Models\ManufactureNeed;
 use App\Models\ManufactureExpected;
@@ -48,14 +49,17 @@ class CustomerController extends Controller
      */
     public function index()
     {
-        $datas = User::where('group_id','2')->paginate(50);
+        
+        $datas = User::where('group_id','2')
+                       ->join('cust_data', 'cust_data.user_id', '=', 'users.id')
+                       ->whereIn('cust_data.limit_status',['all',Auth::user()->group_id])->paginate(50);
         return view('customer.index')->with('datas', $datas);
     }
 
     public function Create()
     {
-        
-        return view('customer.create')->with('hint',0);
+        $groups = UserGroup::whereNotIn('id',[2])->get();
+        return view('customer.create')->with('hint',0)->with('groups',$groups);
     }
 
     public function IntroduceCreate()
@@ -301,6 +305,7 @@ class CustomerController extends Controller
             $cust_data->nas_link = $request->nas_link;
             $cust_data->registration_no = $request->registration_no;
             $cust_data->principal_name = $request->principal_name;
+            $cust_data->limit_status = $request->limit_status;
             $cust_data->save();
             
             //新增客戶計畫案內容

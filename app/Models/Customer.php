@@ -15,7 +15,7 @@ class Customer extends Model
         'name', 'industry_id', 'primary_contact_name', 'primary_contact_phone', 
         'primary_contact_email', 'contact_job', 'address', 'business_registration_no',
         'established_date', 'operational_status', 'company_scale', 'stock_status',
-        'sales_orientation', 'sales_region', 'permission_status', 'note', 'county', 'district'
+        'sales_orientation', 'sales_region', 'permission_status', 'note', 'county', 'district',
     ];
 
     public function cust_data()
