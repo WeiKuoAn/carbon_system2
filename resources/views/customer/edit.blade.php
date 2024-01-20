@@ -20,6 +20,7 @@
     
     <form  id="myForm" action="{{ route('customer.update',$data->user_id) }}"  method="POST">
     @csrf
+    @method('PUT')
     <div class="row">
         <div class="col-xl-12 mt-3">
             <div class="card">
@@ -58,12 +59,16 @@
                             <div class="col-md-6 ">
                                 <label class="form-label" for="AddNew-Username">廠商密碼</label><span class="text-danger">*</span>
                                 <div class="mb-3 row">
-                                    <div class="col-10">
-                                        <input class="form-control me-auto" type="password" name="password" value="{{ $data->user_data->password }}" readonly placeholder="請產生密碼" required>
+                                    <div class="col-12">
+                                        <input class="form-control me-auto" type="password" name="password" value="{{ $data->user_data->password }}" readonly placeholder="請產生密碼" required readonly>
                                     </div>
-                                    <div class="col-2">
-                                        <button type="bytton" id="pwd_create" class="btn btn-outline-danger">生成密碼</button>
-                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label class="form-label" for="AddNew-Phone">公司負責人</label>
+                                    <input type="text" class="form-control" name="principal_name" value="{{ $data->principal_name }}" required>
                                 </div>
                             </div>
 
@@ -89,6 +94,13 @@
                                 </div>
                             </div>
                             
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label class="form-label" for="AddNew-Phone">公司統編</label>
+                                    <input type="text" class="form-control" name="registration_no" value="{{ $data->registration_no }}" required>
+                                </div>
+                            </div>
+
                         </div>
                 </div>
                 

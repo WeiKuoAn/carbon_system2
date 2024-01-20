@@ -20,6 +20,7 @@ use App\Models\ManufactureSubsidy;
 use App\Models\ManufactureNorm;
 use App\Models\ManufactureThreeIncome;
 use App\Models\ManufactureIso;
+use App\Models\ProjectAppendix;
 use SebastianBergmann\CodeCoverage\Report\Xml\Project;
 use Illuminate\Support\Facades\Auth;
 
@@ -71,6 +72,7 @@ class ProjectController extends Controller
         $project_host->context = $request->host_context;
         $project_host->mobile = $request->host_mobile;
         $project_host->phone = $request->host_phone;
+        $project_host->email = $request->host_email;
         $project_host->save();
 
         //計畫聯絡人
@@ -82,6 +84,7 @@ class ProjectController extends Controller
         $project_contact->context = $request->contact_context;
         $project_contact->mobile = $request->contact_mobile;
         $project_contact->phone = $request->contact_phone;
+        $project_contact->email = $request->contact_email;
         $project_contact->save();
 
         //人事名單
@@ -176,12 +179,50 @@ class ProjectController extends Controller
 
     public function BusinessAppendix()
     {
-        return view('project.business-appendix');
+        $cust_data = CustData::where('user_id', Auth::user()->id)->first();
+        $project = CustProject::where('user_id', Auth::user()->id)->first();
+        $appendix = ProjectAppendix::where('project_id', $project->id)->first();
+
+        $checkboxesStatus = $appendix ? json_encode($appendix->checkboxes_status) : json_encode([]);
+
+        return view('project.business-appendix', compact('cust_data', 'appendix', 'checkboxesStatus'));
+
     }
+
+    public function updateAppendixStatus(Request $request)
+    {
+        $checkboxId = $request->id;
+        $status = $request->status;
+
+        $project = CustProject::where('user_id', Auth::id())->first();
+
+        if (!$project) {
+            return response()->json(['message' => 'Project not found.'], 404);
+        }
+
+        $bussiness_appendix = ProjectAppendix::firstOrCreate(
+            ['project_id' => $project->id],
+            ['checkboxes_status' => []] // 預設值
+        );
+
+        $checkboxesStatus = $bussiness_appendix->checkboxes_status;
+        $checkboxesStatus[$checkboxId] = $status;
+        $bussiness_appendix->checkboxes_status = $checkboxesStatus;
+        $bussiness_appendix->save();
+
+        return response()->json(['message' => 'Checkbox status updated.']);
+    }
+
 
     public function ManufacturingAppendix()
     {
-        return view('project.manufacturing-appendix');
+        $cust_data = CustData::where('user_id', Auth::user()->id)->first();
+        $project = CustProject::where('user_id', Auth::user()->id)->first();
+        $appendix = ProjectAppendix::where('project_id', $project->id)->first();
+
+        $checkboxesStatus = $appendix ? json_encode($appendix->checkboxes_status) : json_encode([]);
+
+        return view('project.manufacturing-appendix', compact('cust_data', 'appendix', 'checkboxesStatus'));
     }
 
     public function ManufacturingCreate()

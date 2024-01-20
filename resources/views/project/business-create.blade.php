@@ -19,17 +19,17 @@
     @section('content')
     <!--  successfully modal  -->
     <div id="success-btn" class="modal fade" tabindex="-1" aria-labelledby="success-btnLabel" aria-hidden="true"
-    data-bs-scroll="true">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-            <div class="modal-body">
-                <div class="text-center">
-                    <i class="bx bx-check-circle display-1 text-success"></i>
-                    <h4 class="mt-3">新增商業服務類資料成功！</h4>
+        data-bs-scroll="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <div class="text-center">
+                        <i class="bx bx-check-circle display-1 text-success"></i>
+                        <h4 class="mt-3">新增商業服務類資料成功！</h4>
+                    </div>
                 </div>
-            </div>
-        </div><!-- /.modal-content -->
-    </div><!-- /.modal-dialog -->
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
     </div><!-- /.modal -->
     <form action="{{ route('project.business.store') }}" method="POST">
         @csrf
@@ -69,6 +69,10 @@
                                         <label class="form-label" for="AddNew-Username"><b>手機</b></label>
                                         <input type="text" class="form-control required-input" name="host_phone" @if(isset($project_host_data)) value="{{ $project_host_data->phone }}" @endif>
                                     </div>
+                                    <div class="col-md-4 mt-3">
+                                        <label class="form-label" for="AddNew-Username"><b>信箱</b></label>
+                                        <input type="text" class="form-control required-input" name="host_email" @if(isset($project_host_data)) value="{{ $project_host_data->email }}" @endif >
+                                    </div>
 
                                     <hr class="mt-4 mb-4">
 
@@ -96,6 +100,10 @@
                                     <div class="col-md-4 mt-3">
                                         <label class="form-label" for="AddNew-Username"><b>手機</b></label>
                                         <input type="text" class="form-control required-input" name="contact_phone" @if(isset($project_contact_data)) value="{{ $project_contact_data->phone }}" @endif>
+                                    </div>
+                                    <div class="col-md-4 mt-3">
+                                        <label class="form-label" for="AddNew-Username"><b>信箱</b></label>
+                                        <input type="text" class="form-control required-input" name="contact_email" @if(isset($project_contact_data)) value="{{ $project_contact_data->email }}" @endif >
                                     </div>
 
                                     <hr class="mt-4 mb-4">

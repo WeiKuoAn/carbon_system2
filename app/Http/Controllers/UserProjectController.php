@@ -80,6 +80,7 @@ class UserProjectController extends Controller
         $project_host->context = $request->host_context;
         $project_host->mobile = $request->host_mobile;
         $project_host->phone = $request->host_phone;
+        $project_host->email = $request->host_email;
         $project_host->save();
 
         //計畫聯絡人
@@ -91,6 +92,7 @@ class UserProjectController extends Controller
         $project_contact->context = $request->contact_context;
         $project_contact->mobile = $request->contact_mobile;
         $project_contact->phone = $request->contact_phone;
+        $project_contact->email = $request->contact_email;
         $project_contact->save();
 
         //人事名單

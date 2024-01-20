@@ -31,8 +31,10 @@
                             <div class="col-md-6">
                                 <div class="d-flex flex-wrap align-items-center justify-content-end gap-2 mb-3">
                                     <div>
+                                        @if(Auth::user()->level == 0)
                                         <a href="#" data-bs-toggle="modal" data-bs-target=".add-new" class="btn btn-primary"><i
                                                 class="bx bx-plus me-1"></i>新增用戶</a>
+                                        @endif
                                     </div>
                                     {{-- <div class="dropdown">
                                         <a class="btn btn-link text-muted py-1 font-size-16 shadow-none dropdown-toggle" href="#"
@@ -82,33 +84,37 @@
                                                 @endif
                                             </span>
                                         </td>
-                                        <td>125</td>
+                                        <td>
+                                            @if($data->status == 0)
+                                                開通
+                                            @else
+                                                <b class="text-danger">停用</b>
+                                            @endif
+                                        </td>
                                         <td>
                                             <ul class="list-inline mb-0">
                                                 @if($data->level != 0)
-                                                <li class="list-inline-item">
-                                                    <a href="javascript:void(0);" data-bs-toggle="tooltip"
-                                                        data-bs-placement="top" title="Edit" class="px-2 text-primary"><i
-                                                            class="bx bx-pencil font-size-18"></i></a>
-                                                </li>
-                                                <li class="list-inline-item">
-                                                    <a href="javascript:void(0);" data-bs-toggle="tooltip"
-                                                        data-bs-placement="top" title="Delete" class="px-2 text-danger"><i
-                                                            class="bx bx-trash-alt font-size-18"></i></a>
-                                                </li>
+                                                    <li class="list-inline-item">
+                                                        <a href="{{ route('user.edit',$data->id) }}" data-bs-toggle="tooltip"
+                                                            data-bs-placement="top" title="Edit" class="px-2 text-primary"><i
+                                                                class="bx bx-pencil font-size-18"></i></a>
+                                                    </li>
+                                                    {{-- <li class="list-inline-item">
+                                                        <a href="javascript:void(0);" data-bs-toggle="tooltip"
+                                                            data-bs-placement="top" title="Delete" class="px-2 text-danger"><i
+                                                                class="bx bx-trash-alt font-size-18"></i></a>
+                                                    </li> --}}
                                                 @endif
-                                                <li class="list-inline-item dropdown">
+                                                {{-- <li class="list-inline-item dropdown">
                                                     <a class="text-muted dropdown-toggle font-size-18 px-2" href="#"
                                                         role="button" data-bs-toggle="dropdown" aria-haspopup="true">
                                                         <i class="bx bx-dots-vertical-rounded"></i>
                                                     </a>
 
                                                     <div class="dropdown-menu dropdown-menu-end">
-                                                        <a class="dropdown-item" href="#">Action</a>
-                                                        <a class="dropdown-item" href="#">Another action</a>
-                                                        <a class="dropdown-item" href="#">Something else here</a>
+                                                        <a class="dropdown-item" href="#">編輯</a>
                                                     </div>
-                                                </li>
+                                                </li> --}}
                                             </ul>
                                         </td>
                                     </tr>
@@ -192,52 +198,33 @@
                         <form action="{{ route('user.store') }}" method="POST">
                             @csrf
                         <div class="row">
-                            <div class="col-md-6">
-                                <div class="mb-3">
-                                    <label class="form-label" for="AddNew-Username">帳號</label>
-                                    <input type="text" class="form-control" placeholder="Enter Username"
-                                        id="AddNew-Username" name="email">
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="mb-3">
-                                    <label class="form-label">職稱</label>
-                                    <select class="form-select">
-                                        <option selected>Select Position</option>
-                                        <option>Full Stack Developer</option>
-                                        <option>Frontend Developer</option>
-                                        <option>UI/UX Designer</option>
-                                        <option>Backend Developer</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="mb-3">
-                                    <label class="form-label" for="AddNew-Email">密碼</label>
-                                    <input type="text" class="form-control" placeholder="Enter Email"
-                                        id="AddNew-Email" name="password">
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="mb-3">
-                                    <label class="form-label" for="AddNew-Phone">電話</label>
-                                    <input type="text" class="form-control" placeholder="Enter Phone"
-                                        id="AddNew-Phone">
-                                </div>
-                            </div>
-                            <div class="col-md-6">
+                            <div class="col-md-12">
                                 <div class="mb-3">
                                     <label class="form-label" for="AddNew-Username">姓名</label>
-                                    <input type="text" class="form-control" placeholder="Enter Username"
+                                    <input type="text" class="form-control" 
                                         id="AddNew-Username" name="name">
                                 </div>
                             </div>
-                            <div class="col-md-6">
+                            <div class="col-md-12">
+                                <div class="mb-3">
+                                    <label class="form-label" for="AddNew-Username">帳號</label>
+                                    <input type="text" class="form-control" 
+                                        id="AddNew-Username" name="email">
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="mb-3">
+                                    <label class="form-label" for="AddNew-Email">密碼</label>
+                                    <input type="text" class="form-control"
+                                        id="AddNew-Email" name="password">
+                                </div>
+                            </div>
+                            <div class="col-md-12">
                                 <div class="mb-3">
                                     <label class="form-label">權限</label>
-                                    <select class="form-select">
-                                        <option selected>啟用</option>
-                                        <option>停用</option>
+                                    <select class="form-select" name="level">
+                                        <option value="1" >管理者</option>
+                                        <option value="2" selected>一般使用者</option>
                                     </select>
                                 </div>
                             </div>

@@ -85,6 +85,7 @@ class CustomerController extends Controller
         $cust_data->zipcode = $request->zipcode;
         $cust_data->address = $request->address;
         $cust_data->registration_no = $request->registration_no;
+        $cust_data->principal_name = $request->principal_name;
         $cust_data->introduce = $request->introduce;
         $cust_data->last_year_revenue = $request->last_year_revenue;
         $cust_data->Insured_employees = $request->Insured_employees;
@@ -298,6 +299,8 @@ class CustomerController extends Controller
             $cust_data = new CustData();
             $cust_data->user_id = $user_data->id;
             $cust_data->nas_link = $request->nas_link;
+            $cust_data->registration_no = $request->registration_no;
+            $cust_data->principal_name = $request->principal_name;
             $cust_data->save();
             
             //新增客戶計畫案內容
@@ -351,6 +354,8 @@ class CustomerController extends Controller
         //新增客戶資料
         $cust_data = CustData::where('user_id',$user->id)->first();
         $cust_data->nas_link = $request->nas_link;
+        $cust_data->registration_no = $request->registration_no;
+        $cust_data->principal_name = $request->principal_name;
         $cust_data->save();
         return redirect()->route('customer.index');
     }

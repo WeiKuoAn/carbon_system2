@@ -17,7 +17,8 @@ use App\Http\Controllers\FileUploadController;
 
 Auth::routes();
 
-Route::get('/', [App\Http\Controllers\HomeController::class, 'root']);
+
+Route::get('/', [App\Http\Controllers\HomeController::class, 'root'])->middleware('checkstatus');
 // Route::get('{any}', [App\Http\Controllers\HomeController::class, 'index'])->name('index');
 Route::get('customer/introduce-create', [App\Http\Controllers\CustomerController::class,'IntroduceCreate'])->name('cust.introduce.create');
 Route::post('customer/introduce-create', [App\Http\Controllers\CustomerController::class,'IntroduceStore'])->name('cust.introduce.store');
@@ -27,7 +28,16 @@ Route::resource('customer', App\Http\Controllers\CustomerController::class);
 Route::resource('industry-category', App\Http\Controllers\IndustryCategoryController::class);
 Route::resource('user', App\Http\Controllers\UserController::class);
 
+//用戶群組
+Route::get('groups', [App\Http\Controllers\UserGroupController::class,'index'])->name('user.groups');
+Route::get('group/create', [App\Http\Controllers\UserGroupController::class,'create'])->name('user.group.create');
+Route::post('group/create', [App\Http\Controllers\UserGroupController::class,'store'])->name('user.group.store');
+Route::get('group/edit/{id}', [App\Http\Controllers\UserGroupController::class,'edit'])->name('user.group.edit');
+Route::post('group/edit/{id}', [App\Http\Controllers\UserGroupController::class,'update'])->name('user.group.edit');
+
 Route::get('projects', [App\Http\Controllers\ProjectController::class,'index'])->name('projects');
+Route::post('/update-checkbox-status', [App\Http\Controllers\ProjectController::class, 'updateAppendixStatus'])->name('appendix-status');
+
 //專案新增
 
 Route::get('project/business-create', [App\Http\Controllers\ProjectController::class,'BusinessCreate'])->name('project.business.create');
@@ -50,6 +60,8 @@ Route::get('project/{id}/manufacturing-preview', [App\Http\Controllers\UserProje
 Route::get('project/business-appendix', [App\Http\Controllers\ProjectController::class,'BusinessAppendix'])->name('project.business.appendix');
 Route::get('project/manufacturing-appendix', [App\Http\Controllers\ProjectController::class,'ManufacturingAppendix'])->name('project.manufacturing.appendix');
 
+Route::get('user-password', [App\Http\Controllers\UserController::class, 'password_show'])->name('user-password');
+Route::post('user-password', [App\Http\Controllers\UserController::class, 'password_update'])->name('user-password.data');
 
 //廠商問卷查看
 // Route::get('customer/{id}/surveys', [App\Http\Controllers\CustomerSurveyController::class , 'index'])->name('cust.surveys.index');

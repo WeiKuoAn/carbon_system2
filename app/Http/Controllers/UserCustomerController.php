@@ -41,6 +41,7 @@ class UserCustomerController extends Controller
         $cust_data->zipcode = $request->zipcode;
         $cust_data->address = $request->address;
         $cust_data->registration_no = $request->registration_no;
+        $cust_data->principal_name = $request->principal_name;
         $cust_data->introduce = $request->introduce;
         $cust_data->last_year_revenue = $request->last_year_revenue;
         $cust_data->Insured_employees = $request->Insured_employees;

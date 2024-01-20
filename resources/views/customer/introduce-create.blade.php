@@ -51,6 +51,12 @@
                                 </div>
                                 <div class="col-md-12">
                                     <div class="mb-4">
+                                        <label class="form-label" for="AddNew-Username"><b>公司負責人</b><span class="text-danger">*</span></label>
+                                        <input type="text" class="form-control required-input" name="principal_name" value="{{ $cust_data->principal_name }}">
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="mb-4">
                                         <label class="form-label" for="AddNew-Username"><b>公司統編</b><span class="text-danger">*</span></label>
                                         <input type="text" class="form-control required-input" name="registration_no" value="{{ $cust_data->registration_no }}">
                                     </div>
@@ -206,7 +212,7 @@
 
                                 <hr class="mt-3">
                                 <div class="col-md-12 row mt-3 appendix">
-                                    <label for="example-search-input" class="col-form-label"><b>附件上傳</b>（EX：公司介紹、產品簡報）<span class="text-danger">*</span></label>
+                                    <label for="example-search-input" class="col-form-label font-size-18"><b>附件上傳</b>（請上傳公司介紹、產品介紹簡報...等資料）<span class="text-danger">*</span></label>
                                     <div class="pl-5">
                                         <div class="alert alert-primary" role="alert">
                                             上傳網址： <a href="{{ $cust_data->nas_link }}" target="_blank" class="alert-link">請點擊我</a>

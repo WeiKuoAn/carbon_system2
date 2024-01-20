@@ -46,6 +46,8 @@
                                     <tr>
                                         <th scope="col">No</th>
                                         <th scope="col">廠商名稱</th>
+                                        <th scope="col">負責人</th>
+                                        <th scope="col">統編</th>
                                         <th scope="col">主要聯絡人</th>
                                         <th scope="col">聯絡人職稱</th>
                                         <th scope="col">聯絡人電話</th>
@@ -63,6 +65,8 @@
                                         <td>
                                             <a href="#" class="text-body">{{ $data->name }}</a>
                                         </td>
+                                        <td>@if(isset($data->cust_data)){{ $data->cust_data->principal_name  }}@endif</td>
+                                        <td>@if(isset($data->cust_data)){{ $data->cust_data->registration_no }}@endif</td>
                                         <td>@if(isset($data->cust_data)){{ $data->cust_data->contact_name  }}@endif</td>
                                         <td>@if(isset($data->cust_data)){{ $data->cust_data->contact_job }}@endif</td>
                                         <td>@if(isset($data->cust_data)){{ $data->cust_data->contact_phone  }}@endif</td>

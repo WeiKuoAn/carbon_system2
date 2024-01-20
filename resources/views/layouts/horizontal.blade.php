@@ -204,9 +204,9 @@
                         <h6 class="mb-0">{{ Auth::user()->name }}</h6>
                         <p class="mb-0 font-size-11 text-muted">martin.gurley@email.com</p>
                     </div>
-                    <a class="dropdown-item" href="contacts-profile"><i
+                    <a class="dropdown-item" href="{{route('user-password')}}"><i
                             class="mdi mdi-account-circle text-muted font-size-16 align-middle me-2"></i> <span
-                            class="align-middle">個人資料</a>
+                            class="align-middle">變更密碼</a>
                     {{-- <a class="dropdown-item" href="apps-chat"><i
                             class="mdi mdi-message-text-outline text-muted font-size-16 align-middle me-2"></i> <span
                             class="align-middle">Messages</span></a>
@@ -291,7 +291,7 @@
                                 <div class="arrow-down"></div>
                             </a>
                             <div class="dropdown-menu" aria-labelledby="topnav-vendor">
-                                {{-- <a href="{{ route('user.index') }}" class="dropdown-item">新增用戶</a> --}}
+                                <a href="{{ route('user.groups') }}" class="dropdown-item">群組列表</a>
                                 <a href="{{ route('user.index') }}" class="dropdown-item">用戶列表</a>
                             </div>
                         </li>
@@ -329,7 +329,7 @@
                             <a class="nav-link dropdown-toggle arrow-none" href="{{ route('cust.introduce.create') }}" id="topnav-vendor"
                                 role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <i class="bx bx-store icon nav-icon"></i>
-                                <span data-key="t-dashboards">廠商資料</span>
+                                <span data-key="t-dashboards">廠商基本資料</span>
                             </a>
                         </li>
                             {{-- {{ dd(Auth::user()->project_datas) }} --}}
@@ -339,12 +339,12 @@
                                         <a class="nav-link dropdown-toggle arrow-none" href="#" id="topnav-vendor"
                                             role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                             <i class="bx bx-store icon nav-icon"></i>
-                                            <span data-key="t-dashboards">商業服務類</span>
+                                            <span data-key="t-dashboards">商業服務業</span>
                                             <div class="arrow-down"></div>
                                         </a>
                                         <div class="dropdown-menu" aria-labelledby="topnav-vendor">
-                                                <a href="{{ route('project.business.create') }}" class="dropdown-item">新增廠商-商業服務類</a>
-                                                <a href="{{ route('project.business.appendix') }}" class="dropdown-item">商業服務類-附件</a>
+                                                <a href="{{ route('project.business.create') }}" class="dropdown-item">商業服務業-資料</a>
+                                                <a href="{{ route('project.business.appendix') }}" class="dropdown-item">商業服務業-附件</a>
                                         </div>
                                     </li>
                                 @endif
@@ -353,11 +353,11 @@
                                         <a class="nav-link dropdown-toggle arrow-none" href="#" id="topnav-vendor"
                                             role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                             <i class="bx bx-store icon nav-icon"></i>
-                                            <span data-key="t-dashboards">製造類</span>
+                                            <span data-key="t-dashboards">製造業</span>
                                             <div class="arrow-down"></div>
                                         </a>
                                         <div class="dropdown-menu" aria-labelledby="topnav-vendor">
-                                                <a href="{{ route('project.Manufacturing.create') }}" class="dropdown-item">新增廠商-製造類</a>
+                                                <a href="{{ route('project.Manufacturing.create') }}" class="dropdown-item">製造業-資料</a>
                                                 <a href="{{ route('project.manufacturing.appendix') }}" class="dropdown-item">製造類-附件</a>
                                         </div>
                                     </li>

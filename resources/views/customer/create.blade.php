@@ -68,6 +68,13 @@
                             </div>
 
                             <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label class="form-label" for="AddNew-Phone">公司負責人</label>
+                                    <input type="text" class="form-control" name="principal_name" required>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
                                 <label class="form-label">計劃案申報類別</label><span class="text-danger">*</span>
                                 <div class="row font-size-16 mt-2">
                                     <div class="col-md-3">
@@ -86,6 +93,13 @@
                                             </label>
                                         </div>
                                     </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label class="form-label" for="AddNew-Phone">公司統編</label>
+                                    <input type="text" class="form-control" name="registration_no" required>
                                 </div>
                             </div>
                             
