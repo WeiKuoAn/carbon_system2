@@ -77,18 +77,14 @@
                                 <div class="row font-size-16 mt-2">
                                     <div class="col-md-3">
                                         <div class="form-check mb-3">
-                                            <input class="form-check-input type" type="checkbox" name="type[]" id="formCheck1"  @if($data->user_project->type == 0) value="0" checked @endif value="off">
-                                            <label class="form-check-label" for="formCheck1">
-                                                商業服務
-                                            </label>
+                                            <input type="checkbox" class="form-check-input type" name="type0" id="formCheck1" value="0" @if($data->user_project->type == 0) checked @endif>
+                                            <label class="form-check-label" for="formCheck1">商業服務</label>
                                         </div>
                                     </div>
                                     <div class="col-md-2">
                                         <div class="form-check mb-3">
-                                            <input class="form-check-input type" type="checkbox" name="type[]" id="formCheck2"  @if($data->user_project->type == 1) value="1" checked @endif value="off">
-                                            <label class="form-check-label" for="formCheck2">
-                                                製造類
-                                            </label>
+                                            <input class="form-check-input type" type="checkbox" name="type1" id="formCheck2" value="1" @if($data->user_project->type == 1) checked @endif>
+                                            <label class="form-check-label" for="formCheck2">製造類</label>
                                         </div>
                                     </div>
                                 </div>

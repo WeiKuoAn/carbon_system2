@@ -352,6 +352,7 @@ class CustomerController extends Controller
      */
     public function update(Request $request, string $id)
     {
+        dd($request->types);
         $user = User::where('id',$id)->first();
         $user->name = $request->name;
         $user->save();
@@ -362,6 +363,14 @@ class CustomerController extends Controller
         $cust_data->registration_no = $request->registration_no;
         $cust_data->principal_name = $request->principal_name;
         $cust_data->save();
+
+        $types = [];
+        if ($request->has('type0')) {
+            array_push($types, $request->input('type0'));
+        }
+        if ($request->has('type1')) {
+            array_push($types, $request->input('type1'));
+        }
         return redirect()->route('customer.index');
     }
 
