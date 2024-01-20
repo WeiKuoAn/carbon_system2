@@ -95,17 +95,19 @@
                                         </td>
                                         <td>
                                             <ul class="list-inline mb-0">
-                                                @if($data->level != 0)
-                                                    <li class="list-inline-item">
-                                                        <a href="{{ route('user.edit',$data->id) }}" data-bs-toggle="tooltip"
-                                                            data-bs-placement="top" title="Edit" class="px-2 text-primary"><i
-                                                                class="bx bx-pencil font-size-18"></i></a>
-                                                    </li>
-                                                    {{-- <li class="list-inline-item">
-                                                        <a href="javascript:void(0);" data-bs-toggle="tooltip"
-                                                            data-bs-placement="top" title="Delete" class="px-2 text-danger"><i
-                                                                class="bx bx-trash-alt font-size-18"></i></a>
-                                                    </li> --}}
+                                                @if(Auth::user()->level !=2)
+                                                    @if($data->level != 0)
+                                                        <li class="list-inline-item">
+                                                            <a href="{{ route('user.edit',$data->id) }}" data-bs-toggle="tooltip"
+                                                                data-bs-placement="top" title="Edit" class="px-2 text-primary"><i
+                                                                    class="bx bx-pencil font-size-18"></i></a>
+                                                        </li>
+                                                        {{-- <li class="list-inline-item">
+                                                            <a href="javascript:void(0);" data-bs-toggle="tooltip"
+                                                                data-bs-placement="top" title="Delete" class="px-2 text-danger"><i
+                                                                    class="bx bx-trash-alt font-size-18"></i></a>
+                                                        </li> --}}
+                                                    @endif
                                                 @endif
                                                 {{-- <li class="list-inline-item dropdown">
                                                     <a class="text-muted dropdown-toggle font-size-18 px-2" href="#"

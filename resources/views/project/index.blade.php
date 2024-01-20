@@ -112,13 +112,15 @@
                                                     </a>
                                                     {{-- {{dd($data->type)}} --}}
                                                     <div class="dropdown-menu dropdown-menu-end">
-                                                        <a class="dropdown-item" 
-                                                        @if($data->type == 0)
-                                                            href="{{ route('user.project.business.create',$data->user_id) }}"
-                                                        @elseif($data->type == 1)
-                                                            href="{{ route('user.project.Manufacturing.create',$data->user_id) }}"
+                                                        @if(Auth::user()->level !=2)
+                                                            <a class="dropdown-item" 
+                                                                @if($data->type == 0)
+                                                                    href="{{ route('user.project.business.create',$data->user_id) }}"
+                                                                @elseif($data->type == 1)
+                                                                    href="{{ route('user.project.Manufacturing.create',$data->user_id) }}"
+                                                                @endif
+                                                            >編輯</a>
                                                         @endif
-                                                        >編輯</a>
                                                         <a class="dropdown-item"
                                                         @if($data->type == 0)
                                                             href="{{ route('user.project.business.preview',$data->user_id) }}"

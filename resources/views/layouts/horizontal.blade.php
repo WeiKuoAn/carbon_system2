@@ -283,19 +283,20 @@
                             </div>
                         </li> --}}
                         @if(Auth::user()->group_id != 2)
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle arrow-none" href="#" id="topnav-vendor"
-                                role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <i class="bx bx bx-user icon nav-icon"></i>
-                                <span data-key="t-dashboards">用戶管理</span>
-                                <div class="arrow-down"></div>
-                            </a>
-                            <div class="dropdown-menu" aria-labelledby="topnav-vendor">
-                                <a href="{{ route('user.groups') }}" class="dropdown-item">群組列表</a>
-                                <a href="{{ route('user.index') }}" class="dropdown-item">用戶列表</a>
-                            </div>
-                        </li>
-
+                            @if(Auth::user()->level !=2)
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle arrow-none" href="#" id="topnav-vendor"
+                                        role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <i class="bx bx bx-user icon nav-icon"></i>
+                                        <span data-key="t-dashboards">用戶管理</span>
+                                        <div class="arrow-down"></div>
+                                    </a>
+                                    <div class="dropdown-menu" aria-labelledby="topnav-vendor">
+                                        <a href="{{ route('user.groups') }}" class="dropdown-item">群組列表</a>
+                                        <a href="{{ route('user.index') }}" class="dropdown-item">用戶列表</a>
+                                    </div>
+                                </li>
+                            @endif
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle arrow-none" href="#" id="topnav-vendor"
                                 role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
