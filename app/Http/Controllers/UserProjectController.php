@@ -18,6 +18,7 @@ use App\Models\ManufactureExpected;
 use App\Models\ManufactureImprove;
 use App\Models\ManufactureSubsidy;
 use App\Models\ManufactureNorm;
+use App\Models\ProjectAppendix;
 use Carbon\Carbon;
 use App\Models\ManufactureThreeIncome;
 use App\Models\ManufactureIso;
@@ -187,7 +188,12 @@ class UserProjectController extends Controller
 
     public function BusinessAppendix($id)
     {
-        return view('admin-project.business-appendix');
+        $cust_data = CustData::where('user_id', $id)->first();
+        $project = CustProject::where('user_id', $id)->first();
+        $appendix = ProjectAppendix::where('project_id', $project->id)->first();
+
+        $checkboxesStatus = $appendix ? json_encode($appendix->checkboxes_status) : json_encode([]);
+        return view('admin-project.business-appendix',compact('cust_data', 'appendix', 'checkboxesStatus'));
     }
 
     public function BusinessPreview($id)
@@ -230,7 +236,12 @@ class UserProjectController extends Controller
 
     public function ManufacturingAppendix($id)
     {
-        return view('admin-project.manufacturing-appendix');
+        $cust_data = CustData::where('user_id', $id)->first();
+        $project = CustProject::where('user_id', $id)->first();
+        $appendix = ProjectAppendix::where('project_id', $project->id)->first();
+
+        $checkboxesStatus = $appendix ? json_encode($appendix->checkboxes_status) : json_encode([]);
+        return view('admin-project.manufacturing-appendix',compact('cust_data', 'appendix', 'checkboxesStatus'));
     }
 
     public function ManufacturingCreate($id,)

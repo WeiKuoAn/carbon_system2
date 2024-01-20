@@ -54,6 +54,10 @@ Route::post('project/{id}/business-create', [App\Http\Controllers\UserProjectCon
 Route::get('project/{id}/manufacturing-create', [App\Http\Controllers\UserProjectController::class,'ManufacturingCreate'])->name('user.project.Manufacturing.create');
 Route::post('project/{id}/manufacturing-create', [App\Http\Controllers\UserProjectController::class,'ManufacturingStore'])->name('user.project.Manufacturing.store');
 
+Route::get('project/{id}/business-appendix', [App\Http\Controllers\UserProjectController::class,'BusinessAppendix'])->name('user.project.business.appendix');
+Route::get('project/{id}/manufacturing-appendix', [App\Http\Controllers\UserProjectController::class,'ManufacturingAppendix'])->name('user.project.Manufacturing.appendix');
+
+
 Route::get('project/{id}/business-preview', [App\Http\Controllers\UserProjectController::class,'BusinessPreview'])->name('user.project.business.preview');
 Route::get('project/{id}/manufacturing-preview', [App\Http\Controllers\UserProjectController::class,'ManufacturingPreview'])->name('user.project.Manufacturing.preview');
 

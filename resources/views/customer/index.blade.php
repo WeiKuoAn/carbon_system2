@@ -88,9 +88,9 @@
                                                     </a>
 
                                                     <div class="dropdown-menu dropdown-menu-end">
-                                                        <a class="dropdown-item" href="{{ route('customer.edit',$data->id) }}">編輯廠商帳戶資料</a>
-                                                        <a class="dropdown-item" href="{{ route('user.introduce.edit',$data->id) }}">編輯廠商基本資料</a>
-                                                        <a class="dropdown-item" href="{{ route('user.project.index',$data->id) }}">查看專案資料</a>
+                                                        <a class="dropdown-item" href="{{ route('customer.edit',$data->user_id) }}">編輯廠商帳戶資料</a>
+                                                        <a class="dropdown-item" href="{{ route('user.introduce.edit',$data->user_id) }}">編輯廠商基本資料</a>
+                                                        <a class="dropdown-item" href="{{ route('user.project.index',$data->user_id) }}">查看專案資料</a>
                                                         {{-- <a class="dropdown-item" href="{{ route('user.project.business.create',$data->user_id) }}">查看專案</a> --}}
                                                         {{-- <a class="dropdown-item" href="{{ route('cust.surveys.index',$data->id) }}">問卷查看</a>
                                                         <a class="dropdown-item" href="#">盤查紀錄</a>

@@ -396,7 +396,7 @@
                             <div class="col text-center">
                                 <button class="btn btn-success" type="submit" id="btn_storage"><i class="bx bx-file me-1"></i> 暫存 </button>
                                 
-                                <a href="{{ route('project.business.appendix') }}">
+                                <a href="{{ route('user.project.business.appendix',$cust_data->user_id) }}">
                                     <button class="btn btn-primary" type="button" id="btn_submit"><i class=" bx bx-check me-1"></i> 確認送出 </button>
                                 </a>
                             </div> <!-- end col -->

@@ -116,8 +116,13 @@
                                                             href="{{ route('user.project.Manufacturing.create',$data->cust_data->user_id) }}"
                                                         @endif
                                                         >編輯</a>
-                                                            <a class="dropdown-item"
-                                                            >預覽</a>
+                                                        <a class="dropdown-item"
+                                                        @if($data->type == 0)
+                                                            href="{{ route('user.project.business.preview',$data->user_id) }}"
+                                                        @elseif($data->type == 1)
+                                                            href="{{ route('user.project.Manufacturing.preview',$data->user_id) }}"
+                                                        @endif
+                                                        >預覽</a>
                                                     </div>
                                                 </li>
                                             </ul>
