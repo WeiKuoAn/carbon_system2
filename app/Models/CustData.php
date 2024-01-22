@@ -21,9 +21,9 @@ class CustData extends Model
         return $this->hasOne('App\Models\User', 'id', 'user_id');
     }
 
-    public function user_project()
+    public function user_projects()
     {
-        return $this->hasOne('App\Models\CustProject', 'user_id', 'user_id');
+        return $this->hasMany('App\Models\CustProject', 'user_id', 'user_id')->where('status','0');
     }
 
     // public function cust_data()

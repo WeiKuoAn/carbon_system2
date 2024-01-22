@@ -62,8 +62,8 @@
 
                         <div class="row mt-3">
                             <div class="col-12 text-center">
+                                <button type="button" class="btn btn-danger me-1" onclick="history.go(-1)">回上一頁</button>
                                 <button type="submit" class="btn btn-success waves-effect waves-light m-1"><i class="fe-check-circle me-1"></i>修改</button>
-                                <button type="reset" class="btn btn-secondary waves-effect waves-light m-1"><i class="fe-x me-1"></i>回上一頁</button>
                             </div>
                         </div>
                     </form>

@@ -394,10 +394,12 @@
                         </div>
                         <div class="row mt-4 mb-2">
                             <div class="col text-center">
-                                <button class="btn btn-success" type="submit" id="btn_storage"><i class="bx bx-file me-1"></i> 暫存 </button>
+                                <button type="button" class="btn btn-danger me-1" onclick="history.go(-1)"><i
+                                    class="bx bx-x me-1"></i> 回上一頁</button>
+                                <button class="btn btn-success" type="submit" id="btn_storage"><i class="bx bx-file me-1"></i> 儲存 </button>
                                 
                                 <a href="{{ route('user.project.business.appendix',$cust_data->user_id) }}">
-                                    <button class="btn btn-primary" type="button" id="btn_submit"><i class=" bx bx-check me-1"></i> 確認送出 </button>
+                                    <button class="btn btn-primary" type="button" id="btn_submit"><i class=" bx bx-check me-1"></i> 查看附件 </button>
                                 </a>
                             </div> <!-- end col -->
                         </div>

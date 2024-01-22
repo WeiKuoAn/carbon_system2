@@ -335,33 +335,35 @@
                         </li>
                             {{-- {{ dd(Auth::user()->project_datas) }} --}}
                             @foreach(Auth::user()->project_datas as $project_data)
-                                @if($project_data->type == 0)
-                                    <li class="nav-item dropdown">
-                                        <a class="nav-link dropdown-toggle arrow-none" href="#" id="topnav-vendor"
-                                            role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                            <i class="bx bx-store icon nav-icon"></i>
-                                            <span data-key="t-dashboards">商業服務業</span>
-                                            <div class="arrow-down"></div>
-                                        </a>
-                                        <div class="dropdown-menu" aria-labelledby="topnav-vendor">
-                                                <a href="{{ route('project.business.create') }}" class="dropdown-item">商業服務業-資料</a>
-                                                <a href="{{ route('project.business.appendix') }}" class="dropdown-item">商業服務業-附件</a>
-                                        </div>
-                                    </li>
-                                @endif
-                                @if($project_data->type == 1)
-                                    <li class="nav-item dropdown">
-                                        <a class="nav-link dropdown-toggle arrow-none" href="#" id="topnav-vendor"
-                                            role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                            <i class="bx bx-store icon nav-icon"></i>
-                                            <span data-key="t-dashboards">製造業</span>
-                                            <div class="arrow-down"></div>
-                                        </a>
-                                        <div class="dropdown-menu" aria-labelledby="topnav-vendor">
-                                                <a href="{{ route('project.Manufacturing.create') }}" class="dropdown-item">製造業-資料</a>
-                                                <a href="{{ route('project.manufacturing.appendix') }}" class="dropdown-item">製造類-附件</a>
-                                        </div>
-                                    </li>
+                                @if($project_data->status == 0)
+                                    @if($project_data->type == 0)
+                                        <li class="nav-item dropdown">
+                                            <a class="nav-link dropdown-toggle arrow-none" href="#" id="topnav-vendor"
+                                                role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                <i class="bx bx-store icon nav-icon"></i>
+                                                <span data-key="t-dashboards">商業服務業</span>
+                                                <div class="arrow-down"></div>
+                                            </a>
+                                            <div class="dropdown-menu" aria-labelledby="topnav-vendor">
+                                                    <a href="{{ route('project.business.create') }}" class="dropdown-item">商業服務業-資料</a>
+                                                    <a href="{{ route('project.business.appendix') }}" class="dropdown-item">商業服務業-附件</a>
+                                            </div>
+                                        </li>
+                                    @endif
+                                    @if($project_data->type == 1)
+                                        <li class="nav-item dropdown">
+                                            <a class="nav-link dropdown-toggle arrow-none" href="#" id="topnav-vendor"
+                                                role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                <i class="bx bx-store icon nav-icon"></i>
+                                                <span data-key="t-dashboards">製造業</span>
+                                                <div class="arrow-down"></div>
+                                            </a>
+                                            <div class="dropdown-menu" aria-labelledby="topnav-vendor">
+                                                    <a href="{{ route('project.Manufacturing.create') }}" class="dropdown-item">製造業-資料</a>
+                                                    <a href="{{ route('project.manufacturing.appendix') }}" class="dropdown-item">製造類-附件</a>
+                                            </div>
+                                        </li>
+                                    @endif
                                 @endif
                             @endforeach
                         @endif

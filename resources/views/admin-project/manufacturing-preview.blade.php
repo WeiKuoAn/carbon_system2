@@ -712,6 +712,8 @@
                                 </div>
                                 <div class="row mt-4 mb-2 d-print-none">
                                     <div class="col text-center">
+                                        <button type="button" class="btn btn-danger me-1" onclick="history.go(-1)"><i
+                                            class="bx bx-x me-1"></i> 回上一頁</button>
                                         <a href="javascript:window.print()" class="btn btn-success me-1"><i
                                             class="fa fa-print me-1"></i>列印</a>
                                         {{-- <a href="{{ route('project.business.appendix') }}">

@@ -343,8 +343,9 @@ class CustomerController extends Controller
      */
     public function edit(string $id)
     {
+        $groups = UserGroup::whereNotIn('id',[2])->get();
         $data = CustData::where('user_id',$id)->first();
-        return view('customer.edit')->with('hint',0)->with('data',$data);
+        return view('customer.edit')->with('hint',0)->with('data',$data)->with('groups',$groups);
     }
 
     /**
@@ -352,7 +353,6 @@ class CustomerController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        dd($request->types);
         $user = User::where('id',$id)->first();
         $user->name = $request->name;
         $user->save();
@@ -362,7 +362,16 @@ class CustomerController extends Controller
         $cust_data->nas_link = $request->nas_link;
         $cust_data->registration_no = $request->registration_no;
         $cust_data->principal_name = $request->principal_name;
+        $cust_data->limit_status = $request->limit_status;
         $cust_data->save();
+
+        //驗證是否有商業類並有開通
+        $project_datas = CustProject::where('user_id',$user->id)->where('status','0')->get();
+        foreach($project_datas as $project_data)
+        {
+            $project_data->status = 1;
+            $project_data->save();
+        }
 
         $types = [];
         if ($request->has('type0')) {
@@ -371,6 +380,16 @@ class CustomerController extends Controller
         if ($request->has('type1')) {
             array_push($types, $request->input('type1'));
         }
+
+        foreach($types as $type)
+        {
+            $type_data = CustProject::where('user_id',$user->id)->where('type',$type)->where('status','1')->first();
+            $type_data->status = 0;
+            $type_data->save();
+        }
+
+        // dd($types);
+
         return redirect()->route('customer.index');
     }
 

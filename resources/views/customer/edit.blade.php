@@ -77,23 +77,37 @@
                                 <div class="row font-size-16 mt-2">
                                     <div class="col-md-3">
                                         <div class="form-check mb-3">
-                                            <input type="checkbox" class="form-check-input type" name="type0" id="formCheck1" value="0" @if($data->user_project->type == 0) checked @endif>
+                                            <input type="checkbox" class="form-check-input type" name="type0" id="formCheck1" value="0"
+                                                @if($data->user_projects->contains('type', 0)) checked @endif>
                                             <label class="form-check-label" for="formCheck1">商業服務</label>
                                         </div>
                                     </div>
                                     <div class="col-md-2">
                                         <div class="form-check mb-3">
-                                            <input class="form-check-input type" type="checkbox" name="type1" id="formCheck2" value="1" @if($data->user_project->type == 1) checked @endif>
+                                            <input class="form-check-input type" type="checkbox" name="type1" id="formCheck2" value="1"
+                                                @if($data->user_projects->contains('type', 1)) checked @endif>
                                             <label class="form-check-label" for="formCheck2">製造類</label>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            
+
                             <div class="col-md-6">
                                 <div class="mb-3">
                                     <label class="form-label" for="AddNew-Phone">公司統編</label>
                                     <input type="text" class="form-control" name="registration_no" value="{{ $data->registration_no }}" required>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label class="form-label">限制瀏覽</label>
+                                    <select class="form-select" name="limit_status">
+                                        <option value="all" >不限</option>
+                                        @foreach($groups as $group)
+                                            <option value="{{ $group->id }}" @if($data->limit_status == $group->id) selected @endif>{{ $group->name }}</option>
+                                        @endforeach
+                                    </select>
                                 </div>
                             </div>
 
