@@ -111,6 +111,16 @@
                                 </div>
                             </div>
 
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label class="form-label">登入權限</label>
+                                    <select class="form-select" name="status">
+                                        <option value="0" @if($data->user_data->status == '0') selected @endif>開通</option>
+                                        <option value="1" @if($data->user_data->status == '1') selected @endif>停用</option>
+                                    </select>
+                                </div>
+                            </div>
+
                         </div>
                 </div>
                 

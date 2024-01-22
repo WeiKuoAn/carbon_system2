@@ -73,9 +73,10 @@
                                         <td>@if(isset($data->cust_data)){{ $data->cust_data->contact_email  }}@endif</td>
                                         <td>@if(isset($data->cust_data)){{ $data->cust_data->county.$data->cust_data->district.$data->cust_data->address  }}@endif</td>
                                         <td>
+                                            {{-- {{ dd($data) }} --}}
                                             @if($data->status == 0)
                                                 啟動
-                                            @else
+                                            @elseif($data->status == 1)
                                                 <span class="text-danger"><b>關閉</b></span>
                                             @endif
                                         </td>

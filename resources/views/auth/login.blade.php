@@ -17,17 +17,12 @@
                     <div class="row justify-content-center my-auto">
                         <div class="col-md-8 col-lg-6 col-xl-5">
 
-                            <div class="mb-4 pb-2">
-                                <a href="index" class="d-block auth-logo">
-                                    <img src="{{ asset('assets/image/LOGO.png') }}" alt="" height="100"
-                                        class="auth-logo-dark me-start">
-                                    <img src="{{ asset('assets/image/LOGO.png') }}" alt="" height="100"
-                                        class="auth-logo-light me-start">
-                                </a>
-                            </div>
+                            
 
                             <div class="card">
                                 <div class="card-body p-4">
+                                    
+
                                     <div class="text-center mt-2">
                                         <h5>歡迎回來！</h5>
                                         <p class="text-muted">登入至錚典科技專案管理系統.</p>
@@ -35,6 +30,19 @@
                                     <div class="p-2 mt-4">
                                         <form method="POST" action="{{ route('login') }}" class="auth-input">
                                             @csrf
+                                            <div class="mb-4 pb-2">
+                                                <a href="index" class="d-block auth-logo">
+                                                    <img src="{{ asset('assets/image/LOGO.png') }}" alt="" height="100"
+                                                        class="auth-logo-dark me-start">
+                                                    <img src="{{ asset('assets/image/LOGO.png') }}" alt="" height="100"
+                                                        class="auth-logo-light me-start">
+                                                </a>
+                                            </div>
+                                            @if (session('error'))
+                                                <div class="alert alert-danger">
+                                                    {{ session('error') }}
+                                                </div>
+                                            @endif
                                             <div class="mb-2">
                                                 <label for="email" class="form-label">帳號 <span class="text-danger">*</span></label>
                                                 <input id="email" type="text"

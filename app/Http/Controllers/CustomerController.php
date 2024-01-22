@@ -355,6 +355,7 @@ class CustomerController extends Controller
     {
         $user = User::where('id',$id)->first();
         $user->name = $request->name;
+        $user->status = $request->status;
         $user->save();
 
         //新增客戶資料
