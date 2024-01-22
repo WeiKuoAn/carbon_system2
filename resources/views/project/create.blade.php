@@ -83,8 +83,8 @@
                                     <label class="form-label">計劃案申報類別</label><span class="text-danger">*</span>
                                     <select class="form-select" name="stock_status" required>
                                         <option value="" selected>請選擇</option>
-                                        <option value="0" >商業服務類</option>
-                                        <option value="1" >製造類</option>
+                                        <option value="0" >商業服務業</option>
+                                        <option value="1" >製造業</option>
                                     </select>
                                 </div>
                             </div>

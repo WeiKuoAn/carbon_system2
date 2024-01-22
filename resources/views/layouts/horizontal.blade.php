@@ -319,10 +319,10 @@
                             </a>
                             <div class="dropdown-menu" aria-labelledby="topnav-vendor">
                                 <a href="{{ route('projects') }}" class="dropdown-item">專案列表</a>
-                                {{-- <a href="{{ route('project.business.create') }}" class="dropdown-item">新增廠商-商業服務類</a>
-                                <a href="{{ route('project.business.appendix') }}" class="dropdown-item">商業服務類-附件</a>
-                                <a href="{{ route('project.Manufacturing.create') }}" class="dropdown-item">新增廠商-製造類</a>
-                                <a href="{{ route('project.manufacturing.appendix') }}" class="dropdown-item">製造類-附件</a> --}}
+                                {{-- <a href="{{ route('project.business.create') }}" class="dropdown-item">新增廠商-商業服務業</a>
+                                <a href="{{ route('project.business.appendix') }}" class="dropdown-item">商業服務業-附件</a>
+                                <a href="{{ route('project.Manufacturing.create') }}" class="dropdown-item">新增廠商-製造業</a>
+                                <a href="{{ route('project.manufacturing.appendix') }}" class="dropdown-item">製造業-附件</a> --}}
                             </div>
                         </li>
                         @elseif(Auth::user()->group_id == 2)
@@ -360,7 +360,7 @@
                                             </a>
                                             <div class="dropdown-menu" aria-labelledby="topnav-vendor">
                                                     <a href="{{ route('project.Manufacturing.create') }}" class="dropdown-item">製造業-資料</a>
-                                                    <a href="{{ route('project.manufacturing.appendix') }}" class="dropdown-item">製造類-附件</a>
+                                                    <a href="{{ route('project.manufacturing.appendix') }}" class="dropdown-item">製造業-附件</a>
                                             </div>
                                         </li>
                                     @endif

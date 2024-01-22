@@ -1,6 +1,6 @@
 @extends('layouts.master')
 @section('title')
-    商業服務類-新增內容
+    商業服務業-資料
 @endsection
 @section('css')
     <!-- datepicker css -->
@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="{{ asset('build/libs/gridjs/theme/mermaid.min.css') }}">
 @endsection
 @section('page-title')
-    商業服務類-新增內容
+    商業服務業-資料
 @endsection
 @section('body')
 
@@ -25,7 +25,7 @@
                 <div class="modal-body">
                     <div class="text-center">
                         <i class="bx bx-check-circle display-1 text-success"></i>
-                        <h4 class="mt-3">新增商業服務類資料成功！</h4>
+                        <h4 class="mt-3">新增商業服務業資料成功！</h4>
                     </div>
                 </div>
             </div><!-- /.modal-content -->

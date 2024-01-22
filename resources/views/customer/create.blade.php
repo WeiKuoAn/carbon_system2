@@ -81,7 +81,7 @@
                                         <div class="form-check mb-3">
                                             <input class="form-check-input type" type="checkbox" name="types[]" id="formCheck1" value="0">
                                             <label class="form-check-label" for="formCheck1">
-                                                商業服務
+                                                商業服務業
                                             </label>
                                         </div>
                                     </div>
@@ -89,7 +89,7 @@
                                         <div class="form-check mb-3">
                                             <input class="form-check-input type" type="checkbox" name="types[]" id="formCheck2" value="1">
                                             <label class="form-check-label" for="formCheck2">
-                                                製造類
+                                                製造業
                                             </label>
                                         </div>
                                     </div>

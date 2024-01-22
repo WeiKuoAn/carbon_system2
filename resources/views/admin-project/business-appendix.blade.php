@@ -1,6 +1,6 @@
 @extends('layouts.master')
 @section('title')
-    商業服務類-附件
+    商業服務業-附件
 @endsection
 @section('css')
     <!-- datepicker css -->
@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="{{ asset('build/libs/gridjs/theme/mermaid.min.css') }}">
 @endsection
 @section('page-title')
-    商業服務類-附件
+    商業服務業-附件
 @endsection
 @section('body')
 
@@ -25,7 +25,7 @@
                 <div class="modal-body">
                     <div class="text-center">
                         <i class="bx bx-check-circle display-1 text-success"></i>
-                        <h4 class="mt-3">新增商業服務類附件成功！</h4>
+                        <h4 class="mt-3">新增商業服務業附件成功！</h4>
                     </div>
                 </div>
             </div><!-- /.modal-content -->

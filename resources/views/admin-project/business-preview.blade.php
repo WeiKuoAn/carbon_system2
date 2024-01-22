@@ -1,6 +1,6 @@
 @extends('layouts.master')
 @section('title')
-    商業服務類-預覽內容
+    商業服務業-預覽內容
 @endsection
 @section('css')
     <!-- datepicker css -->
@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="{{ asset('build/libs/gridjs/theme/mermaid.min.css') }}">
 @endsection
 @section('page-title')
-    商業服務類-預覽內容【{{ $cust_data->user_data->name }}】
+    商業服務業-預覽內容【{{ $cust_data->user_data->name }}】
 @endsection
 @section('body')
 

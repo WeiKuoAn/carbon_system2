@@ -64,7 +64,7 @@
                                     <tr><td>{{ $key+1 }}</td>
                                         <td>{{ $data->year }}年</td>
                                         <td>
-                                            @if($data->type == 0) 商業服務類
+                                            @if($data->type == 0) 商業服務業
                                             @elseif($data->type == 1) 製造業
                                             @endif
                                         </td>

@@ -68,7 +68,7 @@
                                             {{ $data->user_data->name }}
                                         </td>
                                         <td>
-                                            @if($data->type == 0)商業服務類@endif
+                                            @if($data->type == 0)商業服務業@endif
                                             @if($data->type == 1)製造業@endif
                                         </td>
                                         <td>@if(isset($data->project_host)){{ $data->project_host->name }}@endif</td>
