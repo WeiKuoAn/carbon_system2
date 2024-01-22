@@ -14,6 +14,7 @@ use App\Models\ProjectContact;
 use App\Models\User;
 use App\Models\ProjectPersonnel;
 use App\Models\ManufactureNeed;
+use Carbon\Carbon;
 use App\Models\ManufactureExpected;
 use App\Models\ManufactureImprove;
 use App\Models\ManufactureSubsidy;
@@ -193,6 +194,25 @@ class ProjectController extends Controller
 
     }
 
+    public function BusinessPreview()
+    {
+        $years = [];
+        $now = Carbon::now();
+
+        for ($i = 1; $i <= 3; $i++) {
+            $years[] = $now->copy()->subYears($i)->year;
+        }
+        $cust_data = CustData::where('user_id',Auth::user()->id)->first();
+        $project = CustProject::where('user_id',Auth::user()->id)->first();
+        $project_host_data = ProjectHost::where('user_id',Auth::user()->id)->first();
+        $project_contact_data = ProjectContact::where('user_id',Auth::user()->id)->first();
+        return view('project.business-preview')->with('project', $project)
+                                              ->with('project_host_data',$project_host_data)
+                                              ->with('project_contact_data',$project_contact_data)
+                                              ->with('cust_data',$cust_data)
+                                              ->with('years',$years);
+    }
+
     public function updateAppendixStatus(Request $request)
     {
         $checkboxId = $request->id;
@@ -369,6 +389,25 @@ class ProjectController extends Controller
         }
 
         return redirect()->route('project.Manufacturing.create')->with('success', '客戶已成功新增');
+    }
+
+    public function ManufacturingPreview()
+    {
+        $years = [];
+        $now = Carbon::now();
+
+        for ($i = 1; $i <= 3; $i++) {
+            $years[] = $now->copy()->subYears($i)->year;
+        }
+        $cust_data = CustData::where('user_id',Auth::user()->id)->first();
+        $project = CustProject::where('user_id',Auth::user()->id)->first();
+        $project_host_data = ProjectHost::where('user_id',Auth::user()->id)->first();
+        $project_contact_data = ProjectContact::where('user_id',Auth::user()->id)->first();
+        return view('project.manufacturing-preview')->with('project', $project)
+                                                          ->with('project_host_data',$project_host_data)
+                                                           ->with('project_contact_data',$project_contact_data)
+                                                           ->with('cust_data',$cust_data)
+                                                           ->with('years',$years);
     }
 
     /**

@@ -347,6 +347,7 @@
                                             <div class="dropdown-menu" aria-labelledby="topnav-vendor">
                                                     <a href="{{ route('project.business.create') }}" class="dropdown-item">商業服務業-資料</a>
                                                     <a href="{{ route('project.business.appendix') }}" class="dropdown-item">商業服務業-附件</a>
+                                                    <a href="{{ route('project.business.preview') }}" class="dropdown-item">商業服務業-預覽</a>
                                             </div>
                                         </li>
                                     @endif
@@ -361,6 +362,7 @@
                                             <div class="dropdown-menu" aria-labelledby="topnav-vendor">
                                                     <a href="{{ route('project.Manufacturing.create') }}" class="dropdown-item">製造業-資料</a>
                                                     <a href="{{ route('project.manufacturing.appendix') }}" class="dropdown-item">製造業-附件</a>
+                                                    <a href="{{ route('project.manufacturing.preview') }}" class="dropdown-item">製造業-預覽</a>
                                             </div>
                                         </li>
                                     @endif

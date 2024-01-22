@@ -42,8 +42,11 @@ Route::post('/update-checkbox-status', [App\Http\Controllers\ProjectController::
 
 Route::get('project/business-create', [App\Http\Controllers\ProjectController::class,'BusinessCreate'])->name('project.business.create');
 Route::post('project/business-create', [App\Http\Controllers\ProjectController::class,'BusinessStore'])->name('project.business.store');
+Route::get('project/business-preview', [App\Http\Controllers\ProjectController::class,'BusinessPreview'])->name('project.business.preview');
+
 Route::get('project/manufacturing-create', [App\Http\Controllers\ProjectController::class,'ManufacturingCreate'])->name('project.Manufacturing.create');
 Route::post('project/manufacturing-create', [App\Http\Controllers\ProjectController::class,'ManufacturingStore'])->name('project.Manufacturing.store');
+Route::get('project/manufacturing-preview', [App\Http\Controllers\ProjectController::class,'ManufacturingPreview'])->name('project.manufacturing.preview');
 
 Route::get('customer/{id}/introduce-edit', [App\Http\Controllers\UserCustomerController::class,'IntroduceEdit'])->name('user.introduce.edit');
 Route::post('customer/{id}/introduce-edit', [App\Http\Controllers\UserCustomerController::class,'IntroduceUpdate'])->name('user.introduce.update');
