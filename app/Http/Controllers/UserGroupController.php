@@ -43,4 +43,17 @@ class UserGroupController extends Controller
 
         return redirect()->route('user.groups');
     }
+
+    public function delete(Request $request , $id)
+    {
+        $data = UserGroup::where('id',$id)->first();
+        return view('user.del_group')->with('data', $data);
+    }
+
+    public function destory(Request $request,$id)
+    {
+        $data = UserGroup::where('id',$id)->first();
+        $data->delete();
+        return redirect()->route('user.groups');
+    }
 }

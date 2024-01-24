@@ -34,6 +34,8 @@ Route::get('group/create', [App\Http\Controllers\UserGroupController::class,'cre
 Route::post('group/create', [App\Http\Controllers\UserGroupController::class,'store'])->name('user.group.store');
 Route::get('group/edit/{id}', [App\Http\Controllers\UserGroupController::class,'edit'])->name('user.group.edit');
 Route::post('group/edit/{id}', [App\Http\Controllers\UserGroupController::class,'update'])->name('user.group.edit');
+Route::get('group/del/{id}', [App\Http\Controllers\UserGroupController::class,'delete'])->name('user.group.del');
+Route::post('group/del/{id}', [App\Http\Controllers\UserGroupController::class,'destory'])->name('user.group.del');
 
 Route::get('projects', [App\Http\Controllers\ProjectController::class,'index'])->name('projects');
 Route::post('/update-checkbox-status', [App\Http\Controllers\ProjectController::class, 'updateAppendixStatus'])->name('appendix-status');

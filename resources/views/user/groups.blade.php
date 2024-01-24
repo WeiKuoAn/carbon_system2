@@ -82,11 +82,11 @@
                                                         data-bs-placement="top" title="Edit" class="px-2 text-primary"><i
                                                             class="bx bx-pencil font-size-18"></i></a>
                                                 </li>
-                                                {{-- <li class="list-inline-item">
-                                                    <a href="{{ route('user.group.edit',$data->id) }}" data-bs-toggle="tooltip"
+                                                <li class="list-inline-item">
+                                                    <a href="{{ route('user.group.del',$data->id) }}" data-bs-toggle="tooltip"
                                                         data-bs-placement="top" title="Delete" class="px-2 text-danger"><i
                                                             class="bx bx-trash-alt font-size-18"></i></a>
-                                                </li> --}}
+                                                </li>
                                             </ul>
                                         </td>
                                     </tr>

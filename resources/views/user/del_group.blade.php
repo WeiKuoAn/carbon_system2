@@ -22,7 +22,7 @@
             <div class="col-lg-6">
                 <div class="card">
                     <div class="card-body">
-                        <form action="{{ route('user.group.edit',$data->id) }}" method="POST">
+                        <form action="{{ route('user.group.del',$data->id) }}" method="POST">
                         @csrf
                         <div class="row">
                             <div class="col-md-12">
@@ -48,7 +48,7 @@
                                         class="bx bx-x me-1 align-middle" ></i> 回上一頁</button>
                                 <button type="submit" class="btn btn-success" data-bs-toggle="modal"
                                     data-bs-target="#success-btn" id="btn-save-event"><i
-                                        class="bx bx-check me-1 align-middle"></i> 編輯</button>
+                                        class="bx bx-check me-1 align-middle"></i> 刪除</button>
                             </div>
                         </div>
                     </form>
