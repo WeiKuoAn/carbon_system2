@@ -13,13 +13,16 @@ class CustData extends Model
         'user_id', 'year', 'type', 'last_year_revenue', 'insured_employees','introduce','capital','registration_no',
         'insurance_male', 'insurance_female', 'insurance_total','introduce' ,'production_chart', 'clients_market',
         'export_status', 'contact_name', 'contact_email', 'contact_phone','contact_jo','principal_name','limit_status',
-        'nas_link', 'carbon_done','principal_user_id', 'status','avoid','subsidy','carbon_iso','county','district','zipcode','address'
+        'nas_link', 'carbon_done','principal_user_id', 'status','avoid','subsidy','carbon_iso',
+        'county','district','zipcode','address',
+        'factory_county','factory_district','factory_zipcode','factory_address',
     ];
 
     public function user_data()
     {
         return $this->hasOne('App\Models\User', 'id', 'user_id');
     }
+    
 
     public function user_projects()
     {

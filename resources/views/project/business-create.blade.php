@@ -295,7 +295,7 @@
                                                                 @foreach ($project->situation_datas as $key=>$situation_data)
                                                                     <tr id="row-{{ $key }}" valign="middle">
                                                                         <td width="90%">
-                                                                            <textarea  class="form-control required-input" name="situation_contexts[]" rows="2">{{ $situation_data->context }}</textarea>
+                                                                            <textarea  class="form-control required-input" name="situation_contexts[]" rows="5">{{ $situation_data->context }}</textarea>
                                                                         </td>
                                                                     </tr>
                                                                 @endforeach
@@ -303,7 +303,7 @@
                                                                 @for ($i = 0; $i < 1; $i++)
                                                                     <tr id="row-{{ $i }}" valign="middle">
                                                                         <td width="90%">
-                                                                            <textarea  class="form-control required-input" name="situation_contexts[]" rows="2"></textarea>
+                                                                            <textarea  class="form-control required-input" name="situation_contexts[]" rows="5"></textarea>
                                                                         </td>
                                                                     </tr>
                                                                 @endfor
@@ -417,6 +417,11 @@
         
 
     @endsection
+    <style>
+        textarea {
+            white-space: pre;
+        }
+    </style>
     @section('scripts')
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
         <script src="{{ asset('assets/js/twzipcode-1.4.1-min.js') }}"></script>

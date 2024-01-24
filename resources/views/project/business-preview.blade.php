@@ -46,9 +46,8 @@
                                             <input type="number" class="form-control required-input" name="last_year_revenue" @if(isset($project)) value="{{ $cust_data->last_year_revenue }}" @else value="0" @endif>
                                         </div>
                                     </div>
-                                    {{-- {{ dd($cust_data)}} --}}
-                                    <label class="form-label" for="AddNew-Phone"><b>公司工廠登記地址</b>(若有超過一間工廠，請選一間工廠作為標的)<span class="text-danger">*</span></label>
                                     <div class="col-md-6 mb-3">
+                                        <label class="form-label" for="AddNew-Phone"><b>公司登記地址</b><span class="text-danger">*</span></label>
                                         <div class="row twzipcode mb-2">
                                             <select data-role="county" data-value="{{ $cust_data->county }}" selected></select>
                                             <select data-role="district"  data-value="{{ $cust_data->district }}"></select>
@@ -56,7 +55,20 @@
                                         </div>
                                     </div>
                                     <div class="col-md-6">
+                                        <label class="form-label" for="AddNew-Phone">&nbsp;</label>
                                         <input type="text" class="form-control" name="address" value="{{ $cust_data->address }}" >
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <label class="form-label" for="AddNew-Phone"><b>工廠登記地址</b><span class="text-danger">(若無工廠免填，若有超過一間工廠，請選一間工廠作為標的)</span></label>
+                                        <div class="row factorytwzipcode mb-2">
+                                            <select data-role="factory_county" data-value="{{ $cust_data->factory_county }}" selected></select>
+                                            <select data-role="factory_district"  data-value="{{ $cust_data->factory_district }}"></select>
+                                            <select data-role="factory_zipcode"  data-value="{{ $cust_data->factory_zipcode }}"></select>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="form-label" for="AddNew-Phone">&nbsp;</label>
+                                        <input type="text" class="form-control" name="factory_address" value="{{ $cust_data->factory_address }}" >
                                     </div>
                                     <label class="form-label" for="AddNew-Phone"><b>近一年平均投保人數</b>（申請計畫使用）<span class="text-danger">*</span></label>
                                     <div class="col-md-12">
@@ -728,6 +740,11 @@
         
 
     @endsection
+    <style>
+        textarea {
+            white-space: pre;
+        }
+    </style>
     @section('scripts')
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
         <script src="{{ asset('assets/js/twzipcode-1.4.1-min.js') }}"></script>
@@ -742,6 +759,16 @@
                     'countySel': '{{ $cust_data->county }}',
                     'districtSel': '{{ $cust_data->district }}',
                     'zipcodeSel': '{{ $cust_data->zipcode }}'
+                });
+
+                $(".factorytwzipcode").twzipcode({
+                    css: ["twzipcode-select", "twzipcode-select" , "twzipcode-select"], // 自訂 "城市"、"地區" class 名稱 
+                    countyName: "factory_county", // 自訂城市 select 標籤的 name 值
+                    districtName: "factory_district", // 自訂地區 select 標籤的 name 值
+                    zipcodeName: "factory_zipcode", // 自訂地區 select 標籤的 name 值
+                    'countySel': '{{ $cust_data->factory_county }}',
+                    'districtSel': '{{ $cust_data->factory_district }}',
+                    'zipcodeSel': '{{ $cust_data->factory_zipcode }}'
                 });
                 
                 @if(session('success'))

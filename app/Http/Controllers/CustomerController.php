@@ -81,13 +81,15 @@ class CustomerController extends Controller
         $cust_data = CustData::where('user_id',Auth::user()->id)->first();
         // dd( $request->registration_no);
         //客戶資料
-        
-
         $cust_data->capital = $request->capital;
         $cust_data->county = $request->county;
         $cust_data->district = $request->district;
         $cust_data->zipcode = $request->zipcode;
         $cust_data->address = $request->address;
+        $cust_data->factory_county = $request->factory_county;
+        $cust_data->factory_district = $request->factory_district;
+        $cust_data->factory_zipcode = $request->factory_zipcode;
+        $cust_data->factory_address = $request->factory_address;
         $cust_data->registration_no = $request->registration_no;
         $cust_data->principal_name = $request->principal_name;
         $cust_data->introduce = $request->introduce;
@@ -102,8 +104,6 @@ class CustomerController extends Controller
         $cust_data->contact_job  = $request->main_contact_job;
         $cust_data->contact_email  = $request->main_contact_email;
         $cust_data->contact_phone  = $request->main_contact_phone;
-
-
 
         //是否做過碳盤查
         // dd($request->carbonCheck);
@@ -385,8 +385,18 @@ class CustomerController extends Controller
         foreach($types as $type)
         {
             $type_data = CustProject::where('user_id',$user->id)->where('type',$type)->where('status','1')->first();
-            $type_data->status = 0;
-            $type_data->save();
+            if(!isset($type_data))
+            {
+                $type_data = new CustProject();
+                $type_data->year = Carbon::now()->year;
+                $type_data->user_id = $id;
+                $type_data->type = $type;
+                $type_data->save();
+            }else{
+                $type_data->status = 0;
+                $type_data->save();
+            }
+            
         }
 
         // dd($types);

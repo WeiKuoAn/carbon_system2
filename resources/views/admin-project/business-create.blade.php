@@ -394,8 +394,9 @@
                         </div>
                         <div class="row mt-4 mb-2">
                             <div class="col text-center">
-                                <button type="button" class="btn btn-danger me-1" onclick="history.go(-1)"><i
-                                    class="bx bx-x me-1"></i> 回上一頁</button>
+                                <a href="{{ route('user.project.index',$cust_data->user_id) }}">
+                                    <button type="button" class="btn btn-danger me-1" ><i class="bx bx-x me-1"></i> 回上一頁</button>
+                                </a>
                                 <button class="btn btn-success" type="submit" id="btn_storage"><i class="bx bx-file me-1"></i> 儲存 </button>
                                 
                                 <a href="{{ route('user.project.business.appendix',$cust_data->user_id) }}">
@@ -419,6 +420,11 @@
         
 
     @endsection
+    <style>
+        textarea {
+            white-space: pre;
+        }
+    </style>
     @section('scripts')
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
         <script src="{{ asset('assets/js/twzipcode-1.4.1-min.js') }}"></script>

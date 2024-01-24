@@ -52,7 +52,7 @@
                                         <th scope="col">聯絡人職稱</th>
                                         <th scope="col">聯絡人電話</th>
                                         <th scope="col">聯絡人信箱</th>
-                                        <th scope="col">公司工廠登記地址</th>
+                                        <th scope="col">公司登記地址</th>
                                         <th scope="col">權限</th>
                                         <th scope="col" style="width: 200px;">操作</th>
                                     </tr>
@@ -65,13 +65,13 @@
                                         <td>
                                             <a href="#" class="text-body">{{ $data->name }}</a>
                                         </td>
-                                        <td>@if(isset($data->cust_data)){{ $data->cust_data->principal_name  }}@endif</td>
-                                        <td>@if(isset($data->cust_data)){{ $data->cust_data->registration_no }}@endif</td>
-                                        <td>@if(isset($data->cust_data)){{ $data->cust_data->contact_name  }}@endif</td>
-                                        <td>@if(isset($data->cust_data)){{ $data->cust_data->contact_job }}@endif</td>
-                                        <td>@if(isset($data->cust_data)){{ $data->cust_data->contact_phone  }}@endif</td>
-                                        <td>@if(isset($data->cust_data)){{ $data->cust_data->contact_email  }}@endif</td>
-                                        <td>@if(isset($data->cust_data)){{ $data->cust_data->county.$data->cust_data->district.$data->cust_data->address  }}@endif</td>
+                                        <td>{{ $data->principal_name  }}</td>
+                                        <td>{{ $data->registration_no }}</td>
+                                        <td>{{ $data->contact_name  }}</td>
+                                        <td>{{ $data->contact_job }}</td>
+                                        <td>{{ $data->contact_phone  }}</td>
+                                        <td>{{ $data->contact_email  }}</td>
+                                        <td>{{ $data->county.$data->district.$data->address  }}</td>
                                         <td>
                                             {{-- {{ dd($data) }} --}}
                                             @if($data->status == 0)

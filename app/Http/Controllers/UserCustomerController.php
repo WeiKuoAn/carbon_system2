@@ -40,6 +40,10 @@ class UserCustomerController extends Controller
         $cust_data->district = $request->district;
         $cust_data->zipcode = $request->zipcode;
         $cust_data->address = $request->address;
+        $cust_data->factory_county = $request->factory_county;
+        $cust_data->factory_district = $request->factory_district;
+        $cust_data->factory_zipcode = $request->factory_zipcode;
+        $cust_data->factory_address = $request->factory_address;
         $cust_data->registration_no = $request->registration_no;
         $cust_data->principal_name = $request->principal_name;
         $cust_data->introduce = $request->introduce;

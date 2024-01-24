@@ -211,8 +211,8 @@
                             <div class="row">
                                 <div class="col-md-12 mt-1">
                                     <div class="alert alert-danger text-center" role="alert">
-                                        公司現在原有的系統或設備（有在財產清冊裡的設備即可）有哪些？哪一些設備已使用10-15年？當初向哪家廠商購入請簡述
-                                        （ex：空壓機、冷凍機、採購系統、ERP企業資源計劃系統、MES執行系統...等）<br>
+                                        公司現在原有的系統或設備（有在財產清冊裡的設備即可）有哪些？哪一些設備已使用10-15年？<br>
+                                        當初向哪家廠商購入請簡述（ex：空壓機、冷凍機、採購系統、ERP企業資源計劃系統、MES執行系統...等）<br>
                                         📌並請針對想更新或汰換的系統或設備進行排序
                                     </div>
                                     <h5 class="text-uppercase bg-light p-2 mt-0 mb-3">需求列表</h5>
@@ -228,7 +228,7 @@
                                                     <tbody  align="center">
                                                             <tr id="" valign="middle" >
                                                                 <td width="90%">
-                                                                    <textarea  class="form-control" name="need_contexts[]" rows="2">@if(isset($project->manufacture_need_data)){{ $project->manufacture_need_data->context }}@endif</textarea>
+                                                                    <textarea  class="form-control" name="need_contexts[]" rows="8">@if(isset($project->manufacture_need_data)){{ $project->manufacture_need_data->context }}@endif</textarea>
                                                                 </td>
                                                             </tr>
                                                     </tbody>
@@ -238,7 +238,7 @@
                                     </div>
                                 </div>
 
-                                <hr>
+                                {{-- <hr>
 
                                 <h5 class="text-uppercase bg-light p-2 mt-4 mb-3">預計購買新設備等設備資訊列表（若無請填「無」）</h5>
                                     <div class="col-md-12">
@@ -393,11 +393,14 @@
                                             <input id="add_device_expected" class="btn btn-primary" type="button" name="" value="新增筆數">
                                             </div>
                                         </div>
-                                    </div>
+                                    </div> --}}
 
                                 </div>
                                 <div class="row mt-4 mb-2">
                                     <div class="col text-center">
+                                        <a href="{{ route('user.project.index',$cust_data->user_id) }}">
+                                            <button type="button" class="btn btn-danger me-1" ><i class="bx bx-x me-1"></i> 回上一頁</button>
+                                        </a>
                                         <button class="btn btn-success" type="submit" id="btn_storage"><i class="bx bx-file me-1"></i> 儲存 </button>
                                         <a href="{{ route('user.project.Manufacturing.appendix',$cust_data->user_id) }}">
                                             <button class="btn btn-primary" type="button" id="btn_submit"><i class=" bx bx-check me-1"></i> 查看附件 </button>

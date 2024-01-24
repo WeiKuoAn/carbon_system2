@@ -31,7 +31,7 @@
                             <div class="col-md-6">
                                 <div class="d-flex flex-wrap align-items-center justify-content-end gap-2 mb-3">
                                     <div>
-                                        @if(Auth::user()->level == 0)
+                                        @if(Auth::user()->level == 0 || Auth::user()->level == 1)
                                         <a href="#" data-bs-toggle="modal" data-bs-target=".add-new" class="btn btn-primary"><i
                                                 class="bx bx-plus me-1"></i>新增用戶</a>
                                         @endif
@@ -96,7 +96,7 @@
                                         <td>
                                             <ul class="list-inline mb-0">
                                                 @if(Auth::user()->level !=2)
-                                                    @if($data->level != 0)
+                                                    @if($data->level == 2 )
                                                         <li class="list-inline-item">
                                                             <a href="{{ route('user.edit',$data->id) }}" data-bs-toggle="tooltip"
                                                                 data-bs-placement="top" title="Edit" class="px-2 text-primary"><i
@@ -237,7 +237,9 @@
                                 <div class="mb-3">
                                     <label class="form-label">權限</label>
                                     <select class="form-select" name="level">
-                                        <option value="1" >管理者</option>
+                                        @if(Auth::user()->level == 0)
+                                            <option value="1" >管理者</option>
+                                        @endif
                                         <option value="2" selected>一般使用者</option>
                                     </select>
                                 </div>

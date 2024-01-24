@@ -60,9 +60,8 @@
                                         <input type="number" class="form-control required-input" name="last_year_revenue" @if(isset($project)) value="{{ $cust_data->last_year_revenue }}" @else value="0" @endif>
                                     </div>
                                 </div>
-                                {{-- {{ dd($cust_data)}} --}}
-                                <label class="form-label" for="AddNew-Phone"><b>公司工廠登記地址</b>(若有超過一間工廠，請選一間工廠作為標的)<span class="text-danger">*</span></label>
                                 <div class="col-md-6 mb-3">
+                                    <label class="form-label" for="AddNew-Phone"><b>公司登記地址</b><span class="text-danger">*</span></label>
                                     <div class="row twzipcode mb-2">
                                         <select data-role="county" data-value="{{ $cust_data->county }}" selected></select>
                                         <select data-role="district"  data-value="{{ $cust_data->district }}"></select>
@@ -70,8 +69,22 @@
                                     </div>
                                 </div>
                                 <div class="col-md-6">
+                                    <label class="form-label" for="AddNew-Phone">&nbsp;</label>
                                     <input type="text" class="form-control" name="address" value="{{ $cust_data->address }}" >
                                 </div>
+                                <div class="col-md-6 mb-3">
+                                    <label class="form-label" for="AddNew-Phone"><b>工廠登記地址</b><span class="text-danger">(若無工廠免填，若有超過一間工廠，請選一間工廠作為標的)</span></label>
+                                    <div class="row factorytwzipcode mb-2">
+                                        <select data-role="factory_county" data-value="{{ $cust_data->factory_county }}" selected></select>
+                                        <select data-role="factory_district"  data-value="{{ $cust_data->factory_district }}"></select>
+                                        <select data-role="factory_zipcode"  data-value="{{ $cust_data->factory_zipcode }}"></select>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label" for="AddNew-Phone">&nbsp;</label>
+                                    <input type="text" class="form-control" name="factory_address" value="{{ $cust_data->factory_address }}" >
+                                </div>
+                                
                                 <label class="form-label" for="AddNew-Phone"><b>近一年平均投保人數</b>（申請計畫使用）<span class="text-danger">*</span></label>
                                 <div class="col-md-12">
                                     <div class="mb-4">
@@ -584,8 +597,8 @@
                             <div class="row">
                                 <div class="col-md-12 mt-1">
                                     <div class="alert alert-danger text-center" role="alert">
-                                        公司現在原有的系統或設備（有在財產清冊裡的設備即可）有哪些？哪一些設備已使用10-15年？當初向哪家廠商購入請簡述
-                                        （ex：空壓機、冷凍機、採購系統、ERP企業資源計劃系統、MES執行系統...等）<br>
+                                        公司現在原有的系統或設備（有在財產清冊裡的設備即可）有哪些？哪一些設備已使用10-15年？<br>
+                                        當初向哪家廠商購入請簡述（ex：空壓機、冷凍機、採購系統、ERP企業資源計劃系統、MES執行系統...等）<br>
                                         📌並請針對想更新或汰換的系統或設備進行排序
                                     </div>
                                     <h5 class="text-uppercase bg-light p-2 mt-0 mb-3">需求列表</h5>
@@ -601,7 +614,7 @@
                                                     <tbody  align="center">
                                                             <tr id="" valign="middle" >
                                                                 <td width="90%">
-                                                                    <textarea  class="form-control" name="need_contexts[]" rows="2">@if(isset($project->manufacture_need_data)){{ $project->manufacture_need_data->context }}@endif</textarea>
+                                                                    <textarea  class="form-control" name="need_contexts[]" rows="8">@if(isset($project->manufacture_need_data)){{ $project->manufacture_need_data->context }}@endif</textarea>
                                                                 </td>
                                                             </tr>
                                                     </tbody>
@@ -611,7 +624,7 @@
                                     </div>
                                 </div>
 
-                                <hr>
+                                {{-- <hr>
 
                                 <h5 class="text-uppercase bg-light p-2 mt-4 mb-3">預計購買新設備等設備資訊列表（若無請填「無」）</h5>
                                     <div class="col-md-12">
@@ -707,25 +720,27 @@
                                             </table>
                                         </div>
                                         </div> <!-- end .table-responsive -->
-                                    </div>
+                                    </div> 
 
-                                </div>
-                                <div class="row mt-4 mb-2 d-print-none">
-                                    <div class="col text-center">
-                                        <button type="button" class="btn btn-danger me-1" onclick="history.go(-1)"><i
-                                            class="bx bx-x me-1"></i> 回上一頁</button>
-                                        <a href="javascript:window.print()" class="btn btn-success me-1"><i
-                                            class="fa fa-print me-1"></i>列印</a>
-                                        {{-- <a href="{{ route('project.business.appendix') }}">
-                                            <button class="btn btn-primary" type="button" id="btn_submit"><i class=" bx bx-check me-1"></i> 確認送出 </button>
-                                        </a> --}}
-                                    </div> <!-- end col -->
-                                </div>
-                            </form>
+                                </div>--}}
+                                
                         
                             </div>
+                            
                         </div>
                     </div>
+                    <div class="row mt-4 mb-2 d-print-none">
+                        <div class="col text-center">
+                            <button type="button" class="btn btn-danger me-1" onclick="history.go(-1)"><i
+                                class="bx bx-x me-1"></i> 回上一頁</button>
+                            <a href="javascript:window.print()" class="btn btn-success me-1"><i
+                                class="fa fa-print me-1"></i>列印</a>
+                            {{-- <a href="{{ route('project.business.appendix') }}">
+                                <button class="btn btn-primary" type="button" id="btn_submit"><i class=" bx bx-check me-1"></i> 確認送出 </button>
+                            </a> --}}
+                        </div> <!-- end col -->
+                    </div>
+                </form>
                 </div>
 
         </div>
@@ -735,6 +750,11 @@
 
 
     @endsection
+    <style>
+        textarea {
+            white-space: pre;
+        }
+    </style>
     @section('scripts')
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
         <script src="{{ asset('assets/js/twzipcode-1.4.1-min.js') }}"></script>
@@ -751,6 +771,15 @@
                     'zipcodeSel': '{{ $cust_data->zipcode }}'
                 });
 
+                $(".factorytwzipcode").twzipcode({
+                    css: ["twzipcode-select", "twzipcode-select" , "twzipcode-select"], // 自訂 "城市"、"地區" class 名稱 
+                    countyName: "factory_county", // 自訂城市 select 標籤的 name 值
+                    districtName: "factory_district", // 自訂地區 select 標籤的 name 值
+                    zipcodeName: "factory_zipcode", // 自訂地區 select 標籤的 name 值
+                    'countySel': '{{ $cust_data->factory_county }}',
+                    'districtSel': '{{ $cust_data->factory_district }}',
+                    'zipcodeSel': '{{ $cust_data->factory_zipcode }}'
+                });
                 
                 @if(session('success'))
                     $('#success-btn').modal('show');

@@ -228,7 +228,7 @@
                                                     <tbody  align="center">
                                                             <tr id="" valign="middle" >
                                                                 <td width="90%">
-                                                                    <textarea  class="form-control" name="need_contexts[]" rows="2">@if(isset($project->manufacture_need_data)){{ $project->manufacture_need_data->context }}@endif</textarea>
+                                                                    <textarea  class="form-control" name="need_contexts[]" rows="8">@if(isset($project->manufacture_need_data)){{ $project->manufacture_need_data->context }}@endif</textarea>
                                                                 </td>
                                                             </tr>
                                                     </tbody>
@@ -238,7 +238,7 @@
                                     </div>
                                 </div>
 
-                                <hr>
+                                {{-- <hr>
 
                                 <h5 class="text-uppercase bg-light p-2 mt-4 mb-3">預計購買新設備等設備資訊列表（若無請填「無」）</h5>
                                     <div class="col-md-12">
@@ -395,7 +395,7 @@
                                         </div>
                                     </div>
 
-                                </div>
+                                </div> --}}
                                 <div class="row mt-4 mb-2">
                                     <div class="col text-center">
                                         <button class="btn btn-success" type="submit" id="btn_storage"><i class="bx bx-file me-1"></i> 暫存 </button>
@@ -418,6 +418,11 @@
 
 
     @endsection
+    <style>
+        textarea {
+            white-space: pre;
+        }
+    </style>
     @section('scripts')
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
         <script src="{{ asset('assets/js/twzipcode-1.4.1-min.js') }}"></script>

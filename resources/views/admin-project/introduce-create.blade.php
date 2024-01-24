@@ -67,9 +67,8 @@
                                         <input type="number" class="form-control required-input" name="last_year_revenue" @if(isset($cust_data)) value="{{ $cust_data->last_year_revenue }}" @else value="0" @endif>
                                     </div>
                                 </div>
-                                {{-- {{ dd($cust_data)}} --}}
                                 <div class="col-md-6 mb-3">
-                                    <label class="form-label" for="AddNew-Phone"><b>公司工廠登記地址</b>(若有超過一間工廠，請選一間工廠作為標的)<span class="text-danger">*</span></label>
+                                    <label class="form-label" for="AddNew-Phone"><b>公司登記地址</b><span class="text-danger">*</span></label>
                                     <div class="row twzipcode mb-2">
                                         <select data-role="county" data-value="{{ $cust_data->county }}" selected></select>
                                         <select data-role="district"  data-value="{{ $cust_data->district }}"></select>
@@ -79,6 +78,18 @@
                                 <div class="col-md-6">
                                     <label class="form-label" for="AddNew-Phone">&nbsp;</label>
                                     <input type="text" class="form-control" name="address" value="{{ $cust_data->address }}" >
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label class="form-label" for="AddNew-Phone"><b>工廠登記地址</b><span class="text-danger">(若無工廠免填，若有超過一間工廠，請選一間工廠作為標的)</span></label>
+                                    <div class="row factorytwzipcode mb-2">
+                                        <select data-role="factory_county" data-value="{{ $cust_data->factory_county }}" selected></select>
+                                        <select data-role="factory_district"  data-value="{{ $cust_data->factory_district }}"></select>
+                                        <select data-role="factory_zipcode"  data-value="{{ $cust_data->factory_zipcode }}"></select>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label" for="AddNew-Phone">&nbsp;</label>
+                                    <input type="text" class="form-control" name="factory_address" value="{{ $cust_data->factory_address }}" >
                                 </div>
                                 <div class="col-md-12">
                                     <div class="mb-4">
@@ -492,8 +503,10 @@
                     </div>
                     <div class="row mt-4 mb-2">
                         <div class="col text-center">
-                            <button type="button" class="btn btn-danger me-1" onclick="history.go(-1)"><i
-                                class="bx bx-x me-1"></i> 回上一頁</button>
+                            <a href="{{ route('customer.index') }}">
+                                <button type="button" class="btn btn-danger me-1"><i
+                                    class="bx bx-x me-1"></i> 回上一頁</button>
+                            </a>
                             <button class="btn btn-success" type="submit" id="btn_storage"><i class="bx bx-file me-1"></i> 儲存 </button>
                         </div> <!-- end col -->
                     </div>
@@ -508,6 +521,11 @@
 
 
     @endsection
+    <style>
+        textarea {
+            white-space: pre;
+        }
+    </style>
     @section('scripts')
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
         <script src="{{ asset('assets/js/twzipcode-1.4.1-min.js') }}"></script>
@@ -522,6 +540,16 @@
                     'countySel': '{{ $cust_data->county }}',
                     'districtSel': '{{ $cust_data->district }}',
                     'zipcodeSel': '{{ $cust_data->zipcode }}'
+                });
+
+                $(".factorytwzipcode").twzipcode({
+                    css: ["twzipcode-select", "twzipcode-select" , "twzipcode-select"], // 自訂 "城市"、"地區" class 名稱 
+                    countyName: "factory_county", // 自訂城市 select 標籤的 name 值
+                    districtName: "factory_district", // 自訂地區 select 標籤的 name 值
+                    zipcodeName: "factory_zipcode", // 自訂地區 select 標籤的 name 值
+                    'countySel': '{{ $cust_data->factory_county }}',
+                    'districtSel': '{{ $cust_data->factory_district }}',
+                    'zipcodeSel': '{{ $cust_data->factory_zipcode }}'
                 });
 
                 
