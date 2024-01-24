@@ -48,7 +48,7 @@
                                                 <input id="email" type="text"
                                                     class="form-control @error('email') is-invalid @enderror" name="email"
                                                     value="{{ old('email') }}" required autocomplete="email" autofocus
-                                                    value="" placeholder="Enter email">
+                                                    value="" placeholder="請輸入帳號">
                                                 @error('email')
                                                     <span class="invalid-feedback" role="alert">
                                                         <strong>{{ $message }}</strong>
@@ -66,7 +66,7 @@
                                                     <span class="bx bx-lock-alt"></span>
                                                     <input type="password"
                                                         class="form-control @error('password') is-invalid @enderror"
-                                                        placeholder="Enter password" id="password-input" name="password"
+                                                        placeholder="請輸入密碼" id="password-input" name="password"
                                                         required autocomplete="current-password" value="">
                                                     <button type="button"
                                                         class="btn btn-link position-absolute h-100 end-0 top-0"
