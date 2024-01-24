@@ -86,8 +86,9 @@ class UserController extends Controller
      */
     public function edit(string $id)
     {
+        $groups = UserGroup::whereNotIn('id',[2])->get();
         $data = User::where('id', $id)->first();
-        return view('user.edit')->with('data', $data);
+        return view('user.edit')->with('data', $data)->with('groups',$groups);
     }
 
     /**
@@ -99,6 +100,7 @@ class UserController extends Controller
         $data = User::where('id', $id)->first();
         $data->name = $request->name;
         $data->level = $request->level;
+        $data->group_id = $request->group_id;
         $data->status = $request->status;
         $data->save();
         return redirect()->route('user.index');

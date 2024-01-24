@@ -44,6 +44,16 @@
                                 </div>
                                 <div class="col-md-12">
                                     <div class="mb-3">
+                                        <label class="form-label">群組</label>
+                                        <select class="form-select" name="group_id">
+                                            @foreach($groups as $group)
+                                                <option value="{{ $group->id }}" @if($data->group_id == $group->id) selected @endif>{{ $group->name }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="mb-3">
                                         <label class="form-label">狀態</label>
                                         <select class="form-select" name="status">
                                             <option value="0" @if($data->status == 0) selected @endif>開通</option>
