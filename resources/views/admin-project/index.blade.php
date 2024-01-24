@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="{{ URL::asset('build/libs/gridjs/theme/mermaid.min.css') }}">
 @endsection
 @section('page-title')
-    廠商歷年專案列表
+    【{{ $cust_data->name }}】廠商歷年專案列表
 @endsection
 @section('body')
 

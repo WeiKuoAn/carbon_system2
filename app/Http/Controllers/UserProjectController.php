@@ -29,8 +29,11 @@ class UserProjectController extends Controller
 {
     public function index(Request $request,$id)
     {
-        $datas = CustProject::where('user_id',$id)->get();
-        return view('admin-project.index')->with('datas', $datas);
+        $datas = CustProject::where('user_id',$id)
+                             ->where('status','0')
+                             ->paginate(30);
+        $cust_data = User::where('id',$id)->first();
+        return view('admin-project.index')->with('datas', $datas)->with('cust_data',$cust_data);
     }
 
     public function BusinessCreate($id)

@@ -16,7 +16,7 @@ class UserController extends Controller
     public function index()
     {
         $groups = UserGroup::whereNotIn('id',[2])->get();
-        $datas = User::whereNotIn('group_id',[2])->get();
+        $datas = User::whereNotIn('group_id',[2])->orderby('level','asc')->get();
         return view('user.index')->with('datas', $datas)->with('groups', $groups);
     }
 
