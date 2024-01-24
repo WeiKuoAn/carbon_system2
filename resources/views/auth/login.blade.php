@@ -1,9 +1,9 @@
 @extends('layouts.master-without-nav')
 @section('title')
-    Login
+    錚典科技專案管理系統
 @endsection
 @section('page-title')
-    Login
+    錚典科技專案管理系統
 @endsection
 @section('body')
 
