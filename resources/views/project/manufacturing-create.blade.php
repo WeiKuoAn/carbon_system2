@@ -119,7 +119,7 @@
                                 <hr class="mt-4 mb-4">
 
                                 <div class="col-md-12 mt-3">
-                                    <h5 class="text-uppercase bg-light p-2 mt-0 mb-3">人事名單（約4-6位-皆須在勞保投保明細中）<span class="text-danger">*</span></h5>
+                                    <h5 class="text-uppercase bg-light p-2 mt-0 mb-3">人事名單（約4-6位-皆須在勞保投保明細中。因配合計畫申請，故薪資部分不一定會按填寫的實際薪資做編列）<span class="text-danger">*</span></h5>
                                     <div class="row">
                                         <div class="col-md-12">
                                             <div class="table-responsive">
@@ -132,6 +132,7 @@
                                                             <th>職稱<span class="text-danger">*</span></th>
                                                             <th>工作內容<span class="text-danger">*</span></th>
                                                             <th>專長經歷<span class="text-danger">*</span></th>
+                                                            <th>實際薪資<span class="text-danger">*</span></th>
                                                             <th></th>
                                                         </tr>
                                                     </thead>
@@ -156,6 +157,9 @@
                                                                         <input id="pay_price-{{ $key }}" class="mobile form-control required-input" type="text" name="personnel_experiences[]" value="{{ $personnel_data->experience }}">
                                                                     </td>
                                                                     <td>
+                                                                        <input id="pay_price-{{ $key }}" class="mobile form-control required-input" type="text" name="personnel_salarys[]" value="{{ $personnel_data->salary }}">
+                                                                    </td>
+                                                                    <td>
                                                                         <button class="mobile btn btn-danger del-row" alt="{{ $key }}" type="button" name="button" onclick="del_row(this)">刪除</button>
                                                                     </td>
                                                                 </tr>
@@ -178,6 +182,9 @@
                                                                     </td>
                                                                     <td>
                                                                         <input id="pay_price-{{ $i }}" class="mobile form-control required-input" type="text" name="personnel_experiences[]" value="">
+                                                                    </td>
+                                                                    <td>
+                                                                        <input id="pay_price-{{ $i }}" class="mobile form-control required-input" type="text" name="personnel_salarys[]" value="">
                                                                     </td>
                                                                     <td>
                                                                         <button class="mobile btn btn-danger del-row" alt="{{ $i }}" type="button" name="button" onclick="del_row(this)">刪除</button>
@@ -469,6 +476,9 @@
                                         </td>
                                         <td>
                                             <input id="title-${presonRowCount}" class="mobile form-control" type="text" name="personnel_experiences[]" value="">
+                                        </td>
+                                        <td>
+                                            <input id="pay_price-${presonRowCount}" class="mobile form-control required-input" type="text" name="personnel_salarys[]" value="">
                                         </td>
                                         <td>
                                             <button class="mobile btn btn-danger del-row" alt="${presonRowCount}" type="button" name="button">刪除</button>

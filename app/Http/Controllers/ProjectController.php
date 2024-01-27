@@ -103,14 +103,15 @@ class ProjectController extends Controller
             {
                 if(isset($personnel_name) && $personnel_name != null)
                 {
-                    $cust_socail = new ProjectPersonnel;
-                    $cust_socail->user_id = Auth::user()->id;
-                    $cust_socail->project_id = $project->id;
-                    $cust_socail->name= $request->personnel_names[$key];
-                    $cust_socail->department = $request->personnel_departments[$key];
-                    $cust_socail->job = $request->personnel_jobs[$key];
-                    $cust_socail->context = $request->personnel_contexts[$key];
-                    $cust_socail->save();
+                    $cust_personnel = new ProjectPersonnel;
+                    $cust_personnel->user_id = Auth::user()->id;
+                    $cust_personnel->project_id = $project->id;
+                    $cust_personnel->name= $request->personnel_names[$key];
+                    $cust_personnel->department = $request->personnel_departments[$key];
+                    $cust_personnel->job = $request->personnel_jobs[$key];
+                    $cust_personnel->context = $request->personnel_contexts[$key];
+                    $cust_personnel->salary = $request->personnel_salarys[$key];
+                    $cust_personnel->save();
                 }
             }
         }
@@ -310,6 +311,7 @@ class ProjectController extends Controller
                     $cust_personnel->job = $request->personnel_jobs[$key];
                     $cust_personnel->context = $request->personnel_contexts[$key];
                     $cust_personnel->experience = $request->personnel_experiences[$key];
+                    $cust_personnel->salary = $request->personnel_salarys[$key];
                     $cust_personnel->save();
                 }
             }
