@@ -534,6 +534,7 @@
                                                             <th>職稱<span class="text-danger">*</span></th>
                                                             <th>工作內容<span class="text-danger">*</span></th>
                                                             <th>專長經歷<span class="text-danger">*</span></th>
+                                                            <th>實際薪資<span class="text-danger">*</span></th>
                                                         </tr>
                                                     </thead>
                                                     <tbody valign="center" align="center">
@@ -556,11 +557,14 @@
                                                                     <td>
                                                                         {{ $personnel_data->experience }}
                                                                     </td>
+                                                                    <td>
+                                                                        {{ $personnel_data->salary }}
+                                                                    </td>
                                                                 </tr>
                                                             @endforeach
                                                         @else
                                                             <tr valign="middle" >
-                                                                <td colspan="6">無資料</td>
+                                                                <td colspan="7">無資料</td>
                                                             </tr>
                                                         @endif
                                                     </tbody>
