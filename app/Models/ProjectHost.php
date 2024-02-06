@@ -11,6 +11,6 @@ class ProjectHost extends Model
     protected $table = 'project_host';
     protected $fillable = [
         'user_id', 'project_id', 'name', 'department', 'job', 
-        'context', 'mobile', 'phone', 'experience', 'email'
+        'context', 'mobile', 'phone', 'experience', 'email','salary'
     ];
 }

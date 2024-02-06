@@ -53,7 +53,15 @@ class CustomerController extends Controller
         $datas = User::where('group_id','2')
                        ->join('cust_data', 'cust_data.user_id', '=', 'users.id')
                        ->whereIn('cust_data.limit_status',['all',Auth::user()->group_id])->paginate(50);
-        return view('customer.index')->with('datas', $datas);
+        $types = [];
+        foreach($datas as $data){
+            $projects = CustProject::where('user_id',$data->user_id)->where('status','0')->get();
+            foreach($projects as $project){
+                $types[$data->user_id]['type'] = $project->type;
+            }
+        }
+        // dd($types);
+        return view('customer.index')->with('datas', $datas)->with('types',$types);
     }
 
     public function Create()

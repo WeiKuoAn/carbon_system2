@@ -85,6 +85,7 @@ class UserProjectController extends Controller
         $project_host->mobile = $request->host_mobile;
         $project_host->phone = $request->host_phone;
         $project_host->email = $request->host_email;
+        $project_host->salary = $request->host_salary;
         $project_host->save();
 
         //計畫聯絡人
@@ -97,6 +98,7 @@ class UserProjectController extends Controller
         $project_contact->mobile = $request->contact_mobile;
         $project_contact->phone = $request->contact_phone;
         $project_contact->email = $request->contact_email;
+        $project_contact->salary = $request->contact_salary;
         $project_contact->save();
 
         //人事名單
@@ -299,6 +301,7 @@ class UserProjectController extends Controller
         $project_host->phone = $request->host_phone;
         $project_host->experience = $request->host_experience;
         $project_host->email = $request->host_email;
+        $project_host->salary = $request->host_salary;
         $project_host->save();
 
         //計畫聯絡人
@@ -312,6 +315,7 @@ class UserProjectController extends Controller
         $project_contact->phone = $request->contact_phone;
         $project_contact->experience = $request->contact_experience;
         $project_contact->email = $request->contact_email;
+        $project_contact->salary = $request->contact_salary;
         $project_contact->save();
 
         //人事名單

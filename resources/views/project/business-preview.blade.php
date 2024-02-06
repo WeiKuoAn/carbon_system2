@@ -470,6 +470,11 @@
                                         <label class="form-label" for="AddNew-Username"><b>手機</b></label>
                                         <input type="text" class="form-control required-input" name="host_phone" @if(isset($project_host_data)) value="{{ $project_host_data->phone }}" @endif>
                                     </div>
+                                    <div class="col-md-4 mt-3">
+                                        <label class="form-label" for="AddNew-Username"><b>實際薪資</b></label>
+                                        <input type="text" class="form-control required-input" name="host_salary" @if(isset($project_host_data)) value="{{ $project_host_data->salary }}" @endif >
+                                    </div>
+                                    
 
                                     <hr class="mt-4 mb-4">
 
@@ -497,6 +502,10 @@
                                     <div class="col-md-4 mt-3">
                                         <label class="form-label" for="AddNew-Username"><b>手機</b></label>
                                         <input type="text" class="form-control required-input" name="contact_phone" @if(isset($project_contact_data)) value="{{ $project_contact_data->phone }}" @endif>
+                                    </div>
+                                    <div class="col-md-4 mt-3">
+                                        <label class="form-label" for="AddNew-Username"><b>實際薪資</b></label>
+                                        <input type="text" class="form-control required-input" name="contact_salary" @if(isset($project_contact_data)) value="{{ $project_contact_data->salary }}" @endif >
                                     </div>
 
                                     <hr class="mt-4 mb-4">

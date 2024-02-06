@@ -27,6 +27,11 @@ class Customer extends Model
     {
         return $this->hasOne('App\Models\IndustryCategory', 'id', 'industry_id');
     }
+    
+    public function cust_project()
+    {
+        return $this->hasOne('App\Models\CustProject', 'user_id', 'user_id');
+    }
 
     public function company_scale()
     {

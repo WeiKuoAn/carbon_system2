@@ -48,6 +48,8 @@
                                         <th scope="col">廠商名稱</th>
                                         <th scope="col">負責人</th>
                                         <th scope="col">統編</th>
+                                        <th scope="col">商業服務業</th>
+                                        <th scope="col">製造業</th>
                                         <th scope="col">主要聯絡人</th>
                                         <th scope="col">聯絡人職稱</th>
                                         <th scope="col">聯絡人電話</th>
@@ -68,6 +70,16 @@
                                         </td>
                                         <td>{{ $data->principal_name  }}</td>
                                         <td>{{ $data->registration_no }}</td>
+                                        <td align="center">
+                                            @if(!empty($types) && $types[$data->user_id]['type']==0)
+                                                <i class="font-size-26 bx bx bx-check text-danger"></i>
+                                            @endif
+                                        </td>
+                                        <td align="center">
+                                            @if(!empty($types) && $types[$data->user_id]['type']==1)
+                                                <i class="font-size-26 bx bx bx-check text-danger"></i>
+                                            @endif
+                                        </td>
                                         <td>{{ $data->contact_name  }}</td>
                                         <td>{{ $data->contact_job }}</td>
                                         <td>{{ $data->contact_phone  }}</td>
