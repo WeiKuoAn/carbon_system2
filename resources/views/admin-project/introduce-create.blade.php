@@ -277,24 +277,33 @@
                                 <div>
                                     <label class="form-label" for="AddNew-Phone"><b>前三年營收</b><span class="text-danger">*</span></label>
                                 </div>
-                                @if(count($cust_data->manufacture_income_datas) > 0)
-                                    @foreach($cust_data->manufacture_income_datas as $cust_data->manufacture_income_data)
+                                {{-- @php
+                                    // 假设 $years 包含了需要显示的所有年份，例如：
+                                    $years = json_decode($years);
+
+                                    // 从 $cust_data 中提取所有已有的年份
+                                    $existingYears = $cust_data->manufacture_income_datas->pluck('year')->toArray();
+                                @endphp --}}
+
+                                @foreach($years as $year)
+                                    @if(in_array($year, $existingYears))
+                                        @php
+                                            // 找到这个年份对应的数据
+                                            $incomeData = $cust_data->manufacture_income_datas->firstWhere('year', $year);
+                                        @endphp
                                         <div class="col-md-4">
-                                            <label class="form-label" for="AddNew-Phone"><b>{{$cust_data->manufacture_income_data->year}}年度</b><span class="text-danger">*</span></label>
-                                            <input type="hidden" class="form-control" name="three_years[]" value="{{$cust_data->manufacture_income_data->year}}">
-                                            <input type="number" class="form-control" name="three_incomes[]" value="{{$cust_data->manufacture_income_data->income}}">
+                                            <label class="form-label" for="AddNew-Phone"><b>{{$year}}年度</b><span class="text-danger">*</span></label>
+                                            <input type="hidden" class="form-control" name="three_years[]" value="{{$incomeData->year}}">
+                                            <input type="number" class="form-control" name="three_incomes[]" value="{{$incomeData->income}}">
                                         </div>
-                                    @endforeach
-                                @else
-                                    @foreach($years as $year)
+                                    @else
                                         <div class="col-md-4">
                                             <label class="form-label" for="AddNew-Phone"><b>{{$year}}年度</b><span class="text-danger">*</span></label>
                                             <input type="hidden" class="form-control" name="three_years[]" value="{{$year}}">
                                             <input type="number" class="form-control" name="three_incomes[]" value="" placeholder="{{$year}}年">
                                         </div>
-                                    @endforeach
-                                @endif
-
+                                    @endif
+                                @endforeach
 
                                 <hr class="mt-4 mb-4">
                                 <label class="form-label" for="AddNew-Username"><b>公司指標客戶（請列舉3-5家）</b><span class="text-danger">*</span></label>

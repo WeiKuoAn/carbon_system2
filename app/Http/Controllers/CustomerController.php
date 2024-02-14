@@ -78,10 +78,18 @@ class CustomerController extends Controller
         for ($i = 1; $i <= 3; $i++) {
             $years[] = $now->copy()->subYears($i)->year;
         }
-        $cust_data = CustData::where('user_id',Auth::user()->id)->first();
+         // 从数据库中获取用户的自定义数据
+         $cust_data = CustData::where('user_id',Auth::user()->id)->first();
+        
+         // 如果 $cust_data 不为空，并且 $cust_data 包含 manufacture_income_datas，那么提取年份
+         $existingYears = [];
+         if ($cust_data && !empty($cust_data->manufacture_income_datas)) {
+             $existingYears = $cust_data->manufacture_income_datas->pluck('year')->toArray();
+         }
         return view('customer.introduce-create')
                                                 ->with('cust_data',$cust_data)
-                                                ->with('years',$years);
+                                                ->with('years',$years)
+                                                ->with('existingYears',$existingYears);
     }
 
     public function IntroduceStore(Request $request)
