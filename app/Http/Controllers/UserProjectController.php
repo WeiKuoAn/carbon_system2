@@ -199,7 +199,7 @@ class UserProjectController extends Controller
         $appendix = ProjectAppendix::where('project_id', $project->id)->first();
 
         $checkboxesStatus = $appendix ? json_encode($appendix->checkboxes_status) : json_encode([]);
-        return view('admin-project.business-appendix',compact('cust_data', 'appendix', 'checkboxesStatus'));
+        return view('admin-project.business-appendix',compact('cust_data', 'appendix', 'checkboxesStatus','project'));
     }
 
     public function BusinessPreview($id)
@@ -247,7 +247,7 @@ class UserProjectController extends Controller
         $appendix = ProjectAppendix::where('project_id', $project->id)->first();
 
         $checkboxesStatus = $appendix ? json_encode($appendix->checkboxes_status) : json_encode([]);
-        return view('admin-project.manufacturing-appendix',compact('cust_data', 'appendix', 'checkboxesStatus'));
+        return view('admin-project.manufacturing-appendix',compact('cust_data', 'appendix', 'checkboxesStatus','project'));
     }
 
     public function ManufacturingCreate($id,)

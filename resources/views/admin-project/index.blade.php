@@ -119,6 +119,13 @@
                                                                 >編輯</a>
                                                         @endif
                                                         <a class="dropdown-item"
+                                                        @if($data->type == 0)
+                                                            href="{{ route('user.project.business.appendix',$data->user_id) }}"
+                                                        @elseif($data->type == 1)
+                                                            href="{{ route('user.project.Manufacturing.appendix',$data->user_id) }}"
+                                                        @endif
+                                                        >附件</a>
+                                                        <a class="dropdown-item"
                                                             @if($data->type == 0)
                                                                 href="{{ route('user.project.business.preview',$data->user_id) }}"
                                                             @elseif($data->type == 1)

@@ -248,6 +248,17 @@
 
         <script>
             $(document).ready(function() {
+                var checkboxesStatus = {!! $checkboxesStatus !!}; // 轉換為 JavaScript 變數
+                var project_id = {!!$project->id!!};
+
+                $.each(checkboxesStatus, function(key, value) {
+                    if(value === "1") {
+                        $('#' + key).prop('checked', true);
+                    } else {
+                        $('#' + key).prop('checked', false);
+                    }
+                });
+
                 $('.form-check-input').change(function() {
                     var checkboxId = $(this).attr('id');
                     var isChecked = $(this).is(':checked') ? 1 : 0;
@@ -258,6 +269,7 @@
                         data: {
                             id: checkboxId,
                             status: isChecked,
+                            project_id: project_id,
                             _token: '{{ csrf_token() }}' // CSRF token
                         },
                         success: function(response) {
@@ -269,15 +281,7 @@
                     });
                 });
 
-                var checkboxesStatus = {!! $checkboxesStatus !!}; // 轉換為 JavaScript 變數
-
-                $.each(checkboxesStatus, function(key, value) {
-                    if(value === "1") {
-                        $('#' + key).prop('checked', true);
-                    } else {
-                        $('#' + key).prop('checked', false);
-                    }
-                });
+                
             });
         </script>
 

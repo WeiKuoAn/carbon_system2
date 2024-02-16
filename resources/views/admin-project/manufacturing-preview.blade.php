@@ -731,6 +731,9 @@
                                         {{-- <a href="{{ route('project.business.appendix') }}">
                                             <button class="btn btn-primary" type="button" id="btn_submit"><i class=" bx bx-check me-1"></i> 確認送出 </button>
                                         </a> --}}
+                                        <a href="{{ route('user.project.Manufacturing.appendix',$cust_data->user_id) }}">
+                                            <button class="btn btn-primary" type="button" id="btn_submit"><i class=" bx bx-check me-1"></i> 查看附件 </button>
+                                        </a>
                                     </div> <!-- end col -->
                                 </div>
                             </form>

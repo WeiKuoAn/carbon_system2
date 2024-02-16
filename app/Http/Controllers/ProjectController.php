@@ -220,8 +220,14 @@ class ProjectController extends Controller
     {
         $checkboxId = $request->id;
         $status = $request->status;
+        $project_id = $request->project_id;
+        // dd($project_id);
 
-        $project = CustProject::where('user_id', Auth::id())->first();
+        if(Auth::user()->group_id==2){
+            $project = CustProject::where('user_id', Auth::id())->first();
+        }else{
+            $project = CustProject::where('id', $project_id)->first();
+        }
 
         if (!$project) {
             return response()->json(['message' => 'Project not found.'], 404);
