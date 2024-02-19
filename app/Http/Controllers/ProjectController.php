@@ -33,10 +33,15 @@ class ProjectController extends Controller
     public function index()
     {
         $datas = CustProject::join('cust_data', 'cust_data.user_id', '=', 'cust_project.user_id')
-                              ->whereIn('cust_data.limit_status',['all',Auth::user()->group_id])
                               ->where('cust_project.status','0')
-                              ->orderby('cust_data.id','desc')
-                              ->paginate(30);
+                              ->orderby('cust_data.id','desc');
+
+        if(Auth::user()->group_id == 1)
+        {
+            $datas = $datas->paginate(50);
+        }else{
+            $datas = $datas->whereIn('cust_data.limit_status',['all',Auth::user()->group_id])->paginate(50);
+        }
         return view('project.index')->with('datas', $datas);
     }
 
