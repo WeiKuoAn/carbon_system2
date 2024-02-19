@@ -152,7 +152,7 @@
                                                             <label class="form-check-label" for="b_two_appendix01">
                                                                 <h5 class="font-size-16 m-0">
                                                                     1.切結聲明書
-                                                                    <a href="/storage/downloads/商業服務業_切結聲明書.pdf" download="商業服務業_切結聲明書.pdf">
+                                                                    <a href="{{ URL::asset('downloads/商業服務業_切結聲明書.pdf') }}" download="商業服務業_切結聲明書.pdf">
                                                                         （請點擊我下載空白文件）
                                                                     </a>
                                                                 </h5>
@@ -167,7 +167,7 @@
                                                             <label class="form-check-label" for="b_two_appendix02">
                                                                 <h5 class="text-truncate font-size-16 m-0">
                                                                     2.蒐集個人資料告知事項暨個人資料提供同意書<span class="text-danger">（一式兩份並正本簽名）</span>
-                                                                    <a href="/storage/downloads/商業服務業_個人資料提供同意書.pdf" download="商業服務業_個人資料提供同意書.pdf">
+                                                                    <a href="{{ URL::asset('downloads/商業服務業_個人資料提供同意書.pdf') }}" download="商業服務業_個人資料提供同意書.pdf">
                                                                         （請點擊我下載空白文件）
                                                                     </a>
                                                                 </h5>

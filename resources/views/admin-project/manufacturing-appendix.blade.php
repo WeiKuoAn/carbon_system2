@@ -193,7 +193,7 @@
                                                             <label class="form-check-label" for="m_two_appendix01">
                                                                 <h5 class="font-size-16 m-0">
                                                                     1.蒐集個人資料告知事項暨個人資料提供同意書<span class="text-danger">（一式兩份並正本簽名）</span>
-                                                                    <a href="/storage/downloads/製造業_個人資料提供同意書.pdf" download="製造業_個人資料提供同意書.pdf">
+                                                                    <a href="{{ URL::asset('downloads/製造業_個人資料提供同意書.pdf') }}" download="製造業_個人資料提供同意書.pdf">
                                                                         （請點擊我下載空白文件）
                                                                     </a>
                                                                 </h5>
@@ -207,7 +207,7 @@
                                                             <input class="form-check-input" type="checkbox" id="m_two_appendix02" name="m_two_appendix02">
                                                             <label class="form-check-label" for="m_two_appendix02">
                                                                 <h5 class="font-size-16 m-0">2.建議迴避之人員清單（若無者請於表格中姓名欄中填【無】，另下方處需加蓋公司大小章。）
-                                                                     <a href="/storage/downloads/製造業_建議迴避之人員清單.pdf" download="製造業_建議迴避之人員清單.pdf">
+                                                                     <a href="{{ URL::asset('downloads/製造業_建議迴避之人員清單.pdf') }}" download="製造業_建議迴避之人員清單.pdf">
                                                                     （請點擊我下載空白文件）
                                                                      </a>
                                                                 </h5>
@@ -221,7 +221,7 @@
                                                             <input class="form-check-input" type="checkbox" id="m_two_appendix03" name="m_two_appendix03">
                                                             <label class="form-check-label" for="m_two_appendix03">
                                                                 <h5 class="font-size-16 m-0">3.基本資料暨同意聲明
-                                                                     <a href="/storage/downloads/製造業_基本資料暨同意聲明.pdf" download="製造業_基本資料暨同意聲明.pdf">
+                                                                     <a href="{{ URL::asset('downloads/製造業_基本資料暨同意聲明.pdf') }}" download="製造業_基本資料暨同意聲明.pdf">
                                                                     （請點擊我下載空白文件）
                                                                      </a>
                                                                 </h5>
