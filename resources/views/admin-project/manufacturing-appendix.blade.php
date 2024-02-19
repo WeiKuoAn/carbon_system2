@@ -193,7 +193,7 @@
                                                             <label class="form-check-label" for="m_two_appendix01">
                                                                 <h5 class="font-size-16 m-0">
                                                                     1.蒐集個人資料告知事項暨個人資料提供同意書<span class="text-danger">（一式兩份並正本簽名）</span>
-                                                                    <a href="https://zhengdian.tw6.quickconnect.to/d/s/wwzzAD69biiHOnEO2rCLk5DmRZYieW4G/webapi/entry.cgi/%E8%A3%BD%E9%80%A0%E6%A5%AD500%E8%90%AC-1.%E5%80%8B%E4%BA%BA%E8%B3%87%E6%96%99%E6%8F%90%E4%BE%9B%E5%90%8C%E6%84%8F%E6%9B%B8.pdf?api=SYNO.SynologyDrive.Files&method=download&version=2&files=%5B%22id%3A798033117534271603%22%5D&force_download=false&sharing_token=%221htLxNBL0Xxf4NYvRup3sfE_HdbnTYMrjMa9J3L0N333lgIme9EpyD2X0h.8_lJWzLLu2nADbdLzb9G_U6L99DsN5U0p7.CkGoYjzOOXtdpbwjJIGVH5gDwK2nWytebl6XxYBPEwcUr17o64APljB0rzhsW1snNKbRVArkDmyTdxRdMFjP8.XKgk39KGuwIuqnh1kILwIy6FBxhpZTxYhL9bpNoGqKeKpdb5O_xR5mCO5gMnb9OdOk13%22&SynoToken=QSrNPjgydysrQ&_dc=1706066936606" target="_blank">
+                                                                    <a href="/storage/downloads/製造業_個人資料提供同意書.pdf" download="製造業_個人資料提供同意書.pdf">
                                                                         （請點擊我下載空白文件）
                                                                     </a>
                                                                 </h5>
@@ -207,7 +207,7 @@
                                                             <input class="form-check-input" type="checkbox" id="m_two_appendix02" name="m_two_appendix02">
                                                             <label class="form-check-label" for="m_two_appendix02">
                                                                 <h5 class="font-size-16 m-0">2.建議迴避之人員清單（若無者請於表格中姓名欄中填【無】，另下方處需加蓋公司大小章。）
-                                                                     <a href="https://zhengdian.tw6.quickconnect.to/d/s/wwzzAD69biiHOnEO2rCLk5DmRZYieW4G/webapi/entry.cgi/%E8%A3%BD%E9%80%A0%E6%A5%AD500%E8%90%AC-2.%E5%85%AC%E8%81%B7%E4%BA%BA%E5%93%A1%E5%8F%8A%E9%97%9C%E4%BF%82%E4%BA%BA%E8%BA%AB%E5%88%86%E9%97%9C%E4%BF%82%E6%8F%AD%E9%9C%B2%E8%A1%A8.pdf?api=SYNO.SynologyDrive.Files&method=download&version=2&files=%5B%22id%3A798033118463309944%22%5D&force_download=false&sharing_token=%221htLxNBL0Xxf4NYvRup3sfE_HdbnTYMrjMa9J3L0N333lgIme9EpyD2X0h.8_lJWzLLu2nADbdLzb9G_U6L99DsN5U0p7.CkGoYjzOOXtdpbwjJIGVH5gDwK2nWytebl6XxYBPEwcUr17o64APljB0rzhsW1snNKbRVArkDmyTdxRdMFjP8.XKgk39KGuwIuqnh1kILwIy6FBxhpZTxYhL9bpNoGqKeKpdb5O_xR5mCO5gMnb9OdOk13%22&SynoToken=QSrNPjgydysrQ&_dc=1706067177117" target="_blank">
+                                                                     <a href="/storage/downloads/製造業_建議迴避之人員清單.pdf" download="製造業_建議迴避之人員清單.pdf">
                                                                     （請點擊我下載空白文件）
                                                                      </a>
                                                                 </h5>
@@ -221,7 +221,7 @@
                                                             <input class="form-check-input" type="checkbox" id="m_two_appendix03" name="m_two_appendix03">
                                                             <label class="form-check-label" for="m_two_appendix03">
                                                                 <h5 class="font-size-16 m-0">3.基本資料暨同意聲明
-                                                                     <a href="https://zhengdian.tw6.quickconnect.to/d/s/wwzzAD69biiHOnEO2rCLk5DmRZYieW4G/webapi/entry.cgi/%E8%A3%BD%E9%80%A0%E6%A5%AD500%E8%90%AC-%E5%9F%BA%E6%9C%AC%E8%B3%87%E6%96%99%E6%9A%A8%E5%90%8C%E6%84%8F%E8%81%B2%E6%98%8E.pdf?api=SYNO.SynologyDrive.Files&method=download&version=2&files=%5B%22id%3A798033119180535933%22%5D&force_download=false&sharing_token=%221htLxNBL0Xxf4NYvRup3sfE_HdbnTYMrjMa9J3L0N333lgIme9EpyD2X0h.8_lJWzLLu2nADbdLzb9G_U6L99DsN5U0p7.CkGoYjzOOXtdpbwjJIGVH5gDwK2nWytebl6XxYBPEwcUr17o64APljB0rzhsW1snNKbRVArkDmyTdxRdMFjP8.XKgk39KGuwIuqnh1kILwIy6FBxhpZTxYhL9bpNoGqKeKpdb5O_xR5mCO5gMnb9OdOk13%22&SynoToken=QSrNPjgydysrQ&_dc=1706067140482" target="_blank">
+                                                                     <a href="/storage/downloads/製造業_基本資料暨同意聲明.pdf" download="製造業_基本資料暨同意聲明.pdf">
                                                                     （請點擊我下載空白文件）
                                                                      </a>
                                                                 </h5>

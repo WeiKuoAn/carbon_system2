@@ -51,8 +51,14 @@ class CustomerController extends Controller
     {
         
         $datas = User::where('group_id','2')
-                       ->join('cust_data', 'cust_data.user_id', '=', 'users.id')
-                       ->whereIn('cust_data.limit_status',['all',Auth::user()->group_id])->paginate(50);
+                       ->join('cust_data', 'cust_data.user_id', '=', 'users.id');
+        if(Auth::user()->group_id == 1)
+        {
+            $datas = $datas->paginate(50);
+        }else{
+            $datas = $datas->whereIn('cust_data.limit_status',['all',Auth::user()->group_id])->paginate(50);
+        }
+                       
         $types = [];
         foreach($datas as $data){
             $projects = CustProject::where('user_id',$data->user_id)->where('status','0')->get();

@@ -152,7 +152,7 @@
                                                             <label class="form-check-label" for="b_two_appendix01">
                                                                 <h5 class="font-size-16 m-0">
                                                                     1.切結聲明書
-                                                                    <a href="https://zhengdian.tw6.quickconnect.to/d/s/wape0yiRKeEH7v2ZSgEKqoAJpHmYrZB4/webapi/entry.cgi/%E9%99%84%E4%BB%B6%E4%BA%8C%E3%80%81%E5%88%87%E7%B5%90%E8%81%B2%E6%98%8E%E6%9B%B8(%E8%B3%87%E6%96%99%E4%BB%A5%E8%A3%9C%E3%80%8C%E7%84%A1%E3%80%8D).pdf?api=SYNO.SynologyDrive.Files&method=download&version=2&files=%5B%22id%3A798033598331533470%22%5D&force_download=false&sharing_token=%22h.5x1xKl.q23_xFcyhtTNwzmVldJyMEyK3jImo6rIKyWNk_sx1ggoiv9CIagebQh65X9Dm_GWEVbt2x4pOEOnTdrWdATwIkRnc4UybXEZf214KbbekOCyyzadgJMWLeY2EN0XZ5mrymTh62AWtPdEJXxWdz0_7tPKWnPhyBLXE9VJ6VQ7X67szjJK2FI8bGW95LaddS6H9lMpD8HNk9ogRDVl.8OsCZfSbid5_s_qGI22O.9hUA7fp8A%22&_dc=1706067558910" target="_blank">
+                                                                    <a href="/storage/downloads/商業服務業_切結聲明書.pdf" download="商業服務業_切結聲明書.pdf">
                                                                         （請點擊我下載空白文件）
                                                                     </a>
                                                                 </h5>
@@ -167,7 +167,7 @@
                                                             <label class="form-check-label" for="b_two_appendix02">
                                                                 <h5 class="text-truncate font-size-16 m-0">
                                                                     2.蒐集個人資料告知事項暨個人資料提供同意書<span class="text-danger">（一式兩份並正本簽名）</span>
-                                                                    <a href="https://zhengdian.tw6.quickconnect.to/webapi/entry.cgi/%E7%B6%93%E6%BF%9F%E9%83%A8%E5%95%86%E6%A5%AD%E6%9C%8D%E5%8B%99%E6%A5%AD%E6%99%BA%E6%85%A7%E6%B8%9B%E7%A2%B3%E8%A3%9C%E5%8A%A9%E8%A8%88%E7%95%AB-%E9%99%84%E4%BB%B6%204%E3%80%81%E8%92%90%E9%9B%86%E5%80%8B%E4%BA%BA%E8%B3%87%E6%96%99%E5%91%8A%E7%9F%A5%E4%BA%8B%E9%A0%85%E6%9A%A8%E5%80%8B%E4%BA%BA%E8%B3%87%E6%96%99%E6%8F%90%E4%BE%9B%E5%90%8C%E6%84%8F%E6%9B%B8.pdf?api=SYNO.SynologyDrive.Files&method=download&version=2&files=%5B%22id%3A793200296829433082%22%5D&force_download=false&SynoToken=Vruw414Z..W5I&_dc=1708096759367" target="_blank">
+                                                                    <a href="/storage/downloads/商業服務業_個人資料提供同意書.pdf" download="商業服務業_個人資料提供同意書.pdf">
                                                                         （請點擊我下載空白文件）
                                                                     </a>
                                                                 </h5>
