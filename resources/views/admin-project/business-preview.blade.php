@@ -219,7 +219,7 @@
                                     <div class="col-md-12">
                                         <div class="mb-4">
                                             <label class="form-label" for="AddNew-Phone"><b>公司基本介紹</b><span class="text-danger">*</span></label>
-                                            <textarea  class="form-control required-input" name="introduce" rows="4">@if(isset($cust_data)){{ $cust_data->introduce }}@endif</textarea>
+                                            <textarea  class="form-control required-input" name="introduce" rows="8">@if(isset($cust_data)){{ $cust_data->introduce }}@endif</textarea>
                                         </div>
                                     </div>
                                     <div class="col-md-12">
@@ -644,7 +644,7 @@
                                                                 @foreach ($project->situation_datas as $key=>$situation_data)
                                                                     <tr id="row-{{ $key }}" valign="middle">
                                                                         <td width="90%">
-                                                                            <textarea  class="form-control required-input" name="situation_contexts[]" rows="2">{{ $situation_data->context }}</textarea>
+                                                                            <textarea  class="form-control required-input" name="situation_contexts[]" rows="5">{{ $situation_data->context }}</textarea>
                                                                         </td>
                                                                     </tr>
                                                                 @endforeach
@@ -652,7 +652,7 @@
                                                                 @for ($i = 0; $i < 1; $i++)
                                                                     <tr id="row-{{ $i }}" valign="middle">
                                                                         <td width="90%">
-                                                                            <textarea  class="form-control required-input" name="situation_contexts[]" rows="2"></textarea>
+                                                                            <textarea  class="form-control required-input" name="situation_contexts[]" rows="5"></textarea>
                                                                         </td>
                                                                     </tr>
                                                                 @endfor

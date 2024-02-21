@@ -233,7 +233,7 @@
                                 <div class="col-md-12">
                                     <div class="mb-4">
                                         <label class="form-label" for="AddNew-Phone"><b>公司基本介紹</b><span class="text-danger">*</span></label>
-                                        <textarea  class="form-control required-input" name="introduce" rows="4">@if(isset($cust_data)){{ $cust_data->introduce }}@endif</textarea>
+                                        <textarea  class="form-control required-input" name="introduce" rows="8">@if(isset($cust_data)){{ $cust_data->introduce }}@endif</textarea>
                                     </div>
                                 </div>
                                 <div class="col-md-12">

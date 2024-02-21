@@ -649,7 +649,7 @@
                                                                 @foreach ($project->situation_datas as $key=>$situation_data)
                                                                     <tr id="row-{{ $key }}" valign="middle">
                                                                         <td width="90%">
-                                                                            <textarea  class="form-control required-input" name="situation_contexts[]" rows="2">{{ $situation_data->context }}</textarea>
+                                                                            <textarea  class="form-control required-input" name="situation_contexts[]" rows="5">{{ $situation_data->context }}</textarea>
                                                                         </td>
                                                                     </tr>
                                                                 @endforeach
@@ -657,7 +657,7 @@
                                                                 @for ($i = 0; $i < 1; $i++)
                                                                     <tr id="row-{{ $i }}" valign="middle">
                                                                         <td width="90%">
-                                                                            <textarea  class="form-control required-input" name="situation_contexts[]" rows="2"></textarea>
+                                                                            <textarea  class="form-control required-input" name="situation_contexts[]" rows="5"></textarea>
                                                                         </td>
                                                                     </tr>
                                                                 @endfor
