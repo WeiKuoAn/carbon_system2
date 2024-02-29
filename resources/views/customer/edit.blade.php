@@ -98,7 +98,7 @@
                                     <input type="text" class="form-control" name="registration_no" value="{{ $data->registration_no }}" required>
                                 </div>
                             </div>
-
+                            @if(Auth::user()->level !=2)
                             <div class="col-md-6">
                                 <div class="mb-3">
                                     <label class="form-label">限制瀏覽</label>
@@ -120,7 +120,7 @@
                                     </select>
                                 </div>
                             </div>
-
+                            @endif
                         </div>
                 </div>
                 
