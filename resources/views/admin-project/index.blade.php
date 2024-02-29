@@ -109,7 +109,6 @@
                                                     </a>
 
                                                     <div class="dropdown-menu dropdown-menu-end">
-                                                        @if(Auth::user()->level !=2)
                                                             <a class="dropdown-item" 
                                                                 @if($data->type == 0)
                                                                     href="{{ route('user.project.business.create',$data->cust_data->user_id) }}"
@@ -117,7 +116,6 @@
                                                                     href="{{ route('user.project.Manufacturing.create',$data->cust_data->user_id) }}"
                                                                 @endif
                                                                 >編輯</a>
-                                                        @endif
                                                         <a class="dropdown-item"
                                                         @if($data->type == 0)
                                                             href="{{ route('user.project.business.appendix',$data->user_id) }}"

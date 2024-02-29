@@ -109,10 +109,10 @@
                                                     </a>
 
                                                     <div class="dropdown-menu dropdown-menu-end">
-                                                        @if(Auth::user()->level !=2)
+                                                        {{-- @if(Auth::user()->level !=2) --}}
                                                             <a class="dropdown-item" href="{{ route('customer.edit',$data->user_id) }}">編輯廠商帳戶資料</a>
                                                             <a class="dropdown-item" href="{{ route('user.introduce.edit',$data->user_id) }}">編輯廠商基本資料</a>
-                                                        @endif
+                                                        {{-- @endif --}}
                                                         <a class="dropdown-item" href="{{ route('user.project.index',$data->user_id) }}">查看專案資料</a>
                                                         {{-- <a class="dropdown-item" href="{{ route('user.project.business.create',$data->user_id) }}">查看專案</a> --}}
                                                         {{-- <a class="dropdown-item" href="{{ route('cust.surveys.index',$data->id) }}">問卷查看</a>
