@@ -93,7 +93,7 @@
                                     </div>
                                 </div>
                                 <div class="col-md-4">
-                                    <label class="form-label" for="AddNew-Username"><b>公司主要聯繫窗口</b>（用於與錚典對接）<span class="text-danger">*</span></label>
+                                    <label class="form-label" for="AddNew-Username"><b>公司主要聯繫窗口</b>（用於與計畫窗口對接）<span class="text-danger">*</span></label>
                                     <div class="mb-4">
                                         <input type="text" class="form-control required-input" name="main_contact_name" placeholder="姓名"  @if(isset($project)) value="{{ $project->contact_name }}" @endif>
                                     </div>
