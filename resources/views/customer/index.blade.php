@@ -17,22 +17,45 @@
     <body data-layout="horizontal">
     @endsection
     @section('content')
+    
+    <form action="{{ route('customer.index') }}"  method="GET">
         <div class="row">
             <div class="col-12">
                 <div class="card">
                     <div class="card-body">
-                        <div class="row align-items-center mb-3">
-                            <div class="col-md-6">
-                                {{-- <div class="mb-3">
-                                    <h5 class="card-title">Contact List <span class="text-muted fw-normal ms-2">(834)</span></h5>
-                                </div> --}}
+                        <div class="row align-items-center">
+                            @csrf
+                            <div class="col-md-3">
+                                <label class="form-label">公司名稱</label>
+                                <input type="text" class="form-control" name="name" value="{{ $request->name }}">
                             </div>
-                            <div class="col-md-6">
-                                <div class="d-flex flex-wrap align-items-center justify-content-end gap-2 mb-3">
+                             <div class="col-md-2">
+                                <label class="form-label">申請類別</label>
+                                <select class="form-select" name="type" onchange="this.form.submit()">
+                                    <option value="null" @if(!isset($request->type) && $request->type=='null') selected @endif>不限</option>
+                                    <option value="0" @if($request->type == '0') selected @endif>商業服務業</option>
+                                    <option value="1" @if($request->type == '1') selected @endif>製造業</option>
+                                </select>
+                             </div>
+                            <div class="col-md-2">
+                                 <label class="form-label">狀態</label>
+                                 <select class="form-select" name="status" onchange="this.form.submit()">
+                                    <option value="0" @if(!isset($request->status) && $request->status=='0') selected @endif>開通</option>
+                                    <option value="1" @if($request->status == '1') selected @endif>關閉</option>
+                                 </select>
+                             </div>
+                             <div class="col-md-2">
+                                  <button type="submit"
+                                     class="btn btn-danger btn-rounded waves-effect waves-light mt-4 me-2">
+                                     <i class="mdi mdi-search-web me-1"></i>
+                                      查詢</button>
+                             </div>
+                            <div class="col-md-3">
+                                <div class="d-flex flex-wrap align-items-center justify-content-end gap-2  mt-4">
                                     <div>
                                         <a  href="{{ route('customer.create') }}">
                                             <button type="button"
-                                                class="btn btn-success btn-rounded waves-effect waves-light mb-2 me-2">
+                                                class="btn btn-success btn-rounded waves-effect waves-light  me-2">
                                                 <i class="mdi mdi-plus me-1"></i>
                                                 新增廠商</button>
                                         </a>
@@ -40,6 +63,16 @@
                                 </div>
                             </div>
                         </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-body">
                         <div class="table-responsive">
                             <table class="table table-nowrap align-middle">
                                 <thead class="table-light">

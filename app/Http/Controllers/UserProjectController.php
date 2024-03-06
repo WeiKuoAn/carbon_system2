@@ -211,7 +211,7 @@ class UserProjectController extends Controller
             $years[] = $now->copy()->subYears($i)->year;
         }
         $cust_data = CustData::where('user_id',$id)->first();
-        $project = CustProject::where('user_id',$id)->first();
+        $project = CustProject::where('user_id',$id)->where('type',0)->first();
         $project_host_data = ProjectHost::where('user_id',$id)->first();
         $project_contact_data = ProjectContact::where('user_id',$id)->first();
         return view('admin-project.business-preview')->with('project', $project)
@@ -230,7 +230,7 @@ class UserProjectController extends Controller
             $years[] = $now->copy()->subYears($i)->year;
         }
         $cust_data = CustData::where('user_id',$id)->first();
-        $project = CustProject::where('user_id',$id)->first();
+        $project = CustProject::where('user_id',$id)->where('type',1)->first();
         $project_host_data = ProjectHost::where('user_id',$id)->first();
         $project_contact_data = ProjectContact::where('user_id',$id)->first();
         return view('admin-project.manufacturing-preview')->with('project', $project)

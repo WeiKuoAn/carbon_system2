@@ -47,13 +47,38 @@ class CustomerController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
         
         $datas = User::where('group_id','2')
                        ->join('cust_data', 'cust_data.user_id', '=', 'users.id');
-        if(Auth::user()->group_id == 1)
-        {
+        if($request){
+            $name = $request->name;
+            if($name){
+                $name = '%'.$request->name.'%';
+                $datas = $datas->where('name','like',$name);
+            }
+            $status = $request->status;
+            if($status){
+                $datas = $datas->where('status',$status);
+            }
+            $type = $request->type;
+            if ($type != "null") {
+                $user_ids = [];
+                $cust_projects = CustProject::where('type',$type)->where('status','0')->get();
+                // dd($cust_projects);
+                foreach($cust_projects as $cust_project){
+                    $user_ids[] = $cust_project->user_id;
+                }
+                $datas = $datas->whereIn('users.id',$user_ids);
+            }else{
+                $datas = $datas;   
+            }
+        }else{
+            $datas = $datas->where('status',0);
+        }
+
+        if(Auth::user()->group_id == 1){
             $datas = $datas->paginate(50);
         }else{
             $datas = $datas->whereIn('cust_data.limit_status',['all',Auth::user()->group_id])->paginate(50);
@@ -67,7 +92,7 @@ class CustomerController extends Controller
             }
         }
         // dd($types);
-        return view('customer.index')->with('datas', $datas)->with('types',$types);
+        return view('customer.index')->with('datas', $datas)->with('types',$types)->with('request',$request);
     }
 
     public function Create()
