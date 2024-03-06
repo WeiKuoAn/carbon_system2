@@ -67,10 +67,12 @@ class CustomerController extends Controller
                 $user_ids = [];
                 $cust_projects = CustProject::where('type',$type)->where('status','0')->get();
                 // dd($cust_projects);
-                foreach($cust_projects as $cust_project){
-                    $user_ids[] = $cust_project->user_id;
+                if(count($cust_projects)>0){
+                    foreach($cust_projects as $cust_project){
+                        $user_ids[] = $cust_project->user_id;
+                    }
+                    $datas = $datas->whereIn('users.id',$user_ids);
                 }
-                $datas = $datas->whereIn('users.id',$user_ids);
             }else{
                 $datas = $datas;   
             }
