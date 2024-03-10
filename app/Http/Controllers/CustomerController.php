@@ -52,7 +52,8 @@ class CustomerController extends Controller
         
         $datas = User::where('group_id','2')
                        ->join('cust_data', 'cust_data.user_id', '=', 'users.id');
-        if($request){
+
+        if(count($request->input())>0){
             $name = $request->name;
             if($name){
                 $name = '%'.$request->name.'%';
@@ -61,6 +62,14 @@ class CustomerController extends Controller
             $status = $request->status;
             if($status){
                 $datas = $datas->where('status',$status);
+            }else{
+                $datas = $datas->where('users.status','0');
+            }
+            $check_status = $request->check_status;
+            if($check_status){
+                $datas = $datas->where('check_status',$check_status);
+            }else{
+                $datas = $datas->where('cust_data.check_status','0');
             }
             $type = $request->type;
             if ($type != "null") {
@@ -74,10 +83,10 @@ class CustomerController extends Controller
                     $datas = $datas->whereIn('users.id',$user_ids);
                 }
             }else{
-                $datas = $datas;   
+                $datas = $datas;
             }
         }else{
-            $datas = $datas->where('status',0);
+            $datas = $datas->where('users.status','0')->where('check_status','0');
         }
 
         if(Auth::user()->group_id == 1){
@@ -413,6 +422,7 @@ class CustomerController extends Controller
         $cust_data->registration_no = $request->registration_no;
         $cust_data->principal_name = $request->principal_name;
         $cust_data->limit_status = $request->limit_status;
+        $cust_data->check_status = $request->check_status;
         $cust_data->save();
 
         //驗證是否有商業類並有開通

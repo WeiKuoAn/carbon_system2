@@ -15,7 +15,7 @@ class CustData extends Model
         'export_status', 'contact_name', 'contact_email', 'contact_phone','contact_jo','principal_name','limit_status',
         'nas_link', 'carbon_done','principal_user_id', 'status','avoid','subsidy','carbon_iso',
         'county','district','zipcode','address',
-        'factory_county','factory_district','factory_zipcode','factory_address',
+        'factory_county','factory_district','factory_zipcode','factory_address','check_status'
     ];
 
     public function user_data()

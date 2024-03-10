@@ -29,7 +29,7 @@
                                 <label class="form-label">公司名稱</label>
                                 <input type="text" class="form-control" name="name" value="{{ $request->name }}">
                             </div>
-                             <div class="col-md-2">
+                             <div class="col-md-1">
                                 <label class="form-label">申請類別</label>
                                 <select class="form-select" name="type" onchange="this.form.submit()">
                                     <option value="null" @if(!isset($request->type) && $request->type=='null') selected @endif>不限</option>
@@ -37,7 +37,15 @@
                                     <option value="1" @if($request->type == '1') selected @endif>製造業</option>
                                 </select>
                              </div>
-                            <div class="col-md-2">
+                            <div class="col-md-1">
+                               <label class="form-label">送件狀態</label>
+                               <select class="form-select" name="check_status" onchange="this.form.submit()">
+                                <option value="0" @if(!isset($request->check_status) &&$request->check_status == '0') selected @endif>未結案</option>
+                                <option value="1" @if($request->check_status == '1') selected @endif>已結案</option>
+                                <option value="2" @if($request->check_status == '2') selected @endif>再開案</option>
+                               </select>
+                            </div>
+                            <div class="col-md-1">
                                  <label class="form-label">狀態</label>
                                  <select class="form-select" name="status" onchange="this.form.submit()">
                                     <option value="0" @if(!isset($request->status) && $request->status=='0') selected @endif>開通</option>

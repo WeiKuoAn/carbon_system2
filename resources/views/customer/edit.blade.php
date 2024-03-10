@@ -121,6 +121,16 @@
                                 </div>
                             </div>
                             @endif
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label class="form-label" for="AddNew-Phone">送件狀態</label>
+                                    <select class="form-select" name="check_status">
+                                        <option value="0" @if($data->user_data->check_status == '0') selected @endif>未結案</option>
+                                        <option value="1" @if($data->user_data->check_status == '1') selected @endif>已結案</option>
+                                        <option value="2" @if($data->user_data->check_status == '2') selected @endif>再開案</option>
+                                    </select>
+                                </div>
+                            </div>
                         </div>
                 </div>
                 
