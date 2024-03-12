@@ -413,15 +413,19 @@ class CustomerController extends Controller
     {
         $user = User::where('id',$id)->first();
         $user->name = $request->name;
-        $user->status = $request->status;
+        if($user->group_id ==1){
+            $user->status = $request->status;
+        }
         $user->save();
 
-        //新增客戶資料
+        //編輯客戶資料
         $cust_data = CustData::where('user_id',$user->id)->first();
         $cust_data->nas_link = $request->nas_link;
         $cust_data->registration_no = $request->registration_no;
         $cust_data->principal_name = $request->principal_name;
-        $cust_data->limit_status = $request->limit_status;
+        if($user->group_id ==1){
+            $cust_data->limit_status = $request->limit_status;
+        }
         $cust_data->check_status = $request->check_status;
         $cust_data->save();
 
