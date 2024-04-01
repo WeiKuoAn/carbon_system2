@@ -67,8 +67,6 @@
                                                             </label>
                                                         </div>
                                                     </td>
-                                                    <td>
-                                                    </td>
                                                 </tr>
                                                 <tr>
                                                     <td style="width: 40px;">
@@ -89,8 +87,6 @@
                                                             </label>
                                                         </div>
                                                     </td>
-                                                    <td>
-                                                    </td>
                                                 </tr>
                                                 <tr>
                                                     <td style="width: 40px;">
@@ -100,8 +96,6 @@
                                                                 <h5 class="font-size-16 m-0">6.財產清冊(需確認設備資料)</h5>
                                                             </label>
                                                         </div>
-                                                    </td>
-                                                    <td>
                                                     </td>
                                                 </tr>
                                                 <tr>
@@ -113,8 +107,6 @@
                                                             </label>
                                                         </div>
                                                     </td>
-                                                    <td>
-                                                    </td>
                                                 </tr>
                                                 <tr>
                                                     <td style="width: 40px;">
@@ -122,8 +114,17 @@
                                                             <input class="form-check-input" type="checkbox" id="m_appendix08" name="m_appendix08">
                                                             <label class="form-check-label" for="m_appendix08">
                                                                 <h5 class="font-size-16 m-0">8.碳盤查報告(計劃書需要)<br>
-                                                                    <li>否 - 提供最近一年度全年度的油(柴油、汽油)、電(要注意一般用電或是其他用電)、水、天然氣費帳單</li>
-                                                                    <li>是 - 碳盤查報告書</li>
+                                                                    <ul style="line-height:30px;">
+                                                                        <li>否 - 提供最近一年度全年度的 
+                                                                            <br><input class="form-check-input" type="checkbox" id="carbon_appendix01" name="carbon_appendix01">【１】油(柴油、汽油)公升數
+                                                                            <br><input class="form-check-input" type="checkbox" id="carbon_appendix02" name="carbon_appendix02">【２】電費帳單(要注意一般用電或是其他用電)
+                                                                            <br><input class="form-check-input" type="checkbox" id="carbon_appendix03" name="carbon_appendix03">【３】水費帳單
+                                                                            <br><input class="form-check-input" type="checkbox" id="carbon_appendix04" name="carbon_appendix04">【４】天然氣費帳單公升數
+                                                                            <br><input class="form-check-input" type="checkbox" id="carbon_appendix05" name="carbon_appendix05">【５】個別冷媒設備銘牌(如:冷氣、冰水機、飲水機，若無銘牌提供設備名稱、設備型號、數量)
+                                                                            <br><input class="form-check-input" type="checkbox" id="carbon_appendix06" name="carbon_appendix06">【６】前一年度每月員工人數（若無每月明細，請提供最多員工數量）
+                                                                            <br><input class="form-check-input" type="checkbox" id="carbon_appendix07" name="carbon_appendix07">【７】製程設備使用燃料公升數，如：焊接、加熱製程</li>
+                                                                        <li>是 - 碳盤查報告書</li>
+                                                                    </ul>
                                                                 </h5>
                                                             </label>
                                                         </div>
@@ -137,8 +138,6 @@
                                                                 <h5 class="font-size-16 m-0">9.如有通過ISO請提供ISO相關資料</h5>
                                                             </label>
                                                         </div>
-                                                    </td>
-                                                    <td>
                                                     </td>
                                                 </tr>
                                                 <tr>

@@ -118,6 +118,17 @@
                                         <input type="text" class="form-control required-input" name="main_contact_phone" placeholder="電話"  @if(isset($project)) value="{{ $cust_data->contact_phone }}" @endif>
                                     </div>
                                 </div>
+                                <label class="form-label" for="AddNew-Username"><b>請提供公司未使用的信箱帳號密碼</b>（用於收發計畫相關資料）<span class="text-danger">*</span></label>
+                                <div class="col-md-6">
+                                    <div class="mb-4">
+                                        <input type="text" class="form-control required-input" name="receive_email" placeholder="信箱"  @if(isset($cust_data)) value="{{ $cust_data->receive_email }}" @endif>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="mb-4">
+                                        <input type="text" class="form-control required-input" name="receive_email_pwd" placeholder="密碼"  @if(isset($cust_data)) value="{{ $cust_data->receive_email_pwd }}" @endif>
+                                    </div>
+                                </div>
                                 <hr>
                                 <div class="col-md-12 font-size-18">
                                     <label class="form-label" for="AddNew-Username">&nbsp;</label>

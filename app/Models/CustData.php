@@ -14,7 +14,7 @@ class CustData extends Model
         'insurance_male', 'insurance_female', 'insurance_total','introduce' ,'production_chart', 'clients_market',
         'export_status', 'contact_name', 'contact_email', 'contact_phone','contact_jo','principal_name','limit_status',
         'nas_link', 'carbon_done','principal_user_id', 'status','avoid','subsidy','carbon_iso',
-        'county','district','zipcode','address',
+        'county','district','zipcode','address','receive_email','receive_email_pwd',
         'factory_county','factory_district','factory_zipcode','factory_address','check_status'
     ];
 

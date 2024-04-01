@@ -66,6 +66,8 @@ class UserCustomerController extends Controller
         $cust_data->contact_job  = $request->main_contact_job;
         $cust_data->contact_email  = $request->main_contact_email;
         $cust_data->contact_phone  = $request->main_contact_phone;
+        $cust_data->receive_email  = $request->receive_email;
+        $cust_data->receive_email_pwd  = $request->receive_email_pwd;
 
         //是否做過碳盤查
         // dd($request->carbonCheck);
