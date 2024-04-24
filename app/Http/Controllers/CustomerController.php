@@ -365,7 +365,11 @@ class CustomerController extends Controller
             $cust_data->nas_link = $request->nas_link;
             $cust_data->registration_no = $request->registration_no;
             $cust_data->principal_name = $request->principal_name;
-            $cust_data->limit_status = $request->limit_status;
+            if((Auth::user()->level ==2)){
+                $cust_data->limit_status = Auth::user()->group_id;
+            }else{
+                $cust_data->limit_status = $request->limit_status;
+            }
             $cust_data->save();
             
             //新增客戶計畫案內容
@@ -425,7 +429,7 @@ class CustomerController extends Controller
         $cust_data->nas_link = $request->nas_link;
         $cust_data->registration_no = $request->registration_no;
         $cust_data->principal_name = $request->principal_name;
-        if($user->group_id ==1){
+        if(Auth::user()->group_id ==1){
             $cust_data->limit_status = $request->limit_status;
         }
         $cust_data->check_status = $request->check_status;
