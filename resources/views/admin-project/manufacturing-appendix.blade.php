@@ -121,6 +121,9 @@
                                                                             <br><input class="form-check-input" type="checkbox" id="carbon_appendix03" name="carbon_appendix03">【３】水費帳單
                                                                             <br><input class="form-check-input" type="checkbox" id="carbon_appendix04" name="carbon_appendix04">【４】天然氣費帳單公升數
                                                                             <br><input class="form-check-input" type="checkbox" id="carbon_appendix05" name="carbon_appendix05">【５】個別冷媒設備銘牌(如:冷氣、冰水機、飲水機，若無銘牌提供設備名稱、設備型號、數量)
+                                                                            <a href="http://gofile.me/6XXhY/ja15jeTmc" target="_blank" >
+                                                                                （請點擊我下載空白冷媒碳盤查相關紀錄表）
+                                                                            </a>
                                                                             <br><input class="form-check-input" type="checkbox" id="carbon_appendix06" name="carbon_appendix06">【６】前一年度每月員工人數（若無每月明細，請提供最多員工數量）
                                                                             <br><input class="form-check-input" type="checkbox" id="carbon_appendix07" name="carbon_appendix07">【７】製程設備使用燃料公升數，如：焊接、加熱製程</li>
                                                                         <li>是 - 碳盤查報告書</li>
