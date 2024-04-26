@@ -419,7 +419,7 @@ class CustomerController extends Controller
     {
         $user = User::where('id',$id)->first();
         $user->name = $request->name;
-        if($user->group_id ==1){
+        if(Auth::user()->group_id ==1){
             $user->status = $request->status;
         }
         $user->save();
