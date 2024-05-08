@@ -152,6 +152,8 @@ class UserCustomerController extends Controller
             {
                 foreach($request->iso_names as $key=>$iso_name)
                 {
+            // dd($iso_name);
+
                     if(isset($iso_name))
                     {
                         $cust_iso = new ManufactureIso;
@@ -159,6 +161,7 @@ class UserCustomerController extends Controller
                         $cust_iso->project_id = $cust_data->id;
                         $cust_iso->name = $request->iso_names[$key];
                         $cust_iso->year = $request->iso_years[$key];
+                        // dd($request->iso_status);
                         $cust_iso->status = $request->iso_status[$key];
                         $cust_iso->save();
                     }

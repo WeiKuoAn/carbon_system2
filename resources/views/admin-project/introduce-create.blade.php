@@ -479,8 +479,8 @@
                                                         <div class="col-md-2">
                                                             <select class="form-select" name="iso_status[]" >
                                                                 <option value="" selected>選擇狀態</option>
-                                                                <option value="0" @if($manufacture_iso_data->status = '0') selected @endif>已通過</option>
-                                                                <option value="1" @if($manufacture_iso_data->status = '1') selected @endif>申請中</option>
+                                                                <option value="0" @if($manufacture_iso_data->status == '0') selected @endif>已通過</option>
+                                                                <option value="1" @if($manufacture_iso_data->status == '1') selected @endif>申請中</option>
                                                             </select>
                                                         </div>
                                                         <div class="col-md-2">
