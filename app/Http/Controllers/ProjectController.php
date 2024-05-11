@@ -137,6 +137,7 @@ class ProjectController extends Controller
                     $business_drive = new BusinessDrive;
                     $business_drive->user_id = Auth::user()->id;
                     $business_drive->project_id = $project->id;
+                    $business_drive->type= $request->drive_types[$key];
                     $business_drive->name= $request->drive_names[$key];
                     $business_drive->numbers = $request->drive_numbers[$key];
                     $business_drive->principal = $request->drive_principals[$key];

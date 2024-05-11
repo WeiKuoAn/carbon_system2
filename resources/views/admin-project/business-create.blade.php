@@ -206,6 +206,11 @@
                                     <h2>五家被帶動的企業</h2>
                                     <p class="font-size-18">申請計畫使用</p>
                                 </div>
+                                <div class="alert alert-danger" role="alert">
+                                    1.被帶動企業主要是配合主提案商（貴公司）申請計畫。因計畫內要導入的方案，會需要主提案商跟被帶動企業都有使用到，減碳的成效在主提案商跟被帶動企業也都需要有呈現。<br>
+                                    2.被帶動企業建議提供公司的「上游廠商」、「下游廠商」、「長期合作夥伴」，請提供同一種類型的被帶動企業。根據以往經驗，以這種方式提供資訊能夠減少提案簡報時被評審提問的情況，也有助於順利核銷。ex:全部都是「上游廠商」、全部都是「下游廠商」<br>
+                                    3.被帶動企業請提供以下資料：(1)公司名稱（全名）、(2)統一編號、(3)負責人姓名（送件時需簽署個資同意書、(4)員工數<br>
+                                </div>
                                 <div class="row">
                                     <div class="col-md-12 mt-3">
                                         <h5 class="text-uppercase bg-light p-2 mt-0 mb-3">企業名單(需至少提供5家被帶動企業)</h5>
@@ -216,6 +221,7 @@
                                                         <thead>
                                                             <tr align="center">
                                                                 <th>編號</th>
+                                                                <th>上游/下游廠商<span class="text-danger">*</span></th>
                                                                 <th>名稱<span class="text-danger">*</span></th>
                                                                 <th>統一編號<span class="text-danger">*</span></th>
                                                                 <th>負責人<span class="text-danger">*</span></th>
@@ -228,6 +234,13 @@
                                                                 @foreach ($project->drive_datas as $key=>$drive_data)
                                                                     <tr id="row-{{ $key }}" >
                                                                         <td>{{$key+1}}</td>
+                                                                        <td>
+                                                                            <select id="pay_date-{{ $key }}" class="mobile form-select" name="drive_types[]">
+                                                                                <option value="NULL"  @if($drive_data->type == "NULL") selected @endif>請選擇...</option>
+                                                                                <option value="0" @if($drive_data->type == 0) selected @endif>上游</option>
+                                                                                <option value="1" @if($drive_data->type == 1) selected @endif>下游</option>
+                                                                            </select>
+                                                                        </td>
                                                                         <td>
                                                                             <input id="pay_date-{{ $key }}" class="mobile form-control required-input" type="text" name="drive_names[]" value="{{ $drive_data->name }}">
                                                                         </td>
@@ -250,6 +263,13 @@
                                                                 @for ($i = 0; $i < 5; $i++)
                                                                     <tr id="row-{{ $i }}" >
                                                                         <td>{{$i+1}}</td>
+                                                                        <td>
+                                                                            <select id="pay_date-{{ $i }}" class="mobile form-select" name="drive_types[]">
+                                                                                <option value="" selected>請選擇...</option>
+                                                                                <option value="0">上游</option>
+                                                                                <option value="1">下游</option>
+                                                                            </select>
+                                                                        </td>
                                                                         <td>
                                                                             <input id="pay_date-{{ $i }}" class="mobile form-control required-input" type="text" name="drive_names[]" value="">
                                                                         </td>
@@ -537,6 +557,13 @@
                 var newRow = `<tr id="row-${branchRowCount}">
                                 <td>
                                     ${branchRowCount}
+                                </td>
+                                <td>
+                                    <select id="pay_date-${branchRowCount}" class="mobile form-select" name="drive_types[]">
+                                        <option value="" selected>請選擇...</option>
+                                        <option value="0">上游</option>
+                                        <option value="1">下游</option>
+                                    </select>
                                 </td>
                                 <td>
                                     <input id="pay_date-${branchRowCount}" class="mobile form-control required-input" type="text" name="drive_names[]" value="" required>

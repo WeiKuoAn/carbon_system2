@@ -223,7 +223,7 @@
                                                             <input class="form-check-input" type="checkbox" id="m_two_appendix03" name="m_two_appendix03">
                                                             <label class="form-check-label" for="m_two_appendix03">
                                                                 <h5 class="font-size-16 m-0">3.基本資料暨同意聲明
-                                                                     <a href="{{ URL::asset('/downloads/製造業_個人資料提供同意書.pdf') }}" download="製造業_個人資料提供同意書.pdf">
+                                                                     <a href="{{ URL::asset('/downloads/製造業_基本資料暨同意聲明.pdf') }}" download="製造業_基本資料暨同意聲明.pdf">
                                                                     （請點擊我下載空白文件）
                                                                      </a>
                                                                 </h5>

@@ -116,6 +116,18 @@
                                             <input type="text" class="form-control required-input" name="main_contact_phone" placeholder="電話"  @if(isset($project)) value="{{ $cust_data->contact_phone }}" @endif>
                                         </div>
                                     </div>
+                                    <label class="form-label" for="AddNew-Username"><b>請提供公司未使用的信箱帳號密碼</b><span class="text-danger">（用於收發計畫相關資料，因我們會代替客戶收取信件，以及幫忙回信給計畫辦公室，故須登入信箱）</span><span class="text-danger">*</span>
+                                        <br>※若無未使用信箱帳號密碼，可申辦一組gmail信箱，用於收發計畫相關資料</label><br>
+                                    <div class="col-md-6">
+                                        <div class="mb-4">
+                                            <input type="text" class="form-control required-input" name="receive_email" placeholder="信箱"  @if(isset($cust_data)) value="{{ $cust_data->receive_email }}" @endif>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="mb-4">
+                                            <input type="text" class="form-control required-input" name="receive_email_pwd" placeholder="密碼"  @if(isset($cust_data)) value="{{ $cust_data->receive_email_pwd }}" @endif>
+                                        </div>
+                                    </div>
                                     <hr>
                                     <div class="col-md-12 font-size-18">
                                         <label class="form-label" for="AddNew-Username">&nbsp;</label>
@@ -571,6 +583,11 @@
                                     <h2>五家被帶動的企業</h2>
                                     <p class="font-size-18">申請計畫使用</p>
                                 </div>
+                                <div class="alert alert-danger" role="alert">
+                                    1.被帶動企業主要是配合主提案商（貴公司）申請計畫。因計畫內要導入的方案，會需要主提案商跟被帶動企業都有使用到，減碳的成效在主提案商跟被帶動企業也都需要有呈現。<br>
+                                    2.被帶動企業建議提供公司的「上游廠商」、「下游廠商」、「長期合作夥伴」，請提供同一種類型的被帶動企業。根據以往經驗，以這種方式提供資訊能夠減少提案簡報時被評審提問的情況，也有助於順利核銷。ex:全部都是「上游廠商」、全部都是「下游廠商」<br>
+                                    3.被帶動企業請提供以下資料：(1)公司名稱（全名）、(2)統一編號、(3)負責人姓名（送件時需簽署個資同意書、(4)員工數<br>
+                                </div>
                                 <div class="row">
                                     <div class="col-md-12 mt-3">
                                         <h5 class="text-uppercase bg-light p-2 mt-0 mb-3">企業名單(需至少提供5家被帶動企業)</h5>
@@ -581,6 +598,7 @@
                                                         <thead>
                                                             <tr align="center">
                                                                 <th>編號</th>
+                                                                <th>上游/下游廠商<span class="text-danger">*</span></th>
                                                                 <th>名稱<span class="text-danger">*</span></th>
                                                                 <th>統一編號<span class="text-danger">*</span></th>
                                                                 <th>負責人<span class="text-danger">*</span></th>
@@ -592,6 +610,11 @@
                                                                 @foreach ($project->drive_datas as $key=>$drive_data)
                                                                     <tr id="row-{{ $key }}" >
                                                                         <td>{{$key+1}}</td>
+                                                                        <td>
+                                                                            @if($drive_data->type == 0)上游
+                                                                            @elseif($drive_data->type == 1)下游
+                                                                            @endif
+                                                                        </td>
                                                                         <td>
                                                                             {{ $drive_data->name }}
                                                                         </td>
