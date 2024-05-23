@@ -63,8 +63,12 @@
                                     <input type="text" class="form-control required-input" name="host_context" @if(isset($project_host_data)) value="{{ $project_host_data->context }}" @endif>
                                 </div>
                                 <div class="col-md-4 mt-3">
-                                    <label class="form-label" for="AddNew-Username"><b>專長/經歷</b></label>
+                                    <label class="form-label" for="AddNew-Username"><b>專長</b></label>
                                     <input type="text" class="form-control required-input" name="host_experience" @if(isset($project_host_data)) value="{{ $project_host_data->experience }}" @endif >
+                                </div>
+                                <div class="col-md-4 mt-3">
+                                    <label class="form-label" for="AddNew-Username"><b>過往經歷</b></label>
+                                    <input type="text" class="form-control required-input" name="host_past_experience" @if(isset($project_host_data)) value="{{ $project_host_data->past_experience }}" @endif >
                                 </div>
                                 <div class="col-md-4 mt-3">
                                     <label class="form-label" for="AddNew-Username"><b>電話(含分機)</b></label>
@@ -107,6 +111,10 @@
                                     <input type="text" class="form-control required-input" name="contact_experience" @if(isset($project_contact_data)) value="{{ $project_contact_data->experience }}" @endif >
                                 </div>
                                 <div class="col-md-4 mt-3">
+                                    <label class="form-label" for="AddNew-Username"><b>過往經歷</b></label>
+                                    <input type="text" class="form-control required-input" name="contact_past_experience" @if(isset($project_host_data)) value="{{ $project_host_data->past_experience }}" @endif >
+                                </div>
+                                <div class="col-md-4 mt-3">
                                     <label class="form-label" for="AddNew-Username"><b>電話(含分機)</b></label>
                                     <input type="text" class="form-control required-input" name="contact_mobile" @if(isset($project_contact_data)) value="{{ $project_contact_data->mobile }}" @endif >
                                 </div>
@@ -139,7 +147,8 @@
                                                             <th>部門<span class="text-danger">*</span></th>
                                                             <th>職稱<span class="text-danger">*</span></th>
                                                             <th>工作內容<span class="text-danger">*</span></th>
-                                                            <th>專長經歷<span class="text-danger">*</span></th>
+                                                            <th>專長<span class="text-danger">*</span></th>
+                                                            <th>過往經歷<span class="text-danger">*</span></th>
                                                             <th>實際薪資<span class="text-danger">*</span></th>
                                                             <th></th>
                                                         </tr>
@@ -163,6 +172,9 @@
                                                                     </td>
                                                                     <td>
                                                                         <input id="pay_price-{{ $key }}" class="mobile form-control required-input" type="text" name="personnel_experiences[]" value="{{ $personnel_data->experience }}">
+                                                                    </td>
+                                                                    <td>
+                                                                        <input id="pay_price-{{ $key }}" class="mobile form-control required-input" type="text" name="personnel_past_experiences[]" value="{{ $personnel_data->past_experience }}">
                                                                     </td>
                                                                     <td>
                                                                         <input id="pay_price-{{ $key }}" class="mobile form-control required-input" type="text" name="personnel_salarys[]" value="{{ $personnel_data->salary }}">
@@ -190,6 +202,9 @@
                                                                     </td>
                                                                     <td>
                                                                         <input id="pay_price-{{ $i }}" class="mobile form-control required-input" type="text" name="personnel_experiences[]" value="">
+                                                                    </td>
+                                                                    <td>
+                                                                        <input id="pay_price-{{ $i }}" class="mobile form-control required-input" type="text" name="personnel_past_experiences[]" value="">
                                                                     </td>
                                                                     <td>
                                                                         <input id="pay_price-{{ $i }}" class="mobile form-control required-input" type="text" name="personnel_salarys[]" value="">
@@ -469,19 +484,22 @@
                                             ${presonRowCount}
                                         </td>
                                         <td>
-                                            <input id="pay_date-${presonRowCount}" class="mobile form-control" type="text" name="personnel_names[]" value="" required>
+                                            <input id="pay_date-${presonRowCount}" class="mobile form-control" type="text" name="personnel_names[]" value="" >
                                         </td>
                                         <td>
-                                            <input id="department-${presonRowCount}" class="mobile form-control" type="text" name="personnel_departments[]" value="" required>
+                                            <input id="department-${presonRowCount}" class="mobile form-control" type="text" name="personnel_departments[]" value="" >
                                         </td>
                                         <td>
-                                            <input id="title-${presonRowCount}" class="mobile form-control" type="text" name="personnel_jobs[]" value="" required>
+                                            <input id="title-${presonRowCount}" class="mobile form-control" type="text" name="personnel_jobs[]" value="" >
                                         </td>
                                         <td>
-                                            <input id="title-${presonRowCount}" class="mobile form-control" type="text" name="personnel_contexts[]" value="" required>
+                                            <input id="title-${presonRowCount}" class="mobile form-control" type="text" name="personnel_contexts[]" value="" >
                                         </td>
                                         <td>
-                                            <input id="title-${presonRowCount}" class="mobile form-control" type="text" name="personnel_experiences[]" value="" required>
+                                            <input id="title-${presonRowCount}" class="mobile form-control" type="text" name="personnel_experiences[]" value="" >
+                                        </td>
+                                        <td>
+                                            <input id="title-${presonRowCount}" class="mobile form-control" type="text" name="personnel_past_experiences[]" value="" >
                                         </td>
                                         <td>
                                             <input id="pay_price-${presonRowCount}" class="mobile form-control required-input" type="text" name="personnel_salarys[]" value="">
@@ -553,16 +571,16 @@
                     expectedDeviceRowCount++;
                     var newRow = `<tr id="row-${expectedDeviceRowCount}">
                                     <td>
-                                        <input id="pay_date-${expectedDeviceRowCount}" class="mobile form-control" type="text" name="improve_names[]" value="" required>
+                                        <input id="pay_date-${expectedDeviceRowCount}" class="mobile form-control" type="text" name="improve_names[]" value="">
                                     </td>
                                     <td>
-                                        <input id="department-${expectedDeviceRowCount}" class="mobile form-control" type="text" name="improve_focuss[]" value="" required>
+                                        <input id="department-${expectedDeviceRowCount}" class="mobile form-control" type="text" name="improve_focuss[]" value="">
                                     </td>
                                     <td>
-                                        <input id="title-${expectedDeviceRowCount}" class="mobile form-control" type="text" name="improve_costs[]" value="" required>
+                                        <input id="title-${expectedDeviceRowCount}" class="mobile form-control" type="text" name="improve_costs[]" value="">
                                     </td>
                                     <td>
-                                        <input id="work_content-${expectedDeviceRowCount}" class="mobile form-control" type="text" name="improve_delegate_objects[]" value="" required>
+                                        <input id="work_content-${expectedDeviceRowCount}" class="mobile form-control" type="text" name="improve_delegate_objects[]" value="">
                                     </td>
                                     <td>
                                         <button class="mobile btn btn-danger del-row" alt="${expectedDeviceRowCount}" type="button" name="button">刪除</button>

@@ -301,6 +301,7 @@ class UserProjectController extends Controller
         $project_host->mobile = $request->host_mobile;
         $project_host->phone = $request->host_phone;
         $project_host->experience = $request->host_experience;
+        $project_host->past_experience = $request->host_past_experience;
         $project_host->email = $request->host_email;
         $project_host->salary = $request->host_salary;
         $project_host->save();
@@ -315,6 +316,7 @@ class UserProjectController extends Controller
         $project_contact->mobile = $request->contact_mobile;
         $project_contact->phone = $request->contact_phone;
         $project_contact->experience = $request->contact_experience;
+        $project_contact->past_experience = $request->contact_past_experience;
         $project_contact->email = $request->contact_email;
         $project_contact->salary = $request->contact_salary;
         $project_contact->save();
@@ -338,6 +340,7 @@ class UserProjectController extends Controller
                     $cust_personnel->job = $request->personnel_jobs[$key];
                     $cust_personnel->context = $request->personnel_contexts[$key];
                     $cust_personnel->experience = $request->personnel_experiences[$key];
+                    $cust_personnel->past_experience = $request->personnel_past_experiences[$key];
                     $cust_personnel->salary = $request->personnel_salarys[$key];
                     $cust_personnel->save();
                 }
