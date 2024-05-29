@@ -58,6 +58,6 @@ class CustProject extends Model
 
     public function project_host()
     {
-        return $this->hasOne('App\Models\ProjectHost', 'project_id', 'id');
+        return $this->hasOne('App\Models\ProjectHost', 'user_id', 'user_id');
     }
 }
