@@ -231,6 +231,18 @@
                                                         </div>
                                                     </td>
                                                 </tr>
+                                                <tr>
+                                                    <td style="width: 40px;">
+                                                        <div class="form-check font-size-16">
+                                                            <input class="form-check-input" type="checkbox" id="m_two_appendix04" name="m_two_appendix04">
+                                                            <label class="form-check-label" for="m_two_appendix04">
+                                                                <h5 class="font-size-16 m-0">
+                                                                    4.勞動部勞工保險局受理事業最近12個月平均月投保人數
+                                                                </h5>
+                                                            </label>
+                                                        </div>
+                                                    </td>
+                                                </tr>
                                             </tbody>
                                         </table>
                                     </div>
