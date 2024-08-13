@@ -562,16 +562,16 @@
                                     </select>
                                 </td>
                                 <td>
-                                    <input id="pay_date-${branchRowCount}" class="mobile form-control required-input" type="text" name="drive_names[]" value="" required>
+                                    <input id="pay_date-${branchRowCount}" class="mobile form-control required-input" type="text" name="drive_names[]" value="" >
                                 </td>
                                 <td>
-                                    <input id="department-${branchRowCount}" class="mobile form-control required-input" type="text" name="drive_numbers[]" value="" required>
+                                    <input id="department-${branchRowCount}" class="mobile form-control required-input" type="text" name="drive_numbers[]" value="" >
                                 </td>
                                 <td>
-                                    <input id="title-${branchRowCount}" class="mobile form-control required-input" type="text" name="drive_principals[]" value="" required>
+                                    <input id="title-${branchRowCount}" class="mobile form-control required-input" type="text" name="drive_principals[]" value="" >
                                 </td>
                                 <td>
-                                    <input id="work_content-${branchRowCount}" class="mobile form-control required-input" type="text" name="drive_employeecounts[]" value="" required>
+                                    <input id="work_content-${branchRowCount}" class="mobile form-control required-input" type="text" name="drive_employeecounts[]" value="" >
                                 </td>
                                 <td>
                                     <button class="mobile btn btn-danger del-row" alt="${branchRowCount}" type="button" name="button">刪除</button>
