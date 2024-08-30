@@ -209,7 +209,7 @@
                                 <div class="alert alert-danger" role="alert">
                                     1.被帶動企業主要是配合主提案商（貴公司）申請計畫。因計畫內要導入的方案，會需要主提案商跟被帶動企業都有使用到，減碳的成效在主提案商跟被帶動企業也都需要有呈現。<br>
                                     2.被帶動企業建議提供公司的「上游廠商」、「下游廠商」、「長期合作夥伴」，請提供同一種類型的被帶動企業。根據以往經驗，以這種方式提供資訊能夠減少提案簡報時被評審提問的情況，也有助於順利核銷。ex:全部都是「上游廠商」、全部都是「下游廠商」<br>
-                                    3.被帶動企業請提供以下資料：(1)公司名稱（全名）、(2)統一編號、(3)負責人姓名（送件時需簽署個資同意書、(4)員工數<br>
+                                    3.被帶動企業請提供以下資料：(1)公司名稱（全名）、(2)統一編號、(3)負責人姓名（送件時需簽署合作意向書、(4)員工數<br>
                                 </div>
                                 <div class="row">
                                     <div class="col-md-12 mt-3">
@@ -239,6 +239,7 @@
                                                                                 <option value="NULL"  @if($drive_data->type == "NULL") selected @endif>請選擇...</option>
                                                                                 <option value="0" @if($drive_data->type == 0) selected @endif>上游</option>
                                                                                 <option value="1" @if($drive_data->type == 1) selected @endif>下游</option>
+                                                                                <option value="2" @if($drive_data->type == 2) selected @endif>合作夥伴</option>
                                                                             </select>
                                                                         </td>
                                                                         <td>
@@ -268,6 +269,7 @@
                                                                                 <option value="" selected>請選擇...</option>
                                                                                 <option value="0">上游</option>
                                                                                 <option value="1">下游</option>
+                                                                                <option value="2">合作夥伴</option>
                                                                             </select>
                                                                         </td>
                                                                         <td>
@@ -563,6 +565,7 @@
                                         <option value="" selected>請選擇...</option>
                                         <option value="0">上游</option>
                                         <option value="1">下游</option>
+                                        <option value="2">合作夥伴</option>
                                     </select>
                                 </td>
                                 <td>

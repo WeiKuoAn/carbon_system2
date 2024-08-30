@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="{{ asset('build/libs/gridjs/theme/mermaid.min.css') }}">
 @endsection
 @section('page-title')
-    商業服務業-預覽內容【{{ $cust_data->user_data->name }}】
+    商業服務業-匯出內容【{{ $cust_data->user_data->name }}】
 @endsection
 @section('body')
 

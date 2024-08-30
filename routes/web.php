@@ -46,7 +46,7 @@ Route::group(['middleware' => ['session.expire']], function () {
     Route::get('project/business-create', [App\Http\Controllers\ProjectController::class,'BusinessCreate'])->name('project.business.create');
     Route::post('project/business-create', [App\Http\Controllers\ProjectController::class,'BusinessStore'])->name('project.business.store');
     Route::get('project/business-preview', [App\Http\Controllers\ProjectController::class,'BusinessPreview'])->name('project.business.preview');
-
+    
     Route::get('project/manufacturing-create', [App\Http\Controllers\ProjectController::class,'ManufacturingCreate'])->name('project.Manufacturing.create');
     Route::post('project/manufacturing-create', [App\Http\Controllers\ProjectController::class,'ManufacturingStore'])->name('project.Manufacturing.store');
     Route::get('project/manufacturing-preview', [App\Http\Controllers\ProjectController::class,'ManufacturingPreview'])->name('project.manufacturing.preview');
@@ -66,6 +66,8 @@ Route::group(['middleware' => ['session.expire']], function () {
 
     Route::get('project/{id}/business-preview', [App\Http\Controllers\UserProjectController::class,'BusinessPreview'])->name('user.project.business.preview');
     Route::get('project/{id}/manufacturing-preview', [App\Http\Controllers\UserProjectController::class,'ManufacturingPreview'])->name('user.project.Manufacturing.preview');
+    Route::get('project/{id}/business-export-word', [App\Http\Controllers\UserProjectController::class,'BusinessExportWord'])->name('business-export-word');
+    Route::get('project/{id}/export-word', [App\Http\Controllers\UserProjectController::class, 'exportWord'])->name('exportWord');
 
     Route::get('project/business-appendix', [App\Http\Controllers\ProjectController::class,'BusinessAppendix'])->name('project.business.appendix');
     Route::get('project/manufacturing-appendix', [App\Http\Controllers\ProjectController::class,'ManufacturingAppendix'])->name('project.manufacturing.appendix');

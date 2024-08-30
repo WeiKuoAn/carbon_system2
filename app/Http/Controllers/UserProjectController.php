@@ -24,6 +24,9 @@ use App\Models\ManufactureThreeIncome;
 use App\Models\ManufactureIso;
 use SebastianBergmann\CodeCoverage\Report\Xml\Project;
 use Illuminate\Support\Facades\Auth;
+use PhpOffice\PhpWord\PhpWord;
+use PhpOffice\PhpWord\IOFactory;
+use PhpOffice\PhpWord\TemplateProcessor; // 確保引入正確的類別
 
 class UserProjectController extends Controller
 {
@@ -221,6 +224,70 @@ class UserProjectController extends Controller
                                               ->with('cust_data',$cust_data)
                                               ->with('years',$years);
     }
+
+    public function BusinessExportWord($id)
+    {
+        $years = [];
+        $now = Carbon::now();
+
+        for ($i = 1; $i <= 3; $i++) {
+            $years[] = $now->copy()->subYears($i)->year;
+        }
+        $cust_data = CustData::where('user_id',$id)->first();
+        $project = CustProject::where('user_id',$id)->where('type',0)->first();
+        $project_host_data = ProjectHost::where('user_id',$id)->first();
+        $project_contact_data = ProjectContact::where('user_id',$id)->first();
+        return view('admin-project.business-export')->with('project', $project)
+                                              ->with('project_host_data',$project_host_data)
+                                              ->with('project_contact_data',$project_contact_data)
+                                              ->with('cust_data',$cust_data)
+                                              ->with('years',$years);
+    }
+
+    public function exportWord($id)
+    {
+        // 加載 Word 模板
+        $templateProcessor = new TemplateProcessor(storage_path('app/docx/公版-商業服務業計畫書.docx'));
+
+        // 獲取客戶資料
+        $cust_data = CustData::where('user_id', $id)->first();
+        
+        // 確保 $cust_data 存在
+        if (!$cust_data) {
+            return response()->json(['error' => '客戶資料未找到'], 404);
+        }
+
+         // 假設我們有一個項目列表來填充表格
+        $projects = [
+            ['id' => 1, 'name' => '項目一', 'description' => '描述一'],
+            ['id' => 2, 'name' => '項目二', 'description' => '描述二'],
+            ['id' => 3, 'name' => '項目三', 'description' => '描述三'],
+        ];
+
+        // 替換普通佔位符
+        $templateProcessor->setValue('project_name', 'John Doe');
+        $templateProcessor->setValue('name', $cust_data->contact_name);
+        $templateProcessor->setValue('date_time', date('Y-m-d'));
+
+        // 動態生成表格行
+        $templateProcessor->cloneRow('table1.id', count($projects));
+
+        foreach ($projects as $index => $project) {
+            $rowIndex = $index + 1;
+            $templateProcessor->setValue("table1.id#{$rowIndex}", $project['id']);
+            $templateProcessor->setValue("table1.name#{$rowIndex}", $project['name']);
+            $templateProcessor->setValue("table1.description#{$rowIndex}", $project['description']);
+        }
+
+        // 保存修改後的文件到暫存路徑
+        $fileName = 'exported_file_' . time() . '.docx';
+        $tempFilePath = tempnam(sys_get_temp_dir(), 'phpword') . '.docx';
+        $templateProcessor->saveAs($tempFilePath);
+
+        // 將文件作為下載返回，並在傳送後刪除臨時文件
+        return response()->download($tempFilePath, $fileName)->deleteFileAfterSend(true);
+    }
+
 
     public function ManufacturingPreview($id)
     {
