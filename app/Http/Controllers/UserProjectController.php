@@ -840,7 +840,7 @@ class UserProjectController extends Controller
         $templateProcessor->setValue('host_month', $project_host_data->month ?? '');  
         $templateProcessor->setValue('contact_name', $project_contact_data->name ?? ''); 
         $templateProcessor->setValue('contact_job', $project_contact_data->job ?? ''); 
-        $templateProcessor->setValue('contactt_month', $project_contact_data->month ?? '');  
+        $templateProcessor->setValue('contact_month', $project_contact_data->month ?? '');  
 
         $personnel_datas = ProjectPersonnel::where('project_id', $project->id)->get();
         $templateProcessor->cloneRow('personnel_name', count($personnel_datas));
@@ -959,6 +959,7 @@ class UserProjectController extends Controller
             $templateProcessor->setValue("planned_item#{$rowIndex}",$planned_data['item'] ?? '');
         }
 
+        $templateProcessor->setValue("checkpoint", $word_data->checkpoint  ?? '');
 
         $check_datas = WordCheck::where('user_id', $id)->where('project_id',$project->id)->get();
         $templateProcessor->cloneRow('check_item', count($check_datas));
