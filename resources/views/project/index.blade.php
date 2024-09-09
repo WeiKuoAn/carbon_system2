@@ -135,13 +135,13 @@
                                                             href="{{ route('user.project.Manufacturing.preview',$data->user_id) }}"
                                                         @endif
                                                         >預覽</a>
-                                                        {{-- <a class="dropdown-item"
-                                                        @if($data->type == 0)
-                                                            href="{{ route('business-export-word',$data->user_id) }}"
-                                                        @elseif($data->type == 1)
-                                                            href="{{ route('user.project.Manufacturing.preview',$data->user_id) }}"
-                                                        @endif
-                                                        >填寫計畫內容</a> --}}
+                                                        <a class="dropdown-item"
+                                                            @if($data->type == 0)
+                                                                href="{{ route('business-export-word',$data->user_id) }}"
+                                                            @elseif($data->type == 1)
+                                                                href="{{ route('user.project.Manufacturing.preview',$data->user_id) }}"
+                                                            @endif
+                                                        >填寫計畫內容</a>
                                                     </div>
                                                 </li>
                                             </ul>
