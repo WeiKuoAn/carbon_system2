@@ -944,6 +944,10 @@ class UserProjectController extends Controller
         //     // 直接设置为字符串
         //     $templateProcessor->setValue("fund_$i", $value);
         // }
+        // 處理 context 的換行符
+        // $fund_context = nl2br($word_fund['context']); 
+        // $fund_context = str_replace("<br />", '<w:br/>', $fund_context);
+        // $templateProcessor->setValue('fund_context', $fund_context);
 
         $planned_datas = WordPlanned::where('user_id', $id)->where('project_id',$project->id)->get();
         $templateProcessor->cloneRow('planned_item', count($planned_datas));
@@ -973,10 +977,7 @@ class UserProjectController extends Controller
 
 
 
-        // 處理 context 的換行符
-        $fund_context = nl2br($word_fund['context']); 
-        $fund_context = str_replace("<br />", '<w:br/>', $fund_context);
-        $templateProcessor->setValue('fund_context', $fund_context);
+        
 
         
 
