@@ -728,152 +728,152 @@ class UserProjectController extends Controller
         $templateProcessor->setValue('project_contact_phone', $project_contact_data->phone); 
         $templateProcessor->setValue('project_contact_email', $project_contact_data->email);         
 
-        // CKEditor 的 HTML 內容
-        $introduction = $word_data->introduction;
-        $project_summary = $word_data->project_summary;
-        $face = $word_data->face;
-        $growth_face = $word_data->growth_face;
-        $organization_relationship = $word_data->organization_relationship;
-        $application_solution = $word_data->application_solution;
-        // 將多個內容變數放入一個陣列
-        $contentArray = [$introduction, $project_summary,$face,$growth_face,$organization_relationship,$application_solution];
-        // 初始化一個空陣列來存放處理後的內容
-        $textContents = [];
-        foreach ($contentArray as $content) {
-            // 使用空白行進行斷行處理，將兩個換行符轉換為 Word 中的換行符
-            $processedContent = str_replace("\n\n", '</w:t><w:br/><w:t>', $content);
-            // 將單一換行符轉換為 Word 中的換行符
-            $processedContent = str_replace("\n", '</w:t><w:br/><w:t>', $processedContent);
-            // 將處理後的內容加入結果陣列中
-            $textContents[] = $processedContent;
-        }
+    //     // CKEditor 的 HTML 內容
+    //     $introduction = $word_data->introduction;
+    //     $project_summary = $word_data->project_summary;
+    //     $face = $word_data->face;
+    //     $growth_face = $word_data->growth_face;
+    //     $organization_relationship = $word_data->organization_relationship;
+    //     $application_solution = $word_data->application_solution;
+    //     // 將多個內容變數放入一個陣列
+    //     $contentArray = [$introduction, $project_summary,$face,$growth_face,$organization_relationship,$application_solution];
+    //     // 初始化一個空陣列來存放處理後的內容
+    //     $textContents = [];
+    //     foreach ($contentArray as $content) {
+    //         // 使用空白行進行斷行處理，將兩個換行符轉換為 Word 中的換行符
+    //         $processedContent = str_replace("\n\n", '</w:t><w:br/><w:t>', $content);
+    //         // 將單一換行符轉換為 Word 中的換行符
+    //         $processedContent = str_replace("\n", '</w:t><w:br/><w:t>', $processedContent);
+    //         // 將處理後的內容加入結果陣列中
+    //         $textContents[] = $processedContent;
+    //     }
 
-        $templateProcessor->setValue('introduction', $textContents[0]);//公司基本介紹
-        $templateProcessor->setValue('project_summary', $textContents[1]);//計畫摘要
-        $templateProcessor->setValue('face', $textContents[2]);//企業面臨問題
-        $templateProcessor->setValue('growth_face', $textContents[3]);//待精進/成長之面向
+    //     $templateProcessor->setValue('introduction', $textContents[0]);//公司基本介紹
+    //     $templateProcessor->setValue('project_summary', $textContents[1]);//計畫摘要
+    //     $templateProcessor->setValue('face', $textContents[2]);//企業面臨問題
+    //     $templateProcessor->setValue('growth_face', $textContents[3]);//待精進/成長之面向
 
-        //part4人事與拜帶動企業
+    //     //part4人事與拜帶動企業
         
-        $templateProcessor->setValue('drive.application_solution', $textContents[5]);//待精進/成長之面向
+    //     $templateProcessor->setValue('drive.application_solution', $textContents[5]);//待精進/成長之面向
 
 
-         // 動態生成表格行
-         $templateProcessor->cloneRow('question.id', count($word_questions));
-         foreach ($word_questions as $key => $word_question) {
-            $rowIndex = $key + 1;
+    //      // 動態生成表格行
+    //      $templateProcessor->cloneRow('question.id', count($word_questions));
+    //      foreach ($word_questions as $key => $word_question) {
+    //         $rowIndex = $key + 1;
             
-            // 處理問題的換行符號
-            $question = nl2br($word_question['question']); // 將換行符號轉換為 <br /> 標籤
-            $question = str_replace("<br />", '<w:br/>', $question); // 將 <br /> 轉換為 Word 的換行符號
+    //         // 處理問題的換行符號
+    //         $question = nl2br($word_question['question']); // 將換行符號轉換為 <br /> 標籤
+    //         $question = str_replace("<br />", '<w:br/>', $question); // 將 <br /> 轉換為 Word 的換行符號
         
-            // 處理說明的換行符號
-            $illustrate = nl2br($word_question['illustrate']); // 將換行符號轉換為 <br /> 標籤
-            $illustrate = str_replace("<br />", '<w:br/>', $illustrate); // 將 <br /> 轉換為 Word 的換行符號
+    //         // 處理說明的換行符號
+    //         $illustrate = nl2br($word_question['illustrate']); // 將換行符號轉換為 <br /> 標籤
+    //         $illustrate = str_replace("<br />", '<w:br/>', $illustrate); // 將 <br /> 轉換為 Word 的換行符號
             
-            // 將每一個問題的對應數據填充到模板中
-            $templateProcessor->setValue("question.id#{$rowIndex}", $rowIndex); // 動態生成行號
-            $templateProcessor->setValue("question.question#{$rowIndex}", $question); // 問題
-            $templateProcessor->setValue("question.solution_id#{$rowIndex}", $rowIndex); // 動態生成解決方案 ID
-            $templateProcessor->setValue("question.solution#{$rowIndex}", $word_question['solution']); // 解決方案
-            $templateProcessor->setValue("question.illustrate#{$rowIndex}", $illustrate); // 處理過的說明
-            $templateProcessor->setValue("question.solution_img#{$rowIndex}", $word_question['solution']); // 解決方案圖片
-        }
+    //         // 將每一個問題的對應數據填充到模板中
+    //         $templateProcessor->setValue("question.id#{$rowIndex}", $rowIndex); // 動態生成行號
+    //         $templateProcessor->setValue("question.question#{$rowIndex}", $question); // 問題
+    //         $templateProcessor->setValue("question.solution_id#{$rowIndex}", $rowIndex); // 動態生成解決方案 ID
+    //         $templateProcessor->setValue("question.solution#{$rowIndex}", $word_question['solution']); // 解決方案
+    //         $templateProcessor->setValue("question.illustrate#{$rowIndex}", $illustrate); // 處理過的說明
+    //         $templateProcessor->setValue("question.solution_img#{$rowIndex}", $word_question['solution']); // 解決方案圖片
+    //     }
 
-        $word_plans = WordPlan::where('user_id', $id)->where('project_id',$project->id)->get();
-        $templateProcessor->cloneRow('plan.name', count($word_plans));
+    //     $word_plans = WordPlan::where('user_id', $id)->where('project_id',$project->id)->get();
+    //     $templateProcessor->cloneRow('plan.name', count($word_plans));
 
-        foreach ($word_plans as $key => $word_plan) {
-           $rowIndex = $key + 1;
-           // 處理問題的換行符號
-           $plan_name = nl2br($word_plan['name']); 
-           $plan_name = str_replace("<br />", '<w:br/>', $plan_name);
-           $plan_description = nl2br($word_plan['description']); 
-           $plan_description = str_replace("<br />", '<w:br/>', $plan_description);
-           $plan_reduction_item = nl2br($word_plan['reduction_item']); 
-           $plan_reduction_item = str_replace("<br />", '<w:br/>', $plan_reduction_item);
+    //     foreach ($word_plans as $key => $word_plan) {
+    //        $rowIndex = $key + 1;
+    //        // 處理問題的換行符號
+    //        $plan_name = nl2br($word_plan['name']); 
+    //        $plan_name = str_replace("<br />", '<w:br/>', $plan_name);
+    //        $plan_description = nl2br($word_plan['description']); 
+    //        $plan_description = str_replace("<br />", '<w:br/>', $plan_description);
+    //        $plan_reduction_item = nl2br($word_plan['reduction_item']); 
+    //        $plan_reduction_item = str_replace("<br />", '<w:br/>', $plan_reduction_item);
            
-           // 將每一個問題的對應數據填充到模板中
-           $templateProcessor->setValue("plan.name#{$rowIndex}", $plan_name); // 動態生成行號
-           $templateProcessor->setValue("plan.description#{$rowIndex}", $plan_description); // 問題
-           $templateProcessor->setValue("plan.reduction_item#{$rowIndex}", $plan_reduction_item); // 動態生成解決方案 ID
-           $templateProcessor->setValue("plan.method#{$rowIndex}", $word_plan['method']); // 解決方案
-       }
+    //        // 將每一個問題的對應數據填充到模板中
+    //        $templateProcessor->setValue("plan.name#{$rowIndex}", $plan_name); // 動態生成行號
+    //        $templateProcessor->setValue("plan.description#{$rowIndex}", $plan_description); // 問題
+    //        $templateProcessor->setValue("plan.reduction_item#{$rowIndex}", $plan_reduction_item); // 動態生成解決方案 ID
+    //        $templateProcessor->setValue("plan.method#{$rowIndex}", $word_plan['method']); // 解決方案
+    //    }
 
-       $drive_datas = BusinessDrive::where('user_id', $id)->where('project_id',$project->id)->get();
-       $templateProcessor->cloneRow('drive.name', count($drive_datas));
-       foreach ($drive_datas as $key => $drive_data) {
-            $rowIndex = $key + 1;
-            $type = '';
-            if($drive_data->type=='0'){
-                $type = "上游";
-            }else if($drive_data->type=='1'){
-                $type = "下游";
-            }else{
-                $type = "合作";
-            }
-            // 將每一個問題的對應數據填充到模板中
-            $templateProcessor->setValue("drive.name#{$rowIndex}", $drive_data['name']);
-            $templateProcessor->setValue("drive.organization_relationship#{$rowIndex}", "主提案商之".$type."廠商");//企業面臨問題
-        }
+    //    $drive_datas = BusinessDrive::where('user_id', $id)->where('project_id',$project->id)->get();
+    //    $templateProcessor->cloneRow('drive.name', count($drive_datas));
+    //    foreach ($drive_datas as $key => $drive_data) {
+    //         $rowIndex = $key + 1;
+    //         $type = '';
+    //         if($drive_data->type=='0'){
+    //             $type = "上游";
+    //         }else if($drive_data->type=='1'){
+    //             $type = "下游";
+    //         }else{
+    //             $type = "合作";
+    //         }
+    //         // 將每一個問題的對應數據填充到模板中
+    //         $templateProcessor->setValue("drive.name#{$rowIndex}", $drive_data['name']);
+    //         $templateProcessor->setValue("drive.organization_relationship#{$rowIndex}", "主提案商之".$type."廠商");//企業面臨問題
+    //     }
 
-        $templateProcessor->cloneRow('drive.name_list', count($drive_datas));
-        foreach ($drive_datas as $key => $drive_data) {
-            $rowIndex = $key + 1;
-            // 將每一個問題的對應數據填充到模板中
-            $templateProcessor->setValue("drive.name_list#{$rowIndex}", $drive_data['name']);
-            $templateProcessor->setValue("drive.brand_name#{$rowIndex}", $drive_data['brand_name']);
-            $templateProcessor->setValue("drive.principal#{$rowIndex}", $drive_data['principal']);
-            $templateProcessor->setValue("drive.industry#{$rowIndex}", $drive_data['industry']);
-            $templateProcessor->setValue("drive.city#{$rowIndex}", $drive_data['city']);
-            $templateProcessor->setValue("drive.employeecount#{$rowIndex}", $drive_data['employeecount']);
-            $templateProcessor->setValue("drive.numbers#{$rowIndex}", $drive_data['numbers']);
-        }
+    //     $templateProcessor->cloneRow('drive.name_list', count($drive_datas));
+    //     foreach ($drive_datas as $key => $drive_data) {
+    //         $rowIndex = $key + 1;
+    //         // 將每一個問題的對應數據填充到模板中
+    //         $templateProcessor->setValue("drive.name_list#{$rowIndex}", $drive_data['name']);
+    //         $templateProcessor->setValue("drive.brand_name#{$rowIndex}", $drive_data['brand_name']);
+    //         $templateProcessor->setValue("drive.principal#{$rowIndex}", $drive_data['principal']);
+    //         $templateProcessor->setValue("drive.industry#{$rowIndex}", $drive_data['industry']);
+    //         $templateProcessor->setValue("drive.city#{$rowIndex}", $drive_data['city']);
+    //         $templateProcessor->setValue("drive.employeecount#{$rowIndex}", $drive_data['employeecount']);
+    //         $templateProcessor->setValue("drive.numbers#{$rowIndex}", $drive_data['numbers']);
+    //     }
 
-        //part4人事
-        $templateProcessor->setValue('company_name', $user_data->name); 
-        $templateProcessor->setValue('host_name', $project_host_data->name); 
-        $templateProcessor->setValue('host_job', $project_host_data->job);  
-        $templateProcessor->setValue('host_month', $project_host_data->month);  
-        $templateProcessor->setValue('contact_name', $project_contact_data->name); 
-        $templateProcessor->setValue('contact_job', $project_contact_data->job); 
-        $templateProcessor->setValue('contactt_month', $project_contact_data->month);  
+    //     //part4人事
+    //     $templateProcessor->setValue('company_name', $user_data->name); 
+    //     $templateProcessor->setValue('host_name', $project_host_data->name); 
+    //     $templateProcessor->setValue('host_job', $project_host_data->job);  
+    //     $templateProcessor->setValue('host_month', $project_host_data->month);  
+    //     $templateProcessor->setValue('contact_name', $project_contact_data->name); 
+    //     $templateProcessor->setValue('contact_job', $project_contact_data->job); 
+    //     $templateProcessor->setValue('contactt_month', $project_contact_data->month);  
 
-        $personnel_datas = ProjectPersonnel::where('project_id',$project->id)->get();
-        $templateProcessor->cloneRow('personnel_name', count($personnel_datas));
-        foreach ($personnel_datas as $key => $personnel_data) {
-            $rowIndex = $key + 1;
-            // 將每一個問題的對應數據填充到模板中
-            $templateProcessor->setValue("personnel_name#{$rowIndex}", $personnel_data['name']);
-            $templateProcessor->setValue("personnel_job#{$rowIndex}", $personnel_data['job']);
-            $templateProcessor->setValue("personnel_month#{$rowIndex}", $personnel_data['month']);
-        }
+    //     $personnel_datas = ProjectPersonnel::where('project_id',$project->id)->get();
+    //     $templateProcessor->cloneRow('personnel_name', count($personnel_datas));
+    //     foreach ($personnel_datas as $key => $personnel_data) {
+    //         $rowIndex = $key + 1;
+    //         // 將每一個問題的對應數據填充到模板中
+    //         $templateProcessor->setValue("personnel_name#{$rowIndex}", $personnel_data['name']);
+    //         $templateProcessor->setValue("personnel_job#{$rowIndex}", $personnel_data['job']);
+    //         $templateProcessor->setValue("personnel_month#{$rowIndex}", $personnel_data['month']);
+    //     }
         
-        $partner_datas = WordPartner::where('project_id',$project->id)->get();
-        $templateProcessor->cloneRow('partner_name', count($partner_datas));
-        foreach ($partner_datas as $key => $partner_data) {
-            $rowIndex = $key + 1;
-            // 將每一個問題的對應數據填充到模板中
-            $templateProcessor->setValue("partner_name#{$rowIndex}", $partner_data['name']);
-            $templateProcessor->setValue("partner_job_content#{$rowIndex}", $partner_data['job_content']);
-        }
+    //     $partner_datas = WordPartner::where('project_id',$project->id)->get();
+    //     $templateProcessor->cloneRow('partner_name', count($partner_datas));
+    //     foreach ($partner_datas as $key => $partner_data) {
+    //         $rowIndex = $key + 1;
+    //         // 將每一個問題的對應數據填充到模板中
+    //         $templateProcessor->setValue("partner_name#{$rowIndex}", $partner_data['name']);
+    //         $templateProcessor->setValue("partner_job_content#{$rowIndex}", $partner_data['job_content']);
+    //     }
 
-        //part5
-        $effectiveness_datas = WordEffectiveness::where('user_id', $id)->where('project_id',$project->id)->get();
-        $templateProcessor->cloneRow('effectiveness_kpi', count($effectiveness_datas));
-        foreach ($effectiveness_datas as $key => $effectiveness_data) {
-            $rowIndex = $key + 1;
-            // 將每一個問題的對應數據填充到模板中
-            $kpi = nl2br($effectiveness_data['kpi']); 
-            $kpi = str_replace("<br />", '<w:br/>', $kpi);
-            $goal = nl2br($effectiveness_data['goal']); 
-            $goal = str_replace("<br />", '<w:br/>', $goal);
-            $definition = nl2br($effectiveness_data['definition']); 
-            $definition = str_replace("<br />", '<w:br/>', $definition);   
-            $templateProcessor->setValue("effectiveness_kpi#{$rowIndex}", $kpi);
-            $templateProcessor->setValue("effectiveness_goal#{$rowIndex}", $goal);
-            $templateProcessor->setValue("effectiveness_definition#{$rowIndex}", $definition);
-        }
+    //     //part5
+    //     $effectiveness_datas = WordEffectiveness::where('user_id', $id)->where('project_id',$project->id)->get();
+    //     $templateProcessor->cloneRow('effectiveness_kpi', count($effectiveness_datas));
+    //     foreach ($effectiveness_datas as $key => $effectiveness_data) {
+    //         $rowIndex = $key + 1;
+    //         // 將每一個問題的對應數據填充到模板中
+    //         $kpi = nl2br($effectiveness_data['kpi']); 
+    //         $kpi = str_replace("<br />", '<w:br/>', $kpi);
+    //         $goal = nl2br($effectiveness_data['goal']); 
+    //         $goal = str_replace("<br />", '<w:br/>', $goal);
+    //         $definition = nl2br($effectiveness_data['definition']); 
+    //         $definition = str_replace("<br />", '<w:br/>', $definition);   
+    //         $templateProcessor->setValue("effectiveness_kpi#{$rowIndex}", $kpi);
+    //         $templateProcessor->setValue("effectiveness_goal#{$rowIndex}", $goal);
+    //         $templateProcessor->setValue("effectiveness_definition#{$rowIndex}", $definition);
+    //     }
 
         // $reduction_datas = WordReductionItem::where('user_id', $id)->where('project_id',$project->id)->get();
         // $templateProcessor->cloneRow('reduction_item', count($effectiveness_datas));
@@ -949,31 +949,31 @@ class UserProjectController extends Controller
         // $fund_context = str_replace("<br />", '<w:br/>', $fund_context);
         // $templateProcessor->setValue('fund_context', $fund_context);
 
-        $planned_datas = WordPlanned::where('user_id', $id)->where('project_id',$project->id)->get();
-        $templateProcessor->cloneRow('planned_item', count($planned_datas));
-        foreach ($planned_datas as $key => $planned_data) {
-            $rowIndex = $key + 1;
-            // 將每一個問題的對應數據填充到模板中
-            $templateProcessor->setValue("planned_item#{$rowIndex}",$planned_data['item']);
-        }
+        // $planned_datas = WordPlanned::where('user_id', $id)->where('project_id',$project->id)->get();
+        // $templateProcessor->cloneRow('planned_item', count($planned_datas));
+        // foreach ($planned_datas as $key => $planned_data) {
+        //     $rowIndex = $key + 1;
+        //     // 將每一個問題的對應數據填充到模板中
+        //     $templateProcessor->setValue("planned_item#{$rowIndex}",$planned_data['item']);
+        // }
 
 
-        $check_datas = WordCheck::where('user_id', $id)->where('project_id',$project->id)->get();
-        $templateProcessor->cloneRow('check_item', count($check_datas));
-        foreach ($check_datas as $key => $check_datas) {
-            $rowIndex = $key + 1;
-            // 將每一個問題的對應數據填充到模板中
-            $item = nl2br($check_datas['item']); 
-            $item = str_replace("<br />", '<w:br/>', $item);
-            $audit_data = nl2br($check_datas['audit_data']); 
-            $audit_data = str_replace("<br />", '<w:br/>', $audit_data);
-            $templateProcessor->setValue("check_item#{$rowIndex}", $item);
-            $templateProcessor->setValue("check_estimated#{$rowIndex}",$check_datas['estimated']);
-            $templateProcessor->setValue("check_midterm_checkpoint#{$rowIndex}",$check_datas['midterm_checkpoint']);
-            $templateProcessor->setValue("check_final_checkpoint#{$rowIndex}",$check_datas['final_checkpoint']);
-            $templateProcessor->setValue("check_proportion#{$rowIndex}",$check_datas['proportion']);
-            $templateProcessor->setValue("check_audit_data#{$rowIndex}", $audit_data);
-        }
+        // $check_datas = WordCheck::where('user_id', $id)->where('project_id',$project->id)->get();
+        // $templateProcessor->cloneRow('check_item', count($check_datas));
+        // foreach ($check_datas as $key => $check_datas) {
+        //     $rowIndex = $key + 1;
+        //     // 將每一個問題的對應數據填充到模板中
+        //     $item = nl2br($check_datas['item']); 
+        //     $item = str_replace("<br />", '<w:br/>', $item);
+        //     $audit_data = nl2br($check_datas['audit_data']); 
+        //     $audit_data = str_replace("<br />", '<w:br/>', $audit_data);
+        //     $templateProcessor->setValue("check_item#{$rowIndex}", $item);
+        //     $templateProcessor->setValue("check_estimated#{$rowIndex}",$check_datas['estimated']);
+        //     $templateProcessor->setValue("check_midterm_checkpoint#{$rowIndex}",$check_datas['midterm_checkpoint']);
+        //     $templateProcessor->setValue("check_final_checkpoint#{$rowIndex}",$check_datas['final_checkpoint']);
+        //     $templateProcessor->setValue("check_proportion#{$rowIndex}",$check_datas['proportion']);
+        //     $templateProcessor->setValue("check_audit_data#{$rowIndex}", $audit_data);
+        // }
 
 
 
@@ -987,9 +987,6 @@ class UserProjectController extends Controller
         $tempFilePath = tempnam(sys_get_temp_dir(), 'phpword') . '.docx';
         $templateProcessor->saveAs($tempFilePath);
 
-        // 將文件作為下載返回，並在傳送後刪除臨時文件
-        return response()->download($tempFilePath, $fileName)->deleteFileAfterSend(true);
-            
         // 將文件作為下載返回，並在傳送後刪除臨時文件
         return response()->download($tempFilePath, $fileName)->deleteFileAfterSend(true);
     }
