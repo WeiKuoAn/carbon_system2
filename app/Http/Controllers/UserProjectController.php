@@ -683,58 +683,59 @@ class UserProjectController extends Controller
         }
 
         //part0.封面
-        $templateProcessor->setValue('home_project_name', $word_data->project_name);//計畫名稱
-        $templateProcessor->setValue('home_name', $user_data->name);//公司名稱
-        //part1.提案企業資料 
-        $templateProcessor->setValue('name', $user_data->name);//公司名稱
-        $templateProcessor->setValue('registration_no',$cust_data->registration_no);//統編
-        $templateProcessor->setValue('principal_name', $cust_data->principal_name);//公司負責人
-        $templateProcessor->setValue('last_year_revenue', number_format($cust_data->last_year_revenue));//前一年營收
-        $templateProcessor->setValue('address', $cust_data->county.$cust_data->district.$cust_data->address);//聯絡地址
-        $templateProcessor->setValue('insurance_total', $cust_data->insurance_total);//員工人數
-        $templateProcessor->setValue('mobile', $word_data->mobile); // 手機
-        $templateProcessor->setValue('fax', $word_data->fax); // 傳真
-        $templateProcessor->setValue('website', $word_data->website); // 手機
-        $templateProcessor->setValue('principal_job', $word_data->principal_job); // 負責人職位
-        $templateProcessor->setValue('principal_sex', $word_data->principal_sex); // 負責人性別
-        $templateProcessor->setValue('startup', $word_data->startup); // 是否為新創
-        $templateProcessor->setValue('business_activities', $word_data->business_activities); // 主要營業項目
-        $templateProcessor->setValue('industry_category', $word_data->industry_category); // 產業領域
-        $templateProcessor->setValue('create_date', $word_data->create_date); // 核准設立日期
+        $templateProcessor->setValue('home_project_name', $word_data->project_name ?? ' '); // 計畫名稱
+        $templateProcessor->setValue('home_name', $user_data->name ?? ' '); // 公司名稱
+        // part1.提案企業資料
+        $templateProcessor->setValue('name', $user_data->name ?? ' '); // 公司名稱
+        $templateProcessor->setValue('registration_no', $cust_data->registration_no ?? ' '); // 統編
+        $templateProcessor->setValue('principal_name', $cust_data->principal_name ?? ' '); // 公司負責人
+        $templateProcessor->setValue('last_year_revenue', number_format($cust_data->last_year_revenue ?? 0)); // 前一年營收
+        $templateProcessor->setValue('address', ($cust_data->county ?? '') . ($cust_data->district ?? '') . ($cust_data->address ?? ' ')); // 聯絡地址
+        $templateProcessor->setValue('insurance_total', $cust_data->insurance_total ?? ' '); // 員工人數
+        $templateProcessor->setValue('mobile', $word_data->mobile ?? ' '); // 手機
+        $templateProcessor->setValue('fax', $word_data->fax ?? ' '); // 傳真
+        $templateProcessor->setValue('website', $word_data->website ?? ' '); // 網站
+        $templateProcessor->setValue('principal_job', $word_data->principal_job ?? ' '); // 負責人職位
+        $templateProcessor->setValue('principal_sex', $word_data->principal_sex ?? ' '); // 負責人性別
+        $templateProcessor->setValue('startup', $word_data->startup ?? ' '); // 是否為新創
+        $templateProcessor->setValue('business_activities', $word_data->business_activities ?? ' '); // 主要營業項目
+        $templateProcessor->setValue('industry_category', $word_data->industry_category ?? ' '); // 產業領域
+        $templateProcessor->setValue('create_date', $word_data->create_date ?? ' '); // 核准設立日期
 
-        //part2.計畫綱要
-        $project_start = $word_data->project_start; 
-        $project_end = $word_data->project_end; 
+        // part2.計畫綱要
+        $project_start = $word_data->project_start ?? ' ';
+        $project_end = $word_data->project_end ?? ' ';
         $roc_project_start = $this->convertToRocDate($project_start);
         $roc_project_end = $this->convertToRocDate($project_end);
-        $project_start = $word_data->project_start;
-        $templateProcessor->setValue('project_name', $word_data->project_name); // 計畫名稱
+
+        $templateProcessor->setValue('project_name', $word_data->project_name ?? ' '); // 計畫名稱
         $templateProcessor->setValue('project_start', $roc_project_start); // 計畫開始日期
         $templateProcessor->setValue('project_end', $roc_project_end); // 計畫結束日期
-        $templateProcessor->setValue('total', number_format($word_data->total)); // 總經費
-        $templateProcessor->setValue('subsidy', number_format($word_data->subsidy)); // 補助款
-        $templateProcessor->setValue('self_funding', number_format($word_data->self_funding)); // 自籌款
-        $templateProcessor->setValue('partner', $word_data->partner); // 合作單位
-        $templateProcessor->setValue('project_host_name', $project_host_data->name); // 計畫主持人
-        $templateProcessor->setValue('project_host_department', $project_host_data->department); 
-        $templateProcessor->setValue('project_host_job', $project_host_data->job); 
-        $templateProcessor->setValue('project_host_mobile', $project_host_data->mobile); 
-        $templateProcessor->setValue('project_host_phone', $project_host_data->phone); 
-        $templateProcessor->setValue('project_host_email', $project_host_data->email); 
-        $templateProcessor->setValue('project_contact_name', $project_contact_data->name); // 計畫主持人
-        $templateProcessor->setValue('project_contact_department', $project_contact_data->department); 
-        $templateProcessor->setValue('project_contact_job', $project_contact_data->job); 
-        $templateProcessor->setValue('project_contact_mobile', $project_contact_data->mobile); 
-        $templateProcessor->setValue('project_contact_phone', $project_contact_data->phone); 
-        $templateProcessor->setValue('project_contact_email', $project_contact_data->email);         
+        $templateProcessor->setValue('total', number_format($word_data->total ?? 0)); // 總經費
+        $templateProcessor->setValue('subsidy', number_format($word_data->subsidy ?? 0)); // 補助款
+        $templateProcessor->setValue('self_funding', number_format($word_data->self_funding ?? 0)); // 自籌款
+        $templateProcessor->setValue('partner', $word_data->partner ?? ' '); // 合作單位
+        $templateProcessor->setValue('project_host_name', $project_host_data->name ?? ' '); // 計畫主持人
+        $templateProcessor->setValue('project_host_department', $project_host_data->department ?? ' ');
+        $templateProcessor->setValue('project_host_job', $project_host_data->job ?? ' ');
+        $templateProcessor->setValue('project_host_mobile', $project_host_data->mobile ?? ' ');
+        $templateProcessor->setValue('project_host_phone', $project_host_data->phone ?? ' ');
+        $templateProcessor->setValue('project_host_email', $project_host_data->email ?? ' ');
+        $templateProcessor->setValue('project_contact_name', $project_contact_data->name ?? ' '); // 計畫聯絡人
+        $templateProcessor->setValue('project_contact_department', $project_contact_data->department ?? ' ');
+        $templateProcessor->setValue('project_contact_job', $project_contact_data->job ?? ' ');
+        $templateProcessor->setValue('project_contact_mobile', $project_contact_data->mobile ?? ' ');
+        $templateProcessor->setValue('project_contact_phone', $project_contact_data->phone ?? ' ');
+        $templateProcessor->setValue('project_contact_email', $project_contact_data->email ?? ' ');
+        
 
         // CKEditor 的 HTML 內容
-        $introduction = $word_data->introduction ?? 'N/A';
-        $project_summary = $word_data->project_summary ?? 'N/A';
-        $face = $word_data->face ?? 'N/A';
-        $growth_face = $word_data->growth_face ?? 'N/A';
-        $organization_relationship = $word_data->organization_relationship ?? 'N/A';
-        $application_solution = $word_data->application_solution ?? 'N/A';
+        $introduction = $word_data->introduction ?? ' ';
+        $project_summary = $word_data->project_summary ?? ' ';
+        $face = $word_data->face ?? ' ';
+        $growth_face = $word_data->growth_face ?? ' ';
+        $organization_relationship = $word_data->organization_relationship ?? ' ';
+        $application_solution = $word_data->application_solution ?? ' ';
 
         // 將多個內容變數放入一個陣列
         $contentArray = [$introduction, $project_summary, $face, $growth_face, $organization_relationship, $application_solution];
@@ -750,7 +751,7 @@ class UserProjectController extends Controller
             $textContents[] = $processedContent;
         }
 
-        // 将处理后的内容填充到 Word 模板中，即使内容为空，也会显示 N/A
+        // 将处理后的内容填充到 Word 模板中，即使内容为空，也会显示  
         $templateProcessor->setValue('introduction', $textContents[0]);// 公司基本介紹
         $templateProcessor->setValue('project_summary', $textContents[1]);// 計畫摘要
         $templateProcessor->setValue('face', $textContents[2]);// 企業面臨問題
