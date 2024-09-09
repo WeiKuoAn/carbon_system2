@@ -728,57 +728,57 @@ class UserProjectController extends Controller
         $templateProcessor->setValue('project_contact_phone', $project_contact_data->phone); 
         $templateProcessor->setValue('project_contact_email', $project_contact_data->email);         
 
-    //     // CKEditor 的 HTML 內容
-    //     $introduction = $word_data->introduction;
-    //     $project_summary = $word_data->project_summary;
-    //     $face = $word_data->face;
-    //     $growth_face = $word_data->growth_face;
-    //     $organization_relationship = $word_data->organization_relationship;
-    //     $application_solution = $word_data->application_solution;
-    //     // 將多個內容變數放入一個陣列
-    //     $contentArray = [$introduction, $project_summary,$face,$growth_face,$organization_relationship,$application_solution];
-    //     // 初始化一個空陣列來存放處理後的內容
-    //     $textContents = [];
-    //     foreach ($contentArray as $content) {
-    //         // 使用空白行進行斷行處理，將兩個換行符轉換為 Word 中的換行符
-    //         $processedContent = str_replace("\n\n", '</w:t><w:br/><w:t>', $content);
-    //         // 將單一換行符轉換為 Word 中的換行符
-    //         $processedContent = str_replace("\n", '</w:t><w:br/><w:t>', $processedContent);
-    //         // 將處理後的內容加入結果陣列中
-    //         $textContents[] = $processedContent;
-    //     }
+        // CKEditor 的 HTML 內容
+        $introduction = $word_data->introduction;
+        $project_summary = $word_data->project_summary;
+        $face = $word_data->face;
+        $growth_face = $word_data->growth_face;
+        $organization_relationship = $word_data->organization_relationship;
+        $application_solution = $word_data->application_solution;
+        // 將多個內容變數放入一個陣列
+        $contentArray = [$introduction, $project_summary,$face,$growth_face,$organization_relationship,$application_solution];
+        // 初始化一個空陣列來存放處理後的內容
+        $textContents = [];
+        foreach ($contentArray as $content) {
+            // 使用空白行進行斷行處理，將兩個換行符轉換為 Word 中的換行符
+            $processedContent = str_replace("\n\n", '</w:t><w:br/><w:t>', $content);
+            // 將單一換行符轉換為 Word 中的換行符
+            $processedContent = str_replace("\n", '</w:t><w:br/><w:t>', $processedContent);
+            // 將處理後的內容加入結果陣列中
+            $textContents[] = $processedContent;
+        }
 
-    //     $templateProcessor->setValue('introduction', $textContents[0]);//公司基本介紹
-    //     $templateProcessor->setValue('project_summary', $textContents[1]);//計畫摘要
-    //     $templateProcessor->setValue('face', $textContents[2]);//企業面臨問題
-    //     $templateProcessor->setValue('growth_face', $textContents[3]);//待精進/成長之面向
+        $templateProcessor->setValue('introduction', $textContents[0]);//公司基本介紹
+        $templateProcessor->setValue('project_summary', $textContents[1]);//計畫摘要
+        $templateProcessor->setValue('face', $textContents[2]);//企業面臨問題
+        $templateProcessor->setValue('growth_face', $textContents[3]);//待精進/成長之面向
 
-    //     //part4人事與拜帶動企業
+        //part4人事與拜帶動企業
         
-    //     $templateProcessor->setValue('drive.application_solution', $textContents[5]);//待精進/成長之面向
+        $templateProcessor->setValue('drive.application_solution', $textContents[5]);//待精進/成長之面向
 
 
-    //      // 動態生成表格行
-    //      $templateProcessor->cloneRow('question.id', count($word_questions));
-    //      foreach ($word_questions as $key => $word_question) {
-    //         $rowIndex = $key + 1;
+         // 動態生成表格行
+         $templateProcessor->cloneRow('question.id', count($word_questions));
+         foreach ($word_questions as $key => $word_question) {
+            $rowIndex = $key + 1;
             
-    //         // 處理問題的換行符號
-    //         $question = nl2br($word_question['question']); // 將換行符號轉換為 <br /> 標籤
-    //         $question = str_replace("<br />", '<w:br/>', $question); // 將 <br /> 轉換為 Word 的換行符號
+            // 處理問題的換行符號
+            $question = nl2br($word_question['question']); // 將換行符號轉換為 <br /> 標籤
+            $question = str_replace("<br />", '<w:br/>', $question); // 將 <br /> 轉換為 Word 的換行符號
         
-    //         // 處理說明的換行符號
-    //         $illustrate = nl2br($word_question['illustrate']); // 將換行符號轉換為 <br /> 標籤
-    //         $illustrate = str_replace("<br />", '<w:br/>', $illustrate); // 將 <br /> 轉換為 Word 的換行符號
+            // 處理說明的換行符號
+            $illustrate = nl2br($word_question['illustrate']); // 將換行符號轉換為 <br /> 標籤
+            $illustrate = str_replace("<br />", '<w:br/>', $illustrate); // 將 <br /> 轉換為 Word 的換行符號
             
-    //         // 將每一個問題的對應數據填充到模板中
-    //         $templateProcessor->setValue("question.id#{$rowIndex}", $rowIndex); // 動態生成行號
-    //         $templateProcessor->setValue("question.question#{$rowIndex}", $question); // 問題
-    //         $templateProcessor->setValue("question.solution_id#{$rowIndex}", $rowIndex); // 動態生成解決方案 ID
-    //         $templateProcessor->setValue("question.solution#{$rowIndex}", $word_question['solution']); // 解決方案
-    //         $templateProcessor->setValue("question.illustrate#{$rowIndex}", $illustrate); // 處理過的說明
-    //         $templateProcessor->setValue("question.solution_img#{$rowIndex}", $word_question['solution']); // 解決方案圖片
-    //     }
+            // 將每一個問題的對應數據填充到模板中
+            $templateProcessor->setValue("question.id#{$rowIndex}", $rowIndex); // 動態生成行號
+            $templateProcessor->setValue("question.question#{$rowIndex}", $question); // 問題
+            $templateProcessor->setValue("question.solution_id#{$rowIndex}", $rowIndex); // 動態生成解決方案 ID
+            $templateProcessor->setValue("question.solution#{$rowIndex}", $word_question['solution']); // 解決方案
+            $templateProcessor->setValue("question.illustrate#{$rowIndex}", $illustrate); // 處理過的說明
+            $templateProcessor->setValue("question.solution_img#{$rowIndex}", $word_question['solution']); // 解決方案圖片
+        }
 
     //     $word_plans = WordPlan::where('user_id', $id)->where('project_id',$project->id)->get();
     //     $templateProcessor->cloneRow('plan.name', count($word_plans));
