@@ -665,7 +665,7 @@ class UserProjectController extends Controller
     public function exportWord($id)
     {
         // 加載 Word 模板
-        $templateProcessor = new TemplateProcessor(storage_path('app/docx/公版-商業服務業計畫書.docx'));
+        $templateProcessor = new TemplateProcessor(public_path('docx/公版-商業服務業計畫書.docx'));
 
         // 獲取客戶資料
         $user_data = User::where('id', $id)->first();
