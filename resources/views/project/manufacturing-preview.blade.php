@@ -131,7 +131,7 @@
                                         <input type="text" class="form-control required-input" name="main_contact_phone" placeholder="電話"  @if(isset($project)) value="{{ $cust_data->contact_phone }}" @endif>
                                     </div>
                                 </div>
-                                <label class="form-label" for="AddNew-Username"><b>請提供公司未使用的信箱帳號密碼</b><span class="text-danger">（用於收發計畫相關資料，因我們會代替客戶收取信件，以及幫忙回信給計畫辦公室，故須登入信箱）</span><span class="text-danger">*</span>
+                                <label class="form-label" for="AddNew-Username"><b>提供一組全新的gmail帳號密碼</b><span class="text-danger">（供計畫做為聯絡信箱使用，計畫完整結案後，將歸還信箱使用權限）</span><span class="text-danger">*</span>
                                     <br>※若無未使用信箱帳號密碼，可申辦一組gmail信箱，用於收發計畫相關資料</label><br>
                                 <div class="col-md-6">
                                     <div class="mb-4">
