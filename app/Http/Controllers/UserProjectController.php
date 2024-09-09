@@ -729,14 +729,16 @@ class UserProjectController extends Controller
         $templateProcessor->setValue('project_contact_email', $project_contact_data->email);         
 
         // CKEditor 的 HTML 內容
-        $introduction = $word_data->introduction;
-        $project_summary = $word_data->project_summary;
-        $face = $word_data->face;
-        $growth_face = $word_data->growth_face;
-        $organization_relationship = $word_data->organization_relationship;
-        $application_solution = $word_data->application_solution;
+        $introduction = $word_data->introduction ?? 'N/A';
+        $project_summary = $word_data->project_summary ?? 'N/A';
+        $face = $word_data->face ?? 'N/A';
+        $growth_face = $word_data->growth_face ?? 'N/A';
+        $organization_relationship = $word_data->organization_relationship ?? 'N/A';
+        $application_solution = $word_data->application_solution ?? 'N/A';
+
         // 將多個內容變數放入一個陣列
-        $contentArray = [$introduction, $project_summary,$face,$growth_face,$organization_relationship,$application_solution];
+        $contentArray = [$introduction, $project_summary, $face, $growth_face, $organization_relationship, $application_solution];
+
         // 初始化一個空陣列來存放處理後的內容
         $textContents = [];
         foreach ($contentArray as $content) {
@@ -748,10 +750,12 @@ class UserProjectController extends Controller
             $textContents[] = $processedContent;
         }
 
-        $templateProcessor->setValue('introduction', $textContents[0]);//公司基本介紹
-        $templateProcessor->setValue('project_summary', $textContents[1]);//計畫摘要
-        $templateProcessor->setValue('face', $textContents[2]);//企業面臨問題
-        $templateProcessor->setValue('growth_face', $textContents[3]);//待精進/成長之面向
+        // 将处理后的内容填充到 Word 模板中，即使内容为空，也会显示 N/A
+        $templateProcessor->setValue('introduction', $textContents[0]);// 公司基本介紹
+        $templateProcessor->setValue('project_summary', $textContents[1]);// 計畫摘要
+        $templateProcessor->setValue('face', $textContents[2]);// 企業面臨問題
+        $templateProcessor->setValue('growth_face', $textContents[3]);// 待精進/成長之面向
+
 
     //     //part4人事與拜帶動企業
         
