@@ -39,12 +39,12 @@
                     <div class="card">
                         <div class="card-body">
                             <div class="text-center mb-3">
-                                <h2>廠商基本資料</h2>
+                                <h2>客戶基本資料</h2>
                             </div>
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="mb-4">
-                                        <label class="form-label" for="AddNew-Username"><b>廠商名稱</b><span class="text-danger">*</span></label>
+                                        <label class="form-label" for="AddNew-Username"><b>客戶名稱</b><span class="text-danger">*</span></label>
                                         <input type="text" class="form-control required-input" value="{{ $cust_data->user_data->name }}" disabled>
                                     </div>
                                 </div>
@@ -624,7 +624,7 @@
                                 <div class="col-md-12 mt-1">
                                     <div class="alert alert-danger text-center" role="alert">
                                         公司現在原有的系統或設備（有在財產清冊裡的設備即可）有哪些？哪一些設備已使用10-15年？<br>
-                                        當初向哪家廠商購入請簡述（ex：空壓機、冷凍機、採購系統、ERP企業資源計劃系統、MES執行系統...等）<br>
+                                        當初向哪家客戶購入請簡述（ex：空壓機、冷凍機、採購系統、ERP企業資源計劃系統、MES執行系統...等）<br>
                                         📌並請針對想更新或汰換的系統或設備進行排序
                                     </div>
                                     <h5 class="text-uppercase bg-light p-2 mt-0 mb-3">需求列表</h5>

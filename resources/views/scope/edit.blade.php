@@ -67,7 +67,7 @@
                     <div class="modal-body">
                         <div class="text-center">
                             <i class="bx bx-check-circle display-1 text-success"></i>
-                            <h4 class="mt-3">編輯廠商資料成功！</h4>
+                            <h4 class="mt-3">編輯客戶資料成功！</h4>
                         </div>
                     </div>
                 </div><!-- /.modal-content -->

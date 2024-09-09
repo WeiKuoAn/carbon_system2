@@ -39,12 +39,12 @@
                     <div class="card">
                         <div class="card-body">
                             <div class="text-center mb-3">
-                                <h2>廠商基本資料</h2>
+                                <h2>客戶基本資料</h2>
                             </div>
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="mb-4">
-                                        <label class="form-label" for="AddNew-Username"><b>廠商名稱</b><span class="text-danger">*</span></label>
+                                        <label class="form-label" for="AddNew-Username"><b>客戶名稱</b><span class="text-danger">*</span></label>
                                         <input type="text" class="form-control required-input" value="{{ $cust_data->user_data->name }}" disabled>
                                     </div>
                                 </div>
@@ -118,7 +118,7 @@
                                         <input type="text" class="form-control required-input" name="main_contact_phone" placeholder="電話"  @if(isset($project)) value="{{ $cust_data->contact_phone }}" @endif>
                                     </div>
                                 </div>
-                                <label class="form-label" for="AddNew-Username"><b>請提供公司未使用的信箱帳號密碼</b><span class="text-danger">（用於收發計畫相關資料，因我們會代替客戶收取信件，以及幫忙回信給計畫辦公室，故須登入信箱）</span><span class="text-danger">*</span>
+                                <label class="form-label" for="AddNew-Username"><b>提供一組全新的gmail帳號密碼</b><span class="text-danger">（供計畫做為聯絡信箱使用，計畫完整結案後，將歸還信箱使用權限）</span><span class="text-danger">*</span>
                                     <br>※若無未使用信箱帳號密碼，可申辦一組gmail信箱，用於收發計畫相關資料</label><br>
                                 <div class="col-md-6">
                                     <div class="mb-4">
@@ -609,7 +609,7 @@
                                 <div class="col-md-12 mt-1">
                                     <div class="alert alert-danger text-center" role="alert">
                                         公司現在原有的系統或設備（有在財產清冊裡的設備即可）有哪些？哪一些設備已使用10-15年？<br>
-                                        當初向哪家廠商購入請簡述（ex：空壓機、冷凍機、採購系統、ERP企業資源計劃系統、MES執行系統...等）<br>
+                                        當初向哪家客戶購入請簡述（ex：空壓機、冷凍機、採購系統、ERP企業資源計劃系統、MES執行系統...等）<br>
                                         📌並請針對想更新或汰換的系統或設備進行排序
                                     </div>
                                     <h5 class="text-uppercase bg-light p-2 mt-0 mb-3">需求列表</h5>

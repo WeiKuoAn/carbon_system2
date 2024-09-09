@@ -11,6 +11,6 @@ class ProjectContact extends Model
     protected $table = 'project_contact';
     protected $fillable = [
         'user_id', 'project_id', 'name', 'department', 'job', 
-        'context', 'mobile', 'phone', 'experience', 'email','salary','past_experience'
+        'context', 'mobile', 'phone', 'experience', 'email','salary','past_experience','month'
     ];
 }

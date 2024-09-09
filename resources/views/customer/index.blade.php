@@ -1,6 +1,6 @@
 @extends('layouts.master')
 @section('title')
-    廠商列表
+    客戶列表
 @endsection
 @section('css')
     <!-- datepicker css -->
@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="{{ URL::asset('build/libs/gridjs/theme/mermaid.min.css') }}">
 @endsection
 @section('page-title')
-    廠商列表
+    客戶列表
 @endsection
 @section('body')
 
@@ -65,7 +65,7 @@
                                             <button type="button"
                                                 class="btn btn-success btn-rounded waves-effect waves-light  me-2">
                                                 <i class="mdi mdi-plus me-1"></i>
-                                                新增廠商</button>
+                                                新增客戶</button>
                                         </a>
                                     </div>
                                 </div>
@@ -86,7 +86,7 @@
                                 <thead class="table-light">
                                     <tr>
                                         <th scope="col">No</th>
-                                        <th scope="col">廠商名稱</th>
+                                        <th scope="col">客戶名稱</th>
                                         <th scope="col">負責人</th>
                                         <th scope="col">統編</th>
                                         <th scope="col">商業服務業</th>
@@ -151,8 +151,8 @@
 
                                                     <div class="dropdown-menu dropdown-menu-end">
                                                         {{-- @if(Auth::user()->level !=2) --}}
-                                                            <a class="dropdown-item" href="{{ route('customer.edit',$data->user_id) }}">編輯廠商帳戶資料</a>
-                                                            <a class="dropdown-item" href="{{ route('user.introduce.edit',$data->user_id) }}">編輯廠商基本資料</a>
+                                                            <a class="dropdown-item" href="{{ route('customer.edit',$data->user_id) }}">編輯客戶帳戶資料</a>
+                                                            <a class="dropdown-item" href="{{ route('user.introduce.edit',$data->user_id) }}">編輯客戶基本資料</a>
                                                         {{-- @endif --}}
                                                         <a class="dropdown-item" href="{{ route('user.project.index',$data->user_id) }}">查看專案資料</a>
                                                         {{-- <a class="dropdown-item" href="{{ route('user.project.business.create',$data->user_id) }}">查看專案</a> --}}

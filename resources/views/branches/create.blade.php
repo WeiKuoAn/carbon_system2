@@ -22,7 +22,7 @@
         <div class="col-xl-12 mt-3">
             <div class="card">
                 <div class="card-header">
-                    <h6 class="card-title">請填寫廠商資料</h6>
+                    <h6 class="card-title">請填寫客戶資料</h6>
                 </div>
                 <div class="card-body">
                     <form action="{{ route('industry-category.store') }}" method="POST">
@@ -93,7 +93,7 @@
                     <div class="modal-body">
                         <div class="text-center">
                             <i class="bx bx-check-circle display-1 text-success"></i>
-                            <h4 class="mt-3">新增廠商資料成功！</h4>
+                            <h4 class="mt-3">新增客戶資料成功！</h4>
                         </div>
                     </div>
                 </div><!-- /.modal-content -->

@@ -1,6 +1,6 @@
 @extends('layouts.master')
 @section('title')
-    廠商歷年專案列表
+    客戶歷年專案列表
 @endsection
 @section('css')
     <!-- datepicker css -->
@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="{{ URL::asset('build/libs/gridjs/theme/mermaid.min.css') }}">
 @endsection
 @section('page-title')
-    【{{ $cust_data->name }}】廠商歷年專案列表
+    【{{ $cust_data->name }}】客戶歷年專案列表
 @endsection
 @section('body')
 
@@ -34,7 +34,7 @@
                                             <button type="button"
                                                 class="btn btn-success btn-rounded waves-effect waves-light mb-2 me-2">
                                                 <i class="mdi mdi-plus me-1"></i>
-                                                新增廠商</button>
+                                                新增客戶</button>
                                         </a>
                                     </div> --}}
                                 </div>

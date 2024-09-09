@@ -66,6 +66,7 @@ Route::group(['middleware' => ['session.expire']], function () {
 
     Route::get('project/{id}/business-preview', [App\Http\Controllers\UserProjectController::class,'BusinessPreview'])->name('user.project.business.preview');
     Route::get('project/{id}/manufacturing-preview', [App\Http\Controllers\UserProjectController::class,'ManufacturingPreview'])->name('user.project.Manufacturing.preview');
+    Route::post('project/{id}/business-export-word', [App\Http\Controllers\UserProjectController::class,'BusinessSaveWord'])->name('business-export-word.store');
     Route::get('project/{id}/business-export-word', [App\Http\Controllers\UserProjectController::class,'BusinessExportWord'])->name('business-export-word');
     Route::get('project/{id}/export-word', [App\Http\Controllers\UserProjectController::class, 'exportWord'])->name('exportWord');
 
@@ -75,7 +76,7 @@ Route::group(['middleware' => ['session.expire']], function () {
     Route::get('user-password', [App\Http\Controllers\UserController::class, 'password_show'])->name('user-password');
     Route::post('user-password', [App\Http\Controllers\UserController::class, 'password_update'])->name('user-password.data');
 
-    //廠商問卷查看
+    //客戶問卷查看
     // Route::get('customer/{id}/surveys', [App\Http\Controllers\CustomerSurveyController::class , 'index'])->name('cust.surveys.index');
     // Route::get('customer/{id}/surveys/{survey_id}/create', [App\Http\Controllers\CustomerSurveyController::class , 'create'])->name('cust.surveys.create');
     // Route::post('customer/{id}/surveys/{survey_id}/store', [App\Http\Controllers\CustomerSurveyController::class , 'store'])->name('cust.surveys.store');

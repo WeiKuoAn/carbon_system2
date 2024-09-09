@@ -105,8 +105,8 @@
                                                 <div class="col-md-6 mt-3">
                                                    
                                                 <div class="mb-3">
-                                                    <label class="form-label" for="AddNew-Username">廠商名稱</label>
-                                                    <input type="text" class="form-control" placeholder="請輸入廠商名稱"
+                                                    <label class="form-label" for="AddNew-Username">客戶名稱</label>
+                                                    <input type="text" class="form-control" placeholder="請輸入客戶名稱"
                                                         id="AddNew-Username">
                                                 </div>
                                                 <div class="mb-3">
@@ -119,8 +119,8 @@
                                             </div>
                                            <div class="col-md-6">
                                             <div class="mb-3">
-                                                <label class="form-label" for="AddNew-Email">廠商地址</label>
-                                                <input type="text" class="form-control" placeholder="請輸入廠商地址"
+                                                <label class="form-label" for="AddNew-Email">客戶地址</label>
+                                                <input type="text" class="form-control" placeholder="請輸入客戶地址"
                                                     id="AddNew-Email">
                                             </div>
                                             <div class="mb-3">

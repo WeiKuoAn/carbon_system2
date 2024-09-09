@@ -1,6 +1,6 @@
 @extends('layouts.master')
 @section('title')
-    新增廠商-製造業
+    新增客戶-製造業
 @endsection
 @section('css')
     <!-- datepicker css -->
@@ -242,7 +242,7 @@
                             <div class="row">
                                 <div class="col-md-12 mt-1">
                                     <div class="alert alert-danger text-center" role="alert">
-                                        公司現在原有的系統或設備（有在財產清冊裡的設備即可）有哪些？哪一些設備已使用10-15年？當初向哪家廠商購入請簡述
+                                        公司現在原有的系統或設備（有在財產清冊裡的設備即可）有哪些？哪一些設備已使用10-15年？當初向哪家客戶購入請簡述
                                         （ex：空壓機、冷凍機、採購系統、ERP企業資源計劃系統、MES執行系統...等）<br>
                                         📌並請針對想更新或汰換的系統或設備進行排序
                                     </div>

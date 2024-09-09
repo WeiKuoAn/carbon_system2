@@ -1,6 +1,6 @@
 @extends('layouts.master')
 @section('title')
-    新增廠商計劃案
+    新增客戶計劃案
 @endsection
 @section('css')
     <!-- datepicker css -->
@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="{{ asset('build/libs/gridjs/theme/mermaid.min.css') }}">
 @endsection
 @section('page-title')
-    新增廠商計劃案
+    新增客戶計劃案
 @endsection
 @section('body')
 
@@ -22,7 +22,7 @@
         <div class="col-xl-12 mt-3">
             <div class="card">
                 <div class="card-header">
-                    <h6 class="card-title">請設定廠商計劃案</h6>
+                    <h6 class="card-title">請設定客戶計劃案</h6>
                 </div>
                 <div class="card-body">
                     <form action="{{ route('customer.store') }}" method="POST">
@@ -33,7 +33,7 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="mb-3">
-                                    <label class="form-label" for="AddNew-Username">廠商名稱</label><span class="text-danger">*</span>
+                                    <label class="form-label" for="AddNew-Username">客戶名稱</label><span class="text-danger">*</span>
                                     <input type="text" class="form-control" name="name" required>
                                 </div>
                             </div>
@@ -47,7 +47,7 @@
 
                             <div class="col-md-6">
                                 <div class="mb-3">
-                                    <label class="form-label" for="AddNew-Username">廠商帳號</label><span class="text-danger">*</span>
+                                    <label class="form-label" for="AddNew-Username">客戶帳號</label><span class="text-danger">*</span>
                                     <input type="text" class="form-control" name="name" required>
                                 </div>
                             </div>
@@ -60,7 +60,7 @@
                             </div>
 
                             <div class="col-md-6 ">
-                                <label class="form-label" for="AddNew-Username">廠商密碼</label><span class="text-danger">*</span>
+                                <label class="form-label" for="AddNew-Username">客戶密碼</label><span class="text-danger">*</span>
                                 <div class="mb-3 row">
                                     <div class="col-10">
                                         <input class="form-control me-auto" type="text" name="password" placeholder="請產生密碼">
@@ -154,7 +154,7 @@
                     <div class="modal-body">
                         <div class="text-center">
                             <i class="bx bx-check-circle display-1 text-success"></i>
-                            <h4 class="mt-3">新增廠商資料成功！</h4>
+                            <h4 class="mt-3">新增客戶資料成功！</h4>
                         </div>
                     </div>
                 </div><!-- /.modal-content -->

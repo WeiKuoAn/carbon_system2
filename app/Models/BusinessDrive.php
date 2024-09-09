@@ -10,6 +10,7 @@ class BusinessDrive extends Model
     use HasFactory;
     protected $table = 'business_drive';
     protected $fillable = [
-        'user_id', 'project_id', 'type', 'name', 'numbers', 'principal', 'employeecount'
+        'user_id', 'project_id', 'type', 'name', 'numbers', 'principal', 'employeecount','brand_name'
+        ,'industry','city'
     ];
 }

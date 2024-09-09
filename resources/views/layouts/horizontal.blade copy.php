@@ -287,12 +287,12 @@
                             <a class="nav-link dropdown-toggle arrow-none" href="#" id="topnav-dashboard"
                                 role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <i class="bx bx-store icon nav-icon"></i>
-                                <span data-key="t-dashboards">廠商管理</span>
+                                <span data-key="t-dashboards">客戶管理</span>
                                 <div class="arrow-down"></div>
                             </a>
                             <div class="dropdown-menu" aria-labelledby="topnav-dashboard">
-                                <a href="{{ route('customer.create') }}" class="dropdown-item">新增廠商</a>
-                                <a href="{{ route('customer.index') }}" class="dropdown-item">廠商列表</a>
+                                <a href="{{ route('customer.create') }}" class="dropdown-item">新增客戶</a>
+                                <a href="{{ route('customer.index') }}" class="dropdown-item">客戶列表</a>
                                 <a href="{{ route('industry-category.index') }}" class="dropdown-item">行業類別設定</a>
                             </div>
                         </li>

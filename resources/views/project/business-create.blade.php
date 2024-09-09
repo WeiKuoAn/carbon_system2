@@ -208,7 +208,7 @@
                                 </div>
                                 <div class="alert alert-danger" role="alert">
                                     1.被帶動企業主要是配合主提案商（貴公司）申請計畫。因計畫內要導入的方案，會需要主提案商跟被帶動企業都有使用到，減碳的成效在主提案商跟被帶動企業也都需要有呈現。<br>
-                                    2.被帶動企業建議提供公司的「上游廠商」、「下游廠商」、「長期合作夥伴」，請提供同一種類型的被帶動企業。根據以往經驗，以這種方式提供資訊能夠減少提案簡報時被評審提問的情況，也有助於順利核銷。ex:全部都是「上游廠商」、全部都是「下游廠商」<br>
+                                    2.被帶動企業建議提供公司的「上游客戶」、「下游客戶」、「長期合作夥伴」，請提供同一種類型的被帶動企業。根據以往經驗，以這種方式提供資訊能夠減少提案簡報時被評審提問的情況，也有助於順利核銷。ex:全部都是「上游客戶」、全部都是「下游客戶」<br>
                                     3.被帶動企業請提供以下資料：(1)公司名稱（全名）、(2)統一編號、(3)負責人姓名（送件時需簽署合作意向書、(4)員工數<br>
                                 </div>
                                 <div class="row">
@@ -221,7 +221,7 @@
                                                         <thead>
                                                             <tr align="center">
                                                                 <th>編號</th>
-                                                                <th>上游/下游廠商<span class="text-danger">*</span></th>
+                                                                <th>上游/下游企業<span class="text-danger">*</span></th>
                                                                 <th>名稱<span class="text-danger">*</span></th>
                                                                 <th>統一編號<span class="text-danger">*</span></th>
                                                                 <th>負責人<span class="text-danger">*</span></th>
@@ -315,7 +315,7 @@
                                 <div class="row">
                                     <div class="col-md-12 mt-1">
                                         <div class="alert alert-danger" role="alert">
-                                            公司現在原有的系統有哪些？請簡述系統及購入廠商（ex：採購系統、電商平台等）
+                                            公司現在原有的系統有哪些？請簡述系統及購入客戶（ex：採購系統、電商平台等）
                                         </div>
                                         <h5 class="text-uppercase bg-light p-2 mt-0 mb-3">現況列表</h5>
                                         <div class="row">
@@ -366,7 +366,7 @@
                                 <div class="row">
                                     <div class="col-md-12 mt-1">
                                         <div class="alert alert-danger" role="alert">
-                                            此次預計導入的系統有哪些？請簡述系統及預計購入廠商
+                                            此次預計導入的系統有哪些？請簡述系統及預計購入客戶
                                             （ex：採購系統、電商平台等）
                                             並請針對想更新或汰換的系統或設備進行排序
                                         </div>

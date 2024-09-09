@@ -54,7 +54,7 @@
                                                 <div class="col-md-6 mt-3">
                                                    
                                                 <div class="mb-3">
-                                                    <label class="form-label" for="AddNew-Username">廠商名稱</label>
+                                                    <label class="form-label" for="AddNew-Username">客戶名稱</label>
                                                     <select class="form-select"  id="customer_id" name="customer_id" required >
                                                         <option value="" selected>請選擇...</option>
                                                         @foreach($customers as $customer)
@@ -72,8 +72,8 @@
                                             </div>
                                            <div class="col-md-6 mt-3">
                                             <div class="mb-3">
-                                                <label class="form-label" for="AddNew-Email">廠商地址</label>
-                                                <input type="text" class="form-control" placeholder="請輸入廠商地址" id="customer_address" value="">
+                                                <label class="form-label" for="AddNew-Email">客戶地址</label>
+                                                <input type="text" class="form-control" placeholder="請輸入客戶地址" id="customer_address" value="">
                                             </div>
                                             <div class="mb-3">
                                                 <label class="form-label" for="AddNew-Email">分行地址</label>

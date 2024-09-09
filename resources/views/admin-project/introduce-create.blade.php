@@ -1,6 +1,6 @@
 @extends('layouts.master')
 @section('title')
-    編輯廠商資料【{{ $cust_data->user_data->name }}】
+    編輯客戶資料【{{ $cust_data->user_data->name }}】
 @endsection
 @section('css')
     <!-- datepicker css -->
@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="{{ asset('build/libs/gridjs/theme/mermaid.min.css') }}">
 @endsection
 @section('page-title')
-    編輯廠商資料【{{ $cust_data->user_data->name }}】
+    編輯客戶資料【{{ $cust_data->user_data->name }}】
 @endsection
 @section('body')
 
@@ -25,7 +25,7 @@
             <div class="modal-body">
                 <div class="text-center">
                     <i class="bx bx-check-circle display-1 text-success"></i>
-                    <h4 class="mt-3">編輯【{{ $cust_data->user_data->name }}】廠商資料成功！</h4>
+                    <h4 class="mt-3">編輯【{{ $cust_data->user_data->name }}】客戶資料成功！</h4>
                 </div>
             </div>
         </div><!-- /.modal-content -->
@@ -40,12 +40,12 @@
                     <div class="card">
                         <div class="card-body">
                             <div class="text-center mb-3">
-                                <h2>廠商基本資料</h2>
+                                <h2>客戶基本資料</h2>
                             </div>
                             <div class="row">'
                                 <div class="col-md-12">
                                     <div class="mb-4">
-                                        <label class="form-label" for="AddNew-Username"><b>廠商名稱</b><span class="text-danger">*</span></label>
+                                        <label class="form-label" for="AddNew-Username"><b>客戶名稱</b><span class="text-danger">*</span></label>
                                         <input type="text" class="form-control required-input" value="{{ $cust_data->user_data->name }}" disabled>
                                     </div>
                                 </div>

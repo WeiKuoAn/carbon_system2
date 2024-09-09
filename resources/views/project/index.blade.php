@@ -34,7 +34,7 @@
                                             <button type="button"
                                                 class="btn btn-success btn-rounded waves-effect waves-light mb-2 me-2">
                                                 <i class="mdi mdi-plus me-1"></i>
-                                                新增廠商</button>
+                                                新增客戶</button>
                                         </a>
                                     </div> --}}
                                 </div>
@@ -46,7 +46,7 @@
                                     <tr align="center">
                                         <th scope="col">No</th>
                                         <th scope="col">申請年度</th>
-                                        <th scope="col">廠商名稱</th>
+                                        <th scope="col">客戶名稱</th>
                                         <th scope="col">申請類別</th>
                                         <th scope="col">主要聯絡人</th>
                                         <th scope="col">聯絡人職稱</th>
@@ -141,7 +141,7 @@
                                                         @elseif($data->type == 1)
                                                             href="{{ route('user.project.Manufacturing.preview',$data->user_id) }}"
                                                         @endif
-                                                        >預覽</a>
+                                                        >填寫計畫內容</a>
                                                     </div>
                                                 </li>
                                             </ul>

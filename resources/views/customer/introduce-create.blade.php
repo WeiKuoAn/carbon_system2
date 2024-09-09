@@ -1,6 +1,6 @@
 @extends('layouts.master')
 @section('title')
-    新增廠商資料
+    新增客戶資料
 @endsection
 @section('css')
     <!-- datepicker css -->
@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="{{ asset('build/libs/gridjs/theme/mermaid.min.css') }}">
 @endsection
 @section('page-title')
-    新增廠商資料
+    新增客戶資料
 @endsection
 @section('body')
 
@@ -25,7 +25,7 @@
             <div class="modal-body">
                 <div class="text-center">
                     <i class="bx bx-check-circle display-1 text-success"></i>
-                    <h4 class="mt-3">新增廠商資料成功！</h4>
+                    <h4 class="mt-3">新增客戶資料成功！</h4>
                 </div>
             </div>
         </div><!-- /.modal-content -->
@@ -40,12 +40,12 @@
                     <div class="card">
                         <div class="card-body">
                             <div class="text-center mb-3">
-                                <h2>廠商基本資料</h2>
+                                <h2>客戶基本資料</h2>
                             </div>
                             <div class="row">'
                                 <div class="col-md-12">
                                     <div class="mb-4">
-                                        <label class="form-label" for="AddNew-Username"><b>廠商名稱</b><span class="text-danger">*</span></label>
+                                        <label class="form-label" for="AddNew-Username"><b>客戶名稱</b><span class="text-danger">*</span></label>
                                         <input type="text" class="form-control required-input" value="{{ $cust_data->user_data->name }}" disabled>
                                     </div>
                                 </div>
@@ -136,7 +136,7 @@
                                         <input type="text" class="form-control required-input" name="main_contact_phone" placeholder="電話"  @if(isset($cust_data)) value="{{ $cust_data->contact_phone }}" @endif>
                                     </div>
                                 </div>
-                                <label class="form-label" for="AddNew-Username"><b>請提供公司未使用的信箱帳號密碼</b><span class="text-danger">（用於收發計畫相關資料，因我們會代替客戶收取信件，以及幫忙回信給計畫辦公室，故須登入信箱）</span><span class="text-danger">*</span>
+                                <label class="form-label" for="AddNew-Username"><b>提供一組全新的gmail帳號密碼</b><span class="text-danger">（供計畫做為聯絡信箱使用，計畫完整結案後，將歸還信箱使用權限）</span><span class="text-danger">*</span>
                                     <br>※若無未使用信箱帳號密碼，可申辦一組gmail信箱，用於收發計畫相關資料</label><br>
                                 <div class="col-md-6">
                                     <div class="mb-4">

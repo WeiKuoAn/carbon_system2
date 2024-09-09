@@ -1,6 +1,6 @@
 @extends('layouts.master')
 @section('title')
-    新增廠商
+    新增客戶
 @endsection
 @section('css')
     <!-- datepicker css -->

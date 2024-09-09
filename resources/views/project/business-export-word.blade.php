@@ -25,12 +25,12 @@
                         <div class="card">
                             <div class="card-body">
                                 <div class="text-center mb-3">
-                                    <h2>廠商基本資料</h2>
+                                    <h2>客戶基本資料</h2>
                                 </div>
                                 <div class="row">'
                                     <div class="col-md-12">
                                         <div class="mb-4">
-                                            <label class="form-label" for="AddNew-Username"><b>廠商名稱</b><span class="text-danger">*</span></label>
+                                            <label class="form-label" for="AddNew-Username"><b>客戶名稱</b><span class="text-danger">*</span></label>
                                             <input type="text" class="form-control required-input" value="{{ $cust_data->user_data->name }}" disabled>
                                         </div>
                                     </div>
@@ -116,7 +116,7 @@
                                             <input type="text" class="form-control required-input" name="main_contact_phone" placeholder="電話"  @if(isset($project)) value="{{ $cust_data->contact_phone }}" @endif>
                                         </div>
                                     </div>
-                                    <label class="form-label" for="AddNew-Username"><b>請提供公司未使用的信箱帳號密碼</b><span class="text-danger">（用於收發計畫相關資料，因我們會代替客戶收取信件，以及幫忙回信給計畫辦公室，故須登入信箱）</span><span class="text-danger">*</span>
+                                    <label class="form-label" for="AddNew-Username"><b>提供一組全新的gmail帳號密碼</b><span class="text-danger">（供計畫做為聯絡信箱使用，計畫完整結案後，將歸還信箱使用權限）</span><span class="text-danger">*</span>
                                         <br>※若無未使用信箱帳號密碼，可申辦一組gmail信箱，用於收發計畫相關資料</label><br>
                                     <div class="col-md-6">
                                         <div class="mb-4">
@@ -585,7 +585,7 @@
                                 </div>
                                 <div class="alert alert-danger" role="alert">
                                     1.被帶動企業主要是配合主提案商（貴公司）申請計畫。因計畫內要導入的方案，會需要主提案商跟被帶動企業都有使用到，減碳的成效在主提案商跟被帶動企業也都需要有呈現。<br>
-                                    2.被帶動企業建議提供公司的「上游廠商」、「下游廠商」、「長期合作夥伴」，請提供同一種類型的被帶動企業。根據以往經驗，以這種方式提供資訊能夠減少提案簡報時被評審提問的情況，也有助於順利核銷。ex:全部都是「上游廠商」、全部都是「下游廠商」<br>
+                                    2.被帶動企業建議提供公司的「上游客戶」、「下游客戶」、「長期合作夥伴」，請提供同一種類型的被帶動企業。根據以往經驗，以這種方式提供資訊能夠減少提案簡報時被評審提問的情況，也有助於順利核銷。ex:全部都是「上游客戶」、全部都是「下游客戶」<br>
                                     3.被帶動企業請提供以下資料：(1)公司名稱（全名）、(2)統一編號、(3)負責人姓名（送件時需簽署合作意向書、(4)員工數<br>
                                 </div>
                                 <div class="row">
@@ -598,7 +598,7 @@
                                                         <thead>
                                                             <tr align="center">
                                                                 <th>編號</th>
-                                                                <th>上游/下游廠商<span class="text-danger">*</span></th>
+                                                                <th>上游/下游企業<span class="text-danger">*</span></th>
                                                                 <th>名稱<span class="text-danger">*</span></th>
                                                                 <th>統一編號<span class="text-danger">*</span></th>
                                                                 <th>負責人<span class="text-danger">*</span></th>
@@ -656,7 +656,7 @@
                                 <div class="row">
                                     <div class="col-md-12 mt-1">
                                         <div class="alert alert-danger" role="alert">
-                                            公司現在原有的系統有哪些？請簡述系統及購入廠商（ex：採購系統、電商平台等）
+                                            公司現在原有的系統有哪些？請簡述系統及購入客戶（ex：採購系統、電商平台等）
                                         </div>
                                         <h5 class="text-uppercase bg-light p-2 mt-0 mb-3">現況列表</h5>
                                         <div class="row">
@@ -707,7 +707,7 @@
                                 <div class="row">
                                     <div class="col-md-12 mt-1">
                                         <div class="alert alert-danger" role="alert">
-                                            此次預計導入的系統有哪些？請簡述系統及預計購入廠商
+                                            此次預計導入的系統有哪些？請簡述系統及預計購入客戶
                                             （ex：採購系統、電商平台等）
                                             並請針對想更新或汰換的系統或設備進行排序
                                         </div>
