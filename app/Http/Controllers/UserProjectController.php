@@ -753,32 +753,32 @@ class UserProjectController extends Controller
         $templateProcessor->setValue('face', $textContents[2]);//企業面臨問題
         $templateProcessor->setValue('growth_face', $textContents[3]);//待精進/成長之面向
 
-        //part4人事與拜帶動企業
+    //     //part4人事與拜帶動企業
         
-        $templateProcessor->setValue('drive.application_solution', $textContents[5]);//待精進/成長之面向
+    //     $templateProcessor->setValue('drive.application_solution', $textContents[5]);//待精進/成長之面向
 
 
-         // 動態生成表格行
-         $templateProcessor->cloneRow('question.id', count($word_questions));
-         foreach ($word_questions as $key => $word_question) {
-            $rowIndex = $key + 1;
+    //      // 動態生成表格行
+    //      $templateProcessor->cloneRow('question.id', count($word_questions));
+    //      foreach ($word_questions as $key => $word_question) {
+    //         $rowIndex = $key + 1;
             
-            // 處理問題的換行符號
-            $question = nl2br($word_question['question']); // 將換行符號轉換為 <br /> 標籤
-            $question = str_replace("<br />", '<w:br/>', $question); // 將 <br /> 轉換為 Word 的換行符號
+    //         // 處理問題的換行符號
+    //         $question = nl2br($word_question['question']); // 將換行符號轉換為 <br /> 標籤
+    //         $question = str_replace("<br />", '<w:br/>', $question); // 將 <br /> 轉換為 Word 的換行符號
         
-            // 處理說明的換行符號
-            $illustrate = nl2br($word_question['illustrate']); // 將換行符號轉換為 <br /> 標籤
-            $illustrate = str_replace("<br />", '<w:br/>', $illustrate); // 將 <br /> 轉換為 Word 的換行符號
+    //         // 處理說明的換行符號
+    //         $illustrate = nl2br($word_question['illustrate']); // 將換行符號轉換為 <br /> 標籤
+    //         $illustrate = str_replace("<br />", '<w:br/>', $illustrate); // 將 <br /> 轉換為 Word 的換行符號
             
-            // 將每一個問題的對應數據填充到模板中
-            $templateProcessor->setValue("question.id#{$rowIndex}", $rowIndex); // 動態生成行號
-            $templateProcessor->setValue("question.question#{$rowIndex}", $question); // 問題
-            $templateProcessor->setValue("question.solution_id#{$rowIndex}", $rowIndex); // 動態生成解決方案 ID
-            $templateProcessor->setValue("question.solution#{$rowIndex}", $word_question['solution']); // 解決方案
-            $templateProcessor->setValue("question.illustrate#{$rowIndex}", $illustrate); // 處理過的說明
-            $templateProcessor->setValue("question.solution_img#{$rowIndex}", $word_question['solution']); // 解決方案圖片
-        }
+    //         // 將每一個問題的對應數據填充到模板中
+    //         $templateProcessor->setValue("question.id#{$rowIndex}", $rowIndex); // 動態生成行號
+    //         $templateProcessor->setValue("question.question#{$rowIndex}", $question); // 問題
+    //         $templateProcessor->setValue("question.solution_id#{$rowIndex}", $rowIndex); // 動態生成解決方案 ID
+    //         $templateProcessor->setValue("question.solution#{$rowIndex}", $word_question['solution']); // 解決方案
+    //         $templateProcessor->setValue("question.illustrate#{$rowIndex}", $illustrate); // 處理過的說明
+    //         $templateProcessor->setValue("question.solution_img#{$rowIndex}", $word_question['solution']); // 解決方案圖片
+    //     }
 
     //     $word_plans = WordPlan::where('user_id', $id)->where('project_id',$project->id)->get();
     //     $templateProcessor->cloneRow('plan.name', count($word_plans));
