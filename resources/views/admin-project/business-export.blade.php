@@ -889,7 +889,7 @@
                                                                         @for ($i = 0; $i < 4; $i++)
                                                                                 <tr id="row-{{ $i }}" style="vertical-align: middle;" align="center">
                                                                                     <td>
-                                                                                        <textarea class="form-control" rows="2" name="check_item[]">{{ $checks[$key] }}</textarea>
+                                                                                        <textarea class="form-control" rows="2" name="check_item[]">{{ $checks[$i] }}</textarea>
                                                                                     </td>
                                                                                     <td>
                                                                                         <textarea class="form-control" rows="2" name="check_estimated[]"></textarea>
