@@ -1022,7 +1022,7 @@ class UserProjectController extends Controller
 
 
         // 保存修改後的文件到臨時路徑
-        $fileName = 'exported_file_' . time() . '.docx';
+        $fileName = $user_data->name.'-商業服務業計畫書' . '.docx';
         $tempFilePath = tempnam(sys_get_temp_dir(), 'phpword') . '.docx';
         $templateProcessor->saveAs($tempFilePath);
 

@@ -830,7 +830,7 @@
                                                 </div> <!-- end .table-responsive -->
                                                 <div class="form-group row">
                                                     <div class="col-12">
-                                                    <input id="add_serve" class="btn btn-primary" type="button" name="" value="新增方案">
+                                                    <input id="add_serve" class="btn btn-primary" type="button" name="" value="新增服務">
                                                     </div>
                                                 </div>
                                             </div>
