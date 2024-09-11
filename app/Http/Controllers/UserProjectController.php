@@ -969,24 +969,24 @@ class UserProjectController extends Controller
             $templateProcessor->setValue("benefit_benefit#{$rowIndex}", $benefit  ?? '');
         }
 
-        $word_fund = WordFund::where('user_id', $id)->where('project_id', $project->id)->first();
-        for ($i = 1; $i <= 46; $i++) {
-            $field = 'fund_' . $i;
-            $value = $word_fund->$field;
+        // $word_fund = WordFund::where('user_id', $id)->where('project_id', $project->id)->first();
+        // for ($i = 1; $i <= 46; $i++) {
+        //     $field = 'fund_' . $i;
+        //     $value = $word_fund->$field;
 
-            // 如果值为 null 或者空字串，或者确实为 0，都强制设置为 "0"
-            if ($value === null || $value === '' || $value == 0) {
-                $value = "0";
-            }
+        //     // 如果值为 null 或者空字串，或者确实为 0，都强制设置为 "0"
+        //     if ($value === null || $value === '' || $value == 0) {
+        //         $value = "0";
+        //     }
 
-            // 直接设置为字符串
-            $templateProcessor->setValue("fund_$i", $value ?? '');
-        }
-        // ?? ' '處理 context 的換行符
-        $fund_context = nl2br($word_fund['context']); 
-        $fund_context = str_replace("<br />", '<w:br/>', $fund_context);
+        //     // 直接设置为字符串
+        //     $templateProcessor->setValue("fund_$i", $value ?? '');
+        // }
+        // // ?? ' '處理 context 的換行符
+        // $fund_context = nl2br($word_fund['context']); 
+        // $fund_context = str_replace("<br />", '<w:br/>', $fund_context);
+
         $templateProcessor->setValue('fund_context', $fund_context ?? '');
-
         $planned_datas = WordPlanned::where('user_id', $id)->where('project_id',$project->id)->get();
         $templateProcessor->cloneRow('planned_item', count($planned_datas));
         foreach ($planned_datas as $key => $planned_data) {
@@ -996,7 +996,6 @@ class UserProjectController extends Controller
         }
 
         $templateProcessor->setValue("checkpoint", $word_data->checkpoint  ?? '');
-
         $check_datas = WordCheck::where('user_id', $id)->where('project_id',$project->id)->get();
         $templateProcessor->cloneRow('check_item', count($check_datas));
         foreach ($check_datas as $key => $check_datas) {
