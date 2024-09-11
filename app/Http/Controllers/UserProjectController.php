@@ -881,59 +881,59 @@ class UserProjectController extends Controller
             $templateProcessor->setValue("partner_job_content#{$rowIndex}", $partner_data['job_content'] ?? '');
         }
 
-        //查核點
-        // $serve_datas = WordServe::where('user_id', $id)->where('project_id',$project->id)->get();
-        // $templateProcessor->cloneRow('serve_item', count($serve_datas));
-        // foreach ($serve_datas as $key => $serve_datas) {
-        //     $rowIndex = $key + 1;
-        //     // 將每一個問題的對應數據填充到模板中
-        //     $item = nl2br($serve_datas['item']); 
-        //     $item = str_replace("<br />", '<w:br/>', $item);
-        //     $context = nl2br($serve_datas['context']); 
-        //     $context = str_replace("<br />", '<w:br/>', $context);
-        //     $templateProcessor->setValue("serve_item#{$rowIndex}", $item ?? '' );
-        //     $templateProcessor->setValue("serve_context#{$rowIndex}", $context  ?? '');
-        // }
+        // 查核點
+        $serve_datas = WordServe::where('user_id', $id)->where('project_id',$project->id)->get();
+        $templateProcessor->cloneRow('serve_item', count($serve_datas));
+        foreach ($serve_datas as $key => $serve_datas) {
+            $rowIndex = $key + 1;
+            // 將每一個問題的對應數據填充到模板中
+            $item = nl2br($serve_datas['item']); 
+            $item = str_replace("<br />", '<w:br/>', $item);
+            $context = nl2br($serve_datas['context']); 
+            $context = str_replace("<br />", '<w:br/>', $context);
+            $templateProcessor->setValue("serve_item#{$rowIndex}", $item ?? '' );
+            $templateProcessor->setValue("serve_context#{$rowIndex}", $context  ?? '');
+        }
 
 
-        //part5
-        // $effectiveness_datas = WordEffectiveness::where('user_id', $id)->where('project_id',$project->id)->get();
-        // $templateProcessor->cloneRow('effectiveness_kpi', count($effectiveness_datas));
-        // foreach ($effectiveness_datas as $key => $effectiveness_data) {
-        //     $rowIndex = $key + 1;
-        //     // 將每一個問題的對應數據填充到模板中
-        //     $kpi = nl2br($effectiveness_data['kpi']); 
-        //     $kpi = str_replace("<br />", '<w:br/>', $kpi);
-        //     $goal = nl2br($effectiveness_data['goal']); 
-        //     $goal = str_replace("<br />", '<w:br/>', $goal);
-        //     $definition = nl2br($effectiveness_data['definition']); 
-        //     $definition = str_replace("<br />", '<w:br/>', $definition ?? '');   
-        //     $templateProcessor->setValue("effectiveness_kpi#{$rowIndex}", $kpi ?? '');
-        //     $templateProcessor->setValue("effectiveness_goal#{$rowIndex}", $goal ?? '');
-        //     $templateProcessor->setValue("effectiveness_definition#{$rowIndex}", $definition ?? '');
-        // }
+        // part5
+        $effectiveness_datas = WordEffectiveness::where('user_id', $id)->where('project_id',$project->id)->get();
+        $templateProcessor->cloneRow('effectiveness_kpi', count($effectiveness_datas));
+        foreach ($effectiveness_datas as $key => $effectiveness_data) {
+            $rowIndex = $key + 1;
+            // 將每一個問題的對應數據填充到模板中
+            $kpi = nl2br($effectiveness_data['kpi']); 
+            $kpi = str_replace("<br />", '<w:br/>', $kpi);
+            $goal = nl2br($effectiveness_data['goal']); 
+            $goal = str_replace("<br />", '<w:br/>', $goal);
+            $definition = nl2br($effectiveness_data['definition']); 
+            $definition = str_replace("<br />", '<w:br/>', $definition ?? '');   
+            $templateProcessor->setValue("effectiveness_kpi#{$rowIndex}", $kpi ?? '');
+            $templateProcessor->setValue("effectiveness_goal#{$rowIndex}", $goal ?? '');
+            $templateProcessor->setValue("effectiveness_definition#{$rowIndex}", $definition ?? '');
+        }
 
-        // $reduction_datas = WordReductionItem::where('user_id', $id)->where('project_id',$project->id)->get();
-        // $templateProcessor->cloneRow('reduction_item', count($effectiveness_datas));
-        // foreach ($reduction_datas as $key => $reduction_data) {
-        //     $rowIndex = $key + 1;
-        //     // 將每一個問題的對應數據填充到模板中
-        //     $item = nl2br($reduction_data['item']); 
-        //     $item = str_replace("<br />", '<w:br/>', $item);
-        //     $before_guidance = nl2br($reduction_data['before_guidance']); 
-        //     $before_guidance = str_replace("<br />", '<w:br/>', $before_guidance);
-        //     $after_guidance = nl2br($reduction_data['after_guidance']); 
-        //     $after_guidance = str_replace("<br />", '<w:br/>', $after_guidance);  
-        //     $difference = nl2br($reduction_data['difference']);
-        //     $difference = str_replace("<br />", '<w:br/>', $difference);  
-        //     $relationship = nl2br($reduction_data['relationship']);     
-        //     $relationship = str_replace("<br />", '<w:br/>', $relationship);   
-        //     $templateProcessor->setValue("reduction_item#{$rowIndex}", $item ?? '');
-        //     $templateProcessor->setValue("reduction_before_guidance#{$rowIndex}", $before_guidance ?? '');
-        //     $templateProcessor->setValue("reduction_after_guidance#{$rowIndex}", $after_guidance ?? '');
-        //     $templateProcessor->setValue("reduction_difference#{$rowIndex}", $difference ?? '');
-        //     $templateProcessor->setValue("reduction_relationship#{$rowIndex}", $relationship ?? '');
-        // }
+        $reduction_datas = WordReductionItem::where('user_id', $id)->where('project_id',$project->id)->get();
+        $templateProcessor->cloneRow('reduction_item', count($effectiveness_datas));
+        foreach ($reduction_datas as $key => $reduction_data) {
+            $rowIndex = $key + 1;
+            // 將每一個問題的對應數據填充到模板中
+            $item = nl2br($reduction_data['item']); 
+            $item = str_replace("<br />", '<w:br/>', $item);
+            $before_guidance = nl2br($reduction_data['before_guidance']); 
+            $before_guidance = str_replace("<br />", '<w:br/>', $before_guidance);
+            $after_guidance = nl2br($reduction_data['after_guidance']); 
+            $after_guidance = str_replace("<br />", '<w:br/>', $after_guidance);  
+            $difference = nl2br($reduction_data['difference']);
+            $difference = str_replace("<br />", '<w:br/>', $difference);  
+            $relationship = nl2br($reduction_data['relationship']);     
+            $relationship = str_replace("<br />", '<w:br/>', $relationship);   
+            $templateProcessor->setValue("reduction_item#{$rowIndex}", $item ?? '');
+            $templateProcessor->setValue("reduction_before_guidance#{$rowIndex}", $before_guidance ?? '');
+            $templateProcessor->setValue("reduction_after_guidance#{$rowIndex}", $after_guidance ?? '');
+            $templateProcessor->setValue("reduction_difference#{$rowIndex}", $difference ?? '');
+            $templateProcessor->setValue("reduction_relationship#{$rowIndex}", $relationship ?? '');
+        }
 
         // $custom_datas = WordCustomPerformance::where('user_id', $id)->where('project_id',$project->id)->get();
         // $templateProcessor->cloneRow('custom_performance', count($custom_datas));
