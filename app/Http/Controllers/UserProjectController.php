@@ -1011,7 +1011,7 @@ class UserProjectController extends Controller
             $templateProcessor->setValue("check_midterm_checkpoint#{$rowIndex}",$check_data['midterm_checkpoint']  ?? '');
             $templateProcessor->setValue("check_final_checkpoint#{$rowIndex}",$check_data['final_checkpoint']  ?? '');
             $templateProcessor->setValue("check_proportion#{$rowIndex}",$check_data['proportion']  ?? '');
-            $templateProcessor->setValue("check_audit_data#{$rowIndex}", $audit_data  ?? '');
+            $templateProcessor->setValue("check_audit_data#{$rowIndex}",$audit_data  ?? '');
         }
 
 
