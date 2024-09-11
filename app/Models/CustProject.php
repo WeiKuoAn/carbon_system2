@@ -36,6 +36,11 @@ class CustProject extends Model
         return $this->hasMany('App\Models\WordPlan', 'project_id', 'id');
     }
 
+    public function word_serve_datas()
+    {
+        return $this->hasMany('App\Models\WordServe', 'project_id', 'id');
+    }
+
     public function word_check_datas()
     {
         return $this->hasMany('App\Models\WordCheck', 'project_id', 'id');

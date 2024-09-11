@@ -781,6 +781,61 @@
                                             <textarea class="form-control" col="3" rows="4" name="application_solution">@if(isset($word_data)){{ $word_data->application_solution }}@endif</textarea>
                                         </div>
                                     </div>
+                                    {{-- //服務擴散及維運做法 --}}
+                                    <div class="col-md-12 mt-3">
+                                        <label class="form-label" for="AddNew-Username"><b>服務擴散及維運做法 </b><span class="text-danger">*</span></label>
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="table-responsive">
+                                                    <table id="serve" class="table serve-list">
+                                                        <thead>
+                                                            <tr align="center">
+                                                                <th width="20%">項目</th>
+                                                                <th width="80%">說明</th>
+                                                                <th></th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody valign="center" align="left">
+                                                            @if(count($project->word_serve_datas)>0)
+                                                                @foreach ($project->word_serve_datas as $key=>$word_serve_data)
+                                                                    <tr id="row-{{ $key }}" >
+                                                                        <td>
+                                                                            <textarea class="form-control" rows="4" name="serve_item[]">{{ $word_serve_data->item }}</textarea>
+                                                                        </td>
+                                                                        <td>
+                                                                            <textarea class="form-control" rows="4" name="serve_context[]">{{ $word_serve_data->context }}</textarea>
+                                                                        </td>
+                                                                        <td style="vertical-align: middle;">
+                                                                            <button class="mobile btn btn-danger del-row mt-4" alt="{{ $key }}" type="button" name="button" onclick="del_row(this)">刪除</button>
+                                                                        </td>
+                                                                    </tr>
+                                                                @endforeach
+                                                            @else
+                                                                @for ($i = 0; $i < 1; $i++)
+                                                                        <tr id="row-{{ $i }}" >
+                                                                            <td>
+                                                                                <textarea class="form-control" rows="4" name="serve_item[]"></textarea>
+                                                                            </td>
+                                                                            <td>
+                                                                                <textarea class="form-control" rows="4" name="serve_context[]"></textarea>
+                                                                            </td>
+                                                                            <td style="vertical-align: middle;">
+                                                                                <button class="mobile btn btn-danger del-row" alt="{{ $i }}" type="button" name="button" onclick="del_row(this)">刪除</button>
+                                                                            </td>
+                                                                        </tr>
+                                                                    @endfor
+                                                            @endif
+                                                        </tbody>
+                                                    </table>
+                                                </div> <!-- end .table-responsive -->
+                                                <div class="form-group row">
+                                                    <div class="col-12">
+                                                    <input id="add_serve" class="btn btn-primary" type="button" name="" value="新增方案">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -1673,6 +1728,30 @@
             $('#custom').on('click', '.del-row', function() {
                 $(this).closest('tr').remove();
                 customRowCount--;
+            });
+
+            //其它效益
+            var serveRowCount = $('#serve tbody tr').length;
+            $('#add_serve').click(function() {
+                serveRowCount++;
+                var newRow = `<tr id="row-${serveRowCount}" >
+                                <td>
+                                    <textarea class="form-control" rows="4" name="serve_item[]"></textarea>
+                                </td>
+                                <td>
+                                    <textarea class="form-control" rows="4" name="serve_context[]"></textarea>
+                                </td>
+                                <td style="vertical-align: middle;">
+                                    <button class="mobile btn btn-danger del-row" alt="${serveRowCount}" type="button" name="button" onclick="del_row(this)">刪除</button>
+                                </td>
+                            </tr>`;
+                $('#serve tbody').append(newRow);
+            });
+
+            // Event delegation for dynamically added elements
+            $('#serve').on('click', '.del-row', function() {
+                $(this).closest('tr').remove();
+                serveRowCount--;
             });
 
             //其它效益

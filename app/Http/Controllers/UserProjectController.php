@@ -33,6 +33,7 @@ use App\Models\WordCustomPerformance;
 use App\Models\ManufactureThreeIncome;
 use App\Models\ManufactureIso;
 use App\Models\WordCheck;
+use App\Models\WordServe;
 use SebastianBergmann\CodeCoverage\Report\Xml\Project;
 use Illuminate\Support\Facades\Auth;
 use PhpOffice\PhpWord\PhpWord;
@@ -434,6 +435,27 @@ class UserProjectController extends Controller
                     $word_custom->after_guidance= $request->custom_after_guidance[$key];
                     $word_custom->explanation= $request->custom_explanation[$key];
                     $word_custom->save();
+                }
+            }
+        }
+
+        //查核點
+        $word_serve_datas = WordServe::where('project_id',$project->id)->get();
+        if(count($word_serve_datas) > 0) {
+            $word_serve_datas = WordServe::where('project_id',$project->id)->delete();
+        }
+        if(isset($request->serve_item))
+        {
+            foreach($request->serve_item as $key=>$serve_item)
+            {
+                if(isset($serve_item))
+                {
+                    $word_serve = new WordServe;
+                    $word_serve->user_id = $id;
+                    $word_serve->project_id = $project->id;
+                    $word_serve->item = $request->serve_item[$key];
+                    $word_serve->context = $request->serve_context[$key];
+                    $word_serve->save();
                 }
             }
         }
@@ -857,6 +879,20 @@ class UserProjectController extends Controller
             $rowIndex = $key + 1;
             $templateProcessor->setValue("partner_name#{$rowIndex}", $partner_data['name'] ?? '');
             $templateProcessor->setValue("partner_job_content#{$rowIndex}", $partner_data['job_content'] ?? '');
+        }
+
+        //查核點
+        $serve_datas = WordServe::where('user_id', $id)->where('project_id',$project->id)->get();
+        $templateProcessor->cloneRow('serve_item', count($serve_datas));
+        foreach ($serve_datas as $key => $serve_datas) {
+            $rowIndex = $key + 1;
+            // 將每一個問題的對應數據填充到模板中
+            $item = nl2br($serve_datas['item']); 
+            $item = str_replace("<br />", '<w:br/>', $item);
+            $context = nl2br($serve_datas['context']); 
+            $context = str_replace("<br />", '<w:br/>', $context);
+            $templateProcessor->setValue("serve_item#{$rowIndex}", $item ?? '' );
+            $templateProcessor->setValue("serve_context#{$rowIndex}", $context  ?? '');
         }
 
 
