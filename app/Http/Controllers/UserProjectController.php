@@ -882,18 +882,18 @@ class UserProjectController extends Controller
         }
 
         //查核點
-        // $serve_datas = WordServe::where('user_id', $id)->where('project_id',$project->id)->get();
-        // $templateProcessor->cloneRow('serve_item', count($serve_datas));
-        // foreach ($serve_datas as $key => $serve_datas) {
-        //     $rowIndex = $key + 1;
-        //     // 將每一個問題的對應數據填充到模板中
-        //     $item = nl2br($serve_datas['item']); 
-        //     $item = str_replace("<br />", '<w:br/>', $item);
-        //     $context = nl2br($serve_datas['context']); 
-        //     $context = str_replace("<br />", '<w:br/>', $context);
-        //     $templateProcessor->setValue("serve_item#{$rowIndex}", $item ?? '' );
-        //     $templateProcessor->setValue("serve_context#{$rowIndex}", $context  ?? '');
-        // }
+        $serve_datas = WordServe::where('user_id', $id)->where('project_id',$project->id)->get();
+        $templateProcessor->cloneRow('serve_item', count($serve_datas));
+        foreach ($serve_datas as $key => $serve_datas) {
+            $rowIndex = $key + 1;
+            // 將每一個問題的對應數據填充到模板中
+            $item = nl2br($serve_datas['item']); 
+            $item = str_replace("<br />", '<w:br/>', $item);
+            $context = nl2br($serve_datas['context']); 
+            $context = str_replace("<br />", '<w:br/>', $context);
+            $templateProcessor->setValue("serve_item#{$rowIndex}", $item ?? '' );
+            $templateProcessor->setValue("serve_context#{$rowIndex}", $context  ?? '');
+        }
 
 
         //part5
@@ -1022,7 +1022,7 @@ class UserProjectController extends Controller
 
 
         // 保存修改後的文件到臨時路徑
-        $fileName = $user_data->name.'-商業服務業計畫書' . '.docx';
+        $fileName = 'exported_file_' . time() . '.docx';
         $tempFilePath = tempnam(sys_get_temp_dir(), 'phpword') . '.docx';
         $templateProcessor->saveAs($tempFilePath);
 
