@@ -484,11 +484,11 @@ class UserProjectController extends Controller
         if(count($word_check_datas) > 0) {
             $word_check_datas = WordCheck::where('project_id',$project->id)->delete();
         }
-        if(isset($request->check_estimated))
+        if(isset($request->check_item))
         {
-            foreach($request->check_estimated as $key=>$check_estimated)
+            foreach($request->check_item as $key=>$check_item)
             {
-                if(isset($check_estimated))
+                if(isset($check_item))
                 {
                     $word_check = new WordCheck;
                     $word_check->user_id = $id;
