@@ -995,23 +995,23 @@ class UserProjectController extends Controller
             $templateProcessor->setValue("planned_item#{$rowIndex}",$planned_data['item'] ?? '');
         }
 
-        // $templateProcessor->setValue("checkpoint", $word_data->checkpoint  ?? '');
-        // $check_datas = WordCheck::where('user_id', $id)->where('project_id',$project->id)->get();
-        // $templateProcessor->cloneRow('check_item', count($check_datas));
-        // foreach ($check_datas as $key => $check_datas) {
-        //     $rowIndex = $key + 1;
-        //     // 將每一個問題的對應數據填充到模板中
-        //     $item = nl2br($check_datas['item']); 
-        //     $item = str_replace("<br />", '<w:br/>', $item);
-        //     $audit_data = nl2br($check_datas['audit_data']); 
-        //     $audit_data = str_replace("<br />", '<w:br/>', $audit_data);
-        //     $templateProcessor->setValue("check_item#{$rowIndex}", $item ?? '');
-        //     $templateProcessor->setValue("check_estimated#{$rowIndex}",$check_datas['estimated']  ?? '');
-        //     $templateProcessor->setValue("check_midterm_checkpoint#{$rowIndex}",$check_datas['midterm_checkpoint']  ?? '');
-        //     $templateProcessor->setValue("check_final_checkpoint#{$rowIndex}",$check_datas['final_checkpoint']  ?? '');
-        //     $templateProcessor->setValue("check_proportion#{$rowIndex}",$check_datas['proportion']  ?? '');
-        //     $templateProcessor->setValue("check_audit_data#{$rowIndex}", $audit_data  ?? '');
-        // }
+        $templateProcessor->setValue("checkpoint", $word_data->checkpoint  ?? '');
+        $check_datas = WordCheck::where('user_id', $id)->where('project_id',$project->id)->get();
+        $templateProcessor->cloneRow('check_item', count($check_datas));
+        foreach ($check_datas as $key => $check_data) {
+            $rowIndex = $key + 1;
+            // 將每一個問題的對應數據填充到模板中
+            $item = nl2br($check_data['item']); 
+            $item = str_replace("<br />", '<w:br/>', $item);
+            $audit_data = nl2br($check_data['audit_data']); 
+            $audit_data = str_replace("<br />", '<w:br/>', $audit_data);
+            $templateProcessor->setValue("check_item#{$rowIndex}", $item ?? '');
+            $templateProcessor->setValue("check_estimated#{$rowIndex}",$check_data['estimated']  ?? '');
+            $templateProcessor->setValue("check_midterm_checkpoint#{$rowIndex}",$check_data['midterm_checkpoint']  ?? '');
+            $templateProcessor->setValue("check_final_checkpoint#{$rowIndex}",$check_data['final_checkpoint']  ?? '');
+            $templateProcessor->setValue("check_proportion#{$rowIndex}",$check_data['proportion']  ?? '');
+            $templateProcessor->setValue("check_audit_data#{$rowIndex}", $audit_data  ?? '');
+        }
 
 
 
