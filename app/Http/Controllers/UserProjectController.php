@@ -882,18 +882,18 @@ class UserProjectController extends Controller
         }
 
         //查核點
-        $serve_datas = WordServe::where('user_id', $id)->where('project_id',$project->id)->get();
-        $templateProcessor->cloneRow('serve_item', count($serve_datas));
-        foreach ($serve_datas as $key => $serve_datas) {
-            $rowIndex = $key + 1;
-            // 將每一個問題的對應數據填充到模板中
-            $item = nl2br($serve_datas['item']); 
-            $item = str_replace("<br />", '<w:br/>', $item);
-            $context = nl2br($serve_datas['context']); 
-            $context = str_replace("<br />", '<w:br/>', $context);
-            $templateProcessor->setValue("serve_item#{$rowIndex}", $item ?? '' );
-            $templateProcessor->setValue("serve_context#{$rowIndex}", $context  ?? '');
-        }
+        // $serve_datas = WordServe::where('user_id', $id)->where('project_id',$project->id)->get();
+        // $templateProcessor->cloneRow('serve_item', count($serve_datas));
+        // foreach ($serve_datas as $key => $serve_datas) {
+        //     $rowIndex = $key + 1;
+        //     // 將每一個問題的對應數據填充到模板中
+        //     $item = nl2br($serve_datas['item']); 
+        //     $item = str_replace("<br />", '<w:br/>', $item);
+        //     $context = nl2br($serve_datas['context']); 
+        //     $context = str_replace("<br />", '<w:br/>', $context);
+        //     $templateProcessor->setValue("serve_item#{$rowIndex}", $item ?? '' );
+        //     $templateProcessor->setValue("serve_context#{$rowIndex}", $context  ?? '');
+        // }
 
 
         //part5
