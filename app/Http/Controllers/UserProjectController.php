@@ -996,6 +996,7 @@ class UserProjectController extends Controller
         }
 
         $templateProcessor->setValue("checkpoint", $word_data->checkpoint  ?? '');
+        
         $check_datas = WordCheck::where('user_id', $id)->where('project_id',$project->id)->get();
         $templateProcessor->cloneRow('check_item', count($check_datas));
         foreach ($check_datas as $key => $check_data) {
