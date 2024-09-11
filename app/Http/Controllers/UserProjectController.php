@@ -969,50 +969,50 @@ class UserProjectController extends Controller
             $templateProcessor->setValue("benefit_benefit#{$rowIndex}", $benefit  ?? '');
         }
 
-        // $word_fund = WordFund::where('user_id', $id)->where('project_id', $project->id)->first();
-        // for ($i = 1; $i <= 46; $i++) {
-        //     $field = 'fund_' . $i;
-        //     $value = $word_fund->$field;
+        $word_fund = WordFund::where('user_id', $id)->where('project_id', $project->id)->first();
+        for ($i = 1; $i <= 46; $i++) {
+            $field = 'fund_' . $i;
+            $value = $word_fund->$field;
 
-        //     // 如果值为 null 或者空字串，或者确实为 0，都强制设置为 "0"
-        //     if ($value === null || $value === '' || $value == 0) {
-        //         $value = "0";
-        //     }
+            // 如果值为 null 或者空字串，或者确实为 0，都强制设置为 "0"
+            if ($value === null || $value === '' || $value == 0) {
+                $value = "0";
+            }
 
-        //     // 直接设置为字符串
-        //     $templateProcessor->setValue("fund_$i", $value ?? '' ?? '');
-        // }
-        // // ?? ' '處理 context 的換行符
-        // $fund_context = nl2br($word_fund['context']); 
-        // $fund_context = str_replace("<br />", '<w:br/>', $fund_context);
-        // $templateProcessor->setValue('fund_context', $fund_context ?? '');
+            // 直接设置为字符串
+            $templateProcessor->setValue("fund_$i", $value ?? '');
+        }
+        // ?? ' '處理 context 的換行符
+        $fund_context = nl2br($word_fund['context']); 
+        $fund_context = str_replace("<br />", '<w:br/>', $fund_context);
+        $templateProcessor->setValue('fund_context', $fund_context ?? '');
 
-        // $planned_datas = WordPlanned::where('user_id', $id)->where('project_id',$project->id)->get();
-        // $templateProcessor->cloneRow('planned_item', count($planned_datas));
-        // foreach ($planned_datas as $key => $planned_data) {
-        //     $rowIndex = $key + 1;
-        //     // 將每一個問題的對應數據填充到模板中
-        //     $templateProcessor->setValue("planned_item#{$rowIndex}",$planned_data['item'] ?? '');
-        // }
+        $planned_datas = WordPlanned::where('user_id', $id)->where('project_id',$project->id)->get();
+        $templateProcessor->cloneRow('planned_item', count($planned_datas));
+        foreach ($planned_datas as $key => $planned_data) {
+            $rowIndex = $key + 1;
+            // 將每一個問題的對應數據填充到模板中
+            $templateProcessor->setValue("planned_item#{$rowIndex}",$planned_data['item'] ?? '');
+        }
 
-        // $templateProcessor->setValue("checkpoint", $word_data->checkpoint  ?? '');
+        $templateProcessor->setValue("checkpoint", $word_data->checkpoint  ?? '');
 
-        // $check_datas = WordCheck::where('user_id', $id)->where('project_id',$project->id)->get();
-        // $templateProcessor->cloneRow('check_item', count($check_datas));
-        // foreach ($check_datas as $key => $check_datas) {
-        //     $rowIndex = $key + 1;
-        //     // 將每一個問題的對應數據填充到模板中
-        //     $item = nl2br($check_datas['item']); 
-        //     $item = str_replace("<br />", '<w:br/>', $item);
-        //     $audit_data = nl2br($check_datas['audit_data']); 
-        //     $audit_data = str_replace("<br />", '<w:br/>', $audit_data);
-        //     $templateProcessor->setValue("check_item#{$rowIndex}", $item);
-        //     $templateProcessor->setValue("check_estimated#{$rowIndex}",$check_datas['estimated']  ?? '');
-        //     $templateProcessor->setValue("check_midterm_checkpoint#{$rowIndex}",$check_datas['midterm_checkpoint']  ?? '');
-        //     $templateProcessor->setValue("check_final_checkpoint#{$rowIndex}",$check_datas['final_checkpoint']  ?? '');
-        //     $templateProcessor->setValue("check_proportion#{$rowIndex}",$check_datas['proportion']  ?? '');
-        //     $templateProcessor->setValue("check_audit_data#{$rowIndex}", $audit_data  ?? '');
-        // }
+        $check_datas = WordCheck::where('user_id', $id)->where('project_id',$project->id)->get();
+        $templateProcessor->cloneRow('check_item', count($check_datas));
+        foreach ($check_datas as $key => $check_datas) {
+            $rowIndex = $key + 1;
+            // 將每一個問題的對應數據填充到模板中
+            $item = nl2br($check_datas['item']); 
+            $item = str_replace("<br />", '<w:br/>', $item);
+            $audit_data = nl2br($check_datas['audit_data']); 
+            $audit_data = str_replace("<br />", '<w:br/>', $audit_data);
+            $templateProcessor->setValue("check_item#{$rowIndex}", $item);
+            $templateProcessor->setValue("check_estimated#{$rowIndex}",$check_datas['estimated']  ?? '');
+            $templateProcessor->setValue("check_midterm_checkpoint#{$rowIndex}",$check_datas['midterm_checkpoint']  ?? '');
+            $templateProcessor->setValue("check_final_checkpoint#{$rowIndex}",$check_datas['final_checkpoint']  ?? '');
+            $templateProcessor->setValue("check_proportion#{$rowIndex}",$check_datas['proportion']  ?? '');
+            $templateProcessor->setValue("check_audit_data#{$rowIndex}", $audit_data  ?? '');
+        }
 
 
 
