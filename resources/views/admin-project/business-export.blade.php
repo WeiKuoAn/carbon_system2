@@ -848,7 +848,7 @@
                                                     </div>
                                                     <div class="col-md-12">
                                                         <div class="table-responsive">
-                                                            <table id="plan" class="table plan-list">
+                                                            <table id="check" class="table check-list">
                                                                 <thead>
                                                                     <tr align="center">
                                                                         <th width="13%">工作項目</th>
@@ -857,6 +857,7 @@
                                                                         <th width="13%">期末查核點<br>（累計完成）</th>
                                                                         <th width="13%">占比<br>（%）</th>
                                                                         <th width="30%">查核資料</th>
+                                                                        <th width="5%"></th>
                                                                     </tr>
                                                                 </thead>
                                                                 <tbody valign="center" align="left">
@@ -880,9 +881,9 @@
                                                                                 <td>
                                                                                     <textarea class="form-control" rows="2" name="check_audit_data[]">{{ $word_check_data->audit_data }}</textarea>
                                                                                 </td>
-                                                                                {{-- <td style="vertical-align: middle;">
+                                                                                <td style="vertical-align: middle;">
                                                                                     <button class="mobile btn btn-danger del-row mt-4" alt="{{ $key }}" type="button" name="button" onclick="del_row(this)">刪除</button>
-                                                                                </td> --}}
+                                                                                </td>
                                                                             </tr>
                                                                         @endforeach
                                                                     @else
@@ -906,20 +907,20 @@
                                                                                     <td>
                                                                                         <textarea class="form-control" rows="2" name="check_audit_data[]"></textarea>
                                                                                     </td>
-                                                                                    {{-- <td style="vertical-align: middle;">
+                                                                                    <td style="vertical-align: middle;">
                                                                                         <button class="mobile btn btn-danger del-row" alt="{{ $i }}" type="button" name="button" onclick="del_row(this)">刪除</button>
-                                                                                    </td> --}}
+                                                                                    </td>
                                                                                 </tr>
                                                                             @endfor
                                                                     @endif
                                                                 </tbody>
                                                             </table>
                                                         </div> <!-- end .table-responsive -->
-                                                        {{-- <div class="form-group row">
+                                                        <div class="form-group row">
                                                             <div class="col-12">
                                                             <input id="add_check" class="btn btn-primary" type="button" name="" value="新增核點">
                                                             </div>
-                                                        </div> --}}
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -1780,8 +1781,43 @@
                
             });
 
-            var needRowCount = $('#need tbody tr').length;
+            //查點需求
+            var checkRowCount = $('#check tbody tr').length;
+            $('#add_check').click(function() {
+                    checkRowCount++;
+                    var newRow = `<tr id="row-${checkRowCount}">
+                                    <td>
+                                        <textarea class="form-control" rows="2" name="check_item[]"></textarea>
+                                    </td>
+                                    <td>
+                                        <textarea class="form-control" rows="2" name="check_estimated[]"></textarea>
+                                    </td>
+                                    <td>
+                                        <textarea class="form-control" rows="2" name="check_midterm_checkpoint[]"></textarea>
+                                    </td>
+                                    <td>
+                                        <textarea class="form-control" rows="2" name="check_final_checkpoint[]"></textarea>
+                                    </td>
+                                    <td>
+                                        <textarea class="form-control" rows="2" name="check_proportion[]"></textarea>
+                                    </td>
+                                    <td>
+                                        <textarea class="form-control" rows="2" name="check_audit_data[]"></textarea>
+                                    </td>
+                                    <td style="vertical-align: middle;">
+                                        <button class="mobile btn btn-danger del-row" alt="${checkRowCount}" type="button" name="button" onclick="del_row(this)">刪除</button>
+                                    </td>
+                                </tr>`;
+                    $('#check tbody').append(newRow);
+            });
 
+            // Event delegation for dynamically added elements
+            $('#check').on('click', '.del-row', function() {
+                $(this).closest('tr').remove();
+                checkRowCount--;
+            });
+
+            var needRowCount = $('#need tbody tr').length;
             $('#add_need').click(function() {
                     needRowCount++;
                     var newRow = `<tr id="row-${needRowCount}">
