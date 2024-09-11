@@ -1001,16 +1001,17 @@ class UserProjectController extends Controller
         $templateProcessor->cloneRow('check_item', count($check_datas));
         foreach ($check_datas as $key => $check_data) {
             $rowIndex = $key + 1;
-            // 將每一個問題的對應數據填充到模板中
-            // 處理 item 的換行符，保持原有的換行格式
+            // 處理 item 的換行符和 & 符號
             $item = $check_data['item'] ?? '';
             $item = nl2br($item); 
             $item = str_replace(array("<br />", "<br>"), "\r\n", $item);
+            $item = str_replace("&", "&amp;", $item); // 將 & 符號替換為 &amp;
 
-            // 處理 audit_data 的換行符，保持原有的換行格式
+            // 處理 audit_data 的換行符和 & 符號
             $audit_data = $check_data['audit_data'] ?? '';
             $audit_data = nl2br($audit_data); 
             $audit_data = str_replace(array("<br />", "<br>"), "\r\n", $audit_data);
+            $audit_data = str_replace("&", "&amp;", $audit_data); // 將 & 符號替換為 &amp;
             $templateProcessor->setValue("check_item#{$rowIndex}", $item ?? '');
             $templateProcessor->setValue("check_estimated#{$rowIndex}",$check_data['estimated']  ?? '');
             $templateProcessor->setValue("check_midterm_checkpoint#{$rowIndex}",$check_data['midterm_checkpoint']  ?? '');
