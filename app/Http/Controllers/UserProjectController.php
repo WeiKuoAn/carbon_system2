@@ -897,122 +897,122 @@ class UserProjectController extends Controller
 
 
         //part5
-        $effectiveness_datas = WordEffectiveness::where('user_id', $id)->where('project_id',$project->id)->get();
-        $templateProcessor->cloneRow('effectiveness_kpi', count($effectiveness_datas));
-        foreach ($effectiveness_datas as $key => $effectiveness_data) {
-            $rowIndex = $key + 1;
-            // 將每一個問題的對應數據填充到模板中
-            $kpi = nl2br($effectiveness_data['kpi']); 
-            $kpi = str_replace("<br />", '<w:br/>', $kpi);
-            $goal = nl2br($effectiveness_data['goal']); 
-            $goal = str_replace("<br />", '<w:br/>', $goal);
-            $definition = nl2br($effectiveness_data['definition']); 
-            $definition = str_replace("<br />", '<w:br/>', $definition ?? '');   
-            $templateProcessor->setValue("effectiveness_kpi#{$rowIndex}", $kpi ?? '');
-            $templateProcessor->setValue("effectiveness_goal#{$rowIndex}", $goal ?? '');
-            $templateProcessor->setValue("effectiveness_definition#{$rowIndex}", $definition ?? '');
-        }
+        // $effectiveness_datas = WordEffectiveness::where('user_id', $id)->where('project_id',$project->id)->get();
+        // $templateProcessor->cloneRow('effectiveness_kpi', count($effectiveness_datas));
+        // foreach ($effectiveness_datas as $key => $effectiveness_data) {
+        //     $rowIndex = $key + 1;
+        //     // 將每一個問題的對應數據填充到模板中
+        //     $kpi = nl2br($effectiveness_data['kpi']); 
+        //     $kpi = str_replace("<br />", '<w:br/>', $kpi);
+        //     $goal = nl2br($effectiveness_data['goal']); 
+        //     $goal = str_replace("<br />", '<w:br/>', $goal);
+        //     $definition = nl2br($effectiveness_data['definition']); 
+        //     $definition = str_replace("<br />", '<w:br/>', $definition ?? '');   
+        //     $templateProcessor->setValue("effectiveness_kpi#{$rowIndex}", $kpi ?? '');
+        //     $templateProcessor->setValue("effectiveness_goal#{$rowIndex}", $goal ?? '');
+        //     $templateProcessor->setValue("effectiveness_definition#{$rowIndex}", $definition ?? '');
+        // }
 
-        $reduction_datas = WordReductionItem::where('user_id', $id)->where('project_id',$project->id)->get();
-        $templateProcessor->cloneRow('reduction_item', count($effectiveness_datas));
-        foreach ($reduction_datas as $key => $reduction_data) {
-            $rowIndex = $key + 1;
-            // 將每一個問題的對應數據填充到模板中
-            $item = nl2br($reduction_data['item']); 
-            $item = str_replace("<br />", '<w:br/>', $item);
-            $before_guidance = nl2br($reduction_data['before_guidance']); 
-            $before_guidance = str_replace("<br />", '<w:br/>', $before_guidance);
-            $after_guidance = nl2br($reduction_data['after_guidance']); 
-            $after_guidance = str_replace("<br />", '<w:br/>', $after_guidance);  
-            $difference = nl2br($reduction_data['difference']);
-            $difference = str_replace("<br />", '<w:br/>', $difference);  
-            $relationship = nl2br($reduction_data['relationship']);     
-            $relationship = str_replace("<br />", '<w:br/>', $relationship);   
-            $templateProcessor->setValue("reduction_item#{$rowIndex}", $item ?? '');
-            $templateProcessor->setValue("reduction_before_guidance#{$rowIndex}", $before_guidance ?? '');
-            $templateProcessor->setValue("reduction_after_guidance#{$rowIndex}", $after_guidance ?? '');
-            $templateProcessor->setValue("reduction_difference#{$rowIndex}", $difference ?? '');
-            $templateProcessor->setValue("reduction_relationship#{$rowIndex}", $relationship ?? '');
-        }
+        // $reduction_datas = WordReductionItem::where('user_id', $id)->where('project_id',$project->id)->get();
+        // $templateProcessor->cloneRow('reduction_item', count($effectiveness_datas));
+        // foreach ($reduction_datas as $key => $reduction_data) {
+        //     $rowIndex = $key + 1;
+        //     // 將每一個問題的對應數據填充到模板中
+        //     $item = nl2br($reduction_data['item']); 
+        //     $item = str_replace("<br />", '<w:br/>', $item);
+        //     $before_guidance = nl2br($reduction_data['before_guidance']); 
+        //     $before_guidance = str_replace("<br />", '<w:br/>', $before_guidance);
+        //     $after_guidance = nl2br($reduction_data['after_guidance']); 
+        //     $after_guidance = str_replace("<br />", '<w:br/>', $after_guidance);  
+        //     $difference = nl2br($reduction_data['difference']);
+        //     $difference = str_replace("<br />", '<w:br/>', $difference);  
+        //     $relationship = nl2br($reduction_data['relationship']);     
+        //     $relationship = str_replace("<br />", '<w:br/>', $relationship);   
+        //     $templateProcessor->setValue("reduction_item#{$rowIndex}", $item ?? '');
+        //     $templateProcessor->setValue("reduction_before_guidance#{$rowIndex}", $before_guidance ?? '');
+        //     $templateProcessor->setValue("reduction_after_guidance#{$rowIndex}", $after_guidance ?? '');
+        //     $templateProcessor->setValue("reduction_difference#{$rowIndex}", $difference ?? '');
+        //     $templateProcessor->setValue("reduction_relationship#{$rowIndex}", $relationship ?? '');
+        // }
 
-        $custom_datas = WordCustomPerformance::where('user_id', $id)->where('project_id',$project->id)->get();
-        $templateProcessor->cloneRow('custom_performance', count($custom_datas));
-        foreach ($custom_datas as $key => $custom_datas) {
-            $rowIndex = $key + 1;
-            // 將每一個問題的對應數據填充到模板中
-            $performance = nl2br($custom_datas['performance']); 
-            $performance = str_replace("<br />", '<w:br/>', $performance);
-            $before_guidance = nl2br($custom_datas['before_guidance']); 
-            $before_guidance = str_replace("<br />", '<w:br/>', $before_guidance);
-            $after_guidance = nl2br($custom_datas['after_guidance']); 
-            $after_guidance = str_replace("<br />", '<w:br/>', $after_guidance);  
-            $explanation = nl2br($custom_datas['explanation']);
-            $explanation = str_replace("<br />", '<w:br/>', $explanation);  
-            $relationship = nl2br($custom_datas['relationship']);     
-            $relationship = str_replace("<br />", '<w:br/>', $relationship);   
-            $templateProcessor->setValue("custom_performance#{$rowIndex}", $performance ?? '' );
-            $templateProcessor->setValue("custom_before_guidance#{$rowIndex}", $before_guidance  ?? '');
-            $templateProcessor->setValue("custom_after_guidance#{$rowIndex}", $after_guidance  ?? '');
-            $templateProcessor->setValue("custom_explanation#{$rowIndex}", $explanation  ?? '');
-        }
+        // $custom_datas = WordCustomPerformance::where('user_id', $id)->where('project_id',$project->id)->get();
+        // $templateProcessor->cloneRow('custom_performance', count($custom_datas));
+        // foreach ($custom_datas as $key => $custom_datas) {
+        //     $rowIndex = $key + 1;
+        //     // 將每一個問題的對應數據填充到模板中
+        //     $performance = nl2br($custom_datas['performance']); 
+        //     $performance = str_replace("<br />", '<w:br/>', $performance);
+        //     $before_guidance = nl2br($custom_datas['before_guidance']); 
+        //     $before_guidance = str_replace("<br />", '<w:br/>', $before_guidance);
+        //     $after_guidance = nl2br($custom_datas['after_guidance']); 
+        //     $after_guidance = str_replace("<br />", '<w:br/>', $after_guidance);  
+        //     $explanation = nl2br($custom_datas['explanation']);
+        //     $explanation = str_replace("<br />", '<w:br/>', $explanation);  
+        //     $relationship = nl2br($custom_datas['relationship']);     
+        //     $relationship = str_replace("<br />", '<w:br/>', $relationship);   
+        //     $templateProcessor->setValue("custom_performance#{$rowIndex}", $performance ?? '' );
+        //     $templateProcessor->setValue("custom_before_guidance#{$rowIndex}", $before_guidance  ?? '');
+        //     $templateProcessor->setValue("custom_after_guidance#{$rowIndex}", $after_guidance  ?? '');
+        //     $templateProcessor->setValue("custom_explanation#{$rowIndex}", $explanation  ?? '');
+        // }
 
-        $benefit_datas = WordBenefit::where('user_id', $id)->where('project_id',$project->id)->get();
-        $templateProcessor->cloneRow('benefit_item', count($benefit_datas));
-        foreach ($benefit_datas as $key => $benefit_datas) {
-            $rowIndex = $key + 1;
-            // 將每一個問題的對應數據填充到模板中
-            $item = nl2br($benefit_datas['item']); 
-            $item = str_replace("<br />", '<w:br/>', $item);
-            $benefit = nl2br($benefit_datas['benefit']); 
-            $benefit = str_replace("<br />", '<w:br/>', $benefit);
-            $templateProcessor->setValue("benefit_item#{$rowIndex}", $item ?? '' );
-            $templateProcessor->setValue("benefit_benefit#{$rowIndex}", $benefit  ?? '');
-        }
+        // $benefit_datas = WordBenefit::where('user_id', $id)->where('project_id',$project->id)->get();
+        // $templateProcessor->cloneRow('benefit_item', count($benefit_datas));
+        // foreach ($benefit_datas as $key => $benefit_datas) {
+        //     $rowIndex = $key + 1;
+        //     // 將每一個問題的對應數據填充到模板中
+        //     $item = nl2br($benefit_datas['item']); 
+        //     $item = str_replace("<br />", '<w:br/>', $item);
+        //     $benefit = nl2br($benefit_datas['benefit']); 
+        //     $benefit = str_replace("<br />", '<w:br/>', $benefit);
+        //     $templateProcessor->setValue("benefit_item#{$rowIndex}", $item ?? '' );
+        //     $templateProcessor->setValue("benefit_benefit#{$rowIndex}", $benefit  ?? '');
+        // }
 
-        $word_fund = WordFund::where('user_id', $id)->where('project_id', $project->id)->first();
-        for ($i = 1; $i <= 46; $i++) {
-            $field = 'fund_' . $i;
-            $value = $word_fund->$field;
+        // $word_fund = WordFund::where('user_id', $id)->where('project_id', $project->id)->first();
+        // for ($i = 1; $i <= 46; $i++) {
+        //     $field = 'fund_' . $i;
+        //     $value = $word_fund->$field;
 
-            // 如果值为 null 或者空字串，或者确实为 0，都强制设置为 "0"
-            if ($value === null || $value === '' || $value == 0) {
-                $value = "0";
-            }
+        //     // 如果值为 null 或者空字串，或者确实为 0，都强制设置为 "0"
+        //     if ($value === null || $value === '' || $value == 0) {
+        //         $value = "0";
+        //     }
 
-            // 直接设置为字符串
-            $templateProcessor->setValue("fund_$i", $value ?? '' ?? '');
-        }
-        // ?? ' '處理 context 的換行符
-        $fund_context = nl2br($word_fund['context']); 
-        $fund_context = str_replace("<br />", '<w:br/>', $fund_context);
-        $templateProcessor->setValue('fund_context', $fund_context ?? '');
+        //     // 直接设置为字符串
+        //     $templateProcessor->setValue("fund_$i", $value ?? '' ?? '');
+        // }
+        // // ?? ' '處理 context 的換行符
+        // $fund_context = nl2br($word_fund['context']); 
+        // $fund_context = str_replace("<br />", '<w:br/>', $fund_context);
+        // $templateProcessor->setValue('fund_context', $fund_context ?? '');
 
-        $planned_datas = WordPlanned::where('user_id', $id)->where('project_id',$project->id)->get();
-        $templateProcessor->cloneRow('planned_item', count($planned_datas));
-        foreach ($planned_datas as $key => $planned_data) {
-            $rowIndex = $key + 1;
-            // 將每一個問題的對應數據填充到模板中
-            $templateProcessor->setValue("planned_item#{$rowIndex}",$planned_data['item'] ?? '');
-        }
+        // $planned_datas = WordPlanned::where('user_id', $id)->where('project_id',$project->id)->get();
+        // $templateProcessor->cloneRow('planned_item', count($planned_datas));
+        // foreach ($planned_datas as $key => $planned_data) {
+        //     $rowIndex = $key + 1;
+        //     // 將每一個問題的對應數據填充到模板中
+        //     $templateProcessor->setValue("planned_item#{$rowIndex}",$planned_data['item'] ?? '');
+        // }
 
-        $templateProcessor->setValue("checkpoint", $word_data->checkpoint  ?? '');
+        // $templateProcessor->setValue("checkpoint", $word_data->checkpoint  ?? '');
 
-        $check_datas = WordCheck::where('user_id', $id)->where('project_id',$project->id)->get();
-        $templateProcessor->cloneRow('check_item', count($check_datas));
-        foreach ($check_datas as $key => $check_datas) {
-            $rowIndex = $key + 1;
-            // 將每一個問題的對應數據填充到模板中
-            $item = nl2br($check_datas['item']); 
-            $item = str_replace("<br />", '<w:br/>', $item);
-            $audit_data = nl2br($check_datas['audit_data']); 
-            $audit_data = str_replace("<br />", '<w:br/>', $audit_data);
-            $templateProcessor->setValue("check_item#{$rowIndex}", $item);
-            $templateProcessor->setValue("check_estimated#{$rowIndex}",$check_datas['estimated']  ?? '');
-            $templateProcessor->setValue("check_midterm_checkpoint#{$rowIndex}",$check_datas['midterm_checkpoint']  ?? '');
-            $templateProcessor->setValue("check_final_checkpoint#{$rowIndex}",$check_datas['final_checkpoint']  ?? '');
-            $templateProcessor->setValue("check_proportion#{$rowIndex}",$check_datas['proportion']  ?? '');
-            $templateProcessor->setValue("check_audit_data#{$rowIndex}", $audit_data  ?? '');
-        }
+        // $check_datas = WordCheck::where('user_id', $id)->where('project_id',$project->id)->get();
+        // $templateProcessor->cloneRow('check_item', count($check_datas));
+        // foreach ($check_datas as $key => $check_datas) {
+        //     $rowIndex = $key + 1;
+        //     // 將每一個問題的對應數據填充到模板中
+        //     $item = nl2br($check_datas['item']); 
+        //     $item = str_replace("<br />", '<w:br/>', $item);
+        //     $audit_data = nl2br($check_datas['audit_data']); 
+        //     $audit_data = str_replace("<br />", '<w:br/>', $audit_data);
+        //     $templateProcessor->setValue("check_item#{$rowIndex}", $item);
+        //     $templateProcessor->setValue("check_estimated#{$rowIndex}",$check_datas['estimated']  ?? '');
+        //     $templateProcessor->setValue("check_midterm_checkpoint#{$rowIndex}",$check_datas['midterm_checkpoint']  ?? '');
+        //     $templateProcessor->setValue("check_final_checkpoint#{$rowIndex}",$check_datas['final_checkpoint']  ?? '');
+        //     $templateProcessor->setValue("check_proportion#{$rowIndex}",$check_datas['proportion']  ?? '');
+        //     $templateProcessor->setValue("check_audit_data#{$rowIndex}", $audit_data  ?? '');
+        // }
 
 
 
