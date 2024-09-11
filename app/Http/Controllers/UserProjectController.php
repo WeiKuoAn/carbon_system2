@@ -1002,10 +1002,15 @@ class UserProjectController extends Controller
         foreach ($check_datas as $key => $check_data) {
             $rowIndex = $key + 1;
             // 將每一個問題的對應數據填充到模板中
-            $item = nl2br($check_data['item']); 
-            $item = str_replace("<br />", '<w:br/>', $item);
-            $audit_data = nl2br($check_data['audit_data']); 
-            $audit_data = str_replace("<br />", '<w:br/>', $audit_data);
+            // 處理 item 的換行符，保持原有的換行格式
+            $item = $check_data['item'] ?? '';
+            $item = nl2br($item); 
+            $item = str_replace(array("<br />", "<br>"), "\r\n", $item);
+
+            // 處理 audit_data 的換行符，保持原有的換行格式
+            $audit_data = $check_data['audit_data'] ?? '';
+            $audit_data = nl2br($audit_data); 
+            $audit_data = str_replace(array("<br />", "<br>"), "\r\n", $audit_data);
             $templateProcessor->setValue("check_item#{$rowIndex}", $item ?? '');
             $templateProcessor->setValue("check_estimated#{$rowIndex}",$check_data['estimated']  ?? '');
             $templateProcessor->setValue("check_midterm_checkpoint#{$rowIndex}",$check_data['midterm_checkpoint']  ?? '');
