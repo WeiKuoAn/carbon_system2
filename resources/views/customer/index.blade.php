@@ -94,8 +94,8 @@
                                         <th scope="col">主要聯絡人</th>
                                         <th scope="col">聯絡人職稱</th>
                                         <th scope="col">聯絡人電話</th>
-                                        <th scope="col">聯絡人信箱</th>
-                                        <th scope="col">公司登記地址</th>
+                                        {{-- <th scope="col">聯絡人信箱</th> --}}
+                                        {{-- <th scope="col">公司登記地址</th> --}}
                                         <th scope="col">nas連結</th>
                                         <th scope="col">權限</th>
                                         <th scope="col" style="width: 200px;">操作</th>
@@ -124,8 +124,8 @@
                                         <td>{{ $data->contact_name  }}</td>
                                         <td>{{ $data->contact_job }}</td>
                                         <td>{{ $data->contact_phone  }}</td>
-                                        <td>{{ $data->contact_email  }}</td>
-                                        <td>{{ $data->county.$data->district.$data->address  }}</td>
+                                        {{-- <td>{{ $data->contact_email  }}</td> --}}
+                                        {{-- <td>{{ $data->county.$data->district.$data->address  }}</td> --}}
                                         <td>
                                             <a href="{{ $data->nas_link }}" target="_blank">
                                                 <button type="button"
