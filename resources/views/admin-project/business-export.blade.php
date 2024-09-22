@@ -467,6 +467,10 @@
                                         <input type="text" class="form-control required-input" name="host_email" @if(isset($project_host_data)) value="{{ $project_host_data->email }}" @endif >
                                     </div>
                                     <div class="col-md-4 mt-3">
+                                        <label class="form-label" for="AddNew-Username"><b>信箱</b></label>
+                                        <input type="text" class="form-control required-input" name="host_salary" @if(isset($project_host_data)) value="{{ $project_host_data->salary }}" @endif >
+                                    </div>
+                                    <div class="col-md-4 mt-3">
                                         <label class="form-label" for="AddNew-Username"><b>人月</b></label>
                                         <input type="text" class="form-control required-input" name="host_month" @if(isset($project_host_data)) value="{{ $project_host_data->month }}" @endif >
                                     </div>
@@ -502,6 +506,10 @@
                                     <div class="col-md-4 mt-3">
                                         <label class="form-label" for="AddNew-Username"><b>信箱</b></label>
                                         <input type="text" class="form-control required-input" name="contact_email" @if(isset($cust_data)) value="{{ $cust_data->receive_email }}" @endif >
+                                    </div>
+                                    <div class="col-md-4 mt-3">
+                                        <label class="form-label" for="AddNew-Username"><b>信箱</b></label>
+                                        <input type="text" class="form-control required-input" name="contact_salary" @if(isset($project_contact_data)) value="{{ $project_contact_data->salary }}" @endif >
                                     </div>
                                     <div class="col-md-4 mt-3">
                                         <label class="form-label" for="AddNew-Username"><b>人月</b></label>
