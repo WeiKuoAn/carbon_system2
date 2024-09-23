@@ -864,6 +864,11 @@ class UserProjectController extends Controller
         $templateProcessor->setValue('contact_job', $project_contact_data->job ?? ''); 
         $templateProcessor->setValue('contact_month', $project_contact_data->month ?? '');  
 
+        $templateProcessor->setValue('group_host_name', $project_host_data->name ?? '');
+        $templateProcessor->setValue('group_host_job', $project_host_data->job ?? '');
+        $templateProcessor->setValue('group_contact_name', $project_contact_data->name ?? '');
+        $templateProcessor->setValue('group_contact_job', $project_contact_data->job ?? '');
+
         $personnel_datas = ProjectPersonnel::where('project_id', $project->id)->get();
         $templateProcessor->cloneRow('personnel_name', count($personnel_datas));
         foreach ($personnel_datas as $key => $personnel_data) {
@@ -914,9 +919,9 @@ class UserProjectController extends Controller
         }
 
         $reduction_datas = WordReductionItem::where('user_id', $id)->where('project_id',$project->id)->get();
-        $templateProcessor->cloneRow('reduction_item', count($effectiveness_datas));
+        $templateProcessor->cloneRow('reduction_item', count($reduction_datas));
         foreach ($reduction_datas as $key => $reduction_data) {
-            $rowIndex = $key + 1;
+            $rowIndex = $key+1;
             // 將每一個問題的對應數據填充到模板中
             $item = nl2br($reduction_data['item']); 
             $item = str_replace("<br />", '<w:br/>', $item);
@@ -980,7 +985,7 @@ class UserProjectController extends Controller
             }
 
             // 直接设置为字符串
-            $templateProcessor->setValue("fund_$i", $value ?? '');
+            $templateProcessor->setValue("fund_$i", number_format($value) ?? '');
         }
         // ?? ' '處理 context 的換行符
         $fund_context = nl2br($word_fund['context']); 
