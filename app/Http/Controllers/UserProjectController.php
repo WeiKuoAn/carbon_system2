@@ -909,10 +909,13 @@ class UserProjectController extends Controller
             // 將每一個問題的對應數據填充到模板中
             $kpi = nl2br($effectiveness_data['kpi']); 
             $kpi = str_replace("<br />", '<w:br/>', $kpi);
+            $kpi = str_replace("&", "&amp;", $kpi); // 將 & 符號替換為 &amp;
             $goal = nl2br($effectiveness_data['goal']); 
             $goal = str_replace("<br />", '<w:br/>', $goal);
+            $goal = str_replace("&", "&amp;", $goal); // 將 & 符號替換為 &amp;
             $definition = nl2br($effectiveness_data['definition']); 
-            $definition = str_replace("<br />", '<w:br/>', $definition ?? '');   
+            $definition = str_replace("<br />", '<w:br/>', $definition ?? ''); 
+            $definition = str_replace("&", "&amp;", $definition); // 將 & 符號替換為 &amp;  
             $templateProcessor->setValue("effectiveness_kpi#{$rowIndex}", $kpi ?? '');
             $templateProcessor->setValue("effectiveness_goal#{$rowIndex}", $goal ?? '');
             $templateProcessor->setValue("effectiveness_definition#{$rowIndex}", $definition ?? '');
