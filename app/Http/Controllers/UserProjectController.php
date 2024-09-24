@@ -864,10 +864,10 @@ class UserProjectController extends Controller
         $templateProcessor->setValue('contact_job', $project_contact_data->job ?? ''); 
         $templateProcessor->setValue('contact_month', $project_contact_data->month ?? '');  
 
-        $templateProcessor->setValue('group_host_name', $project_host_data->name ?? '');
-        $templateProcessor->setValue('group_host_job', $project_host_data->job ?? '');
-        $templateProcessor->setValue('group_contact_name', $project_contact_data->name ?? '');
-        $templateProcessor->setValue('group_contact_job', $project_contact_data->job ?? '');
+        // $templateProcessor->setValue('group_host_name', $project_host_data->name ?? '');
+        // $templateProcessor->setValue('group_host_job', $project_host_data->job ?? '');
+        // $templateProcessor->setValue('group_contact_name', $project_contact_data->name ?? '');
+        // $templateProcessor->setValue('group_contact_job', $project_contact_data->job ?? '');
 
         $personnel_datas = ProjectPersonnel::where('project_id', $project->id)->get();
         $templateProcessor->cloneRow('personnel_name', count($personnel_datas));
