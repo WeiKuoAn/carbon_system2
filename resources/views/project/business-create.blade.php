@@ -240,6 +240,7 @@
                                                                                 <option value="0" @if($drive_data->type == 0) selected @endif>上游</option>
                                                                                 <option value="1" @if($drive_data->type == 1) selected @endif>下游</option>
                                                                                 <option value="2" @if($drive_data->type == 2) selected @endif>合作夥伴</option>
+                                                                                <option value="3" @if($drive_data->type == 3) selected @endif>分店</option>
                                                                             </select>
                                                                         </td>
                                                                         <td>
@@ -269,6 +270,7 @@
                                                                                 <option value="0">上游</option>
                                                                                 <option value="1">下游</option>
                                                                                 <option value="2">合作夥伴</option>
+                                                                                <option value="3">分店</option>
                                                                             </select>
                                                                         </td>
                                                                         <td>
@@ -562,6 +564,7 @@
                                         <option value="0">上游</option>
                                         <option value="1">下游</option>
                                         <option value="2">合作夥伴</option>
+                                        <option value="3">分店</option>
                                     </select>
                                 </td>
                                 <td>

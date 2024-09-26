@@ -609,6 +609,7 @@
                                                                             @if($drive_data->type == 0)上游
                                                                             @elseif($drive_data->type == 1)下游
                                                                             @elseif($drive_data->type == 2)合作夥伴
+                                                                            @elseif($drive_data->type == 3)分店
                                                                             @endif
                                                                         </td>
                                                                         <td>

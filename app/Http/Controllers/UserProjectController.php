@@ -253,6 +253,7 @@ class UserProjectController extends Controller
         $word_data = Word::where('user_id',$id)->where('project_id',$project->id)->first();
         $user_data = User::where('id', $id)->first();
         $checks = ['導入智慧減碳應用服務','減少碳排放量','帶動企業家數（單一型免填）','帶動體驗人次'];
+        $proportions = ['20%','40%','20%','20%'];
         return view('admin-project.business-export')->with('project', $project)
                                               ->with('project_host_data',$project_host_data)
                                               ->with('project_contact_data',$project_contact_data)
@@ -260,7 +261,8 @@ class UserProjectController extends Controller
                                               ->with('years',$years)
                                               ->with('word_data',$word_data)
                                               ->with('user_data',$user_data)
-                                              ->with('checks',$checks);
+                                              ->with('checks',$checks)
+                                              ->with('proportions',$proportions);
     }
 
     public function BusinessSaveWord(Request $request , $id)
@@ -532,6 +534,10 @@ class UserProjectController extends Controller
         $word_fund->project_id = $project->id;
         for ($i = 1; $i <= 46; $i++) {
             $field = 'fund_' . $i;
+            $word_fund->$field = $request->$field;
+        }
+        for ($i = 1; $i <= 10; $i++) {
+            $field = 'remark' . $i;
             $word_fund->$field = $request->$field;
         }
         $word_fund->context = $request->fund_context;
@@ -836,8 +842,10 @@ class UserProjectController extends Controller
                 $type = "上游";
             } else if($drive_data->type == '1'){
                 $type = "下游";
-            } else {
+            } else if($drive_data->type == '2') {
                 $type = "合作";
+            }else{
+                $type = "店家";
             }
             $templateProcessor->setValue("drive.name#{$rowIndex}", $drive_data['name'] ?? '');
             $templateProcessor->setValue("drive.organization_relationship#{$rowIndex}", "主提案商之" . ($type ?? ''));//企业面临问题
@@ -903,22 +911,20 @@ class UserProjectController extends Controller
 
         // part5
         $effectiveness_datas = WordEffectiveness::where('user_id', $id)->where('project_id',$project->id)->get();
-        $templateProcessor->cloneRow('effectiveness_kpi', count($effectiveness_datas));
-        foreach ($effectiveness_datas as $key => $effectiveness_data) {
-            $rowIndex = $key + 1;
+        for($i=0;$i<count($effectiveness_datas);$i++){
             // 將每一個問題的對應數據填充到模板中
-            $kpi = nl2br($effectiveness_data['kpi']); 
+            $kpi = nl2br($effectiveness_datas[$i]['kpi']); 
             $kpi = str_replace("<br />", '<w:br/>', $kpi);
             $kpi = str_replace("&", "&amp;", $kpi); // 將 & 符號替換為 &amp;
-            $goal = nl2br($effectiveness_data['goal']); 
+            $goal = nl2br($effectiveness_datas[$i]['goal']); 
             $goal = str_replace("<br />", '<w:br/>', $goal);
             $goal = str_replace("&", "&amp;", $goal); // 將 & 符號替換為 &amp;
-            $definition = nl2br($effectiveness_data['definition']); 
+            $definition = nl2br($effectiveness_datas[$i]['definition']); 
             $definition = str_replace("<br />", '<w:br/>', $definition ?? ''); 
             $definition = str_replace("&", "&amp;", $definition); // 將 & 符號替換為 &amp;  
-            $templateProcessor->setValue("effectiveness_kpi#{$rowIndex}", $kpi ?? '');
-            $templateProcessor->setValue("effectiveness_goal#{$rowIndex}", $goal ?? '');
-            $templateProcessor->setValue("effectiveness_definition#{$rowIndex}", $definition ?? '');
+            $templateProcessor->setValue("effectiveness_kpi#{$i}", $kpi ?? '');
+            $templateProcessor->setValue("effectiveness_goal#{$i}", $goal ?? '');
+            $templateProcessor->setValue("effectiveness_definition#{$i}", $definition ?? '');
         }
 
         $reduction_datas = WordReductionItem::where('user_id', $id)->where('project_id',$project->id)->get();
@@ -980,15 +986,15 @@ class UserProjectController extends Controller
         $word_fund = WordFund::where('user_id', $id)->where('project_id', $project->id)->first();
         for ($i = 1; $i <= 46; $i++) {
             $field = 'fund_' . $i;
-            $value = $word_fund->$field;
+            $value = number_format($word_fund->$field);
 
             // 如果值为 null 或者空字串，或者确实为 0，都强制设置为 "0"
             if ($value === null || $value === '' || $value == 0) {
-                $value = "0";
+                $value = "'0'";
             }
 
             // 直接设置为字符串
-            $templateProcessor->setValue("fund_$i", number_format($value) ?? '');
+            $templateProcessor->setValue("fund_$i", $value ?? '');
         }
         // ?? ' '處理 context 的換行符
         $fund_context = nl2br($word_fund['context']); 
@@ -996,11 +1002,10 @@ class UserProjectController extends Controller
         $templateProcessor->setValue('fund_context', $fund_context ?? '');
 
         $planned_datas = WordPlanned::where('user_id', $id)->where('project_id',$project->id)->get();
-        $templateProcessor->cloneRow('planned_item', count($planned_datas));
-        foreach ($planned_datas as $key => $planned_data) {
-            $rowIndex = $key + 1;
+        // $templateProcessor->cloneRow('planned_item', count($planned_datas));
+        for($i=0 ; $i <= 5; $i++) {
             // 將每一個問題的對應數據填充到模板中
-            $templateProcessor->setValue("planned_item#{$rowIndex}",$planned_data['item'] ?? '');
+            $templateProcessor->setValue("planned_item{$i}",$planned_datas[$i]['item'] ?? '');
         }
 
         $templateProcessor->setValue("checkpoint", $word_data->checkpoint  ?? '');
@@ -1024,12 +1029,6 @@ class UserProjectController extends Controller
             $templateProcessor->setValue("check_proportion#{$rowIndex}",$check_data['proportion']  ?? '');
             $templateProcessor->setValue("check_audit_data#{$rowIndex}",$audit_data  ?? '');
         }
-
-
-
-        
-
-        
 
 
         // 保存修改後的文件到臨時路徑
