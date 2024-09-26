@@ -987,7 +987,7 @@
                                                                                     <textarea class="form-control" rows="4" id="check_proportion{{$i}}" name="check_proportion[]">{{ $proportions[$i] }}</textarea>
                                                                                 </td>
                                                                                 <td>
-                                                                                    <textarea class="form-control" rows="4" id="check_audit_data{{$i}}" name="check_audit_data[]"></textarea>
+                                                                                    <textarea class="form-control" rows="4" id="check_audit_data" name="check_audit_data[]"></textarea>
                                                                                 </td>
                                                                             </tr>
                                                                         @endfor
