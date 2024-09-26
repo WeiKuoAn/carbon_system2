@@ -579,10 +579,10 @@
                                                                         <input id="pay_price-{{ $i }}" class="mobile form-control required-input" type="text" name="personnel_jobs[]" value="">
                                                                         </td>
                                                                         <td>
-                                                                            <input id="pay_price-{{ $i }}" class="mobile form-control required-input" type="text" name="personnel_salarys[]" value="">
+                                                                            <input id="pay_price-{{ $i }}" class="mobile form-control required-input" type="text" name="personnel_contexts[]" value="">
                                                                         </td>
                                                                         <td>
-                                                                            <input id="pay_price-{{ $i }}" class="mobile form-control required-input" type="text" name="personnel_contexts[]" value="">
+                                                                            <input id="pay_price-{{ $i }}" class="mobile form-control required-input" type="text" name="personnel_salarys[]" value="">
                                                                         </td>
                                                                         <td>
                                                                             <input id="pay_price-{{ $i }}" class="mobile form-control required-input" type="text" name="personnel_months[]" value="">
@@ -881,31 +881,31 @@
                                                                     @else
                                                                         <tr id="row" >
                                                                             <td width="90%">
-                                                                                <textarea class="form-control" rows="2" name="planned_item[]" id="planned_item_1">「XXX」</textarea>
+                                                                                <textarea class="form-control" rows="2" name="planned_item[]" id="planned_item_0">「XXX」</textarea>
                                                                             </td>
                                                                         </tr>
                                                                         <tr id="row" >
                                                                             <td width="90%">
-                                                                                <textarea class="form-control" rows="2" name="planned_item[]" id="planned_item_2">1.「XXX」的規劃及導入</textarea>
+                                                                                <textarea class="form-control" rows="2" name="planned_item[]" id="planned_item_1">1.「XXX」的規劃及導入</textarea>
                                                                             </td>
                                                                         </tr>
                                                                         <tr id="row" >
                                                                             <td width="90%">
-                                                                                <textarea class="form-control" rows="2" name="planned_item[]" id="planned_item_3">2.驗證「XXX」的使用情形</textarea>
+                                                                                <textarea class="form-control" rows="2" name="planned_item[]" id="planned_item_2">2.驗證「XXX」的使用情形</textarea>
                                                                             </td>
                                                                         </tr>
                                                                         <tr id="row" >
                                                                             <td width="90%">
-                                                                                <textarea class="form-control" rows="2" name="planned_item[]" id="planned_item_4">「XXX」</textarea>
+                                                                                <textarea class="form-control" rows="2" name="planned_item[]" id="planned_item_3">「XXX」</textarea>
                                                                             </td>
                                                                         </tr>
                                                                         <tr id="row" >
                                                                             <td width="90%">
-                                                                                <textarea class="form-control" rows="2" name="planned_item[]" id="planned_item_5">1.「XXX」的規劃及導入</textarea>
+                                                                                <textarea class="form-control" rows="2" name="planned_item[]" id="planned_item_4">1.「XXX」的規劃及導入</textarea>
                                                                             </td>
                                                                         </tr><tr id="row" >
                                                                             <td width="90%">
-                                                                                <textarea class="form-control" rows="2" name="planned_item[]" id="planned_item_6">2.驗證「XXX」的使用情形</textarea>
+                                                                                <textarea class="form-control" rows="2" name="planned_item[]" id="planned_item_5">2.驗證「XXX」的使用情形</textarea>
                                                                             </td>
                                                                         </tr>
                                                                     @endif
@@ -1579,7 +1579,7 @@
                     ["#fund_35", "#fund_36"],
                     ["#fund_39", "#fund_40"]
                 ];
-
+                updateTotals()
                 // 監聽所有相關欄位的變化並觸發 updateTotals
                 $('input[name="host_salary"], input[name="host_month"], input[name="contact_salary"], input[name="contact_month"], input[name="personnel_salarys[]"], input[name="personnel_months[]"], input').on('input change keyup', function() {
                     updateTotals();
@@ -1774,14 +1774,14 @@
                 function reindexRows() {
                     $('#question tbody tr').each(function(index) {
                         $(this).attr('id', 'question-row-' + (index + 1));
-                        $(this).find('label[for="AddNew-Username"]').text('問題' + (index + 1) + '：');
+                        // $(this).find('label[for="AddNew-Username"]').text('問題' + (index + 1) + '：');
                     });
 
                     $('#plan tbody tr').each(function(index) {
                         $(this).attr('id', 'plan-row-' + (index + 1));
                     });
                     questionRowCount = $('#question tbody tr').length;
-                    $('#check_estimated0, #check_midterm_checkpoint0 , #check_final_checkpoint0').val(questionRowCount);
+                    $('#check_estimated0, #check_midterm_checkpoint0 , #check_final_checkpoint0').val(questionRowCount+'項');
                     
                 }
 
@@ -1907,12 +1907,17 @@
                                     </td>
                                 </tr>`;
                     $('#preson tbody').append(newRow);
+                    $('input[name="host_salary"], input[name="host_month"], input[name="contact_salary"], input[name="contact_month"], input[name="personnel_salarys[]"], input[name="personnel_months[]"], input').on('input change keyup', function() {
+                        updateTotals();
+                    });
+
                 });
 
                 // Event delegation for dynamically added elements
                 $('#preson').on('click', '.del-row', function() {
                     $(this).closest('tr').remove();
                     presonRowCount--;
+                    updateTotals()
                 });
 
                 
@@ -2075,10 +2080,10 @@
                 // 更新 reduce_carbon 的值，格式為 "總和 (數字1、數字2、...)"
                 var resultText = total + '\n' +(allDifferences ? ` （${allDifferences}）` : '');
                 $('#reduce_carbon').val(resultText);
-                $('#check_estimated1 , #check_final_checkpoint1').val(total);
+                $('#check_estimated1 , #check_final_checkpoint1').val(total+'噸');
                 var checkpoint1Count = Math.ceil(total*0.3 * 1000) / 1000;
                 console.log(checkpoint1Count);
-                $("#check_midterm_checkpoint1").val(checkpoint1Count);
+                $("#check_midterm_checkpoint1").val(checkpoint1Count+'噸');
             }
 
             // 初始時更新 reduce_carbon 欄位的值
@@ -2250,18 +2255,18 @@
             function reindexBranchRows() {
                 branchRowCount = $('#branch tbody tr').length;
                 console.log(branchRowCount);
-                $('#check_estimated2 , #check_midterm_checkpoint2 , #check_final_checkpoint2').val(branchRowCount);
+                $('#check_estimated2 , #check_midterm_checkpoint2 , #check_final_checkpoint2').val(branchRowCount+'家');
                 $("#check_audit_data2").val('帶動企業之合作意向書');
             }
 
             $("#people_count").on('input change keyup', function() {
                 var peopleCount = parseInt($(this).val()) || 0;
                 var formattedCount = peopleCount.toLocaleString();
-                $('#check_estimated3 , #check_final_checkpoint3').val(formattedCount);
+                $('#check_estimated3 , #check_final_checkpoint3').val(formattedCount+'人次');
 
                 var check_estimated3_Count = peopleCount * 0.3; // 計算 30%
                 var formatcheckpoint3 = check_estimated3_Count.toLocaleString('en-US', { minimumFractionDigits: 0, maximumFractionDigits: 2 }); // 格式化，保留最多 2 位小數
-                $('#check_midterm_checkpoint3').val(formatcheckpoint3); // 更新格式化後的值
+                $('#check_midterm_checkpoint3').val(formatcheckpoint3+'人次'); // 更新格式化後的值
             });
 
 
