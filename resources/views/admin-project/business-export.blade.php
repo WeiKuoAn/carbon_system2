@@ -417,11 +417,11 @@
                                                             </tbody>
                                                         </table>
                                                     </div> <!-- end .table-responsive -->
-                                                    {{-- <div class="form-group row">
+                                                    <div class="form-group row">
                                                         <div class="col-12">
                                                         <input id="add_plan" class="btn btn-primary" type="button" name="" value="新增方案">
                                                         </div>
-                                                    </div> --}}
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
@@ -1472,7 +1472,10 @@
                             </a>
                             <button class="btn btn-success" type="submit" id="btn_storage"><i class="bx bx-file me-1"></i> 儲存 </button>
                             <a href="{{ route('exportWord',$cust_data->user_id) }}">
-                                <button class="btn btn-primary" type="button" id="btn_submit"><i class=" bx bx-check me-1"></i> 匯出 </button>
+                                <button class="btn btn-primary" type="button" id="btn_submit"><i class=" bx bx-check me-1"></i> 匯出Word </button>
+                            </a>
+                            <a href="{{ route('exportPtt',$cust_data->user_id) }}">
+                                <button class="btn btn-primary" type="button" id="btn_submit"><i class=" bx bx-check me-1"></i> 匯出Word </button>
                             </a>
                         </div> <!-- end col -->
                     </div>
