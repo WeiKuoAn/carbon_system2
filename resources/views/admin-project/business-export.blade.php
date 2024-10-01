@@ -1651,8 +1651,8 @@
                     var fund44 = totalFund43 ? (val1Total / totalFund43) * 100 : 0;
                     var fund45 = totalFund43 ? (val2Total / totalFund43) * 100 : 0;
 
-                    $("#fund_44").val(Math.round(fund44) + '%');
-                    $("#fund_45").val(Math.round(fund45) + '%');
+                    $("#fund_44").val(Math.round(fund44));
+                    $("#fund_45").val(Math.round(fund45));
                     updateSpecialFields();
                 }
 
@@ -1942,7 +1942,7 @@
 
                 // 初始時更新摘要
                 updatePartnerSummary();
-
+                $('input[name="partner_names[]"]').off('input').on('input', updatePartnerSummary);
                 var partnerRowCount = $('#partner tbody tr').length;
                 $('#add_partner').click(function() {
                     partnerRowCount++;
@@ -1960,7 +1960,7 @@
                                 </tr>`;
                     $('#partner tbody').append(newRow);
                     // 監聽新的 partner_name 欄位變化
-                    $('input[name="partner_names[]"]').off('input').on('input', updatePartnerSummary);
+                    
                 });
 
                 // Event delegation for dynamically added elements
