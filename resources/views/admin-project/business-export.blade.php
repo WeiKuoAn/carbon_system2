@@ -2252,12 +2252,8 @@
 
             // Event delegation for dynamically added elements
             $('#branch').on('click', '.del-row', function() {
-                if(branchRowCount > 5){
-                    $(this).closest('tr').remove();
-                    branchRowCount--;
-                }else{
-                    alert('需至少提供5家被帶動企業');
-                }
+                $(this).closest('tr').remove();
+                branchRowCount--
                 reindexBranchRows();
             });
 
