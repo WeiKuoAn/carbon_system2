@@ -1474,9 +1474,9 @@
                             <a href="{{ route('exportWord',$cust_data->user_id) }}">
                                 <button class="btn btn-primary" type="button" id="btn_submit"><i class=" bx bx-check me-1"></i> 匯出Word </button>
                             </a>
-                            <a href="{{ route('exportPtt',$cust_data->user_id) }}">
+                            {{-- <a href="{{ route('exportPtt',$cust_data->user_id) }}">
                                 <button class="btn btn-primary" type="button" id="btn_submit"><i class=" bx bx-check me-1"></i> 匯出Word </button>
-                            </a>
+                            </a> --}}
                         </div> <!-- end col -->
                     </div>
                         
