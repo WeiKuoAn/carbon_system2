@@ -1646,6 +1646,13 @@
                         var percentage = totalFund43 ? (numerator / totalFund43) * 100 : 0;
                         $(pair[1]).val(Math.round(percentage)); // 更新到對應的百分比欄位
                     });
+
+                    // 計算 fund_44 和 fund_45 的百分比（相對於 fund_43）
+                    var fund44 = totalFund43 ? (val1Total / totalFund43) * 100 : 0;
+                    var fund45 = totalFund43 ? (val2Total / totalFund43) * 100 : 0;
+
+                    $("#fund_44").val(Math.round(fund44) + '%');
+                    $("#fund_45").val(Math.round(fund45) + '%');
                     updateSpecialFields();
                 }
 
