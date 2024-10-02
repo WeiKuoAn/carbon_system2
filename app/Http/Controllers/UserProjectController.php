@@ -872,10 +872,10 @@ class UserProjectController extends Controller
         $templateProcessor->setValue('contact_job', $project_contact_data->job ?? ''); 
         $templateProcessor->setValue('contact_month', $project_contact_data->month ?? '');  
 
-        // $templateProcessor->setValue('group_host_name', $project_host_data->name ?? '');
-        // $templateProcessor->setValue('group_host_job', $project_host_data->job ?? '');
-        // $templateProcessor->setValue('group_contact_name', $project_contact_data->name ?? '');
-        // $templateProcessor->setValue('group_contact_job', $project_contact_data->job ?? '');
+        $templateProcessor->setValue('group_host_name', $project_host_data->name ?? '');
+        $templateProcessor->setValue('group_host_job', $project_host_data->job ?? '');
+        $templateProcessor->setValue('group_contact_name', $project_contact_data->name ?? '');
+        $templateProcessor->setValue('group_contact_job', $project_contact_data->job ?? '');
 
         $personnel_datas = ProjectPersonnel::where('project_id', $project->id)->get();
         $templateProcessor->cloneRow('personnel_name', count($personnel_datas));
@@ -884,6 +884,8 @@ class UserProjectController extends Controller
             $templateProcessor->setValue("personnel_name#{$rowIndex}", $personnel_data['name'] ?? '');
             $templateProcessor->setValue("personnel_job#{$rowIndex}", $personnel_data['job'] ?? '');
             $templateProcessor->setValue("personnel_month#{$rowIndex}", $personnel_data['month'] ?? '');
+            $templateProcessor->setValue("group_personnel_name#{$rowIndex}", $personnel_data['name'] ?? '');
+            $templateProcessor->setValue("group_personnel_job#{$rowIndex}", $personnel_data['job'] ?? '');
         }
 
         $partner_datas = WordPartner::where('project_id', $project->id)->get();
@@ -892,6 +894,7 @@ class UserProjectController extends Controller
             $rowIndex = $key + 1;
             $templateProcessor->setValue("partner_name#{$rowIndex}", $partner_data['name'] ?? '');
             $templateProcessor->setValue("partner_job_content#{$rowIndex}", $partner_data['job_content'] ?? '');
+            $templateProcessor->setValue("group_partner_name#{$rowIndex}", $partner_data['name'] ?? '');
         }
 
         // 查核點
@@ -958,6 +961,9 @@ class UserProjectController extends Controller
             $performance = str_replace("<br />", '<w:br/>', $performance);
             $before_guidance = nl2br($custom_datas['before_guidance']); 
             $before_guidance = str_replace("<br />", '<w:br/>', $before_guidance);
+            if ($before_guidance === null || $before_guidance === '' || $before_guidance == 0) {
+                $before_guidance = "'0'";
+            }
             $after_guidance = nl2br($custom_datas['after_guidance']); 
             $after_guidance = str_replace("<br />", '<w:br/>', $after_guidance);  
             $explanation = nl2br($custom_datas['explanation']);
@@ -1038,6 +1044,13 @@ class UserProjectController extends Controller
 
         // 將文件作為下載返回，並在傳送後刪除臨時文件
         return response()->download($tempFilePath, $fileName)->deleteFileAfterSend(true);
+    }
+
+
+    //匯出ptt
+    public function exportPtt($id)
+    {
+        
     }
 
 
