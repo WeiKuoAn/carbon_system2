@@ -69,6 +69,8 @@ Route::group(['middleware' => ['session.expire']], function () {
     Route::post('project/{id}/business-export-word', [App\Http\Controllers\UserProjectController::class,'BusinessSaveWord'])->name('business-export-word.store');
     Route::get('project/{id}/business-export-word', [App\Http\Controllers\UserProjectController::class,'BusinessExportWord'])->name('business-export-word');
     Route::get('project/{id}/export-word', [App\Http\Controllers\UserProjectController::class, 'exportWord'])->name('exportWord');
+    Route::get('project/{id}/export-ptt', [App\Http\Controllers\PptController::class, 'exportPtt'])->name('exportPtt');
+    Route::get('project/{id}/export-cooperate', [App\Http\Controllers\UserProjectController::class, 'exportCooperate'])->name('exportCooperate');
 
     Route::get('project/business-appendix', [App\Http\Controllers\ProjectController::class,'BusinessAppendix'])->name('project.business.appendix');
     Route::get('project/manufacturing-appendix', [App\Http\Controllers\ProjectController::class,'ManufacturingAppendix'])->name('project.manufacturing.appendix');

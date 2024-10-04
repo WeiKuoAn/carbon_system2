@@ -776,8 +776,11 @@
                                                     </table>
                                                 </div> <!-- end .table-responsive -->
                                                 <div class="form-group row">
-                                                    <div class="col-12">
-                                                    <input id="add_branch" class="btn btn-primary" type="button" name="" value="新增筆數">
+                                                    <div class="col-1">
+                                                        <input id="add_branch" class="btn btn-primary" type="button" name="" value="新增筆數">
+                                                    </div>
+                                                    <div class="col-1">
+                                                        <a href="{{ route('exportCooperate',$project->user_id) }}"><input class="btn btn-info ml-3" type="button" name="" value="下載合作意向書"></a>
                                                     </div>
                                                 </div>
                                             </div>
@@ -1474,9 +1477,9 @@
                             <a href="{{ route('exportWord',$cust_data->user_id) }}">
                                 <button class="btn btn-primary" type="button" id="btn_submit"><i class=" bx bx-check me-1"></i> 匯出Word </button>
                             </a>
-                            {{-- <a href="{{ route('exportPtt',$cust_data->user_id) }}">
-                                <button class="btn btn-primary" type="button" id="btn_submit"><i class=" bx bx-check me-1"></i> 匯出Word </button>
-                            </a> --}}
+                            <a href="{{ route('exportPtt',$cust_data->user_id) }}">
+                                <button class="btn btn-primary" type="button" id="btn_submit"><i class=" bx bx-check me-1"></i> 匯出PPt </button>
+                            </a>
                         </div> <!-- end col -->
                     </div>
                         
