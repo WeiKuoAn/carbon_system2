@@ -873,12 +873,12 @@ class PptController extends Controller
             // 執行方式
             $cell6 = $row->getCell(5);
             $cell6->setWidth(90);
-            $cell6->createTextRun($drive_data['employeecount'])->getFont()->setSize(14)->setColor(new Color('FF000000'));
+            $cell6->createTextRun(isset($drive_data['employeecount']) ? (string)$drive_data['city'] : '')->getFont()->setSize(14)->setColor(new Color('FF000000'));
 
             // 執行方式
             $cell7 = $row->getCell(6);
             $cell7->setWidth(90);
-            $cell7->createTextRun($drive_data['numbers'])->getFont()->setSize(14)->setColor(new Color('FF000000'));
+            $cell7->createTextRun(isset($drive_data['numbers']) ? (string)$drive_data['city'] : '')->getFont()->setSize(14)->setColor(new Color('FF000000'));
         }
 
         // 創建第十四張幻燈片
