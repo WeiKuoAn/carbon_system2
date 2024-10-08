@@ -2096,7 +2096,7 @@
                 $('#check_estimated1 , #check_final_checkpoint1').val(total+'噸');
                 var checkpoint1Count = Math.ceil(total*0.3 * 1000) / 1000;
                 console.log(checkpoint1Count);
-                $("#check_midterm_checkpoint1").val(checkpoint1Count+'噸');
+                $("#check_midterm_checkpoint1").val(checkpoint1Count.toFixed(3)+'噸');
             }
 
             // 初始時更新 reduce_carbon 欄位的值
