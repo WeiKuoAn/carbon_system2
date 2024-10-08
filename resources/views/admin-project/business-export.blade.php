@@ -2078,26 +2078,33 @@
 
             // 更新 reduce_carbon 欄位的值
             function updateReduceCarbonField() {
-                var total = 0; // 記錄總和
-                var allDifferences = $('textarea[name="reduction_difference[]"]').map(function() {
-                    var value = $(this).val().trim(); // 獲取值並移除首尾空格
-                    if ($.isNumeric(value)) { // 確保是數字
-                        total += parseFloat(value); // 將值加到總和中
-                        return value; // 返回值作為串接的一部分
-                    }
-                    return null;
-                }).get().filter(function(value) {
-                    return value !== null; // 過濾掉非數字的 null 值
-                }).join('+'); // 使用頓號連接
+            var total = 0; // 記錄總和
+            var allDifferences = $('textarea[name="reduction_difference[]"]').map(function() {
+                var value = $(this).val().trim(); // 獲取值並移除首尾空格
+                if ($.isNumeric(value)) { // 確保是數字
+                    total += parseFloat(value); // 將值加到總和中
+                    return value; // 返回值作為串接的一部分
+                }
+                return null;
+            }).get().filter(function(value) {
+                return value !== null; // 過濾掉非數字的 null 值
+            }).join('+'); // 使用頓號連接
 
-                // 更新 reduce_carbon 的值，格式為 "總和 (數字1、數字2、...)"
-                var resultText = total + '\n' +(allDifferences ? ` （${allDifferences}）` : '');
-                $('#reduce_carbon').val(resultText);
-                $('#check_estimated1 , #check_final_checkpoint1').val(total+'噸');
-                var checkpoint1Count = Math.ceil(total*0.3 * 1000) / 1000;
-                console.log(checkpoint1Count);
-                $("#check_midterm_checkpoint1").val(checkpoint1Count.toFixed(3)+'噸');
-            }
+            // 將總和限制到小數點後三位，並轉換為數字再進行處理
+            total = parseFloat(total.toFixed(3));
+
+            // 更新 reduce_carbon 的值，格式為 "總和 (數字1、數字2、...)"
+            var resultText = total.toFixed(3) + '\n' + (allDifferences ? ` （${allDifferences}）` : '');
+            $('#reduce_carbon').val(resultText);
+
+            // 更新其他欄位，顯示到小數點後三位
+            $('#check_estimated1 , #check_final_checkpoint1').val(total.toFixed(3) + '噸');
+            
+            // 計算 checkpoint1Count 並限制小數點後三位
+            var checkpoint1Count = Math.ceil(total * 0.3 * 1000) / 1000;
+            $("#check_midterm_checkpoint1").val(checkpoint1Count.toFixed(3) + '噸');
+        }
+
 
             // 初始時更新 reduce_carbon 欄位的值
             updateReduceCarbonField();
