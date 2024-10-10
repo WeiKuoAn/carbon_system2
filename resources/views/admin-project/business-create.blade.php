@@ -221,7 +221,7 @@
                                                         <thead>
                                                             <tr align="center">
                                                                 <th>編號</th>
-                                                                <th>上游/下游企業<span class="text-danger">*</span></th>
+                                                                <th>與主提案商之關係<span class="text-danger">*</span></th>
                                                                 <th>名稱<span class="text-danger">*</span></th>
                                                                 <th>統一編號<span class="text-danger">*</span></th>
                                                                 <th>負責人<span class="text-danger">*</span></th>
