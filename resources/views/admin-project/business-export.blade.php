@@ -233,37 +233,37 @@
                                         <div class="col-md-6">
                                             <div class="mb-4">
                                                 <label class="form-label" for="AddNew-Username"><b>計畫結束</b><span class="-danger">*</span></label>
-                                                <input type="date" id="project_end" class="form-control required-input" name="project_end" @if(isset($word_data)) value="{{ $word_data->project_end }}" @endif>
+                                                <input type="date" id="project_end" class="form-control required-input" name="project_end" @if(isset($word_data)) value="{{ $word_data->project_end }}" @endif disabled>
                                             </div>
                                         </div>
                                         <div class="col-md-4">
                                             <div class="mb-4">
                                                 <label class="form-label" for="AddNew-Username"><b>總經費</b><span class="text-danger">*</span></label>
-                                                <input type="text" class="form-control required-input" id="total" name="total" @if(isset($word_data)) value="{{ $word_data->total }}" @endif value="">
+                                                <input type="text" class="form-control required-input" id="total" name="total" @if(isset($word_data)) value="{{ $word_data->total }}" @endif value="" disabled>
                                             </div>
                                         </div>
                                         <div class="col-md-4">
                                             <div class="mb-4">
                                                 <label class="form-label" for="AddNew-Username"><b>補助款</b><span class="text-danger">*</span></label>
-                                                <input type="text" class="form-control required-input" id="subsidy" name="subsidy" @if(isset($word_data)) value="{{ $word_data->subsidy }}" @endif value="">
+                                                <input type="text" class="form-control required-input" id="subsidy" name="subsidy" @if(isset($word_data)) value="{{ $word_data->subsidy }}" @endif value="" disabled>
                                             </div>
                                         </div>
                                         <div class="col-md-4">
                                             <div class="mb-4">
                                                 <label class="form-label" for="AddNew-Username"><b>自籌款</b><span class="text-danger">*</span></label>
-                                                <input type="text" class="form-control required-input" id="self_funding" name="self_funding" @if(isset($word_data)) value="{{ $word_data->self_funding }}" @endif value="">
+                                                <input type="text" class="form-control required-input" id="self_funding" name="self_funding" @if(isset($word_data)) value="{{ $word_data->self_funding }}" @endif value="" disabled>
                                             </div>
                                         </div>
                                         <div class="col-md-12">
                                             <label class="form-label" for="AddNew-Username"><b>計畫內容摘要</b><span class="text-danger">*</span></label>
                                             <div class="mb-4">
-                                                <textarea class="form-control" id="project_summary" rows="5" name="project_summary">@if(isset($word_data)){{ $word_data->project_summary }}@endif</textarea>
+                                                <textarea class="form-control" id="project_summary" rows="5" name="project_summary" disabled>@if(isset($word_data)){{ $word_data->project_summary }}@endif</textarea>
                                             </div>
                                         </div>
                                         <div class="col-md-12">
                                             <div class="mb-4">
                                                 <label class="form-label" for="AddNew-Username"><b>委託單位</b><span class="text-danger">*</span></label>
-                                                <input type="text" id="partner_summary" class="form-control required-input" name="partner" @if(isset($word_data)) value="{{ $word_data->partner }}"  @endif readonly>
+                                                <input type="text" id="partner_summary" class="form-control required-input" name="partner" @if(isset($word_data)) value="{{ $word_data->partner }}"  @endif disabled>
                                             </div>
                                         </div>
                                     </div>
@@ -397,16 +397,16 @@
                                                                     @for ($i = 0; $i < 1; $i++)
                                                                             <tr id="plan-row-{{ $i }}" >
                                                                                 <td>
-                                                                                    <textarea class="form-control" rows="10" id="plan_name{{ $i }}" name="plan_name[]"></textarea>
+                                                                                    <textarea class="form-control" rows="10" id="plan_name{{ $i }}" name="plan_name[]" disabled></textarea>
                                                                                 </td>
                                                                                 <td>
-                                                                                    <textarea class="form-control" rows="10" id="plan_description{{ $i }}" name="plan_description[]"></textarea>
+                                                                                    <textarea class="form-control" rows="10" id="plan_description{{ $i }}" name="plan_description[]" disabled></textarea>
                                                                                 </td>
                                                                                 <td>
-                                                                                    <textarea class="form-control" rows="10" id="plan_reduction_item{{ $i }}" name="plan_reduction_item[]"></textarea>
+                                                                                    <textarea class="form-control" rows="10" id="plan_reduction_item{{ $i }}" name="plan_reduction_item[]" ></textarea>
                                                                                 </td>
                                                                                 <td>
-                                                                                    <textarea class="form-control" rows="10" id="plan_method{{ $i }}" name="plan_method[]">委外</textarea>
+                                                                                    <textarea class="form-control" rows="10" id="plan_method{{ $i }}" name="plan_method[]" disabled>委外</textarea>
                                                                                 </td>
                                                                                 <td style="vertical-align: middle;">
                                                                                     <button class="mobile btn btn-danger del-row" alt="{{ $i }}" type="button" name="button" onclick="del_row(this)">刪除</button>
@@ -877,38 +877,38 @@
                                                                         @for($i=0; $i<6;$i++)
                                                                             <tr id="row-{{ $i }}" >
                                                                                 <td width="90%">
-                                                                                    <textarea class="form-control" rows="2" id="planned_item_{{ $i }}" name="planned_item[]">@if(isset($project->word_planned_datas[$i]->item)){{ $project->word_planned_datas[$i]->item }}@endif</textarea>
+                                                                                    <textarea class="form-control" rows="2" id="planned_item_{{ $i }}" name="planned_item[]" disabled>@if(isset($project->word_planned_datas[$i]->item)){{ $project->word_planned_datas[$i]->item }}@endif</textarea>
                                                                                 </td>
                                                                             </tr>
                                                                         @endfor
                                                                     @else
                                                                         <tr id="row" >
                                                                             <td width="90%">
-                                                                                <textarea class="form-control" rows="2" name="planned_item[]" id="planned_item_0">「XXX」</textarea>
+                                                                                <textarea class="form-control" rows="2" name="planned_item[]" id="planned_item_0" disabled>「XXX」</textarea>
                                                                             </td>
                                                                         </tr>
                                                                         <tr id="row" >
                                                                             <td width="90%">
-                                                                                <textarea class="form-control" rows="2" name="planned_item[]" id="planned_item_1">1.「XXX」的規劃及導入</textarea>
+                                                                                <textarea class="form-control" rows="2" name="planned_item[]" id="planned_item_1" disabled>1.「XXX」的規劃及導入</textarea>
                                                                             </td>
                                                                         </tr>
                                                                         <tr id="row" >
                                                                             <td width="90%">
-                                                                                <textarea class="form-control" rows="2" name="planned_item[]" id="planned_item_2">2.驗證「XXX」的使用情形</textarea>
+                                                                                <textarea class="form-control" rows="2" name="planned_item[]" id="planned_item_2" disabled>2.驗證「XXX」的使用情形</textarea>
                                                                             </td>
                                                                         </tr>
                                                                         <tr id="row" >
                                                                             <td width="90%">
-                                                                                <textarea class="form-control" rows="2" name="planned_item[]" id="planned_item_3">「XXX」</textarea>
+                                                                                <textarea class="form-control" rows="2" name="planned_item[]" id="planned_item_3" disabled>「XXX」</textarea>
                                                                             </td>
                                                                         </tr>
                                                                         <tr id="row" >
                                                                             <td width="90%">
-                                                                                <textarea class="form-control" rows="2" name="planned_item[]" id="planned_item_4">1.「XXX」的規劃及導入</textarea>
+                                                                                <textarea class="form-control" rows="2" name="planned_item[]" id="planned_item_4" disabled>1.「XXX」的規劃及導入</textarea>
                                                                             </td>
                                                                         </tr><tr id="row" >
                                                                             <td width="90%">
-                                                                                <textarea class="form-control" rows="2" name="planned_item[]" id="planned_item_5">2.驗證「XXX」的使用情形</textarea>
+                                                                                <textarea class="form-control" rows="2" name="planned_item[]" id="planned_item_5" disabled>2.驗證「XXX」的使用情形</textarea>
                                                                             </td>
                                                                         </tr>
                                                                     @endif
@@ -950,21 +950,21 @@
                                                                         @foreach ($project->word_check_datas as $key=>$word_check_data)
                                                                             <tr id="row-{{ $key }}" style="vertical-align: middle;" align="center">
                                                                                 <td>
-                                                                                    <textarea class="form-control" rows="4" id="check_item{{$key}}" name="check_item[]">{{  $word_check_data->item }}</textarea>
+                                                                                    <textarea class="form-control" rows="4" id="check_item{{$key}}" name="check_item[]"  disabled>{{  $word_check_data->item }}</textarea>
                                                                                 <td>
-                                                                                    <textarea class="form-control" rows="4" id="check_estimated{{$key}}" name="check_estimated[]">{{ $word_check_data->estimated }}</textarea>
+                                                                                    <textarea class="form-control" rows="4" id="check_estimated{{$key}}" name="check_estimated[]"  disabled>{{ $word_check_data->estimated }}</textarea>
                                                                                 </td>
                                                                                 <td>
-                                                                                    <textarea class="form-control" rows="4" id="check_midterm_checkpoint{{$key}}" name="check_midterm_checkpoint[]">{{ $word_check_data->midterm_checkpoint }}</textarea>
+                                                                                    <textarea class="form-control" rows="4" id="check_midterm_checkpoint{{$key}}" name="check_midterm_checkpoint[]"  disabled>{{ $word_check_data->midterm_checkpoint }}</textarea>
                                                                                 </td>
                                                                                 <td>
-                                                                                    <textarea class="form-control" rows="4" id="check_final_checkpoint{{$key}}" name="check_final_checkpoint[]">{{ $word_check_data->final_checkpoint }}</textarea>
+                                                                                    <textarea class="form-control" rows="4" id="check_final_checkpoint{{$key}}" name="check_final_checkpoint[]"  disabled>{{ $word_check_data->final_checkpoint }}</textarea>
                                                                                 </td>
                                                                                 <td>
-                                                                                    <textarea class="form-control" rows="4" id="check_proportion{{$key}}" name="check_proportion[]">{{ $word_check_data->proportion }}</textarea>
+                                                                                    <textarea class="form-control" rows="4" id="check_proportion{{$key}}" name="check_proportion[]" disabled>{{ $word_check_data->proportion }}</textarea>
                                                                                 </td>
                                                                                 <td>
-                                                                                    <textarea class="form-control" rows="4" id="check_audit_data" name="check_audit_data[]">{{ $word_check_data->audit_data }}</textarea>
+                                                                                    <textarea class="form-control" rows="4" id="check_audit_data{{$key}}" name="check_audit_data[]">{{ $word_check_data->audit_data }}</textarea>
                                                                                 </td>
                                                                                 <td style="vertical-align: middle;">
                                                                                     <button class="mobile btn btn-danger del-row mt-4" alt="{{ $key }}" type="button" name="button" onclick="del_row(this)">刪除</button>
@@ -975,22 +975,22 @@
                                                                         @for($i=0; $i<4; $i++)
                                                                             <tr id="row" style="vertical-align: middle;" align="center">
                                                                                 <td>
-                                                                                    <textarea class="form-control" rows="4" id="check_item{{$i}}" name="check_item[]">{{ $checks[$i] }}</textarea>
+                                                                                    <textarea class="form-control" rows="4" id="check_item{{$i}}" name="check_item[]" disabled>{{ $checks[$i] }}</textarea>
                                                                                 </td>
                                                                                 <td>
-                                                                                    <textarea class="form-control" rows="4" id="check_estimated{{$i}}" name="check_estimated[]"></textarea>
+                                                                                    <textarea class="form-control" rows="4" id="check_estimated{{$i}}" name="check_estimated[]" disabled></textarea>
                                                                                 </td>
                                                                                 <td>
-                                                                                    <textarea class="form-control" rows="4" id="check_midterm_checkpoint{{$i}}" name="check_midterm_checkpoint[]"></textarea>
+                                                                                    <textarea class="form-control" rows="4" id="check_midterm_checkpoint{{$i}}" name="check_midterm_checkpoint[]" disabled></textarea>
                                                                                 </td>
                                                                                 <td>
-                                                                                    <textarea class="form-control" rows="4" id="check_final_checkpoint{{$i}}" name="check_final_checkpoint[]"></textarea>
+                                                                                    <textarea class="form-control" rows="4" id="check_final_checkpoint{{$i}}" name="check_final_checkpoint[]" disabled></textarea>
                                                                                 </td>
                                                                                 <td>
-                                                                                    <textarea class="form-control" rows="4" id="check_proportion{{$i}}" name="check_proportion[]">{{ $proportions[$i] }}</textarea>
+                                                                                    <textarea class="form-control" rows="4" id="check_proportion{{$i}}" name="check_proportion[]" disabled>{{ $proportions[$i] }}</textarea>
                                                                                 </td>
                                                                                 <td>
-                                                                                    <textarea class="form-control" rows="4" id="check_audit_data{{$i}}" name="check_audit_data[]"></textarea>
+                                                                                    <textarea class="form-control" rows="4" id="check_audit_data{{$i}}" name="check_audit_data[]" ></textarea>
                                                                                 </td>
                                                                             </tr>
                                                                         @endfor
@@ -1041,7 +1041,7 @@
                                                                     @if(count($project->word_effectiveness_datas)>0)
                                                                             <tr id="row-{{ $key }}" >
                                                                                 <td>
-                                                                                    <textarea class="form-control" rows="8" name="effectiveness_kpis[]">{{ $project->word_effectiveness_datas[0]->kpi }}</textarea>
+                                                                                    <textarea class="form-control" rows="8" name="effectiveness_kpis[]" disabled>{{ $project->word_effectiveness_datas[0]->kpi }}</textarea>
                                                                                 </td>
                                                                                 <td>
                                                                                     <textarea class="form-control" rows="8" id="people_count" name="effectiveness_goals[]">{{ $project->word_effectiveness_datas[0]->goal }}</textarea>
@@ -1055,10 +1055,10 @@
                                                                             </tr>
                                                                             <tr id="row-{{ $key }}" >
                                                                                 <td>
-                                                                                    <textarea class="form-control" rows="8" name="effectiveness_kpis[]">{{ $project->word_effectiveness_datas[1]->kpi }}</textarea>
+                                                                                    <textarea class="form-control" rows="8" name="effectiveness_kpis[]" disabled>{{ $project->word_effectiveness_datas[1]->kpi }}</textarea>
                                                                                 </td>
                                                                                 <td>
-                                                                                    <textarea class="form-control" rows="8"  id="reduce_carbon" name="effectiveness_goals[]">{{ $project->word_effectiveness_datas[1]->goal }}</textarea>
+                                                                                    <textarea class="form-control" rows="8"  id="reduce_carbon" name="effectiveness_goals[]" disabled>{{ $project->word_effectiveness_datas[1]->goal }}</textarea>
                                                                                 </td>
                                                                                 <td>
                                                                                     <textarea class="form-control" rows="8" name="effectiveness_definitions[]">{{ $project->word_effectiveness_datas[1]->definition }}</textarea>
@@ -1070,11 +1070,11 @@
                                                                     @else
                                                                         <tr id="row" >
                                                                             <td>
-                                                                                <textarea class="form-control" rows="8" name="effectiveness_kpis[]">帶動體驗人次
+                                                                                <textarea class="form-control" rows="8" name="effectiveness_kpis[]" disabled>帶動體驗人次
 （單位：人次）</textarea>
                                                                             </td>
                                                                             <td>
-                                                                                <textarea class="form-control" id="people_count" rows="8" name="effectiveness_goals[]"></textarea>
+                                                                                <textarea class="form-control" id="people_count" rows="8" name="effectiveness_goals[]" ></textarea>
                                                                             </td>
                                                                             <td>
                                                                                 <textarea class="form-control" rows="8" name="effectiveness_definitions[]"></textarea>
@@ -1085,14 +1085,14 @@
                                                                         </tr>
                                                                         <tr id="row" >
                                                                             <td>
-                                                                                <textarea class="form-control" rows="8" name="effectiveness_kpis[]">降低碳排量
+                                                                                <textarea class="form-control" rows="8" name="effectiveness_kpis[]" disabled>降低碳排量
 （單位：公噸）</textarea>
                                                                             </td>
                                                                             <td>
-                                                                                <textarea class="form-control" id="reduce_carbon" rows="8" name="effectiveness_goals[]"></textarea>
+                                                                                <textarea class="form-control" id="reduce_carbon" rows="8" name="effectiveness_goals[]" disabled></textarea>
                                                                             </td>
                                                                             <td>
-                                                                                <textarea class="form-control" rows="8" name="effectiveness_definitions[]"></textarea>
+                                                                                <textarea class="form-control" rows="8" name="effectiveness_definitions[]" ></textarea>
                                                                             </td>
                                                                             <td style="vertical-align: middle;">
                                                                                 <button class="mobile btn btn-danger del-row" alt="{{ $i }}" type="button" name="button" onclick="del_row(this)">刪除</button>
@@ -1343,18 +1343,18 @@
                                                                 <tbody>
                                                                     <tr>
                                                                         <td colspan="2">1. 人事費</td>
-                                                                        <td><input type="text" class="form-control required-input" id="fund_1" name="fund_1" @if(isset($project->fund_data)) value="{{ $project->fund_data->fund_1 }}" @else value="0"  @endif></td>
-                                                                        <td><input type="text" class="form-control required-input" id="fund_2" name="fund_2" @if(isset($project->fund_data)) value="{{ $project->fund_data->fund_2 }}" @else value="0"  @endif></td>
-                                                                        <td><input type="text" class="form-control required-input" id="fund_3" name="fund_3" @if(isset($project->fund_data)) value="{{ $project->fund_data->fund_3 }}" @else value="0"  @endif readonly></td>
-                                                                        <td><input type="text" class="form-control required-input" id="fund_4" name="fund_4" @if(isset($project->fund_data)) value="{{ $project->fund_data->fund_4 }}" @else value="0"  @endif readonly></td>
+                                                                        <td><input type="text" class="form-control required-input" id="fund_1" name="fund_1" @if(isset($project->fund_data)) value="{{ $project->fund_data->fund_1 }}" @else value="0"  @endif disabled></td>
+                                                                        <td><input type="text" class="form-control required-input" id="fund_2" name="fund_2" @if(isset($project->fund_data)) value="{{ $project->fund_data->fund_2 }}" @else value="0"  @endif disabled></td>
+                                                                        <td><input type="text" class="form-control required-input" id="fund_3" name="fund_3" @if(isset($project->fund_data)) value="{{ $project->fund_data->fund_3 }}" @else value="0"  @endif disabled></td>
+                                                                        <td><input type="text" class="form-control required-input" id="fund_4" name="fund_4" @if(isset($project->fund_data)) value="{{ $project->fund_data->fund_4 }}" @else value="0"  @endif disabled></td>
                                                                         <td><input type="text" class="form-control required-input" id="remark1" name="remark1" @if(isset($project->fund_data)) value="{{ $project->fund_data->remark1 }}" @else value=""  @endif></td>
                                                                     </tr>
                                                                     <tr>
                                                                         <td colspan="2">2. 消耗性器材及原材料費</td>
                                                                         <td><input type="text" class="form-control required-input" id="fund_5" name="fund_5" @if(isset($project->fund_data)) value="{{ $project->fund_data->fund_5 }}" @else value="0"  @endif></td>
                                                                         <td><input type="text" class="form-control required-input" id="fund_6" name="fund_6" @if(isset($project->fund_data)) value="{{ $project->fund_data->fund_6 }}" @else value="0"  @endif></td>
-                                                                        <td><input type="text" class="form-control required-input" id="fund_7" name="fund_7" @if(isset($project->fund_data)) value="{{ $project->fund_data->fund_7 }}" @else value="0"  @endif readonly></td>
-                                                                        <td><input type="text" class="form-control required-input" id="fund_8" name="fund_8" @if(isset($project->fund_data)) value="{{ $project->fund_data->fund_8 }}" @else value="0"  @endif readonly></td>
+                                                                        <td><input type="text" class="form-control required-input" id="fund_7" name="fund_7" @if(isset($project->fund_data)) value="{{ $project->fund_data->fund_7 }}" @else value="0"  @endif disabled></td>
+                                                                        <td><input type="text" class="form-control required-input" id="fund_8" name="fund_8" @if(isset($project->fund_data)) value="{{ $project->fund_data->fund_8 }}" @else value="0"  @endif disabled></td>
                                                                         <td><input type="text" class="form-control required-input" id="remark2" name="remark2" @if(isset($project->fund_data)) value="{{ $project->fund_data->remark2 }}" @else value=""  @endif></td>
                                                                         
                                                                     </tr>
@@ -1362,16 +1362,16 @@
                                                                         <td colspan="2">3. 設備及軟體使用費</td>
                                                                         <td><input type="text" class="form-control required-input" id="fund_9" name="fund_9" @if(isset($project->fund_data)) value="{{ $project->fund_data->fund_9 }}" @else value="0"  @endif></td>
                                                                         <td><input type="text" class="form-control required-input" id="fund_10" name="fund_10" @if(isset($project->fund_data)) value="{{ $project->fund_data->fund_10 }}" @else value="0"  @endif></td>
-                                                                        <td><input type="text" class="form-control required-input" id="fund_11" name="fund_11" @if(isset($project->fund_data)) value="{{ $project->fund_data->fund_11 }}" @else value="0"  @endif readonly></td>
-                                                                        <td><input type="text" class="form-control required-input" id="fund_12" name="fund_12" @if(isset($project->fund_data)) value="{{ $project->fund_data->fund_12 }}" @else value="0"  @endif readonly></td>
+                                                                        <td><input type="text" class="form-control required-input" id="fund_11" name="fund_11" @if(isset($project->fund_data)) value="{{ $project->fund_data->fund_11 }}" @else value="0"  @endif disabled></td>
+                                                                        <td><input type="text" class="form-control required-input" id="fund_12" name="fund_12" @if(isset($project->fund_data)) value="{{ $project->fund_data->fund_12 }}" @else value="0"  @endif disabled></td>
                                                                         <td><input type="text" class="form-control required-input" id="remark3" name="remark3" @if(isset($project->fund_data)) value="{{ $project->fund_data->remark3 }}" @else value=""  @endif></td>
                                                                     </tr>
                                                                     <tr>
                                                                         <td colspan="2">4. 設備維護費</td>
                                                                         <td><input type="text" class="form-control required-input" id="fund_13" name="fund_13" @if(isset($project->fund_data)) value="{{ $project->fund_data->fund_13 }}" @else value="0"  @endif></td>
                                                                         <td><input type="text" class="form-control required-input" id="fund_14" name="fund_14" @if(isset($project->fund_data)) value="{{ $project->fund_data->fund_14 }}" @else value="0"  @endif></td>
-                                                                        <td><input type="text" class="form-control required-input" id="fund_15" name="fund_15" @if(isset($project->fund_data)) value="{{ $project->fund_data->fund_15 }}" @else value="0"  @endif readonly></td>
-                                                                        <td><input type="text" class="form-control required-input" id="fund_16" name="fund_16" @if(isset($project->fund_data)) value="{{ $project->fund_data->fund_16 }}" @else value="0"  @endif readonly></td>
+                                                                        <td><input type="text" class="form-control required-input" id="fund_15" name="fund_15" @if(isset($project->fund_data)) value="{{ $project->fund_data->fund_15 }}" @else value="0"  @endif disabled></td>
+                                                                        <td><input type="text" class="form-control required-input" id="fund_16" name="fund_16" @if(isset($project->fund_data)) value="{{ $project->fund_data->fund_16 }}" @else value="0"  @endif disabled></td>
                                                                         <td><input type="text" class="form-control required-input" id="remark4" name="remark4" @if(isset($project->fund_data)) value="{{ $project->fund_data->remark4 }}" @else value=""  @endif></td>
                                                                     </tr>
                                                                     <tr>
@@ -1382,33 +1382,33 @@
                                                                         <td>(1) 技術或智慧財產權購買費</td>
                                                                         <td><input type="text" class="form-control required-input" id="fund_17" name="fund_17" @if(isset($project->fund_data)) value="{{ $project->fund_data->fund_17 }}" @else value="0" @endif></td>
                                                                         <td><input type="text" class="form-control required-input" id="fund_18" name="fund_18" @if(isset($project->fund_data)) value="{{ $project->fund_data->fund_18 }}" @else value="0" @endif></td>
-                                                                        <td><input type="text" class="form-control required-input" id="fund_19" name="fund_19" @if(isset($project->fund_data)) value="{{ $project->fund_data->fund_19 }}" @else value="0" @endif readonly></td>
-                                                                        <td><input type="text" class="form-control required-input" id="fund_20" name="fund_20" @if(isset($project->fund_data)) value="{{ $project->fund_data->fund_20 }}" @else value="0" @endif readonly></td>
+                                                                        <td><input type="text" class="form-control required-input" id="fund_19" name="fund_19" @if(isset($project->fund_data)) value="{{ $project->fund_data->fund_19 }}" @else value="0" @endif disabled></td>
+                                                                        <td><input type="text" class="form-control required-input" id="fund_20" name="fund_20" @if(isset($project->fund_data)) value="{{ $project->fund_data->fund_20 }}" @else value="0" @endif disabled></td>
                                                                         <td><input type="text" class="form-control required-input" id="remark5" name="remark5" @if(isset($project->fund_data)) value="{{ $project->fund_data->remark5 }}" @else value=""  @endif></td>
                                                                     </tr>
                                                                     <tr>
                                                                         <td>(2) 委託研究費</td>
                                                                         <td><input type="text" class="form-control required-input" id="fund_21" name="fund_21" @if(isset($project->fund_data)) value="{{ $project->fund_data->fund_21 }}" @else value="0" @endif></td>
                                                                         <td><input type="text" class="form-control required-input" id="fund_22" name="fund_22" @if(isset($project->fund_data)) value="{{ $project->fund_data->fund_22 }}" @else value="0" @endif></td>
-                                                                        <td><input type="text" class="form-control required-input" id="fund_23" name="fund_23" @if(isset($project->fund_data)) value="{{ $project->fund_data->fund_23 }}" @else value="0" @endif readonly></td>
-                                                                        <td><input type="text" class="form-control required-input" id="fund_24" name="fund_24" @if(isset($project->fund_data)) value="{{ $project->fund_data->fund_24 }}" @else value="0" @endif readonly></td>
+                                                                        <td><input type="text" class="form-control required-input" id="fund_23" name="fund_23" @if(isset($project->fund_data)) value="{{ $project->fund_data->fund_23 }}" @else value="0" @endif disabled></td>
+                                                                        <td><input type="text" class="form-control required-input" id="fund_24" name="fund_24" @if(isset($project->fund_data)) value="{{ $project->fund_data->fund_24 }}" @else value="0" @endif disabled></td>
                                                                         <td><input type="text" class="form-control required-input" id="remark6" name="remark6" @if(isset($project->fund_data)) value="{{ $project->fund_data->remark6 }}" @else value=""  @endif></td>
                                                                     </tr>
                                                                     <tr>
                                                                         <td>(3) 委託勞務費</td>
                                                                         <td><input type="text" class="form-control required-input" id="fund_25" name="fund_25" @if(isset($project->fund_data)) value="{{ $project->fund_data->fund_25 }}" @else value="0" @endif></td>
                                                                         <td><input type="text" class="form-control required-input" id="fund_26" name="fund_26" @if(isset($project->fund_data)) value="{{ $project->fund_data->fund_26 }}" @else value="0" @endif></td>
-                                                                        <td><input type="text" class="form-control required-input" id="fund_27" name="fund_27" @if(isset($project->fund_data)) value="{{ $project->fund_data->fund_27 }}" @else value="0" @endif readonly></td>
-                                                                        <td><input type="text" class="form-control required-input" id="fund_28" name="fund_28" @if(isset($project->fund_data)) value="{{ $project->fund_data->fund_28 }}" @else value="0" @endif readonly></td>
+                                                                        <td><input type="text" class="form-control required-input" id="fund_27" name="fund_27" @if(isset($project->fund_data)) value="{{ $project->fund_data->fund_27 }}" @else value="0" @endif disabled></td>
+                                                                        <td><input type="text" class="form-control required-input" id="fund_28" name="fund_28" @if(isset($project->fund_data)) value="{{ $project->fund_data->fund_28 }}" @else value="0" @endif disabled></td>
                                                                         <td><input type="text" class="form-control required-input" id="remark7" name="remark7" @if(isset($project->fund_data)) value="{{ $project->fund_data->remark7 }}" @else value=""  @endif></td>
                                                                     </tr>
                                                                     <tr>
                                                                         <td></td>
                                                                         <td>小計</td>
-                                                                        <td><input type="text" class="form-control required-input" id="fund_29" name="fund_29" @if(isset($project->fund_data)) value="{{ $project->fund_data->fund_29 }}" @else value="0" @endif readonly></td>
-                                                                        <td><input type="text" class="form-control required-input" id="fund_30" name="fund_30" @if(isset($project->fund_data)) value="{{ $project->fund_data->fund_30 }}" @else value="0" @endif readonly></td>
-                                                                        <td><input type="text" class="form-control required-input" id="fund_31" name="fund_31" @if(isset($project->fund_data)) value="{{ $project->fund_data->fund_31 }}" @else value="0" @endif readonly></td>
-                                                                        <td><input type="text" class="form-control required-input" id="fund_32" name="fund_32" @if(isset($project->fund_data)) value="{{ $project->fund_data->fund_32 }}" @else value="0" @endif readonly></td>
+                                                                        <td><input type="text" class="form-control required-input" id="fund_29" name="fund_29" @if(isset($project->fund_data)) value="{{ $project->fund_data->fund_29 }}" @else value="0" @endif disabled></td>
+                                                                        <td><input type="text" class="form-control required-input" id="fund_30" name="fund_30" @if(isset($project->fund_data)) value="{{ $project->fund_data->fund_30 }}" @else value="0" @endif disabled></td>
+                                                                        <td><input type="text" class="form-control required-input" id="fund_31" name="fund_31" @if(isset($project->fund_data)) value="{{ $project->fund_data->fund_31 }}" @else value="0" @endif disabled></td>
+                                                                        <td><input type="text" class="form-control required-input" id="fund_32" name="fund_32" @if(isset($project->fund_data)) value="{{ $project->fund_data->fund_32 }}" @else value="0" @endif disabled></td>
                                                                         <td><input type="text" class="form-control required-input" id="remark8" name="remark8" @if(isset($project->fund_data)) value="{{ $project->fund_data->remark8 }}" @else value=""  @endif></td>
                                                                     </tr>
                                                                     <tr>
@@ -1416,7 +1416,7 @@
                                                                         <td><input type="text" class="form-control required-input" id="fund_33" name="fund_33" @if(isset($project->fund_data)) value="{{ $project->fund_data->fund_33 }}" @else value="0" @endif></td>
                                                                         <td><input type="text" class="form-control required-input" id="fund_34" name="fund_34" @if(isset($project->fund_data)) value="{{ $project->fund_data->fund_34 }}" @else value="0" @endif></td>
                                                                         <td><input type="text" class="form-control required-input" id="fund_35" name="fund_35" @if(isset($project->fund_data)) value="{{ $project->fund_data->fund_35 }}" @else value="0" @endif></td>
-                                                                        <td><input type="text" class="form-control required-input" id="fund_36" name="fund_36" @if(isset($project->fund_data)) value="{{ $project->fund_data->fund_36 }}" @else value="0" @endif readonly></td>
+                                                                        <td><input type="text" class="form-control required-input" id="fund_36" name="fund_36" @if(isset($project->fund_data)) value="{{ $project->fund_data->fund_36 }}" @else value="0" @endif disabled></td>
                                                                         <td><input type="text" class="form-control required-input" id="remark9" name="remark9" @if(isset($project->fund_data)) value="{{ $project->fund_data->remark9 }}" @else value=""  @endif></td>
                                                                     </tr>
                                                                     <tr>
@@ -1424,22 +1424,22 @@
                                                                         <td><input type="text" class="form-control required-input" id="fund_37" name="fund_37" @if(isset($project->fund_data)) value="{{ $project->fund_data->fund_37 }}" @else value="0" @endif></td>
                                                                         <td><input type="text" class="form-control required-input" id="fund_38" name="fund_38" @if(isset($project->fund_data)) value="{{ $project->fund_data->fund_38 }}" @else value="0" @endif></td>
                                                                         <td><input type="text" class="form-control required-input" id="fund_39" name="fund_39" @if(isset($project->fund_data)) value="{{ $project->fund_data->fund_39 }}" @else value="0" @endif></td>
-                                                                        <td><input type="text" class="form-control required-input" id="fund_40" name="fund_40" @if(isset($project->fund_data)) value="{{ $project->fund_data->fund_40 }}" @else value="0" @endif readonly></td>
+                                                                        <td><input type="text" class="form-control required-input" id="fund_40" name="fund_40" @if(isset($project->fund_data)) value="{{ $project->fund_data->fund_40 }}" @else value="0" @endif disabled></td>
                                                                         <td><input type="text" class="form-control required-input" id="remark10" name="remark10" @if(isset($project->fund_data)) value="{{ $project->fund_data->remark10 }}" @else value=""  @endif></td>
                                                                     </tr>
                                                                     <tr>
                                                                         <td colspan="2">合計</td>
-                                                                        <td><input type="text" class="form-control required-input" id="fund_41" name="fund_41" @if(isset($project->fund_data)) value="{{ $project->fund_data->fund_41 }}" @else value="0" @endif readonly></td>
-                                                                        <td><input type="text" class="form-control required-input" id="fund_42" name="fund_42" @if(isset($project->fund_data)) value="{{ $project->fund_data->fund_42 }}" @else value="0" @endif readonly></td>
-                                                                        <td><input type="text" class="form-control required-input" id="fund_43" name="fund_43" @if(isset($project->fund_data)) value="{{ $project->fund_data->fund_43 }}" @else value="0" @endif readonly></td>
+                                                                        <td><input type="text" class="form-control required-input" id="fund_41" name="fund_41" @if(isset($project->fund_data)) value="{{ $project->fund_data->fund_41 }}" @else value="0" @endif disabled></td>
+                                                                        <td><input type="text" class="form-control required-input" id="fund_42" name="fund_42" @if(isset($project->fund_data)) value="{{ $project->fund_data->fund_42 }}" @else value="0" @endif disabled></td>
+                                                                        <td><input type="text" class="form-control required-input" id="fund_43" name="fund_43" @if(isset($project->fund_data)) value="{{ $project->fund_data->fund_43 }}" @else value="0" @endif disabled></td>
                                                                         <td></td>
                                                                         <td></td>
                                                                     </tr>
                                                                     <tr>
                                                                         <td colspan="2">百分比</td>
-                                                                        <td><input type="text" class="form-control required-input" id="fund_44" name="fund_44" @if(isset($project->fund_data)) value="{{ $project->fund_data->fund_44 }}" @else value="0" @endif readonly></td>
-                                                                        <td><input type="text" class="form-control required-input" id="fund_45" name="fund_45" @if(isset($project->fund_data)) value="{{ $project->fund_data->fund_45 }}" @else value="0" @endif readonly></td>
-                                                                        <td><input type="text" class="form-control required-input" id="fund_46" name="fund_46" value="100" readonly></td>
+                                                                        <td><input type="text" class="form-control required-input" id="fund_44" name="fund_44" @if(isset($project->fund_data)) value="{{ $project->fund_data->fund_44 }}" @else value="0" @endif disabled></td>
+                                                                        <td><input type="text" class="form-control required-input" id="fund_45" name="fund_45" @if(isset($project->fund_data)) value="{{ $project->fund_data->fund_45 }}" @else value="0" @endif disabled></td>
+                                                                        <td><input type="text" class="form-control required-input" id="fund_46" name="fund_46" value="100" disabled></td>
                                                                         <td></td>
                                                                         <td></td>
                                                                     </tr>
@@ -1735,16 +1735,16 @@
 
                     var newPlanRow = `<tr id="plan-row-${questionRowCount}">
                                         <td>
-                                            <textarea class="form-control" rows="10" id="plan_name${questionRowCount}" name="plan_name[]"></textarea>
+                                            <textarea class="form-control" rows="10" id="plan_name${questionRowCount}" name="plan_name[]" disabled></textarea>
                                         </td>
                                         <td>
-                                            <textarea class="form-control" rows="10" id="plan_description${questionRowCount}" name="plan_description[]"></textarea>
+                                            <textarea class="form-control" rows="10" id="plan_description${questionRowCount}" name="plan_description[]" disabled></textarea>
                                         </td>
                                         <td>
                                             <textarea class="form-control" rows="10" id="plan_reduction_item${questionRowCount}" name="plan_reduction_item[]"></textarea>
                                         </td>
                                         <td>
-                                            <textarea class="form-control" rows="10" id="plan_method${questionRowCount}" name="plan_method[]">委外</textarea>
+                                            <textarea class="form-control" rows="10" id="plan_method${questionRowCount}" name="plan_method[]" disabled>委外</textarea>
                                         </td>
                                         <td style="vertical-align: middle;">
                                             <button class="mobile btn btn-danger del-plan-row" alt="${questionRowCount}" type="button" name="button" onclick="del_row(this)">刪除</button>
@@ -2272,7 +2272,9 @@
                 branchRowCount = $('#branch tbody tr').length;
                 console.log(branchRowCount);
                 $('#check_estimated2 , #check_midterm_checkpoint2 , #check_final_checkpoint2').val(branchRowCount+'家');
-                $("#check_audit_data2").val('帶動企業之合作意向書');
+                $("#check_audit_data2").val('帶動企業之合作意向書').attr('disabled', true).css({
+                    'background-color': '#f5f6f8', // 改變背景色
+                });;
             }
 
             $("#people_count").on('input change keyup', function() {
