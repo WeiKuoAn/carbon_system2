@@ -376,6 +376,7 @@ class UserProjectController extends Controller
                 }
             }
         }
+        // dd($request->effectiveness_kpis);
 
         //（二）減碳項目
         $word_reduction_datas = WordReductionItem::where('project_id', $project->id)->get();
