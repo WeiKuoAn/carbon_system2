@@ -1538,11 +1538,6 @@
             });
 
             $(document).ready(function() {
-                //待精進/成長之面向 = 計畫內容摘要
-                $("#growth_face").on("change keyup", function() {
-                    $("#project_summary").val($(this).val());
-                });
-
                 //相關帶入數值與計算
                 $("#project_start").on("change", function() {
                     var start = $(this).val();
@@ -1638,6 +1633,7 @@
 
                     // 將累加的內容設置到 #growth_face 的 textarea
                     $('#growth_face').val(combinedText);
+                    $("#project_summary").val(combinedText);
                     $("#application_solution").val(solutionCombinedText);
                 }
 
@@ -2027,6 +2023,7 @@
                 
                 //夥伴
                 // 初始化監聽所有 partner_name 的變化
+                // 更新合作夥伴摘要
                 function updatePartnerSummary() {
                     var allPartnerNames = $('input[name="partner_names[]"]').map(function() {
                         return $(this).val();
@@ -2034,10 +2031,16 @@
                     $('#partner_summary').val(allPartnerNames);
                 }
 
-                // 初始時更新摘要
-                updatePartnerSummary();
-                $('input[name="partner_names[]"]').off('input').on('input', updatePartnerSummary);
+                // 監聽所有現有和動態添加的 input[name="partner_names[]"] 欄位變化
+                function bindPartnerNameChange() {
+                    $('input[name="partner_names[]"]').off('input').on('input', updatePartnerSummary);
+                }
+
+                // 初始化時綁定事件
+                bindPartnerNameChange();
+                
                 var partnerRowCount = $('#partner tbody tr').length;
+
                 $('#add_partner').click(function() {
                     partnerRowCount++;
                     var newRow = `<tr id="row-${partnerRowCount}" >
@@ -2049,23 +2052,26 @@
                                         <input id="partner_jobs${partnerRowCount}" class="mobile form-control required-input" type="text" name="partner_jobs[]" value="">
                                     </td>
                                     <td>
-                                        <button class="mobile btn btn-danger del-row" alt="${partnerRowCount}" type="button" name="button" onclick="del_row(this)">刪除</button>
+                                        <button class="mobile btn btn-danger del-row" alt="${partnerRowCount}" type="button" name="button">刪除</button>
                                     </td>
                                 </tr>`;
                     $('#partner tbody').append(newRow);
-                    // 監聽新的 partner_name 欄位變化
-                    
+
+                    // 重新綁定事件到新添加的 input 欄位
+                    bindPartnerNameChange();
+                    updatePartnerSummary(); // 新增時也立即更新摘要
                 });
 
-                // Event delegation for dynamically added elements
+                // 事件委派，處理刪除動態新增的行
                 $('#partner').on('click', '.del-row', function() {
                     $(this).closest('tr').remove();
                     partnerRowCount--;
-                    updatePartnerSummary();
+                    updatePartnerSummary(); // 刪除時也需要更新摘要
                 });
+
+                // 初始化摘要
+                updatePartnerSummary();
             });
-
-
             //執行成效
             var effectivenessRowCount = $('#effectiveness tbody tr').length;
             $('#add_effectiveness').click(function() {
