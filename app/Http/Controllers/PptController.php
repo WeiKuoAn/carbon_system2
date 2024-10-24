@@ -111,7 +111,7 @@ class PptController extends Controller
             ->setOffsetX(226.5)
             ->setOffsetY(190);
         $shapeTitle->getActiveParagraph()->getAlignment()->setHorizontal(Alignment::HORIZONTAL_LEFT);
-        $textRunTitle = $shapeTitle->createTextRun($word_data->project_name);
+        $textRunTitle = $shapeTitle->createTextRun($word_data->project_name ?? '');
         $textRunTitle->getFont()->setBold(true)->setSize(32)->setColor(new Color('FF000000'));
 
         // 添加提案審查會議 
@@ -141,9 +141,9 @@ class PptController extends Controller
             ->setOffsetX(226.5)
             ->setOffsetY(350);
         $shapeInfo->getActiveParagraph()->getAlignment()->setHorizontal(Alignment::HORIZONTAL_LEFT);
-        $shapeInfo->createTextRun('提案單位：' . $user_data->name)->getFont()->setSize(16)->setColor(new Color('FF000000'));
+        $shapeInfo->createTextRun('提案單位：' . $user_data->name ?? '')->getFont()->setSize(16)->setColor(new Color('FF000000'));
         $shapeInfo->createBreak();
-        $shapeInfo->createTextRun('簡報人：' . $project_host_data->name)->getFont()->setSize(16)->setColor(new Color('FF000000'));
+        $shapeInfo->createTextRun('簡報人：' . $project_host_data->name ?? '')->getFont()->setSize(16)->setColor(new Color('FF000000'));
         $shapeInfo->createBreak();
         $shapeInfo->createTextRun('簡報日期：2024年XX月XX日')->getFont()->setSize(16)->setColor(new Color('FF000000'));
 
@@ -336,14 +336,14 @@ class PptController extends Controller
 
             $textCel1 = $row->getCell(1);
             $textCel1->setWidth(170);  // 設置寬度
-            $textRun = $textCel1->createTextRun($word_plans[$key]['reduction_item']);
+            $textRun = $textCel1->createTextRun($word_plans[$key]['reduction_item'] ?? '');
             $textRun->getFont()->setSize(14)->setColor(new Color('FF000000'));
             $textCel1->getActiveParagraph()->getAlignment()->setHorizontal(Alignment::HORIZONTAL_LEFT);
             $textCel1->createBreak();
 
             $textCel2 = $row->getCell(2);
             $textCel2->setWidth(566.25);  // 設置寬度
-            $textRun = $textCel2->createTextRun($question->question);
+            $textRun = $textCel2->createTextRun($question->question ?? '');
             $textRun->getFont()->setSize(14)->setColor(new Color('FF000000'));
             $textCel2->getActiveParagraph()->getAlignment()->setHorizontal(Alignment::HORIZONTAL_LEFT);
             $textCel2->createBreak();
@@ -380,7 +380,7 @@ class PptController extends Controller
         $row2 = $table1->createRow();
         $cellBasicInfo = $row2->getCell(0);
         $cellBasicInfo->setWidth(500);
-        $cellBasicInfo->createTextRun("● 產業別：" . $word_data->industry_category . "\n● 資本額/營業額：XXXX 千元 /" . number_format($cust_data->last_year_revenue) . "千元\n● 員工人數：" . $cust_data->insurance_total . "人\n● 提案補助款/提案自籌款：" . number_format($word_data->subsidy) . "千元 / " . number_format($word_data->self_funding) . " 千元")->getFont()->setSize(14)->setColor(new Color('FF000000'));
+        $cellBasicInfo->createTextRun("● 產業別：" . $word_data->industry_category ?? '' . "\n● 資本額/營業額：XXXX 千元 /" . number_format($cust_data->last_year_revenue ?? '0') . "千元\n● 員工人數：" . $cust_data->insurance_total . "人\n● 提案補助款/提案自籌款：" . number_format($word_data->subsidy) . "千元 / " . number_format($word_data->self_funding) . " 千元")->getFont()->setSize(14)->setColor(new Color('FF000000'));
 
         // 第二個表格："帶動企業"
         $table2 = $slide6->createTableShape(1); // 一列
@@ -494,16 +494,16 @@ class PptController extends Controller
 
             switch ($i) {
                 case 0:
-                    $cell1Text = '1 導入 ' . $check_datas[0]['estimated'] . ' 項智慧減碳應用服務';
+                    $cell1Text = '1 導入 ' . $check_datas[0]['estimated'] ?? '' . ' 項智慧減碳應用服務';
                     break;
                 case 1:
-                    $cell1Text = '2 降低碳排放量 ' . $check_datas[1]['estimated'] . ' 噸';
+                    $cell1Text = '2 降低碳排放量 ' . $check_datas[1]['estimated'] ?? '' . ' 噸';
                     break;
                 case 2:
-                    $cell1Text = '3 帶動至少 ' . $check_datas[2]['estimated'] . ' 家企業';
+                    $cell1Text = '3 帶動至少 ' . $check_datas[2]['estimated'] ?? '' . ' 家企業';
                     break;
                 case 3:
-                    $cell1Text = '4 系統體驗人次預估可增加 ' . $check_datas[3]['estimated'] . ' 人次';
+                    $cell1Text = '4 系統體驗人次預估可增加 ' . $check_datas[3]['estimated'] ?? '' . ' 人次';
                     break;
             }
             $cell1->createTextRun($cell1Text)->getFont()->setSize(14)->setColor(new Color('FF000000'));
@@ -512,26 +512,39 @@ class PptController extends Controller
             $cell2 = $row->getCell(2);
             $cell2->setWidth(528.5);
             $cell2->getActiveParagraph()->getAlignment()->setHorizontal(Alignment::HORIZONTAL_LEFT); // 設置左對齊
-
+            $cell2Text = '';
             switch ($i) {
                 case 0:
-                    $cell2Text = '新增「' . $word_plans[0]['name'] . '」與「' . $word_plans[1]['name'] . '」之服務。';
+                    $cell2Text = '新增「' . (isset($word_plans[0]['name']) ? $word_plans[0]['name'] : '') . '」與「' . (isset($word_plans[1]['name']) ? $word_plans[1]['name'] : '') . '」之服務。';
                     break;
                 case 1:
                     $cell2Text = '帶動五家企業：';
+                    $validNames = [];
+
                     foreach ($drive_datas as $drive_data) {
-                        $cell2Text .= $drive_data['name'] . '、';
+                        // 檢查 name 是否存在且不為空
+                        if (isset($drive_data['name']) && !empty($drive_data['name'])) {
+                            $validNames[] = $drive_data['name'];
+                        }
                     }
-                    $cell2Text = rtrim($cell2Text, '、'); // 去掉最後一個逗號
+
+                    // 將所有有效的企業名稱用中文逗號串接起來
+                    if (!empty($validNames)) {
+                        $cell2Text .= implode('、', $validNames);
+                    } else {
+                        $cell2Text .= '無有效企業名稱';
+                    }
                     break;
                 case 2:
-                    $cell2Text = '導入「' . $word_plans[0]['name'] . '」與「' . $word_plans[1]['name'] . '」後，期望達到的體驗人次。';
+                    $cell2Text = '導入「' . (isset($word_plans[0]['name']) ? $word_plans[0]['name'] : '') . '」與「' . (isset($word_plans[1]['name']) ? $word_plans[1]['name'] : '') . '」後，期望達到的體驗人次。';
                     break;
                 case 3:
-                    $cell2->createTextRun('1. 因導入「' . $word_plans[0]['name'] . '」所減少原料報廢')->getFont()->setSize(14)->setColor(new Color('FF000000'));
+                    $cell2->createTextRun('1. 因導入「' . (isset($word_plans[0]['name']) ? $word_plans[0]['name'] : '') . '」所減少原料報廢')->getFont()->setSize(14)->setColor(new Color('FF000000'));
                     $cell2->createBreak();
-                    $cell2->createTextRun('2. 因導入「' . $word_plans[1]['name'] . '」所減少的運輸碳排放')->getFont()->setSize(14)->setColor(new Color('FF000000'));
+                    $cell2->createTextRun('2. 因導入「' . (isset($word_plans[1]['name']) ? $word_plans[1]['name'] : '') . '」所減少的運輸碳排放')->getFont()->setSize(14)->setColor(new Color('FF000000'));
+                    break;
             }
+
 
             if ($i != 3) {
                 $cell2->createTextRun($cell2Text)->getFont()->setSize(14)->setColor(new Color('FF000000'));
@@ -568,7 +581,7 @@ class PptController extends Controller
 
         $cellProblemContent = $slide8_row1->getCell(1);
         $cellProblemContent->setWidth(801);
-        $cellProblemContent->createTextRun($word_question_datas[0]['question'])->getFont()->setSize(9)->setColor(new Color('FF000000'));
+        $cellProblemContent->createTextRun($word_question_datas[0]['question'] ?? '')->getFont()->setSize(9)->setColor(new Color('FF000000'));
 
         // 第二行：導入解方
         $slide8_row2 = $table8->createRow();
@@ -579,7 +592,7 @@ class PptController extends Controller
 
         $cellSolutionContent = $slide8_row2->getCell(1);
         $cellSolutionContent->setWidth(801);
-        $cellSolutionContent->createTextRun($word_question_datas[0]['illustrate'])->getFont()->setSize(9)->setColor(new Color('FF000000'));
+        $cellSolutionContent->createTextRun($word_question_datas[0]['illustrate'] ?? '')->getFont()->setSize(9)->setColor(new Color('FF000000'));
 
         // 接著創建第九張幻燈片
         $slide9 = $presentation->createSlide();
@@ -610,7 +623,7 @@ class PptController extends Controller
 
         $cellProblemContent = $slide9_row1->getCell(1);
         $cellProblemContent->setWidth(801);
-        $cellProblemContent->createTextRun($word_question_datas[0]['question'])->getFont()->setSize(9)->setColor(new Color('FF000000'));
+        $cellProblemContent->createTextRun($word_question_datas[0]['question'] ?? '')->getFont()->setSize(9)->setColor(new Color('FF000000'));
 
         // 第二行：導入解方
         $slide9_row2 = $table8->createRow();
@@ -621,7 +634,7 @@ class PptController extends Controller
 
         $cellSolutionContent = $slide9_row2->getCell(1);
         $cellSolutionContent->setWidth(801);
-        $cellSolutionContent->createTextRun($word_question_datas[0]['illustrate'])->getFont()->setSize(9)->setColor(new Color('FF000000'));
+        $cellSolutionContent->createTextRun($word_question_datas[0]['illustrate'] ?? '')->getFont()->setSize(9)->setColor(new Color('FF000000'));
 
 
         // 接著創建第十張幻燈片
@@ -653,7 +666,7 @@ class PptController extends Controller
 
         $cellProblemContent = $slide10_row1->getCell(1);
         $cellProblemContent->setWidth(801);
-        $cellProblemContent->createTextRun($word_question_datas[1]['question'])->getFont()->setSize(9)->setColor(new Color('FF000000'));
+        $cellProblemContent->createTextRun($word_question_datas[1]['question'] ?? '')->getFont()->setSize(9)->setColor(new Color('FF000000'));
 
         // 第二行：導入解方
         $slide10_row2 = $table8->createRow();
@@ -664,7 +677,7 @@ class PptController extends Controller
 
         $cellSolutionContent = $slide10_row2->getCell(1);
         $cellSolutionContent->setWidth(801);
-        $cellSolutionContent->createTextRun($word_question_datas[1]['illustrate'])->getFont()->setSize(9)->setColor(new Color('FF000000'));
+        $cellSolutionContent->createTextRun($word_question_datas[1]['illustrate'] ?? '')->getFont()->setSize(9)->setColor(new Color('FF000000'));
 
 
         // 接著創建第十一張幻燈片
@@ -696,7 +709,7 @@ class PptController extends Controller
 
         $cellProblemContent = $slide10_row1->getCell(1);
         $cellProblemContent->setWidth(801);
-        $cellProblemContent->createTextRun($word_question_datas[1]['question'])->getFont()->setSize(9)->setColor(new Color('FF000000'));
+        $cellProblemContent->createTextRun($word_question_datas[1]['question'] ?? '')->getFont()->setSize(9)->setColor(new Color('FF000000'));
 
         // 第二行：導入解方
         $slide10_row2 = $table8->createRow();
@@ -707,7 +720,7 @@ class PptController extends Controller
 
         $cellSolutionContent = $slide10_row2->getCell(1);
         $cellSolutionContent->setWidth(801);
-        $cellSolutionContent->createTextRun($word_question_datas[1]['illustrate'])->getFont()->setSize(9)->setColor(new Color('FF000000'));
+        $cellSolutionContent->createTextRun($word_question_datas[1]['illustrate'] ?? '')->getFont()->setSize(9)->setColor(new Color('FF000000'));
 
         foreach ($word_plans as $plan) {
             // 創建第十二張幻燈片
@@ -764,22 +777,22 @@ class PptController extends Controller
                 // 智慧應用方案項目名稱
                 $cell1 = $row->getCell(0);
                 $cell1->setWidth(194.5);
-                $cell1->createTextRun($plan['name'])->getFont()->setSize(12)->setColor(new Color('FF000000'));
+                $cell1->createTextRun($plan['name'] ?? '')->getFont()->setSize(12)->setColor(new Color('FF000000'));
 
                 // 功能說明
                 $cell2 = $row->getCell(1);
                 $cell2->setWidth(389);
-                $cell2->createTextRun($plan['description'])->getFont()->setSize(12)->setColor(new Color('FF000000'));
+                $cell2->createTextRun($plan['description'] ?? '')->getFont()->setSize(12)->setColor(new Color('FF000000'));
 
                 // 預計應用之減碳項目
                 $cell3 = $row->getCell(2);
                 $cell3->setWidth(194);
-                $cell3->createTextRun($plan['reduction_item'])->getFont()->setSize(12)->setColor(new Color('FF000000'));
+                $cell3->createTextRun($plan['reduction_item'] ?? '')->getFont()->setSize(12)->setColor(new Color('FF000000'));
 
                 // 執行方式
                 $cell4 = $row->getCell(3);
                 $cell4->setWidth(130);
-                $cell4->createTextRun($plan['method'])->getFont()->setSize(12)->setColor(new Color('FF000000'));
+                $cell4->createTextRun($plan['method'] ?? '')->getFont()->setSize(12)->setColor(new Color('FF000000'));
             }
         }
         // 創建第十三張幻燈片
@@ -976,12 +989,12 @@ class PptController extends Controller
             // 智慧應用方案項目名稱
             $cell1 = $row->getCell(0);
             $cell1->setWidth(151);
-            $cell1->createTextRun($serve_data['item'])->getFont()->setSize(12)->setColor(new Color('FF000000'));
+            $cell1->createTextRun($serve_data['item'] ?? '')->getFont()->setSize(12)->setColor(new Color('FF000000'));
 
             // 功能說明
             $cell2 = $row->getCell(1);
             $cell2->setWidth(755);
-            $cell2->createTextRun($serve_data['context'])->getFont()->setSize(12)->setColor(new Color('FF000000'));
+            $cell2->createTextRun($serve_data['context'] ?? '')->getFont()->setSize(12)->setColor(new Color('FF000000'));
         }
 
         // 創建第十五張幻燈片
@@ -1271,11 +1284,11 @@ class PptController extends Controller
         // Loop through the data and fill the rows
         foreach ($plan_datas as $plan_data) {
             $tableRow = $table18->createRow();
-            $tableRow->getCell(0)->createTextRun($plan_data[0])->getFont()->setSize(14)->setColor(new Color('FF000000'));
-            $tableRow->getCell(1)->createTextRun($plan_data[1])->getFont()->setSize(14)->setColor(new Color('FF000000'));
-            $tableRow->getCell(2)->createTextRun($plan_data[2])->getFont()->setSize(14)->setColor(new Color('FF000000'));
-            $tableRow->getCell(3)->createTextRun($plan_data[3])->getFont()->setSize(14)->setColor(new Color('FF000000'));
-            $tableRow->getCell(4)->createTextRun($plan_data[4])->getFont()->setSize(14)->setColor(new Color('FF000000'));
+            $tableRow->getCell(0)->createTextRun($plan_data[0] ?? '')->getFont()->setSize(14)->setColor(new Color('FF000000'));
+            $tableRow->getCell(1)->createTextRun($plan_data[1] ?? '')->getFont()->setSize(14)->setColor(new Color('FF000000'));
+            $tableRow->getCell(2)->createTextRun($plan_data[2] ?? '')->getFont()->setSize(14)->setColor(new Color('FF000000'));
+            $tableRow->getCell(3)->createTextRun($plan_data[3] ?? '')->getFont()->setSize(14)->setColor(new Color('FF000000'));
+            $tableRow->getCell(4)->createTextRun($plan_data[4] ?? '')->getFont()->setSize(14)->setColor(new Color('FF000000'));
         }
 
 
@@ -1308,7 +1321,7 @@ class PptController extends Controller
                     ->setOffsetX(50)
                     ->setOffsetY(60);
                 $shapeSubtitle->getActiveParagraph()->getAlignment()->setHorizontal(Alignment::HORIZONTAL_LEFT);
-                $textRunSubtitle = $shapeSubtitle->createTextRun('一、執行成效：'.$i+1);
+                $textRunSubtitle = $shapeSubtitle->createTextRun('一、執行成效：' . $i + 1);
                 $textRunSubtitle->getFont()->setBold(true)->setSize(14)->setColor(new Color('FF000000'));
 
                 // Create table for 關鍵績效指標, 預期達成目標, and 指標內涵定義
@@ -1329,9 +1342,9 @@ class PptController extends Controller
 
                 // Second row: Data for 關鍵績效指標, 預期達成目標, and 指標內涵定義
                 $row2 = $effectiveness_table->createRow();
-                $row2->getCell(0)->createTextRun($data->kpi)->getFont()->setSize(12)->setColor(new Color('FF000000')); // From $data->kpi
-                $row2->getCell(1)->createTextRun($data->goal)->getFont()->setSize(12)->setColor(new Color('FF000000')); // From $data->goal
-                $row2->getCell(2)->createTextRun($data->definition)->getFont()->setSize(12)->setColor(new Color('FF000000')); // From $data->definition
+                $row2->getCell(0)->createTextRun($data->kpi ?? '')->getFont()->setSize(12)->setColor(new Color('FF000000')); // From $data->kpi
+                $row2->getCell(1)->createTextRun($data->goal ?? '')->getFont()->setSize(12)->setColor(new Color('FF000000')); // From $data->goal
+                $row2->getCell(2)->createTextRun($data->definition ?? '')->getFont()->setSize(12)->setColor(new Color('FF000000')); // From $data->definition
             }
         }
 
@@ -1356,7 +1369,7 @@ class PptController extends Controller
                     ->setOffsetX(50)
                     ->setOffsetY(60);
                 $shapeSubtitle->getActiveParagraph()->getAlignment()->setHorizontal(Alignment::HORIZONTAL_LEFT);
-                $textRunSubtitle = $shapeSubtitle->createTextRun('二、減碳項目：'.$i+1);
+                $textRunSubtitle = $shapeSubtitle->createTextRun('二、減碳項目：' . $i + 1);
                 $textRunSubtitle->getFont()->setBold(true)->setSize(14)->setColor(new Color('FF000000'));
 
                 // Create table for 關鍵績效指標, 預期達成目標, and 指標內涵定義
@@ -1382,11 +1395,11 @@ class PptController extends Controller
 
                 // Second row: Data for 關鍵績效指標, 預期達成目標, and 指標內涵定義
                 $reduction_row2 = $reduction_table->createRow();
-                $reduction_row2->getCell(0)->createTextRun($data->item)->getFont()->setSize(12)->setColor(new Color('FF000000')); // From $data->kpi
-                $reduction_row2->getCell(1)->createTextRun($data->before_guidance)->getFont()->setSize(12)->setColor(new Color('FF000000')); // From $data->goal
-                $reduction_row2->getCell(2)->createTextRun($data->after_guidance)->getFont()->setSize(12)->setColor(new Color('FF000000')); // From $data->definition
-                $reduction_row2->getCell(3)->createTextRun($data->difference)->getFont()->setSize(12)->setColor(new Color('FF000000')); // From $data->goal
-                $reduction_row2->getCell(4)->createTextRun($data->relationship)->getFont()->setSize(11)->setColor(new Color('FF000000')); // From $data->definition
+                $reduction_row2->getCell(0)->createTextRun($data->item ?? '')->getFont()->setSize(12)->setColor(new Color('FF000000')); // From $data->kpi
+                $reduction_row2->getCell(1)->createTextRun($data->before_guidance ?? '')->getFont()->setSize(12)->setColor(new Color('FF000000')); // From $data->goal
+                $reduction_row2->getCell(2)->createTextRun($data->after_guidance ?? '')->getFont()->setSize(12)->setColor(new Color('FF000000')); // From $data->definition
+                $reduction_row2->getCell(3)->createTextRun($data->difference ?? '')->getFont()->setSize(12)->setColor(new Color('FF000000')); // From $data->goal
+                $reduction_row2->getCell(4)->createTextRun($data->relationship ?? '')->getFont()->setSize(11)->setColor(new Color('FF000000')); // From $data->definition
             }
         }
 
@@ -1453,8 +1466,8 @@ class PptController extends Controller
             if ($index < 3) { // Only display three rows
                 // Create the row and insert data
                 $row2 = $benefit_table->createRow();
-                $row2->getCell(0)->setWidth(75.5)->createTextRun($data->item)->getFont()->setSize(12)->setColor(new Color('FF000000'));
-                $row2->getCell(1)->setWidth(755)->createTextRun($data->benefit)->getFont()->setSize(12)->setColor(new Color('FF000000'));
+                $row2->getCell(0)->setWidth(75.5)->createTextRun($data->item ?? '')->getFont()->setSize(12)->setColor(new Color('FF000000'));
+                $row2->getCell(1)->setWidth(755)->createTextRun($data->benefit ?? '')->getFont()->setSize(12)->setColor(new Color('FF000000'));
             }
         }
 
@@ -1505,9 +1518,9 @@ class PptController extends Controller
         $row->setHeight(30);
         $row->getCell(0)->createTextRun('1. 人事費')->getFont()->setSize(12)->setColor(new Color('FF000000'));
         $row->getCell(0)->setColSpan(2);
-        $row->getCell(2)->createTextRun($word_fund->fund_1)->getFont()->setSize(12)->setColor(new Color('FF000000'));
-        $row->getCell(3)->createTextRun($word_fund->fund_2)->getFont()->setSize(12)->setColor(new Color('FF000000'));
-        $row->getCell(4)->createTextRun($word_fund->fund_3)->getFont()->setSize(12)->setColor(new Color('FF000000'));
+        $row->getCell(2)->createTextRun($word_fund->fund_1 ?? '')->getFont()->setSize(12)->setColor(new Color('FF000000'));
+        $row->getCell(3)->createTextRun($word_fund->fund_2 ?? '')->getFont()->setSize(12)->setColor(new Color('FF000000'));
+        $row->getCell(4)->createTextRun($word_fund->fund_3 ?? '')->getFont()->setSize(12)->setColor(new Color('FF000000'));
         $row->getCell(5)->createTextRun($word_fund->remark1 ?? '')->getFont()->setSize(12)->setColor(new Color('FF000000'));
 
         // Repeat similar rows for the rest of the funds (from fund_5 to fund_46)
@@ -1515,9 +1528,9 @@ class PptController extends Controller
         $row->setHeight(30);
         $row->getCell(0)->createTextRun('2. 消耗性器材及原材料費')->getFont()->setSize(12)->setColor(new Color('FF000000'));
         $row->getCell(0)->setColSpan(2);
-        $row->getCell(2)->createTextRun($word_fund->fund_5)->getFont()->setSize(12)->setColor(new Color('FF000000'));
-        $row->getCell(3)->createTextRun($word_fund->fund_6)->getFont()->setSize(12)->setColor(new Color('FF000000'));
-        $row->getCell(4)->createTextRun($word_fund->fund_7)->getFont()->setSize(12)->setColor(new Color('FF000000'));
+        $row->getCell(2)->createTextRun($word_fund->fund_5 ?? '')->getFont()->setSize(12)->setColor(new Color('FF000000'));
+        $row->getCell(3)->createTextRun($word_fund->fund_6 ?? '')->getFont()->setSize(12)->setColor(new Color('FF000000'));
+        $row->getCell(4)->createTextRun($word_fund->fund_7 ?? '')->getFont()->setSize(12)->setColor(new Color('FF000000'));
         $row->getCell(5)->createTextRun($word_fund->remark2 ?? '')->getFont()->setSize(12)->setColor(new Color('FF000000'));
 
         // Similarly, add more rows for other funds and remarks up to fund_46
@@ -1527,18 +1540,18 @@ class PptController extends Controller
         $row->setHeight(30);
         $row->getCell(0)->createTextRun('3. 設備及軟體使用費')->getFont()->setSize(10)->setColor(new Color('FF000000'));
         $row->getCell(0)->setColSpan(2);
-        $row->getCell(2)->createTextRun($word_fund->fund_9)->getFont()->setSize(10)->setColor(new Color('FF000000'));
-        $row->getCell(3)->createTextRun($word_fund->fund_10)->getFont()->setSize(10)->setColor(new Color('FF000000'));
-        $row->getCell(4)->createTextRun($word_fund->fund_11)->getFont()->setSize(10)->setColor(new Color('FF000000'));
+        $row->getCell(2)->createTextRun($word_fund->fund_9 ?? '')->getFont()->setSize(10)->setColor(new Color('FF000000'));
+        $row->getCell(3)->createTextRun($word_fund->fund_10 ?? '')->getFont()->setSize(10)->setColor(new Color('FF000000'));
+        $row->getCell(4)->createTextRun($word_fund->fund_11 ?? '')->getFont()->setSize(10)->setColor(new Color('FF000000'));
         $row->getCell(5)->createTextRun($word_fund->remark3 ?? '')->getFont()->setSize(10)->setColor(new Color('FF000000'));
 
         $row = $pay_table->createRow();
         $row->setHeight(30);
         $row->getCell(0)->createTextRun('4.設備維護費')->getFont()->setSize(10)->setColor(new Color('FF000000'));
         $row->getCell(0)->setColSpan(2);
-        $row->getCell(2)->createTextRun($word_fund->fund_13)->getFont()->setSize(10)->setColor(new Color('FF000000'));
-        $row->getCell(3)->createTextRun($word_fund->fund_14)->getFont()->setSize(10)->setColor(new Color('FF000000'));
-        $row->getCell(4)->createTextRun($word_fund->fund_15)->getFont()->setSize(10)->setColor(new Color('FF000000'));
+        $row->getCell(2)->createTextRun($word_fund->fund_13 ?? '')->getFont()->setSize(10)->setColor(new Color('FF000000'));
+        $row->getCell(3)->createTextRun($word_fund->fund_14 ?? '')->getFont()->setSize(10)->setColor(new Color('FF000000'));
+        $row->getCell(4)->createTextRun($word_fund->fund_15 ?? '')->getFont()->setSize(10)->setColor(new Color('FF000000'));
         $row->getCell(5)->createTextRun($word_fund->remark4 ?? '')->getFont()->setSize(10)->setColor(new Color('FF000000'));
 
         // Add a row for "5. 技術移轉費"
@@ -1549,71 +1562,71 @@ class PptController extends Controller
 
         // Subsection 1: (1) 技術或智慧財產權購買費
         $row->getCell(1)->createTextRun('(1) 技術或智慧財產權購買費')->getFont()->setSize(10)->setColor(new Color('FF000000'));
-        $row->getCell(2)->createTextRun($word_fund->fund_17)->getFont()->setSize(10)->setColor(new Color('FF000000'));
-        $row->getCell(3)->createTextRun($word_fund->fund_18)->getFont()->setSize(10)->setColor(new Color('FF000000'));
-        $row->getCell(4)->createTextRun($word_fund->fund_19)->getFont()->setSize(10)->setColor(new Color('FF000000'));
+        $row->getCell(2)->createTextRun($word_fund->fund_17 ?? '')->getFont()->setSize(10)->setColor(new Color('FF000000'));
+        $row->getCell(3)->createTextRun($word_fund->fund_18 ?? '')->getFont()->setSize(10)->setColor(new Color('FF000000'));
+        $row->getCell(4)->createTextRun($word_fund->fund_19 ?? '')->getFont()->setSize(10)->setColor(new Color('FF000000'));
         $row->getCell(5)->createTextRun($word_fund->remark5 ?? '')->getFont()->setSize(10)->setColor(new Color('FF000000'));
 
         // Subsection 2: (2) 委託研究費
         $row = $pay_table->createRow();
         $row->setHeight(30);
         $row->getCell(1)->createTextRun('(2) 委託研究費')->getFont()->setSize(10)->setColor(new Color('FF000000'));
-        $row->getCell(2)->createTextRun($word_fund->fund_21)->getFont()->setSize(10)->setColor(new Color('FF000000'));
-        $row->getCell(3)->createTextRun($word_fund->fund_22)->getFont()->setSize(10)->setColor(new Color('FF000000'));
-        $row->getCell(4)->createTextRun($word_fund->fund_23)->getFont()->setSize(10)->setColor(new Color('FF000000'));
+        $row->getCell(2)->createTextRun($word_fund->fund_21 ?? '')->getFont()->setSize(10)->setColor(new Color('FF000000'));
+        $row->getCell(3)->createTextRun($word_fund->fund_22 ?? '')->getFont()->setSize(10)->setColor(new Color('FF000000'));
+        $row->getCell(4)->createTextRun($word_fund->fund_23 ?? '')->getFont()->setSize(10)->setColor(new Color('FF000000'));
         $row->getCell(5)->createTextRun($word_fund->remark6 ?? '')->getFont()->setSize(10)->setColor(new Color('FF000000'));
 
         // Subsection 3: (3) 委託勞務費
         $row = $pay_table->createRow();
         $row->setHeight(30);
         $row->getCell(1)->createTextRun('(3) 委託勞務費')->getFont()->setSize(10)->setColor(new Color('FF000000'));
-        $row->getCell(2)->createTextRun($word_fund->fund_25)->getFont()->setSize(10)->setColor(new Color('FF000000'));
-        $row->getCell(3)->createTextRun($word_fund->fund_26)->getFont()->setSize(10)->setColor(new Color('FF000000'));
-        $row->getCell(4)->createTextRun($word_fund->fund_27)->getFont()->setSize(10)->setColor(new Color('FF000000'));
+        $row->getCell(2)->createTextRun($word_fund->fund_25 ?? '')->getFont()->setSize(10)->setColor(new Color('FF000000'));
+        $row->getCell(3)->createTextRun($word_fund->fund_26 ?? '')->getFont()->setSize(10)->setColor(new Color('FF000000'));
+        $row->getCell(4)->createTextRun($word_fund->fund_27 ?? '')->getFont()->setSize(10)->setColor(new Color('FF000000'));
         $row->getCell(5)->createTextRun($word_fund->remark7 ?? '')->getFont()->setSize(10)->setColor(new Color('FF000000'));
 
         // Add a row for "小計"
         $row = $pay_table->createRow();
         $row->setHeight(30);
         $row->getCell(1)->createTextRun('小計')->getFont()->setSize(10)->setColor(new Color('FF000000'));
-        $row->getCell(2)->createTextRun($word_fund->fund_29)->getFont()->setSize(10)->setColor(new Color('FF000000'));
-        $row->getCell(3)->createTextRun($word_fund->fund_30)->getFont()->setSize(10)->setColor(new Color('FF000000'));
-        $row->getCell(4)->createTextRun($word_fund->fund_31)->getFont()->setSize(10)->setColor(new Color('FF000000'));
+        $row->getCell(2)->createTextRun($word_fund->fund_29 ?? '')->getFont()->setSize(10)->setColor(new Color('FF000000'));
+        $row->getCell(3)->createTextRun($word_fund->fund_30 ?? '')->getFont()->setSize(10)->setColor(new Color('FF000000'));
+        $row->getCell(4)->createTextRun($word_fund->fund_31 ?? '')->getFont()->setSize(10)->setColor(new Color('FF000000'));
         $row->getCell(5)->createTextRun($word_fund->remark8 ?? '')->getFont()->setSize(10)->setColor(new Color('FF000000'));
 
         $row = $pay_table->createRow();
         $row->setHeight(30);
         $row->getCell(0)->createTextRun('6.差旅費')->getFont()->setSize(10)->setColor(new Color('FF000000'));
         $row->getCell(0)->setColSpan(2);
-        $row->getCell(2)->createTextRun($word_fund->fund_33)->getFont()->setSize(10)->setColor(new Color('FF000000'));
-        $row->getCell(3)->createTextRun($word_fund->fund_34)->getFont()->setSize(10)->setColor(new Color('FF000000'));
-        $row->getCell(4)->createTextRun($word_fund->fund_35)->getFont()->setSize(10)->setColor(new Color('FF000000'));
+        $row->getCell(2)->createTextRun($word_fund->fund_33 ?? '')->getFont()->setSize(10)->setColor(new Color('FF000000'));
+        $row->getCell(3)->createTextRun($word_fund->fund_34 ?? '')->getFont()->setSize(10)->setColor(new Color('FF000000'));
+        $row->getCell(4)->createTextRun($word_fund->fund_35 ?? '')->getFont()->setSize(10)->setColor(new Color('FF000000'));
         $row->getCell(5)->createTextRun($word_fund->remark9 ?? '')->getFont()->setSize(10)->setColor(new Color('FF000000'));
 
         $row = $pay_table->createRow();
         $row->setHeight(30);
         $row->getCell(0)->createTextRun('7.市場驗證費')->getFont()->setSize(10)->setColor(new Color('FF000000'));
         $row->getCell(0)->setColSpan(2);
-        $row->getCell(2)->createTextRun($word_fund->fund_37)->getFont()->setSize(10)->setColor(new Color('FF000000'));
-        $row->getCell(3)->createTextRun($word_fund->fund_38)->getFont()->setSize(10)->setColor(new Color('FF000000'));
-        $row->getCell(4)->createTextRun($word_fund->fund_39)->getFont()->setSize(10)->setColor(new Color('FF000000'));
+        $row->getCell(2)->createTextRun($word_fund->fund_37 ?? '')->getFont()->setSize(10)->setColor(new Color('FF000000'));
+        $row->getCell(3)->createTextRun($word_fund->fund_38 ?? '')->getFont()->setSize(10)->setColor(new Color('FF000000'));
+        $row->getCell(4)->createTextRun($word_fund->fund_39 ?? '')->getFont()->setSize(10)->setColor(new Color('FF000000'));
         $row->getCell(5)->createTextRun($word_fund->remark10 ?? '')->getFont()->setSize(10)->setColor(new Color('FF000000'));
 
         $row = $pay_table->createRow();
         $row->setHeight(30);
         $row->getCell(0)->createTextRun('合計')->getFont()->setSize(10)->setColor(new Color('FF000000'));
         $row->getCell(0)->setColSpan(2);
-        $row->getCell(2)->createTextRun($word_fund->fund_41)->getFont()->setSize(10)->setColor(new Color('FF000000'));
-        $row->getCell(3)->createTextRun($word_fund->fund_42)->getFont()->setSize(10)->setColor(new Color('FF000000'));
-        $row->getCell(4)->createTextRun($word_fund->fund_43)->getFont()->setSize(10)->setColor(new Color('FF000000'));
+        $row->getCell(2)->createTextRun($word_fund->fund_41 ?? '')->getFont()->setSize(10)->setColor(new Color('FF000000'));
+        $row->getCell(3)->createTextRun($word_fund->fund_42 ?? '')->getFont()->setSize(10)->setColor(new Color('FF000000'));
+        $row->getCell(4)->createTextRun($word_fund->fund_43 ?? '')->getFont()->setSize(10)->setColor(new Color('FF000000'));
 
         $row = $pay_table->createRow();
         $row->setHeight(30);
         $row->getCell(0)->createTextRun('百分比')->getFont()->setSize(10)->setColor(new Color('FF000000'));
         $row->getCell(0)->setColSpan(2);
-        $row->getCell(2)->createTextRun($word_fund->fund_44)->getFont()->setSize(10)->setColor(new Color('FF000000'));
-        $row->getCell(3)->createTextRun($word_fund->fund_45)->getFont()->setSize(10)->setColor(new Color('FF000000'));
-        $row->getCell(4)->createTextRun($word_fund->fund_46)->getFont()->setSize(10)->setColor(new Color('FF000000'));
+        $row->getCell(2)->createTextRun($word_fund->fund_44 ?? '')->getFont()->setSize(10)->setColor(new Color('FF000000'));
+        $row->getCell(3)->createTextRun($word_fund->fund_45 ?? '')->getFont()->setSize(10)->setColor(new Color('FF000000'));
+        $row->getCell(4)->createTextRun($word_fund->fund_46 ?? '')->getFont()->setSize(10)->setColor(new Color('FF000000'));
 
 
 
