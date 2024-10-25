@@ -400,7 +400,7 @@
                                                                                     <textarea class="form-control" rows="10" id="plan_name{{ $i }}" name="plan_name[]" readonly></textarea>
                                                                                 </td>
                                                                                 <td>
-                                                                                    <textarea class="form-control" rows="10" id="plan_description{{ $i }}" name="plan_description[]" readonly></textarea>
+                                                                                    <textarea class="form-control" rows="10" id="plan_description{{ $i }}" name="plan_description[]"></textarea>
                                                                                 </td>
                                                                                 <td>
                                                                                     <textarea class="form-control" rows="10" id="plan_reduction_item{{ $i }}" name="plan_reduction_item[]" ></textarea>
@@ -1825,7 +1825,7 @@
                                             <textarea class="form-control" rows="10" id="plan_name${questionRowCount}" name="plan_name[]" readonly></textarea>
                                         </td>
                                         <td>
-                                            <textarea class="form-control" rows="10" id="plan_description${questionRowCount}" name="plan_description[]" readonly></textarea>
+                                            <textarea class="form-control" rows="10" id="plan_description${questionRowCount}" name="plan_description[]"></textarea>
                                         </td>
                                         <td>
                                             <textarea class="form-control" rows="10" id="plan_reduction_item${questionRowCount}" name="plan_reduction_item[]"></textarea>
