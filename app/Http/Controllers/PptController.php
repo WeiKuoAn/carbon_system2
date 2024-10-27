@@ -1529,22 +1529,22 @@ class PptController extends Controller
         // Adding rows with fund data
         $row = $pay_table->createRow();
         $row->setHeight(30);
-        $row->getCell(0)->createTextRun('1. 人事費')->getFont()->setSize(12)->setColor(new Color('FF000000'));
+        $row->getCell(0)->createTextRun('1. 人事費')->getFont()->setSize(10)->setColor(new Color('FF000000'));
         $row->getCell(0)->setColSpan(2);
-        $row->getCell(2)->createTextRun($word_fund->fund_1 ?? '')->getFont()->setSize(12)->setColor(new Color('FF000000'));
-        $row->getCell(3)->createTextRun($word_fund->fund_2 ?? '')->getFont()->setSize(12)->setColor(new Color('FF000000'));
-        $row->getCell(4)->createTextRun($word_fund->fund_3 ?? '')->getFont()->setSize(12)->setColor(new Color('FF000000'));
-        $row->getCell(5)->createTextRun($word_fund->remark1 ?? '')->getFont()->setSize(12)->setColor(new Color('FF000000'));
+        $row->getCell(2)->createTextRun(number_format($word_fund->fund_1)?? '')->getFont()->setSize(10)->setColor(new Color('FF000000'));
+        $row->getCell(3)->createTextRun(number_format($word_fund->fund_2)?? '')->getFont()->setSize(10)->setColor(new Color('FF000000'));
+        $row->getCell(4)->createTextRun(number_format($word_fund->fund_3)?? '')->getFont()->setSize(10)->setColor(new Color('FF000000'));
+        $row->getCell(5)->createTextRun($word_fund->remark1 ?? '')->getFont()->setSize(10)->setColor(new Color('FF000000'));
 
         // Repeat similar rows for the rest of the funds (from fund_5 to fund_46)
         $row = $pay_table->createRow();
         $row->setHeight(30);
-        $row->getCell(0)->createTextRun('2. 消耗性器材及原材料費')->getFont()->setSize(12)->setColor(new Color('FF000000'));
+        $row->getCell(0)->createTextRun('2. 消耗性器材及原材料費')->getFont()->setSize(10)->setColor(new Color('FF000000'));
         $row->getCell(0)->setColSpan(2);
-        $row->getCell(2)->createTextRun($word_fund->fund_5 ?? '')->getFont()->setSize(12)->setColor(new Color('FF000000'));
-        $row->getCell(3)->createTextRun($word_fund->fund_6 ?? '')->getFont()->setSize(12)->setColor(new Color('FF000000'));
-        $row->getCell(4)->createTextRun($word_fund->fund_7 ?? '')->getFont()->setSize(12)->setColor(new Color('FF000000'));
-        $row->getCell(5)->createTextRun($word_fund->remark2 ?? '')->getFont()->setSize(12)->setColor(new Color('FF000000'));
+        $row->getCell(2)->createTextRun(number_format($word_fund->fund_5)?? '')->getFont()->setSize(10)->setColor(new Color('FF000000'));
+        $row->getCell(3)->createTextRun(number_format($word_fund->fund_6)?? '')->getFont()->setSize(10)->setColor(new Color('FF000000'));
+        $row->getCell(4)->createTextRun(number_format($word_fund->fund_7)?? '')->getFont()->setSize(10)->setColor(new Color('FF000000'));
+        $row->getCell(5)->createTextRun($word_fund->remark2 ?? '')->getFont()->setSize(10)->setColor(new Color('FF000000'));
 
         // Similarly, add more rows for other funds and remarks up to fund_46
 
@@ -1553,18 +1553,18 @@ class PptController extends Controller
         $row->setHeight(30);
         $row->getCell(0)->createTextRun('3. 設備及軟體使用費')->getFont()->setSize(10)->setColor(new Color('FF000000'));
         $row->getCell(0)->setColSpan(2);
-        $row->getCell(2)->createTextRun($word_fund->fund_9 ?? '')->getFont()->setSize(10)->setColor(new Color('FF000000'));
-        $row->getCell(3)->createTextRun($word_fund->fund_10 ?? '')->getFont()->setSize(10)->setColor(new Color('FF000000'));
-        $row->getCell(4)->createTextRun($word_fund->fund_11 ?? '')->getFont()->setSize(10)->setColor(new Color('FF000000'));
+        $row->getCell(2)->createTextRun(number_format($word_fund->fund_9)?? '')->getFont()->setSize(10)->setColor(new Color('FF000000'));
+        $row->getCell(3)->createTextRun(number_format($word_fund->fund_10) ?? '')->getFont()->setSize(10)->setColor(new Color('FF000000'));
+        $row->getCell(4)->createTextRun(number_format($word_fund->fund_11) ?? '')->getFont()->setSize(10)->setColor(new Color('FF000000'));
         $row->getCell(5)->createTextRun($word_fund->remark3 ?? '')->getFont()->setSize(10)->setColor(new Color('FF000000'));
 
         $row = $pay_table->createRow();
         $row->setHeight(30);
         $row->getCell(0)->createTextRun('4.設備維護費')->getFont()->setSize(10)->setColor(new Color('FF000000'));
         $row->getCell(0)->setColSpan(2);
-        $row->getCell(2)->createTextRun($word_fund->fund_13 ?? '')->getFont()->setSize(10)->setColor(new Color('FF000000'));
-        $row->getCell(3)->createTextRun($word_fund->fund_14 ?? '')->getFont()->setSize(10)->setColor(new Color('FF000000'));
-        $row->getCell(4)->createTextRun($word_fund->fund_15 ?? '')->getFont()->setSize(10)->setColor(new Color('FF000000'));
+        $row->getCell(2)->createTextRun(number_format($word_fund->fund_13) ?? '')->getFont()->setSize(10)->setColor(new Color('FF000000'));
+        $row->getCell(3)->createTextRun(number_format($word_fund->fund_14) ?? '')->getFont()->setSize(10)->setColor(new Color('FF000000'));
+        $row->getCell(4)->createTextRun(number_format($word_fund->fund_15) ?? '')->getFont()->setSize(10)->setColor(new Color('FF000000'));
         $row->getCell(5)->createTextRun($word_fund->remark4 ?? '')->getFont()->setSize(10)->setColor(new Color('FF000000'));
 
         // Add a row for "5. 技術移轉費"
@@ -1575,71 +1575,71 @@ class PptController extends Controller
 
         // Subsection 1: (1) 技術或智慧財產權購買費
         $row->getCell(1)->createTextRun('(1) 技術或智慧財產權購買費')->getFont()->setSize(10)->setColor(new Color('FF000000'));
-        $row->getCell(2)->createTextRun($word_fund->fund_17 ?? '')->getFont()->setSize(10)->setColor(new Color('FF000000'));
-        $row->getCell(3)->createTextRun($word_fund->fund_18 ?? '')->getFont()->setSize(10)->setColor(new Color('FF000000'));
-        $row->getCell(4)->createTextRun($word_fund->fund_19 ?? '')->getFont()->setSize(10)->setColor(new Color('FF000000'));
+        $row->getCell(2)->createTextRun(number_format($word_fund->fund_17) ?? '')->getFont()->setSize(10)->setColor(new Color('FF000000'));
+        $row->getCell(3)->createTextRun(number_format($word_fund->fund_18) ?? '')->getFont()->setSize(10)->setColor(new Color('FF000000'));
+        $row->getCell(4)->createTextRun(number_format($word_fund->fund_19) ?? '')->getFont()->setSize(10)->setColor(new Color('FF000000'));
         $row->getCell(5)->createTextRun($word_fund->remark5 ?? '')->getFont()->setSize(10)->setColor(new Color('FF000000'));
 
         // Subsection 2: (2) 委託研究費
         $row = $pay_table->createRow();
         $row->setHeight(30);
         $row->getCell(1)->createTextRun('(2) 委託研究費')->getFont()->setSize(10)->setColor(new Color('FF000000'));
-        $row->getCell(2)->createTextRun($word_fund->fund_21 ?? '')->getFont()->setSize(10)->setColor(new Color('FF000000'));
-        $row->getCell(3)->createTextRun($word_fund->fund_22 ?? '')->getFont()->setSize(10)->setColor(new Color('FF000000'));
-        $row->getCell(4)->createTextRun($word_fund->fund_23 ?? '')->getFont()->setSize(10)->setColor(new Color('FF000000'));
+        $row->getCell(2)->createTextRun(number_format($word_fund->fund_21) ?? '')->getFont()->setSize(10)->setColor(new Color('FF000000'));
+        $row->getCell(3)->createTextRun(number_format($word_fund->fund_22) ?? '')->getFont()->setSize(10)->setColor(new Color('FF000000'));
+        $row->getCell(4)->createTextRun(number_format($word_fund->fund_23) ?? '')->getFont()->setSize(10)->setColor(new Color('FF000000'));
         $row->getCell(5)->createTextRun($word_fund->remark6 ?? '')->getFont()->setSize(10)->setColor(new Color('FF000000'));
 
         // Subsection 3: (3) 委託勞務費
         $row = $pay_table->createRow();
         $row->setHeight(30);
         $row->getCell(1)->createTextRun('(3) 委託勞務費')->getFont()->setSize(10)->setColor(new Color('FF000000'));
-        $row->getCell(2)->createTextRun($word_fund->fund_25 ?? '')->getFont()->setSize(10)->setColor(new Color('FF000000'));
-        $row->getCell(3)->createTextRun($word_fund->fund_26 ?? '')->getFont()->setSize(10)->setColor(new Color('FF000000'));
-        $row->getCell(4)->createTextRun($word_fund->fund_27 ?? '')->getFont()->setSize(10)->setColor(new Color('FF000000'));
+        $row->getCell(2)->createTextRun(number_format($word_fund->fund_25) ?? '')->getFont()->setSize(10)->setColor(new Color('FF000000'));
+        $row->getCell(3)->createTextRun(number_format($word_fund->fund_26) ?? '')->getFont()->setSize(10)->setColor(new Color('FF000000'));
+        $row->getCell(4)->createTextRun(number_format($word_fund->fund_27) ?? '')->getFont()->setSize(10)->setColor(new Color('FF000000'));
         $row->getCell(5)->createTextRun($word_fund->remark7 ?? '')->getFont()->setSize(10)->setColor(new Color('FF000000'));
 
         // Add a row for "小計"
         $row = $pay_table->createRow();
         $row->setHeight(30);
         $row->getCell(1)->createTextRun('小計')->getFont()->setSize(10)->setColor(new Color('FF000000'));
-        $row->getCell(2)->createTextRun($word_fund->fund_29 ?? '')->getFont()->setSize(10)->setColor(new Color('FF000000'));
-        $row->getCell(3)->createTextRun($word_fund->fund_30 ?? '')->getFont()->setSize(10)->setColor(new Color('FF000000'));
-        $row->getCell(4)->createTextRun($word_fund->fund_31 ?? '')->getFont()->setSize(10)->setColor(new Color('FF000000'));
+        $row->getCell(2)->createTextRun(number_format($word_fund->fund_29) ?? '')->getFont()->setSize(10)->setColor(new Color('FF000000'));
+        $row->getCell(3)->createTextRun(number_format($word_fund->fund_30) ?? '')->getFont()->setSize(10)->setColor(new Color('FF000000'));
+        $row->getCell(4)->createTextRun(number_format($word_fund->fund_31) ?? '')->getFont()->setSize(10)->setColor(new Color('FF000000'));
         $row->getCell(5)->createTextRun($word_fund->remark8 ?? '')->getFont()->setSize(10)->setColor(new Color('FF000000'));
 
         $row = $pay_table->createRow();
         $row->setHeight(30);
         $row->getCell(0)->createTextRun('6.差旅費')->getFont()->setSize(10)->setColor(new Color('FF000000'));
         $row->getCell(0)->setColSpan(2);
-        $row->getCell(2)->createTextRun($word_fund->fund_33 ?? '')->getFont()->setSize(10)->setColor(new Color('FF000000'));
-        $row->getCell(3)->createTextRun($word_fund->fund_34 ?? '')->getFont()->setSize(10)->setColor(new Color('FF000000'));
-        $row->getCell(4)->createTextRun($word_fund->fund_35 ?? '')->getFont()->setSize(10)->setColor(new Color('FF000000'));
+        $row->getCell(2)->createTextRun(number_format($word_fund->fund_33) ?? '')->getFont()->setSize(10)->setColor(new Color('FF000000'));
+        $row->getCell(3)->createTextRun(number_format($word_fund->fund_34) ?? '')->getFont()->setSize(10)->setColor(new Color('FF000000'));
+        $row->getCell(4)->createTextRun(number_format($word_fund->fund_35) ?? '')->getFont()->setSize(10)->setColor(new Color('FF000000'));
         $row->getCell(5)->createTextRun($word_fund->remark9 ?? '')->getFont()->setSize(10)->setColor(new Color('FF000000'));
 
         $row = $pay_table->createRow();
         $row->setHeight(30);
         $row->getCell(0)->createTextRun('7.市場驗證費')->getFont()->setSize(10)->setColor(new Color('FF000000'));
         $row->getCell(0)->setColSpan(2);
-        $row->getCell(2)->createTextRun($word_fund->fund_37 ?? '')->getFont()->setSize(10)->setColor(new Color('FF000000'));
-        $row->getCell(3)->createTextRun($word_fund->fund_38 ?? '')->getFont()->setSize(10)->setColor(new Color('FF000000'));
-        $row->getCell(4)->createTextRun($word_fund->fund_39 ?? '')->getFont()->setSize(10)->setColor(new Color('FF000000'));
+        $row->getCell(2)->createTextRun(number_format($word_fund->fund_37) ?? '')->getFont()->setSize(10)->setColor(new Color('FF000000'));
+        $row->getCell(3)->createTextRun(number_format($word_fund->fund_38) ?? '')->getFont()->setSize(10)->setColor(new Color('FF000000'));
+        $row->getCell(4)->createTextRun(number_format($word_fund->fund_39) ?? '')->getFont()->setSize(10)->setColor(new Color('FF000000'));
         $row->getCell(5)->createTextRun($word_fund->remark10 ?? '')->getFont()->setSize(10)->setColor(new Color('FF000000'));
 
         $row = $pay_table->createRow();
         $row->setHeight(30);
         $row->getCell(0)->createTextRun('合計')->getFont()->setSize(10)->setColor(new Color('FF000000'));
         $row->getCell(0)->setColSpan(2);
-        $row->getCell(2)->createTextRun($word_fund->fund_41 ?? '')->getFont()->setSize(10)->setColor(new Color('FF000000'));
-        $row->getCell(3)->createTextRun($word_fund->fund_42 ?? '')->getFont()->setSize(10)->setColor(new Color('FF000000'));
-        $row->getCell(4)->createTextRun($word_fund->fund_43 ?? '')->getFont()->setSize(10)->setColor(new Color('FF000000'));
+        $row->getCell(2)->createTextRun(number_format($word_fund->fund_41) ?? '')->getFont()->setSize(10)->setColor(new Color('FF000000'));
+        $row->getCell(3)->createTextRun(number_format($word_fund->fund_42) ?? '')->getFont()->setSize(10)->setColor(new Color('FF000000'));
+        $row->getCell(4)->createTextRun(number_format($word_fund->fund_43) ?? '')->getFont()->setSize(10)->setColor(new Color('FF000000'));
 
         $row = $pay_table->createRow();
         $row->setHeight(30);
         $row->getCell(0)->createTextRun('百分比')->getFont()->setSize(10)->setColor(new Color('FF000000'));
         $row->getCell(0)->setColSpan(2);
-        $row->getCell(2)->createTextRun($word_fund->fund_44 ?? '')->getFont()->setSize(10)->setColor(new Color('FF000000'));
-        $row->getCell(3)->createTextRun($word_fund->fund_45 ?? '')->getFont()->setSize(10)->setColor(new Color('FF000000'));
-        $row->getCell(4)->createTextRun($word_fund->fund_46 ?? '')->getFont()->setSize(10)->setColor(new Color('FF000000'));
+        $row->getCell(2)->createTextRun(number_format($word_fund->fund_44) ?? '')->getFont()->setSize(10)->setColor(new Color('FF000000'));
+        $row->getCell(3)->createTextRun(number_format($word_fund->fund_45) ?? '')->getFont()->setSize(10)->setColor(new Color('FF000000'));
+        $row->getCell(4)->createTextRun(number_format($word_fund->fund_46) ?? '')->getFont()->setSize(10)->setColor(new Color('FF000000'));
 
 
 
