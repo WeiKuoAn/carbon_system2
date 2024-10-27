@@ -172,16 +172,22 @@
                                                 <select data-role="zipcode"  data-value="{{ $cust_data->zipcode }}"></select>
                                             </div>
                                         </div>
-                                        <div class="col-md-6">
+                                        <div class="col-md-4">
                                             <input type="text" class="form-control" name="address" value="{{ $cust_data->address }}" >
                                         </div>
-                                        <div class="col-md-6">
+                                        <div class="col-md-4">
+                                            <div class="mb-4">
+                                                <label class="form-label" for="AddNew-Phone"><b>資本額</b><span class="text-danger">*</span></label>
+                                                <input type="text" class="form-control required-input" name="capital_amount" @if(isset($word_data))  value="{{ $word_data->capital_amount }}" @else value="0" @endif>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
                                             <div class="mb-4">
                                                 <label class="form-label" for="AddNew-Phone"><b>主要營業項目</b><span class="text-danger">*</span></label>
                                                 <input type="text" class="form-control required-input" name="business_activities" @if(isset($word_data))  value="{{ $word_data->business_activities }}" @else value="0" @endif>
                                             </div>
                                         </div>
-                                        <div class="col-md-6">
+                                        <div class="col-md-4">
                                             <div class="mb-4">
                                                 <label class="form-label" for="AddNew-Phone"><b>產業領域別</b><span class="text-danger">*</span></label>
                                                 <input type="text" class="form-control required-input" name="industry_category" @if(isset($word_data))  value="{{ $word_data->industry_category }}" @else value="0" @endif>
@@ -197,10 +203,22 @@
                                         <hr>
 
                                         <div class="col-md-12">
-                                            <label class="form-label" for="AddNew-Username"><b>企業簡介</b><span class="text-danger">*</span></label>
-                                            <textarea class="form-control"  rows="5" name="introduction">@if(isset($word_data)){{ $word_data->introduction }}@endif</textarea>
+                                            <div class="mb-4">
+                                                <label class="form-label" for="AddNew-Username"><b>企業簡介</b><span class="text-danger">*</span></label>
+                                                <textarea class="form-control"  rows="5" name="introduction">@if(isset($word_data)){{ $word_data->introduction }}@endif</textarea>
+                                            </div>
                                             {{-- <textarea id="ckeditor-classic" name="editorContent">@if(isset($word)){{ $word->text }}@endif</textarea> --}}
                                         </div>
+
+                                        <div class="col-md-12">
+                                            <div class="mb-4">
+                                                <label class="form-label">企業代表色</label>
+                                                <input class="jscolor form-control" value="@if(isset($word_data)){{ $word_data->color }}@endif" id="colorpicker-default" name="color">
+                                            </div>
+                                        </div>
+                                        
+                                        
+                                        
 
                                     </div>
                                 </div>
@@ -964,7 +982,7 @@
                                                                                     <textarea class="form-control" rows="4" id="check_proportion{{$key}}" name="check_proportion[]" readonly>{{ $word_check_data->proportion }}</textarea>
                                                                                 </td>
                                                                                 <td>
-                                                                                    <textarea class="form-control" rows="4" id="check_audit_data{{$key}}" name="check_audit_data[]">{{ $word_check_data->audit_data }}</textarea>
+                                                                                    <textarea class="form-control" rows="4"  name="check_audit_data[]">{{ $word_check_data->audit_data }}</textarea>
                                                                                 </td>
                                                                                 <td style="vertical-align: middle;">
                                                                                     <button class="mobile btn btn-danger del-row mt-4" alt="{{ $key }}" type="button" name="button" onclick="del_row(this)">刪除</button>
@@ -1517,8 +1535,12 @@
     </style>
     
     @section('scripts')
+
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
         <script src="{{ asset('assets/js/twzipcode-1.4.1-min.js') }}"></script>
+<script src="https://jscolor.com/release/2.4.5/jscolor.min.js"></script>
+
 
         <script>
             $(document).ready(function(){
