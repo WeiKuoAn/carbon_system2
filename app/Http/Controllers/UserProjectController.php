@@ -317,6 +317,8 @@ class UserProjectController extends Controller
         $word->organization_relationship = $request->organization_relationship;
         $word->application_solution = $request->application_solution;
         $word->checkpoint = $request->checkpoint;
+        $word->capital_amount = $request->capital_amount;
+        $word->color = $request->color;
         $word->save();
 
         //計畫導入前後服務情境
