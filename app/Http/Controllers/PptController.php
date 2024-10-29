@@ -151,6 +151,7 @@ class PptController extends Controller
 
         // 添加一個幻燈片
         $slide2 = $presentation->createSlide();
+
         // 添加標題
         $shapeTitle = $slide2->createRichTextShape()
             ->setHeight(50)
@@ -161,9 +162,10 @@ class PptController extends Controller
         $textRunTitle = $shapeTitle->createTextRun('公司介紹 - 品牌故事');
         $textRunTitle->getFont()->setBold(true)->setSize(20)->setColor(new Color($color));
 
-        // 添加公司介紹文本 (這部分會從資料庫提取)
-        $companyDescription = $word_data->introduction; // 假設這裡是資料庫提取的描述文字
+        // 假設這裡是資料庫提取的描述文字
+        $introductionText = $word_data->introduction ?? '';
 
+        // 添加公司介紹文本
         $shapeText = $slide2->createRichTextShape()
             ->setHeight(400)
             ->setWidth(453)
@@ -172,8 +174,9 @@ class PptController extends Controller
         $shapeText->getActiveParagraph()->getAlignment()->setHorizontal(Alignment::HORIZONTAL_LEFT);
 
         // 添加從資料庫提取的普通文本
-        $textRun = $shapeText->createTextRun($word_data->some_property ?? '');
+        $textRun = $shapeText->createTextRun($introductionText);
         $textRun->getFont()->setSize(16)->setColor(new Color('FF000000'));
+
 
         // 創建第三張幻燈片
         $slide3 = $presentation->createSlide();
@@ -384,7 +387,7 @@ class PptController extends Controller
         $cellBasicInfo->setWidth(377.5);
         $cellBasicInfo->createTextRun(
             "● 產業別：" . ($word_data->industry_category ?? '') . "\n" .
-                "● 資本額/營業額：" . number_format($cust_data->capital_amount ?? 0) . "/" . number_format($cust_data->last_year_revenue ?? 0) . " 千元\n" .
+                "● 資本額/營業額：" . number_format($word_data->capital_amount ?? 0) . "/" . number_format($cust_data->last_year_revenue ?? 0) . " 千元\n" .
                 "● 員工人數：" . ($cust_data->insurance_total ?? '0') . " 人\n" .
                 "● 提案補助款/提案自籌款：" . number_format($word_data->subsidy ?? 0) . " 千元 / " . number_format($word_data->self_funding ?? 0) . " 千元"
         )->getFont()->setSize(14)->setColor(new Color('FF000000'));
@@ -1531,9 +1534,9 @@ class PptController extends Controller
         $row->setHeight(30);
         $row->getCell(0)->createTextRun('1. 人事費')->getFont()->setSize(10)->setColor(new Color('FF000000'));
         $row->getCell(0)->setColSpan(2);
-        $row->getCell(2)->createTextRun(number_format($word_fund->fund_1)?? '')->getFont()->setSize(10)->setColor(new Color('FF000000'));
-        $row->getCell(3)->createTextRun(number_format($word_fund->fund_2)?? '')->getFont()->setSize(10)->setColor(new Color('FF000000'));
-        $row->getCell(4)->createTextRun(number_format($word_fund->fund_3)?? '')->getFont()->setSize(10)->setColor(new Color('FF000000'));
+        $row->getCell(2)->createTextRun(number_format($word_fund->fund_1) ?? '')->getFont()->setSize(10)->setColor(new Color('FF000000'));
+        $row->getCell(3)->createTextRun(number_format($word_fund->fund_2) ?? '')->getFont()->setSize(10)->setColor(new Color('FF000000'));
+        $row->getCell(4)->createTextRun(number_format($word_fund->fund_3) ?? '')->getFont()->setSize(10)->setColor(new Color('FF000000'));
         $row->getCell(5)->createTextRun($word_fund->remark1 ?? '')->getFont()->setSize(10)->setColor(new Color('FF000000'));
 
         // Repeat similar rows for the rest of the funds (from fund_5 to fund_46)
@@ -1541,9 +1544,9 @@ class PptController extends Controller
         $row->setHeight(30);
         $row->getCell(0)->createTextRun('2. 消耗性器材及原材料費')->getFont()->setSize(10)->setColor(new Color('FF000000'));
         $row->getCell(0)->setColSpan(2);
-        $row->getCell(2)->createTextRun(number_format($word_fund->fund_5)?? '')->getFont()->setSize(10)->setColor(new Color('FF000000'));
-        $row->getCell(3)->createTextRun(number_format($word_fund->fund_6)?? '')->getFont()->setSize(10)->setColor(new Color('FF000000'));
-        $row->getCell(4)->createTextRun(number_format($word_fund->fund_7)?? '')->getFont()->setSize(10)->setColor(new Color('FF000000'));
+        $row->getCell(2)->createTextRun(number_format($word_fund->fund_5) ?? '')->getFont()->setSize(10)->setColor(new Color('FF000000'));
+        $row->getCell(3)->createTextRun(number_format($word_fund->fund_6) ?? '')->getFont()->setSize(10)->setColor(new Color('FF000000'));
+        $row->getCell(4)->createTextRun(number_format($word_fund->fund_7) ?? '')->getFont()->setSize(10)->setColor(new Color('FF000000'));
         $row->getCell(5)->createTextRun($word_fund->remark2 ?? '')->getFont()->setSize(10)->setColor(new Color('FF000000'));
 
         // Similarly, add more rows for other funds and remarks up to fund_46
@@ -1553,7 +1556,7 @@ class PptController extends Controller
         $row->setHeight(30);
         $row->getCell(0)->createTextRun('3. 設備及軟體使用費')->getFont()->setSize(10)->setColor(new Color('FF000000'));
         $row->getCell(0)->setColSpan(2);
-        $row->getCell(2)->createTextRun(number_format($word_fund->fund_9)?? '')->getFont()->setSize(10)->setColor(new Color('FF000000'));
+        $row->getCell(2)->createTextRun(number_format($word_fund->fund_9) ?? '')->getFont()->setSize(10)->setColor(new Color('FF000000'));
         $row->getCell(3)->createTextRun(number_format($word_fund->fund_10) ?? '')->getFont()->setSize(10)->setColor(new Color('FF000000'));
         $row->getCell(4)->createTextRun(number_format($word_fund->fund_11) ?? '')->getFont()->setSize(10)->setColor(new Color('FF000000'));
         $row->getCell(5)->createTextRun($word_fund->remark3 ?? '')->getFont()->setSize(10)->setColor(new Color('FF000000'));
